@@ -19,11 +19,11 @@ body {
   text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
 
-/* Print styles for CV */
+/* Print styles for CV - ATS Friendly Professional Format */
 @media print {
   @page {
-    size: A4;
-    margin: 0.3cm;
+    size: A4 portrait;
+    margin: 1cm;
   }
   
   * {
@@ -33,168 +33,229 @@ body {
   
   body {
     background-color: white !important;
-    color: black !important;
-    font-size: 10pt !important;
-    line-height: 1.2 !important;
+    color: #000 !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 11pt !important;
+    line-height: 1.3 !important;
   }
   
   main {
     padding: 0 !important;
     margin: 0 !important;
+    background: white !important;
   }
   
-  .glass {
+  /* Remove all glass effects and dark mode styling */
+  .glass, .glass-panel {
     background-color: white !important;
-    border: 1px solid #ddd !important;
+    border: none !important;
     backdrop-filter: none !important;
-    padding: 0.2cm !important;
-    margin: 0.1cm 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
   }
   
-  .glass-panel {
-    background-color: white !important;
-    border: 1px solid #ddd !important;
-    padding: 0.2cm !important;
-    margin: 0.1cm 0 !important;
-  }
-  
+  /* Professional black and white color scheme */
   .text-cyan-400, .text-primary, .text-secondary, .text-accent {
-    color: #0066cc !important;
+    color: #000 !important;
+    font-weight: bold !important;
   }
   
-  .text-white, .text-gray-400, .text-gray-300 {
+  .text-white, .text-gray-400, .text-gray-300, .text-gray-500 {
     color: #333 !important;
   }
   
   .text-white\/70, .text-white\/50, .text-white\/40 {
-    color: #666 !important;
+    color: #555 !important;
   }
   
-  .bg-gradient-to-r, .bg-gradient-to-br {
+  /* Remove all gradients and fancy backgrounds */
+  .bg-gradient-to-r, .bg-gradient-to-br, .bg-primary, .bg-secondary, .bg-accent {
     background: none !important;
   }
   
   /* Hide navigation and non-printable elements */
-  nav, .fixed, button, .no-print, footer {
+  nav, .fixed, button, .no-print, footer, .motion, .animate {
     display: none !important;
   }
   
-  /* Force single page layout */
+  /* Reset container */
   .max-w-5xl {
     max-width: 100% !important;
     padding: 0 !important;
     margin: 0 !important;
   }
   
-  /* Reduce all spacing */
-  .space-y-4, .space-y-6, .space-y-8 {
-    gap: 0.1cm !important;
+  /* Professional Header */
+  header {
+    border-bottom: 2px solid #000 !important;
+    padding-bottom: 0.3cm !important;
+    margin-bottom: 0.4cm !important;
   }
   
-  .gap-4, .gap-6, .gap-8 {
-    gap: 0.1cm !important;
-  }
-  
-  .mb-2, .mb-3, .mb-4, .mb-6, .mb-8 {
-    margin-bottom: 0.1cm !important;
-  }
-  
-  .mt-2, .mt-3, .mt-4, .mt-6, .mt-8, .mt-12 {
-    margin-top: 0.1cm !important;
-  }
-  
-  .py-2, .py-3, .py-4, .py-6, .py-8, .py-12 {
-    padding-top: 0.1cm !important;
-    padding-bottom: 0.1cm !important;
-  }
-  
-  .px-2, .px-3, .px-4, .px-6, .px-8 {
-    padding-left: 0.1cm !important;
-    padding-right: 0.1cm !important;
-  }
-  
-  .p-2, .p-3, .p-4, .p-6, .p-8 {
-    padding: 0.1cm !important;
-  }
-  
-  /* Force everything on one page */
-  section {
-    page-break-inside: avoid !important;
-    page-break-after: avoid !important;
-    margin-bottom: 0.1cm !important;
-  }
-  
-  div {
-    page-break-inside: avoid !important;
-  }
-  
-  /* Ultra compact layout */
-  .grid-cols-1.lg\\:grid-cols-3 {
-    grid-template-columns: 30% 70% !important;
-    gap: 0.2cm !important;
-  }
-  
-  /* Compact header */
   h1 {
-    font-size: 16pt !important;
-    margin-bottom: 0.1cm !important;
+    font-size: 18pt !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    margin: 0 !important;
+    text-transform: uppercase !important;
   }
   
   h2 {
-    font-size: 12pt !important;
-    margin-bottom: 0.1cm !important;
+    font-size: 14pt !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    margin: 0.3cm 0 0.1cm 0 !important;
+    text-transform: uppercase !important;
+    border-bottom: 1px solid #ccc !important;
   }
   
   h3 {
-    font-size: 10pt !important;
-    margin-bottom: 0.05cm !important;
+    font-size: 12pt !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    margin: 0.2cm 0 0.1cm 0 !important;
   }
   
   h4 {
-    font-size: 9pt !important;
-    margin-bottom: 0.05cm !important;
+    font-size: 11pt !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    margin: 0.1cm 0 !important;
   }
   
-  p, li {
-    font-size: 8pt !important;
-    line-height: 1.1 !important;
-    margin-bottom: 0.05cm !important;
+  p {
+    font-size: 11pt !important;
+    line-height: 1.3 !important;
+    margin: 0.1cm 0 !important;
+    color: #333 !important;
   }
   
-  /* Compact lists */
-  ul {
-    margin: 0 !important;
+  /* Professional contact info */
+  .flex.items-center.gap-2 {
+    margin: 0.1cm 0 !important;
+  }
+  
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+  
+  /* Remove icons in print */
+  svg {
+    display: none !important;
+  }
+  
+  /* Section spacing */
+  section {
+    page-break-inside: avoid !important;
+    margin-bottom: 0.3cm !important;
+  }
+  
+  /* Two-column layout for CV */
+  .grid-cols-1 {
+    display: grid !important;
+    grid-template-columns: 28% 72% !important;
+    gap: 0.5cm !important;
+  }
+  
+  /* Left column - Skills and Education */
+  [class*="col-span-1"] {
+    page-break-inside: avoid !important;
+  }
+  
+  /* Right column - Experience and Projects */
+  [class*="col-span-2"] {
+    page-break-inside: avoid !important;
+  }
+  
+  /* Experience items */
+  .border-l-2 {
+    border-left: 2px solid #000 !important;
     padding-left: 0.3cm !important;
+    margin-left: 0 !important;
+  }
+  
+  /* Project cards */
+  .border {
+    border: 1px solid #ccc !important;
+    padding: 0.2cm !important;
+    margin: 0.1cm 0 !important;
+  }
+  
+  /* Skill tags - simple text without styling */
+  [class*="bg-white\\/"], [class*="bg-cyan-500\\/"] {
+    background: none !important;
+    border: 1px solid #ccc !important;
+    padding: 0.05cm 0.1cm !important;
+    margin: 0.05cm !important;
+    font-size: 9pt !important;
+  }
+  
+  /* Lists */
+  ul {
+    margin: 0.1cm 0 !important;
+    padding-left: 0.5cm !important;
   }
   
   li {
-    margin-bottom: 0 !important;
+    margin: 0.05cm 0 !important;
+    font-size: 11pt !important;
+    line-height: 1.2 !important;
   }
   
-  /* Compact badges/tags */
-  span {
-    font-size: 7pt !important;
-    padding: 0.05cm 0.1cm !important;
+  /* Remove flex gaps in lists */
+  .flex.gap-1, .flex.gap-2 {
+    gap: 0.1cm !important;
   }
   
-  /* Remove borders in print for space */
-  .border-l-2 {
-    border-left-width: 1px !important;
-    padding-left: 0.2cm !important;
+  /* Availability section */
+  .space-y-2, .space-y-3 {
+    gap: 0.1cm !important;
   }
   
-  .border {
-    border-width: 1px !important;
+  /* Force single page with professional spacing */
+  .py-12 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
   
-  /* Force single page */
-  @page {
-    size: A4 portrait;
-    margin: 0.2cm;
+  .px-4 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   
+  /* Compact spacing for everything */
+  [class*="mb-"] {
+    margin-bottom: 0.1cm !important;
+  }
+  
+  [class*="mt-"] {
+    margin-top: 0.1cm !important;
+  }
+  
+  [class*="p-"] {
+    padding: 0.1cm !important;
+  }
+  
+  /* Remove rounded corners in print */
+  [class*="rounded-"] {
+    border-radius: 0 !important;
+  }
+  
+  /* Professional footer if needed */
+  footer {
+    display: none !important;
+  }
+  
+  /* Ensure no overflow */
   html, body {
-    height: 100%;
-    overflow: hidden;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  
+  /* Prevent content from being cut off */
+  * {
+    overflow: visible !important;
   }
 }
