@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps {
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
   children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -14,7 +17,8 @@ export default function Button({
   size = "md",
   className,
   children,
-  ...props
+  disabled,
+  onClick,
 }: ButtonProps) {
   const variants = {
     primary: "bg-gradient-primary text-white hover:shadow-lg hover:shadow-primary/25",
@@ -39,7 +43,8 @@ export default function Button({
         sizes[size],
         className
       )}
-      {...props}
+      disabled={disabled}
+      onClick={onClick}
     >
       <span className="relative z-10">{children}</span>
       {variant !== "outline" && (
