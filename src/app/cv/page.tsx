@@ -4,6 +4,14 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Phone, MapPin, Home, FolderOpen, User } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import dynamic from "next/dynamic";
+
+const VRController = dynamic(() => import("@/components/VRController"), {
+  ssr: false,
+  loading: () => <div className="w-full h-64 md:h-80 flex items-center justify-center">
+    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-cyan-400"></div>
+  </div>,
+});
 
 export default function CVPage() {
   return (
@@ -19,7 +27,7 @@ export default function CVPage() {
           animate={{ opacity: 1, y: 0 }}
           className="cv-header mb-8 print:mb-4"
         >
-          <div className="flex flex-col md:flex-row gap-6 items-start print:gap-4">
+          <div className="flex flex-col lg:flex-row gap-6 items-start print:gap-4">
             <div className="flex-shrink-0 print:hidden">
               <div className="w-20 h-20 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center">
                 <User className="w-10 h-10 text-white" />
@@ -94,6 +102,10 @@ export default function CVPage() {
               <p className="text-gray-400 text-xs leading-relaxed print:text-gray-700 print:text-[10px]">
                 Desarrollador Unity en formación, enfocado en la creación de videojuegos, simulaciones 3D y experiencias interactivas. Actualmente cursando Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O&apos;Higgins. Busco una práctica profesional (part-time) para integrarme a un equipo real, aprender en un entorno profesional y aportar desde el desarrollo.
               </p>
+              {/* 3D Controller Decoration */}
+              <div className="mt-4 hidden md:block print:hidden">
+                <VRController />
+              </div>
             </motion.section>
 
             {/* Skills */}

@@ -1,0 +1,8 @@
+Model Information:
+* title:	HTC VIVE Controller
+* source:	https://sketchfab.com/3d-models/htc-vive-controller-a75e66433fe640f6a5b8a640aaeffb90
+* author:	vigallardo46 (https://sketchfab.com/vigallardo46)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
