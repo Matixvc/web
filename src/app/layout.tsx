@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Web Profesional Moderna - Diseño que Impacta",
-  description: "Creamos experiencias digitales extraordinarias que transforman ideas en realidad visual. Diseño moderno, animaciones fluidas y tecnología de vanguardia.",
+  title: "Matías Villalobos | Unity Developer - Portafolio & CV",
+  description: "Unity Developer especializado en XR/VR/AR, desarrollo de videojuegos y experiencias digitales interactivas. Explora mi portafolio y currículum.",
   icons: {
     icon: "/favicon.svg",
   },

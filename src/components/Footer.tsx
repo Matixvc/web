@@ -1,27 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Twitter, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, FolderOpen, User } from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Mail, href: "#", label: "Email" },
+  { icon: Github, href: "https://github.com/matiasvillalobosdev-web", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/matias-vc-dev", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:matias.villalobos.dev@gmail.com", label: "Email" },
 ];
 
 const footerLinks = [
   {
-    title: "Servicios",
-    links: ["Desarrollo Web", "Diseño UI/UX", "Consultoría", "Mantenimiento"],
+    title: "Proyectos",
+    links: [
+      { name: "Portafolio", href: "../mi-portafolio/index.html", icon: FolderOpen },
+      { name: "Currículum", href: "../mi-cv/index.html", icon: User },
+    ],
   },
   {
-    title: "Empresa",
-    links: ["Sobre Nosotros", "Portafolio", "Blog", "Contacto"],
-  },
-  {
-    title: "Legal",
-    links: ["Privacidad", "Términos", "Cookies", "Licencias"],
+    title: "Contacto",
+    links: [
+      { name: "GitHub", href: "https://github.com/matiasvillalobosdev-web", icon: Github },
+      { name: "LinkedIn", href: "https://www.linkedin.com/in/matias-vc-dev", icon: Linkedin },
+      { name: "Email", href: "mailto:matias.villalobos.dev@gmail.com", icon: Mail },
+    ],
   },
 ];
 
@@ -37,10 +39,10 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
-              WebProfesional
+              Matías Villalobos
             </h3>
             <p className="text-gray-400 mb-6">
-              Creando experiencias digitales extraordinarias que transforman ideas en realidad visual.
+              Unity Developer | XR/VR Developer | Diseñador de Experiencias Digitales
             </p>
             {/* Social Links */}
             <div className="flex gap-4">
@@ -50,6 +52,8 @@ export default function Footer() {
                   <motion.a
                     key={index}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener"
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
@@ -73,17 +77,21 @@ export default function Footer() {
             >
               <h4 className="font-semibold text-white mb-4">{section.title}</h4>
               <ul className="space-y-2">
-                {section.links.map((link, linkIndex) => (
-                  <li key={linkIndex}>
-                    <motion.a
-                      href="#"
-                      whileHover={{ x: 5 }}
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      {link}
-                    </motion.a>
-                  </li>
-                ))}
+                {section.links.map((link, linkIndex) => {
+                  const Icon = link.icon;
+                  return (
+                    <li key={linkIndex}>
+                      <motion.a
+                        href={link.href}
+                        whileHover={{ x: 5 }}
+                        className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                      >
+                        <Icon className="w-4 h-4" />
+                        {link.name}
+                      </motion.a>
+                    </li>
+                  );
+                })}
               </ul>
             </motion.div>
           ))}
@@ -97,10 +105,10 @@ export default function Footer() {
           className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <p className="text-gray-400 text-sm flex items-center gap-2">
-            © 2024 WebProfesional. Hecho con <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+            © 2024 Matías Villalobos. Hecho con <Heart className="w-4 h-4 text-red-500 fill-red-500" />
           </p>
           <p className="text-gray-400 text-sm">
-            Desarrollado con Next.js, Tailwind CSS y Framer Motion
+            Unity Developer | XR/VR Specialist
           </p>
         </motion.div>
       </div>

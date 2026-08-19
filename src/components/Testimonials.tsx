@@ -7,32 +7,32 @@ import { useState } from "react";
 
 const testimonials = [
   {
-    name: "María García",
-    role: "CEO, TechStart",
-    content: "Increíble trabajo. Transformaron completamente nuestra presencia digital con un diseño moderno y funcional. El equipo superó todas nuestras expectativas.",
+    name: "Proyecto Unity VR",
+    role: "Desarrollo de Experiencia Inmersiva",
+    content: "Desarrollo de experiencia de realidad virtual con Unity, implementando sistemas de interacción, física y UI inmersiva para entorno de entrenamiento corporativo.",
     rating: 5,
-    avatar: "MG",
+    avatar: "UV",
   },
   {
-    name: "Carlos Rodríguez",
-    role: "Fundador, InnovateLab",
-    content: "Profesionalismo de primer nivel. La atención al detalle y la calidad del código son excepcionales. Recomiendo sus servicios sin dudarlo.",
+    name: "Sistema de Movimiento 3D",
+    role: "Unity Physics & Animation",
+    content: "Creación de sistema de movimiento personaje con física realista, animaciones procedurales y control adaptativo para diferentes terrenos y situaciones.",
     rating: 5,
-    avatar: "CR",
+    avatar: "SM",
   },
   {
-    name: "Ana Martínez",
-    role: "Directora, DesignHub",
-    content: "La mejor decisión que tomamos fue trabajar con ellos. Entendieron perfectamente nuestra visión y la materializaron de forma espectacular.",
+    name: "Game Design Portfolio",
+    role: "Diseño de Niveles & Gameplay",
+    content: "Diseño de niveles progresivos con curva de aprendizaje equilibrada, implementación de mecánicas de juego y sistemas de feedback visual y auditivo.",
     rating: 5,
-    avatar: "AM",
+    avatar: "GD",
   },
   {
-    name: "Pedro Sánchez",
-    role: "CTO, DigitalFlow",
-    content: "Rapidez, calidad y comunicación constante. El proyecto se entregó antes de tiempo con resultados que superaron nuestras metas.",
+    name: "Interactive UI System",
+    role: "Unity UI & UX",
+    content: "Desarrollo de sistema de interfaz de usuario interactivo con animaciones fluidas, gestión de estados y accesibilidad para diferentes dispositivos.",
     rating: 5,
-    avatar: "PS",
+    avatar: "UI",
   },
 ];
 
@@ -54,11 +54,11 @@ export default function Testimonials() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
-              Lo que dicen nuestros clientes
+              Proyectos Destacados
             </span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Testimonios reales de empresas que transformaron su presencia digital
+            Algunos de los proyectos más representativos de mi portafolio
           </p>
         </motion.div>
 
