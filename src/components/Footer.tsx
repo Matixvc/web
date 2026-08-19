@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Heart, FolderOpen, User } from "lucide-react";
+import Link from "next/link";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/matiasvillalobosdev-web", label: "GitHub" },
@@ -13,8 +14,8 @@ const footerLinks = [
   {
     title: "Proyectos",
     links: [
-      { name: "Portafolio", href: "/portafolio/index.html", icon: FolderOpen },
-      { name: "Currículum", href: "/cv/index.html", icon: User },
+      { name: "Portafolio", href: "/portafolio", icon: FolderOpen },
+      { name: "Currículum", href: "/cv", icon: User },
     ],
   },
   {
@@ -53,8 +54,8 @@ export default function Footer() {
                     key={index}
                     href={social.href}
                     target="_blank"
-                    rel="noopener"
-                    aria-label={social.label}
+                    rel="noopener noreferrer"
+                    aria-label={`Enlace a ${social.label}`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.9 }}
                     className="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white transition-colors"
@@ -79,16 +80,30 @@ export default function Footer() {
               <ul className="space-y-2">
                 {section.links.map((link, linkIndex) => {
                   const Icon = link.icon;
+                  const isInternal = link.href.startsWith("/");
                   return (
                     <li key={linkIndex}>
-                      <motion.a
-                        href={link.href}
-                        whileHover={{ x: 5 }}
-                        className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
-                      >
-                        <Icon className="w-4 h-4" />
-                        {link.name}
-                      </motion.a>
+                      {isInternal ? (
+                        <Link href={link.href}>
+                          <motion.div
+                            whileHover={{ x: 5 }}
+                            className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                          >
+                            <Icon className="w-4 h-4" />
+                            {link.name}
+                          </motion.div>
+                        </Link>
+                      ) : (
+                        <motion.a
+                          href={link.href}
+                          whileHover={{ x: 5 }}
+                          className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                          aria-label={`Enlace a ${link.name}`}
+                        >
+                          <Icon className="w-4 h-4" />
+                          {link.name}
+                        </motion.a>
+                      )}
                     </li>
                   );
                 })}

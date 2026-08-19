@@ -3,11 +3,12 @@
 import { motion } from "framer-motion";
 import { Home, FolderOpen, User } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const navItems = [
   { name: "Inicio", href: "/", icon: Home },
-  { name: "Portafolio", href: "/portafolio/index.html", icon: FolderOpen },
-  { name: "CV", href: "/cv/index.html", icon: User },
+  { name: "Portafolio", href: "/portafolio", icon: FolderOpen },
+  { name: "CV", href: "/cv", icon: User },
 ];
 
 export default function Navigation() {
@@ -35,16 +36,16 @@ export default function Navigation() {
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
-                >
-                  <Icon className="w-4 h-4" />
-                  <span>{item.name}</span>
-                </motion.a>
+                <Link key={item.name} href={item.href}>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+                  >
+                    <Icon className="w-4 h-4" />
+                    <span>{item.name}</span>
+                  </motion.div>
+                </Link>
               );
             })}
           </div>
@@ -89,16 +90,15 @@ export default function Navigation() {
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
-                <motion.a
-                  key={item.name}
-                  href={item.href}
-                  whileHover={{ x: 10 }}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors py-2"
-                >
-                  <Icon className="w-5 h-5" />
-                  <span>{item.name}</span>
-                </motion.a>
+                <Link key={item.name} href={item.href} onClick={() => setIsOpen(false)}>
+                  <motion.div
+                    whileHover={{ x: 10 }}
+                    className="flex items-center gap-3 text-gray-300 hover:text-white transition-colors py-2"
+                  >
+                    <Icon className="w-5 h-5" />
+                    <span>{item.name}</span>
+                  </motion.div>
+                </Link>
               );
             })}
           </motion.div>

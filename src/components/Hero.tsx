@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, FolderOpen, User, ExternalLink } from "lucide-react";
 import Button from "./ui/button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -53,44 +54,44 @@ export default function Hero() {
           className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mt-12"
         >
           {/* Portfolio Card */}
-          <motion.a
-            href="/portafolio/index.html"
-            className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group"
-            whileHover={{ scale: 1.05 }}
-            target="_self"
-          >
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <FolderOpen className="w-8 h-8 text-white" />
+          <Link href="/portafolio">
+            <motion.div
+              className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FolderOpen className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Portafolio</h3>
+                <p className="text-gray-400 mb-4">Explora mis proyectos de Unity, XR/VR y desarrollo de videojuegos</p>
+                <div className="flex items-center gap-2 text-primary group-hover:translate-x-2 transition-transform">
+                  <span className="font-semibold">Ver Proyectos</span>
+                  <ArrowRight className="w-5 h-5" />
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Portafolio</h3>
-              <p className="text-gray-400 mb-4">Explora mis proyectos de Unity, XR/VR y desarrollo de videojuegos</p>
-              <div className="flex items-center gap-2 text-primary group-hover:translate-x-2 transition-transform">
-                <span className="font-semibold">Ver Proyectos</span>
-                <ArrowRight className="w-5 h-5" />
-              </div>
-            </div>
-          </motion.a>
+            </motion.div>
+          </Link>
 
           {/* CV Card */}
-          <motion.a
-            href="/cv/index.html"
-            className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group"
-            whileHover={{ scale: 1.05 }}
-            target="_self"
-          >
-            <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary to-secondary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <User className="w-8 h-8 text-white" />
+          <Link href="/cv">
+            <motion.div
+              className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary to-secondary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <User className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Currículum</h3>
+                <p className="text-gray-400 mb-4">Conoce mi experiencia, habilidades y trayectoria profesional</p>
+                <div className="flex items-center gap-2 text-secondary group-hover:translate-x-2 transition-transform">
+                  <span className="font-semibold">Ver CV</span>
+                  <ArrowRight className="w-5 h-5" />
+                </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Currículum</h3>
-              <p className="text-gray-400 mb-4">Conoce mi experiencia, habilidades y trayectoria profesional</p>
-              <div className="flex items-center gap-2 text-secondary group-hover:translate-x-2 transition-transform">
-                <span className="font-semibold">Ver CV</span>
-                <ArrowRight className="w-5 h-5" />
-              </div>
-            </div>
-          </motion.a>
+            </motion.div>
+          </Link>
         </motion.div>
 
         {/* Quick Links */}
@@ -100,15 +101,15 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-12 flex flex-wrap justify-center gap-4"
         >
-          <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener" className="glass px-6 py-3 rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors">
+          <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener noreferrer" className="glass px-6 py-3 rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors" aria-label="Enlace a perfil de GitHub">
             <ExternalLink className="w-4 h-4" />
             <span className="text-sm">GitHub</span>
           </a>
-          <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener" className="glass px-6 py-3 rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors">
+          <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener noreferrer" className="glass px-6 py-3 rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors" aria-label="Enlace a perfil de LinkedIn">
             <ExternalLink className="w-4 h-4" />
             <span className="text-sm">LinkedIn</span>
           </a>
-          <a href="mailto:matias.villalobos.dev@gmail.com" className="glass px-6 py-3 rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors">
+          <a href="mailto:matias.villalobos.dev@gmail.com" className="glass px-6 py-3 rounded-full flex items-center gap-2 hover:bg-white/10 transition-colors" aria-label="Enviar correo a matias.villalobos.dev@gmail.com">
             <ExternalLink className="w-4 h-4" />
             <span className="text-sm">Email</span>
           </a>
