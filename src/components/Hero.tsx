@@ -57,6 +57,7 @@ export default function Hero() {
             href="/portafolio/index.html"
             className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group"
             whileHover={{ scale: 1.05 }}
+            target="_self"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -76,6 +77,7 @@ export default function Hero() {
             href="/cv/index.html"
             className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group"
             whileHover={{ scale: 1.05 }}
+            target="_self"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary to-secondary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

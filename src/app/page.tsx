@@ -1,4 +1,5 @@
 import BackgroundGrid from "@/components/BackgroundGrid";
+import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import BentoGrid from "@/components/BentoGrid";
 import Testimonials from "@/components/Testimonials";
@@ -8,6 +9,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background">
       <BackgroundGrid />
+      <Navigation />
       <Hero />
       <BentoGrid />
       <Testimonials />
