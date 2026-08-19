@@ -134,7 +134,7 @@ export default function PortafolioPage() {
               <h3 className="text-5xl font-bold mb-8 tracking-tight text-center lg:text-left">Sobre Mí</h3>
               
               <div className="glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500">
-                <p className="text-cyan-400 mb-4">// Biografía Técnica</p>
+                <p className="text-cyan-400 mb-4">{`// Biografía Técnica`}</p>
                 <p className="text-white/70 mb-6">
                   Soy un apasionado por la tecnología disruptiva. Mi enfoque principal es la unión entre el software y la experiencia humana. Me especializo en optimización de rendimiento en motores 3D y en la creación de mecánicas de juego innovadoras para múltiples plataformas.
                 </p>

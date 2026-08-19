@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Github, Play, Lock } from "lucide-react";
 import GlassCard from "./GlassCard";
+import Image from "next/image";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -43,9 +44,11 @@ export default function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
         {/* Thumbnail/Video Container */}
         <div className="aspect-square rounded-2xl bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
           {project.thumbnail ? (
-            <img
+            <Image
               src={project.thumbnail}
               alt={`Thumbnail del proyecto ${project.title}`}
+              width={400}
+              height={400}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
           ) : project.videoUrl ? (

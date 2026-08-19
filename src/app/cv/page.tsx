@@ -90,7 +90,7 @@ export default function CVPage() {
             >
               <h3 className="text-lg font-bold text-cyan-400 mb-4">Perfil Profesional</h3>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Desarrollador Unity en formación, enfocado en la creación de videojuegos, simulaciones 3D y experiencias interactivas. Actualmente cursando Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins. Busco una práctica profesional (part-time) para integrarme a un equipo real, aprender en un entorno profesional y aportar desde el desarrollo.
+                Desarrollador Unity en formación, enfocado en la creación de videojuegos, simulaciones 3D y experiencias interactivas. Actualmente cursando Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O&apos;Higgins. Busco una práctica profesional (part-time) para integrarme a un equipo real, aprender en un entorno profesional y aportar desde el desarrollo.
               </p>
             </motion.section>
 
@@ -227,7 +227,7 @@ export default function CVPage() {
                   </h4>
                   <span className="text-sm text-gray-400">Marzo 2021 - Julio 2027</span>
                 </div>
-                <p className="text-cyan-400 text-sm mb-2">Universidad Bernardo O'Higgins</p>
+                <p className="text-cyan-400 text-sm mb-2">Universidad Bernardo O&apos;Higgins</p>
                 <p className="text-gray-400 text-sm">
                   Formación especializada en desarrollo de videojuegos, realidad virtual, simulaciones 3D y experiencias interactivas. Enfoque en Unity, C#, diseño de niveles y desarrollo XR/VR/AR.
                 </p>

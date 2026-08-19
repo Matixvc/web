@@ -5,6 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://matiasdev-web.vercel.app"),
   title: "Matías Villalobos | Unity Developer - Portafolio & CV",
   description: "Unity Developer especializado en XR/VR/AR, desarrollo de videojuegos y experiencias digitales interactivas. Explora mi portafolio y currículum.",
   icons: {

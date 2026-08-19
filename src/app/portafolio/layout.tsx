@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://matiasdev-web.vercel.app"),
   title: "Portafolio | Matías Villalobos - Unity Developer",
   description: "Explora el portafolio de proyectos de Unity, XR/VR, desarrollo de videojuegos y simulaciones 3D de Matías Villalobos.",
   openGraph: {
