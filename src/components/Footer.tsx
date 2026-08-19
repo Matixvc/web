@@ -127,8 +127,8 @@ export default function Footer() {
           </p>
         </motion.div>
 
-        {/* 3D Model Attribution */}
-        <motion.div
+        {/* Temporarily disabled 3D Model Attribution for stability */}
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -137,7 +137,7 @@ export default function Footer() {
           <p className="text-gray-500 text-xs leading-relaxed">
             3D Models: &quot;Pico4 Low poly VR headset&quot; by <a href="https://sketchfab.com/maverik1845" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">maverik1845</a> and &quot;HTC VIVE Controller&quot; by <a href="https://sketchfab.com/vigallardo46" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">vigallardo46</a> via Sketchfab, licensed under <a href="https://sketchfab.com/licenses" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">Sketchfab Standard License</a>
           </p>
-        </motion.div>
+        </motion.div> */}
       </div>
     </footer>
   );

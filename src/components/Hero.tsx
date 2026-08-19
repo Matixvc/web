@@ -4,17 +4,18 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, FolderOpen, User, ExternalLink } from "lucide-react";
 import Button from "./ui/button";
 import Link from "next/link";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const VRHeadset = dynamic(() => import("./VRHeadset"), {
-  ssr: false,
-  loading: () => null,
-});
+// Temporarily disabled 3D integration for stability
+// const VRHeadset = dynamic(() => import("./VRHeadset"), {
+//   ssr: false,
+//   loading: () => null,
+// });
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
-      <VRHeadset />
+      {/* <VRHeadset /> */}
       <div className="max-w-6xl mx-auto text-center relative z-10">
         {/* Badge */}
         <motion.div
