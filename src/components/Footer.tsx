@@ -135,7 +135,7 @@ export default function Footer() {
           className="mt-6 pt-4 border-t border-white/5 text-center"
         >
           <p className="text-gray-500 text-xs leading-relaxed">
-            3D Models: "Pico4 Low poly VR headset" by <a href="https://sketchfab.com/maverik1845" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">maverik1845</a> and "HTC VIVE Controller" by <a href="https://sketchfab.com/vigallardo46" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">vigallardo46</a> via Sketchfab, licensed under <a href="https://sketchfab.com/licenses" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">Sketchfab Standard License</a>
+            3D Models: &quot;Pico4 Low poly VR headset&quot; by <a href="https://sketchfab.com/maverik1845" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">maverik1845</a> and &quot;HTC VIVE Controller&quot; by <a href="https://sketchfab.com/vigallardo46" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">vigallardo46</a> via Sketchfab, licensed under <a href="https://sketchfab.com/licenses" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-cyan-400 transition-colors">Sketchfab Standard License</a>
           </p>
         </motion.div>
       </div>
