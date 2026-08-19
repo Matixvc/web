@@ -23,23 +23,39 @@ body {
 @media print {
   @page {
     size: A4;
-    margin: 0.5cm;
+    margin: 0.3cm;
+  }
+  
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
   
   body {
     background-color: white !important;
     color: black !important;
+    font-size: 10pt !important;
+    line-height: 1.2 !important;
+  }
+  
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
   }
   
   .glass {
     background-color: white !important;
-    border: 1px solid #ccc !important;
+    border: 1px solid #ddd !important;
     backdrop-filter: none !important;
+    padding: 0.2cm !important;
+    margin: 0.1cm 0 !important;
   }
   
   .glass-panel {
     background-color: white !important;
-    border: 1px solid #ccc !important;
+    border: 1px solid #ddd !important;
+    padding: 0.2cm !important;
+    margin: 0.1cm 0 !important;
   }
   
   .text-cyan-400, .text-primary, .text-secondary, .text-accent {
@@ -59,28 +75,126 @@ body {
   }
   
   /* Hide navigation and non-printable elements */
-  nav, .fixed, button, .no-print {
+  nav, .fixed, button, .no-print, footer {
     display: none !important;
   }
   
-  /* Ensure CV content is on one page */
-  .cv-container {
-    page-break-inside: avoid;
-    margin: 0;
-    padding: 0;
+  /* Force single page layout */
+  .max-w-5xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   
+  /* Reduce all spacing */
+  .space-y-4, .space-y-6, .space-y-8 {
+    gap: 0.1cm !important;
+  }
+  
+  .gap-4, .gap-6, .gap-8 {
+    gap: 0.1cm !important;
+  }
+  
+  .mb-2, .mb-3, .mb-4, .mb-6, .mb-8 {
+    margin-bottom: 0.1cm !important;
+  }
+  
+  .mt-2, .mt-3, .mt-4, .mt-6, .mt-8, .mt-12 {
+    margin-top: 0.1cm !important;
+  }
+  
+  .py-2, .py-3, .py-4, .py-6, .py-8, .py-12 {
+    padding-top: 0.1cm !important;
+    padding-bottom: 0.1cm !important;
+  }
+  
+  .px-2, .px-3, .px-4, .px-6, .px-8 {
+    padding-left: 0.1cm !important;
+    padding-right: 0.1cm !important;
+  }
+  
+  .p-2, .p-3, .p-4, .p-6, .p-8 {
+    padding: 0.1cm !important;
+  }
+  
+  /* Force everything on one page */
   section {
-    page-break-inside: avoid;
-    margin-bottom: 20px;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    margin-bottom: 0.1cm !important;
   }
   
-  /* Adjust layout for print */
+  div {
+    page-break-inside: avoid !important;
+  }
+  
+  /* Ultra compact layout */
   .grid-cols-1.lg\\:grid-cols-3 {
-    grid-template-columns: 1fr 2fr !important;
+    grid-template-columns: 30% 70% !important;
+    gap: 0.2cm !important;
   }
   
-  .lg\\:col-span-1, .lg\\:col-span-2 {
-    page-break-inside: avoid;
+  /* Compact header */
+  h1 {
+    font-size: 16pt !important;
+    margin-bottom: 0.1cm !important;
+  }
+  
+  h2 {
+    font-size: 12pt !important;
+    margin-bottom: 0.1cm !important;
+  }
+  
+  h3 {
+    font-size: 10pt !important;
+    margin-bottom: 0.05cm !important;
+  }
+  
+  h4 {
+    font-size: 9pt !important;
+    margin-bottom: 0.05cm !important;
+  }
+  
+  p, li {
+    font-size: 8pt !important;
+    line-height: 1.1 !important;
+    margin-bottom: 0.05cm !important;
+  }
+  
+  /* Compact lists */
+  ul {
+    margin: 0 !important;
+    padding-left: 0.3cm !important;
+  }
+  
+  li {
+    margin-bottom: 0 !important;
+  }
+  
+  /* Compact badges/tags */
+  span {
+    font-size: 7pt !important;
+    padding: 0.05cm 0.1cm !important;
+  }
+  
+  /* Remove borders in print for space */
+  .border-l-2 {
+    border-left-width: 1px !important;
+    padding-left: 0.2cm !important;
+  }
+  
+  .border {
+    border-width: 1px !important;
+  }
+  
+  /* Force single page */
+  @page {
+    size: A4 portrait;
+    margin: 0.2cm;
+  }
+  
+  html, body {
+    height: 100%;
+    overflow: hidden;
   }
 }
