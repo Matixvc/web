@@ -18,3 +18,69 @@ body {
 .glow-text {
   text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
 }
+
+/* Print styles for CV */
+@media print {
+  @page {
+    size: A4;
+    margin: 0.5cm;
+  }
+  
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  .glass {
+    background-color: white !important;
+    border: 1px solid #ccc !important;
+    backdrop-filter: none !important;
+  }
+  
+  .glass-panel {
+    background-color: white !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .text-cyan-400, .text-primary, .text-secondary, .text-accent {
+    color: #0066cc !important;
+  }
+  
+  .text-white, .text-gray-400, .text-gray-300 {
+    color: #333 !important;
+  }
+  
+  .text-white\/70, .text-white\/50, .text-white\/40 {
+    color: #666 !important;
+  }
+  
+  .bg-gradient-to-r, .bg-gradient-to-br {
+    background: none !important;
+  }
+  
+  /* Hide navigation and non-printable elements */
+  nav, .fixed, button, .no-print {
+    display: none !important;
+  }
+  
+  /* Ensure CV content is on one page */
+  .cv-container {
+    page-break-inside: avoid;
+    margin: 0;
+    padding: 0;
+  }
+  
+  section {
+    page-break-inside: avoid;
+    margin-bottom: 20px;
+  }
+  
+  /* Adjust layout for print */
+  .grid-cols-1.lg\\:grid-cols-3 {
+    grid-template-columns: 1fr 2fr !important;
+  }
+  
+  .lg\\:col-span-1, .lg\\:col-span-2 {
+    page-break-inside: avoid;
+  }
+}
