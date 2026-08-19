@@ -1,0 +1,109 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Github, Twitter, Linkedin, Mail, Heart } from "lucide-react";
+
+const socialLinks = [
+  { icon: Github, href: "#", label: "GitHub" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Mail, href: "#", label: "Email" },
+];
+
+const footerLinks = [
+  {
+    title: "Servicios",
+    links: ["Desarrollo Web", "Diseño UI/UX", "Consultoría", "Mantenimiento"],
+  },
+  {
+    title: "Empresa",
+    links: ["Sobre Nosotros", "Portafolio", "Blog", "Contacto"],
+  },
+  {
+    title: "Legal",
+    links: ["Privacidad", "Términos", "Cookies", "Licencias"],
+  },
+];
+
+export default function Footer() {
+  return (
+    <footer className="border-t border-white/10 bg-background/50 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Brand */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-4">
+              WebProfesional
+            </h3>
+            <p className="text-gray-400 mb-6">
+              Creando experiencias digitales extraordinarias que transforman ideas en realidad visual.
+            </p>
+            {/* Social Links */}
+            <div className="flex gap-4">
+              {socialLinks.map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    aria-label={social.label}
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Icon className="w-5 h-5" />
+                  </motion.a>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Footer Links */}
+          {footerLinks.map((section, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <h4 className="font-semibold text-white mb-4">{section.title}</h4>
+              <ul className="space-y-2">
+                {section.links.map((link, linkIndex) => (
+                  <li key={linkIndex}>
+                    <motion.a
+                      href="#"
+                      whileHover={{ x: 5 }}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {link}
+                    </motion.a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Bottom Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <p className="text-gray-400 text-sm flex items-center gap-2">
+            © 2024 WebProfesional. Hecho con <Heart className="w-4 h-4 text-red-500 fill-red-500" />
+          </p>
+          <p className="text-gray-400 text-sm">
+            Desarrollado con Next.js, Tailwind CSS y Framer Motion
+          </p>
+        </motion.div>
+      </div>
+    </footer>
+  );
+}
