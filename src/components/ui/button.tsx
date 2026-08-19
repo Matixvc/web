@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps {
@@ -33,12 +32,11 @@ export default function Button({
   };
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+    <button
       className={cn(
         "rounded-xl font-semibold transition-all duration-300",
         "relative overflow-hidden",
+        "hover:scale-105 active:scale-95",
         variants[variant],
         sizes[size],
         className
@@ -47,14 +45,6 @@ export default function Button({
       onClick={onClick}
     >
       <span className="relative z-10">{children}</span>
-      {variant !== "outline" && (
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-          initial={{ x: "-100%" }}
-          whileHover={{ x: "100%" }}
-          transition={{ duration: 0.5 }}
-        />
-      )}
-    </motion.button>
+    </button>
   );
 }
