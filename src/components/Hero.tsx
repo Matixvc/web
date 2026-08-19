@@ -54,7 +54,7 @@ export default function Hero() {
         >
           {/* Portfolio Card */}
           <motion.a
-            href="../mi-portafolio/index.html"
+            href="/portafolio/index.html"
             className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group"
             whileHover={{ scale: 1.05 }}
           >
@@ -73,7 +73,7 @@ export default function Hero() {
 
           {/* CV Card */}
           <motion.a
-            href="../mi-cv/index.html"
+            href="/cv/index.html"
             className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group"
             whileHover={{ scale: 1.05 }}
           >

@@ -13,8 +13,8 @@ const footerLinks = [
   {
     title: "Proyectos",
     links: [
-      { name: "Portafolio", href: "../mi-portafolio/index.html", icon: FolderOpen },
-      { name: "Currículum", href: "../mi-cv/index.html", icon: User },
+      { name: "Portafolio", href: "/portafolio/index.html", icon: FolderOpen },
+      { name: "Currículum", href: "/cv/index.html", icon: User },
     ],
   },
   {
