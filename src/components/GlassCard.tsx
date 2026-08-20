@@ -16,7 +16,7 @@ export default function GlassCard({ children, className, hover = true, delay = 0
     <motion.div
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay, type: "spring", stiffness: 100 }}
       whileHover={hover ? { 
         scale: 1.08, 
@@ -34,8 +34,9 @@ export default function GlassCard({ children, className, hover = true, delay = 0
         "transition-all duration-300",
         "hover:shadow-2xl hover:shadow-primary/20",
         "border border-white/10 hover:border-primary/30",
-        className
+        "will-change-transform"
       )}
+      style={{ willChange: 'transform, opacity' }}
     >
       {children}
     </motion.div>

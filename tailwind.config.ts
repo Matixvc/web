@@ -41,6 +41,7 @@ const config: Config = {
         "blob": "blob 7s infinite",
         "float": "float 6s ease-in-out infinite",
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "particle": "particle 8s ease-in-out infinite",
       },
       keyframes: {
         blob: {
@@ -63,6 +64,24 @@ const config: Config = {
           },
           "50%": {
             transform: "translateY(-20px)",
+          },
+        },
+        particle: {
+          "0%, 100%": {
+            transform: "translate(0, 0) scale(1)",
+            opacity: "0.3",
+          },
+          "25%": {
+            transform: "translate(10px, -10px) scale(1.2)",
+            opacity: "0.6",
+          },
+          "50%": {
+            transform: "translate(-5px, -20px) scale(0.8)",
+            opacity: "0.4",
+          },
+          "75%": {
+            transform: "translate(-10px, 10px) scale(1.1)",
+            opacity: "0.5",
           },
         },
       },
