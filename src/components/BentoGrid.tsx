@@ -85,7 +85,12 @@ export default function BentoGrid() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[200px]"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
           {skills.map((skill, index) => {
             const Icon = skill.icon;
             return (
@@ -96,9 +101,17 @@ export default function BentoGrid() {
               >
                 <div className="h-full flex flex-col justify-between">
                   <div>
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${skill.color} flex items-center justify-center mb-4`}>
+                    <motion.div 
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${skill.color} flex items-center justify-center mb-4 shadow-lg`}
+                      whileHover={{ 
+                        rotate: 10, 
+                        scale: 1.1,
+                        boxShadow: "0 10px 30px rgba(139, 92, 246, 0.3)"
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
                       <Icon className="w-6 h-6 text-white" />
-                    </div>
+                    </motion.div>
                     <h3 className="text-xl font-semibold text-white mb-2">{skill.title}</h3>
                     <p className="text-gray-400 text-sm">{skill.description}</p>
                   </div>
@@ -113,7 +126,7 @@ export default function BentoGrid() {
               </GlassCard>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

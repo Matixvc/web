@@ -64,19 +64,32 @@ export default function Hero() {
           {/* Portfolio Card */}
           <Link href="/portafolio">
             <motion.div
-              className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group cursor-pointer"
+              className="glass rounded-2xl p-8 glow-border group cursor-pointer relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex flex-col items-center text-center relative z-10">
+                <motion.div 
+                  className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center mb-4 shadow-lg shadow-primary/20"
+                  whileHover={{ rotate: 5, scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <FolderOpen className="w-8 h-8 text-white" />
-                </div>
+                </motion.div>
                 <h3 className="text-2xl font-bold text-white mb-2">Portafolio</h3>
                 <p className="text-gray-400 mb-4">Explora mis proyectos de Unity, XR/VR y desarrollo de videojuegos</p>
-                <div className="flex items-center gap-2 text-primary group-hover:translate-x-2 transition-transform">
+                <motion.div 
+                  className="flex items-center gap-2 text-primary"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <span className="font-semibold">Ver Proyectos</span>
                   <ArrowRight className="w-5 h-5" />
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </Link>
@@ -84,19 +97,32 @@ export default function Hero() {
           {/* CV Card */}
           <Link href="/cv">
             <motion.div
-              className="glass rounded-2xl p-8 glow-border hover:scale-105 transition-transform duration-300 group cursor-pointer"
+              className="glass rounded-2xl p-8 glow-border group cursor-pointer relative overflow-hidden"
               whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary to-secondary-dark flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="flex flex-col items-center text-center relative z-10">
+                <motion.div 
+                  className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary to-secondary-dark flex items-center justify-center mb-4 shadow-lg shadow-secondary/20"
+                  whileHover={{ rotate: -5, scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <User className="w-8 h-8 text-white" />
-                </div>
+                </motion.div>
                 <h3 className="text-2xl font-bold text-white mb-2">Currículum</h3>
                 <p className="text-gray-400 mb-4">Conoce mi experiencia, habilidades y trayectoria profesional</p>
-                <div className="flex items-center gap-2 text-secondary group-hover:translate-x-2 transition-transform">
+                <motion.div 
+                  className="flex items-center gap-2 text-secondary"
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <span className="font-semibold">Ver CV</span>
                   <ArrowRight className="w-5 h-5" />
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </Link>

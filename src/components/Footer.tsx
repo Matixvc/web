@@ -32,7 +32,12 @@ export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-background/50 backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
           {/* Brand */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -56,9 +61,10 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Enlace a ${social.label}`}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ scale: 1.15, y: -3, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                    transition={{ duration: 0.2 }}
+                    className="w-10 h-10 rounded-full glass flex items-center justify-center text-gray-400 hover:text-white transition-colors shadow-lg"
                   >
                     <Icon className="w-5 h-5" />
                   </motion.a>
@@ -86,21 +92,33 @@ export default function Footer() {
                       {isInternal ? (
                         <Link href={link.href}>
                           <motion.div
-                            whileHover={{ x: 5 }}
-                            className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                            whileHover={{ x: 8, color: "#fff" }}
+                            transition={{ duration: 0.2 }}
+                            className="text-gray-400 hover:text-white transition-colors flex items-center gap-2 cursor-pointer"
                           >
-                            <Icon className="w-4 h-4" />
+                            <motion.div
+                              whileHover={{ rotate: 15, scale: 1.2 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <Icon className="w-4 h-4" />
+                            </motion.div>
                             {link.name}
                           </motion.div>
                         </Link>
                       ) : (
                         <motion.a
                           href={link.href}
-                          whileHover={{ x: 5 }}
+                          whileHover={{ x: 8, color: "#fff" }}
+                          transition={{ duration: 0.2 }}
                           className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
                           aria-label={`Enlace a ${link.name}`}
                         >
-                          <Icon className="w-4 h-4" />
+                          <motion.div
+                            whileHover={{ rotate: 15, scale: 1.2 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Icon className="w-4 h-4" />
+                          </motion.div>
                           {link.name}
                         </motion.a>
                       )}
@@ -110,7 +128,7 @@ export default function Footer() {
               </ul>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom Bar */}
         <motion.div
@@ -119,9 +137,16 @@ export default function Footer() {
           viewport={{ once: true }}
           className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
         >
-          <p className="text-gray-400 text-sm flex items-center gap-2">
-            © 2024 Matías Villalobos. Hecho con <Heart className="w-4 h-4 text-red-500 fill-red-500" />
-          </p>
+          <motion.p 
+            className="text-gray-400 text-sm flex items-center gap-2"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
+          >
+            © 2024 Matías Villalobos. Hecho con <motion.div
+              whileHover={{ scale: 1.3, rotate: 15 }}
+              transition={{ duration: 0.2 }}
+            ><Heart className="w-4 h-4 text-red-500 fill-red-500" /></motion.div>
+          </motion.p>
           <p className="text-gray-400 text-sm">
             Unity Developer | XR/VR Specialist
           </p>

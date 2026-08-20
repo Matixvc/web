@@ -63,7 +63,12 @@ export default function Testimonials() {
         </motion.div>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
           {testimonials.map((testimonial, index) => (
             <GlassCard
               key={index}
@@ -76,7 +81,12 @@ export default function Testimonials() {
             >
               <div className="flex flex-col h-full">
                 {/* Quote Icon */}
-                <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                <motion.div
+                  whileHover={{ rotate: 10, scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Quote className="w-8 h-8 text-primary/30 mb-4" />
+                </motion.div>
                 
                 {/* Content */}
                 <p className="text-gray-300 mb-6 flex-grow text-sm leading-relaxed">
@@ -86,15 +96,25 @@ export default function Testimonials() {
                 {/* Rating */}
                 <div className="flex gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <motion.div
+                      key={i}
+                      whileHover={{ scale: 1.2, rotate: 15 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    </motion.div>
                   ))}
                 </div>
                 
                 {/* Author */}
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-semibold text-sm">
+                  <motion.div 
+                    className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-semibold text-sm shadow-lg"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     {testimonial.avatar}
-                  </div>
+                  </motion.div>
                   <div>
                     <div className="font-semibold text-white text-sm">{testimonial.name}</div>
                     <div className="text-gray-400 text-xs">{testimonial.role}</div>
@@ -103,7 +123,7 @@ export default function Testimonials() {
               </div>
             </GlassCard>
           ))}
-        </div>
+        </motion.div>
 
         {/* Active Testimonial Display */}
         <motion.div

@@ -1,4 +1,4 @@
-import BackgroundGrid from "@/components/BackgroundGrid";
+import MeshGradientBackground from "@/components/MeshGradientBackground";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import BentoGrid from "@/components/BentoGrid";
@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
-      <BackgroundGrid />
+      <MeshGradientBackground />
       <Navigation />
       <Hero />
       <BentoGrid />
