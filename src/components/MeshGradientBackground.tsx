@@ -55,23 +55,23 @@ export default function MeshGradientBackground() {
       style={{
         background: `
           radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, 
-          rgba(139, 92, 246, 0.5) 0%, 
+          rgba(139, 92, 246, 0.6) 0%, 
           transparent 70%),
           radial-gradient(circle at ${100 - mousePosition.x}% ${100 - mousePosition.y}%, 
-          rgba(59, 130, 246, 0.4) 0%, 
+          rgba(59, 130, 246, 0.5) 0%, 
           transparent 70%),
           radial-gradient(circle at ${blobPositions[0].x}% ${blobPositions[0].y}%, 
-          rgba(244, 114, 182, 0.3) 0%, 
+          rgba(244, 114, 182, 0.4) 0%, 
           transparent 50%),
-          linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%)
+          linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%)
         `,
-        transition: 'background 0.1s ease-out',
+        transition: 'background 0.08s ease-out',
         willChange: 'background'
       }}
     >
       {/* Premium animated gradient blobs */}
       <div 
-        className="absolute w-[600px] h-[600px] bg-primary/25 rounded-full blur-3xl animate-blob opacity-80"
+        className="absolute w-[700px] h-[700px] bg-primary/30 rounded-full blur-3xl animate-blob opacity-90"
         style={{
           left: `${blobPositions[0].x}%`,
           top: `${blobPositions[0].y}%`,
@@ -80,7 +80,7 @@ export default function MeshGradientBackground() {
         }}
       />
       <div 
-        className="absolute w-[600px] h-[600px] bg-secondary/25 rounded-full blur-3xl animate-blob opacity-80"
+        className="absolute w-[700px] h-[700px] bg-secondary/30 rounded-full blur-3xl animate-blob opacity-90"
         style={{
           left: `${blobPositions[1].x}%`,
           top: `${blobPositions[1].y}%`,
@@ -90,7 +90,7 @@ export default function MeshGradientBackground() {
         }}
       />
       <div 
-        className="absolute w-[600px] h-[600px] bg-accent/25 rounded-full blur-3xl animate-blob opacity-80"
+        className="absolute w-[700px] h-[700px] bg-accent/30 rounded-full blur-3xl animate-blob opacity-90"
         style={{
           left: `${blobPositions[2].x}%`,
           top: `${blobPositions[2].y}%`,
@@ -102,7 +102,7 @@ export default function MeshGradientBackground() {
       
       {/* Premium noise texture overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           willChange: 'opacity'
@@ -111,9 +111,9 @@ export default function MeshGradientBackground() {
       
       {/* Animated grid overlay */}
       <div 
-        className="absolute inset-0 opacity-[0.08] pointer-events-none"
+        className="absolute inset-0 opacity-[0.12] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.15) 1px, transparent 1px)`,
           backgroundSize: '50px 50px',
           willChange: 'opacity'
         }}
@@ -121,10 +121,10 @@ export default function MeshGradientBackground() {
       
       {/* Floating particles */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-primary/40 rounded-full animate-particle"
+            className="absolute w-1.5 h-1.5 bg-primary/50 rounded-full animate-particle"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
