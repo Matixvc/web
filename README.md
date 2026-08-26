@@ -4,11 +4,12 @@ Una página web de nivel profesional, súper decorativa, altamente visual y mode
 
 ## 🛠️ Stack Tecnológico
 
-- **Framework**: Next.js 14 (App Router) con TypeScript
-- **Estilos**: Tailwind CSS
-- **Animaciones**: Framer Motion
-- **Iconos**: Lucide React
-- **Utilidades**: clsx, tailwind-merge
+- **Frontend**: HTML5 semántico
+- **Estilos**: CSS3
+- **Interactividad**: JavaScript vanilla
+- **Tipografías**: Google Fonts
+
+La versión ejecutable está en `public/`. No necesita Node.js, React ni un proceso de compilación.
 
 ## ✨ Características
 
@@ -63,36 +64,21 @@ web-profesional-moderna/
 
 ### Prerrequisitos
 
-- Node.js 18+ instalado
-- npm, yarn o pnpm
+- Un navegador web
 
 ### Pasos de Instalación
 
-1. **Navegar al directorio del proyecto**:
+1. **Abrir el sitio**:
    ```bash
-   cd web-profesional-moderna
+   # Abre public/index.html en tu navegador
    ```
 
-2. **Instalar las dependencias**:
+2. **Opcional: servirlo localmente** (recomendado para probar rutas):
    ```bash
-   npm install
-   # o
-   yarn install
-   # o
-   pnpm install
+   python -m http.server 8080 --directory public
    ```
 
-3. **Ejecutar el servidor de desarrollo**:
-   ```bash
-   npm run dev
-   # o
-   yarn dev
-   # o
-   pnpm dev
-   ```
-
-4. **Abrir el navegador**:
-   Navega a [http://localhost:3000](http://localhost:3000) para ver el resultado.
+3. **Abrir el navegador**: visita [http://localhost:8080](http://localhost:8080).
 
 ### Comandos Disponibles
 
