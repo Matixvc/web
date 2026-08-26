@@ -23,6 +23,7 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     font-size: 14px;
+    overflow-x: hidden;
 }
 
 .cv-container {
@@ -68,6 +69,8 @@ body {
     justify-content: center;
     border: 3px solid rgba(255, 255, 255, 0.3);
 }
+
+.avatar-placeholder img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
 .profile-info {
     flex: 1;
@@ -130,6 +133,19 @@ body {
 
 .btn-print:hover {
     background: rgba(255, 255, 255, 0.3);
+}
+
+.btn-print:focus-visible,
+.social-link:focus-visible,
+.trident-link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+.btn-print:active,
+.social-link:active,
+.trident-link:active {
+    transform: translateY(1px);
 }
 
 .social-links {
@@ -450,9 +466,19 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .cv-container {
-        margin: 1rem;
+        width: calc(100% - 1rem);
+        margin: .5rem;
         border-radius: 0;
     }
+
+    .cv-header { padding: 1.5rem 1rem 5.5rem; }
+    .header-content { gap: 1.5rem; }
+    .profile-section { width: 100%; }
+    .profile-info { min-width: 0; width: 100%; }
+    .name { font-size: clamp(1.45rem, 7vw, 1.75rem); overflow-wrap: anywhere; }
+    .title { font-size: .9rem; line-height: 1.45; }
+    .contact-info { width: 100%; gap: .7rem; }
+    .contact-item { min-width: 0; overflow-wrap: anywhere; }
     
     .header-content {
         flex-direction: column;
@@ -472,11 +498,16 @@ body {
         align-items: flex-start;
         width: 100%;
     }
+
+    .btn-print { min-height: 44px; }
     
     .cv-main {
         grid-template-columns: 1fr;
-        padding: 1.5rem;
+        padding: 1.5rem 1rem 6rem;
     }
+
+    .section-title { font-size: 1rem; }
+    .experience-role, .education-degree { overflow-wrap: anywhere; }
     
     .experience-header,
     .education-header {
@@ -488,6 +519,9 @@ body {
         align-items: flex-start;
         gap: 0.25rem;
     }
+
+    .availability-value { overflow-wrap: anywhere; }
+    .cv-footer { padding: 1.25rem 1rem 6rem; }
 }
 
 /* Print Styles */
@@ -658,6 +692,10 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+.trident-link {
+    min-height: 44px;
+}
+
 .trident-link:hover {
     color: var(--primary-color);
     background: rgba(79, 70, 229, 0.1);
@@ -687,12 +725,17 @@ body {
 /* Responsive Trident Nav */
 @media (max-width: 768px) {
     .trident-nav {
-        bottom: 20px;
-        padding: 10px 15px;
-        gap: 10px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+        width: calc(100% - 24px);
+        justify-content: space-around;
+        padding: 8px;
+        gap: 4px;
     }
     .trident-link {
-        padding: 8px 12px;
+        min-width: 52px;
+        min-height: 44px;
+        justify-content: center;
+        padding: 8px 10px;
         font-size: 9px;
     }
     .trident-link span {

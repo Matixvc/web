@@ -59,6 +59,136 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        .skill-chip {
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .skill-chip:hover,
+        .skill-chip:focus-visible,
+        .skill-chip.active {
+            color: var(--accent);
+            border-color: rgba(0, 242, 255, 0.4);
+            background: rgba(0, 242, 255, 0.08);
+            transform: translateY(-3px);
+        }
+        .skill-chip:active { transform: translateY(0); }
+        .skill-filter-note {
+            min-height: 1.5em;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.75rem;
+        }
+
+        .project-match-hidden { display: none; }
+
+        .about-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .about-tab {
+            min-height: 44px;
+            padding: 0.65rem 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.45);
+            cursor: pointer;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .about-tab:hover,
+        .about-tab:focus-visible,
+        .about-tab.active {
+            border-color: rgba(0, 242, 255, 0.45);
+            background: rgba(0, 242, 255, 0.1);
+            color: var(--accent);
+        }
+        .about-panel[hidden] { display: none; }
+        .about-panel { animation: fadeInUp 0.35s ease both; transform-style: preserve-3d; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+        .about-panel:hover { border-color: rgba(0, 242, 255, 0.24); box-shadow: 0 18px 50px rgba(0, 242, 255, 0.06); }
+        .profile-card {
+            position: relative;
+            width: min(100%, 22rem);
+            padding: 1rem;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+            transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-card:hover { border-color: rgba(0, 242, 255, 0.35); box-shadow: 0 30px 90px rgba(0, 242, 255, 0.12); transform: translateY(-8px); }
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            inset: 0.35rem;
+            border: 1px solid rgba(0, 242, 255, 0.12);
+            pointer-events: none;
+            z-index: 2;
+        }
+        .profile-photo-frame {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 242, 255, 0.18);
+            background: linear-gradient(145deg, rgba(0, 242, 255, 0.12), rgba(124, 58, 237, 0.18));
+        }
+        .profile-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.2) contrast(1.05); transition: transform 0.6s ease, filter 0.6s ease; }
+        .profile-card:hover .profile-photo-frame img { transform: scale(1.04); filter: grayscale(0) contrast(1.08); }
+        .profile-photo-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent 50%);
+            pointer-events: none;
+        }
+        .profile-photo-frame::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -10%;
+            height: 1px;
+            background: var(--accent);
+            box-shadow: 0 0 18px 3px rgba(0, 242, 255, 0.45);
+            opacity: 0.55;
+            animation: profileScan 4.5s ease-in-out infinite;
+            z-index: 1;
+        }
+        .profile-card-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 0 0.25rem;
+            color: rgba(255, 255, 255, 0.45);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.65rem;
+        }
+        .profile-card-meta strong { color: var(--accent); font-weight: 500; }
+        .about-list { display: grid; gap: 0.65rem; color: rgba(255, 255, 255, 0.55); }
+        .about-list li { position: relative; display: flex; gap: 0.65rem; align-items: flex-start; padding: 0.65rem 0.75rem; border: 1px solid transparent; transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease; }
+        .about-list li:hover, .about-list li:focus-visible { transform: translateX(0.45rem); border-color: rgba(0, 242, 255, 0.18); background: rgba(0, 242, 255, 0.05); }
+        .about-list li::before { content: '>'; color: var(--accent); font-family: 'Fira Code', monospace; }
+        .about-list strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
+
+        @keyframes profileScan { 0%, 100% { transform: translateY(0); opacity: 0; } 15%, 80% { opacity: 0.55; } 90% { transform: translateY(540px); opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) {
+            .profile-photo-frame::before { animation: none; display: none; }
+            .about-panel, .profile-card, .about-list li { transition: none; }
+        }
+
+        @media (max-width: 640px) {
+            .about-tabs { margin-bottom: 1.25rem; }
+            .about-tab { flex: 1 1 30%; padding-left: 0.55rem; padding-right: 0.55rem; letter-spacing: 0.1em; }
+            .profile-card { width: min(100%, 19rem); }
+        }
+
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -125,8 +255,26 @@
         /* UI Tabs */
         .tab-btn {
             position: relative;
+            min-height: 44px;
+            padding: 8px 4px;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
             transition: all 0.3s ease;
             color: rgba(255, 255, 255, 0.3);
+        }
+        .tab-btn:focus-visible,
+        .trident-link:focus-visible,
+        .btn-primary:focus-visible,
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+        .tab-btn:active,
+        .btn-primary:active,
+        .trident-link:active {
+            transform: translateY(1px);
         }
         .tab-btn.active {
             color: var(--accent);
@@ -187,18 +335,79 @@
         /* Dynamic Email Text */
         .email-text {
             font-size: clamp(1.2rem, 4vw, 4rem);
-            white-space: nowrap;
+            overflow-wrap: anywhere;
         }
 
         /* Responsive Trident Nav */
         @media (max-width: 768px) {
+            #sobre-mi,
+            #proyectos,
+            #contacto {
+                text-align: center;
+            }
+            #sobre-mi .grid,
+            #proyectos > div,
+            #contacto > div {
+                justify-items: center;
+            }
+            #sobre-mi .about-list {
+                text-align: center;
+            }
+            #sobre-mi .about-list li {
+                justify-content: center;
+            }
+            #sobre-mi .about-tabs,
+            #proyectos .tab-btn,
+            #contacto .flex {
+                justify-content: center;
+            }
+            #proyectos .glass-card,
+            #proyectos .port-item,
+            #contacto .group,
+            #contacto .space-y-4 {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #contacto .email-text {
+                display: block;
+                text-align: center;
+            }
+            #inicio .relative.inline-block {
+                max-width: 100%;
+            }
+            #inicio .relative.inline-block > span {
+                width: auto;
+                max-width: 100%;
+                white-space: normal;
+                line-height: 1.5;
+                letter-spacing: 0.18em;
+            }
+            #inicio h1 {
+                max-width: 100%;
+                overflow-wrap: anywhere;
+            }
+            #navbar > div {
+                height: 76px;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            #navbar .btn-primary {
+                min-height: 44px;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
             .trident-nav {
-                bottom: 20px;
-                padding: 10px 15px;
-                gap: 10px;
+                bottom: max(12px, env(safe-area-inset-bottom));
+                width: calc(100% - 24px);
+                justify-content: space-around;
+                padding: 8px;
+                gap: 4px;
             }
             .trident-link {
-                padding: 8px 12px;
+                min-width: 52px;
+                min-height: 44px;
+                justify-content: center;
+                padding: 8px 10px;
                 font-size: 9px;
             }
             .trident-link span {
@@ -208,6 +417,8 @@
                 width: 18px;
                 height: 18px;
             }
+            .email-text { font-size: clamp(1.15rem, 6.5vw, 2rem); line-height: 1.2; }
+            .copy-success { right: 12px; bottom: 78px; max-width: calc(100% - 24px); }
         }
     </style>
 </head>
@@ -273,19 +484,19 @@
                 <span class="text-white font-medium">Unity Developer</span> especializado en experiencias interactivas para <span class="text-cyan-400">PC, dispositivos móviles y Realidad Virtual</span>. Transformo ideas en mundos digitales inmersivos.
             </p>
             
-            <div class="flex flex-wrap justify-center gap-4 mt-12">
-                <div class="glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white/60">
+            <div class="flex flex-wrap justify-center gap-4 mt-12" aria-label="Filtrar proyectos por habilidad">
+                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="unity" aria-pressed="false">
                     Unity Engine
-                </div>
-                <div class="glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white/60">
+                </button>
+                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="csharp" aria-pressed="false">
                     C# Programming
-                </div>
-                <div class="glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white/60">
+                </button>
+                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="xr" aria-pressed="false">
                     XR/VR Development
-                </div>
-                <div class="glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white/60">
+                </button>
+                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="3d" aria-pressed="false">
                     3D Modeling
-                </div>
+                </button>
             </div>
         </div>
     </section>
@@ -297,26 +508,49 @@
                 <div class="order-2 lg:order-1">
                     <h2 class="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 text-center lg:text-left">Profile</h2>
                     <h3 class="text-5xl font-bold mb-8 tracking-tight text-center lg:text-left">Sobre Mí</h3>
-                    
-                    <div class="glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500">
+
+                    <div class="about-tabs" role="tablist" aria-label="Información sobre Matías">
+                        <button type="button" class="about-tab active" role="tab" aria-selected="true" aria-controls="about-profile" data-about-tab="about-profile">Perfil</button>
+                        <button type="button" class="about-tab" role="tab" aria-selected="false" aria-controls="about-stack" data-about-tab="about-stack">Stack</button>
+                        <button type="button" class="about-tab" role="tab" aria-selected="false" aria-controls="about-method" data-about-tab="about-method">Método</button>
+                    </div>
+
+                    <div id="about-profile" class="about-panel glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500" role="tabpanel">
                         <p class="text-cyan-400 mb-4">// Biografía Técnica</p>
-                        <p class="text-white/70 mb-6">
-                            Soy un apasionado por la tecnología disruptiva. Mi enfoque principal es la unión entre el software y la experiencia humana. Me especializo en optimización de rendimiento en motores 3D y en la creación de mecánicas de juego innovadoras para múltiples plataformas.
-                        </p>
-                        <ul class="space-y-3 text-white/50">
-                            <li><span class="text-cyan-500">▹</span> Ubicación: <span class="text-white">Santiago, Chile</span></li>
-                            <li><span class="text-cyan-500">▹</span> Especialidad: <span class="text-white">Unity VR & Mobile Architecture</span></li>
-                            <li><span class="text-cyan-500">▹</span> Stack: <span class="text-white">C#, HLSL, Python</span></li>
+                        <p class="text-white/70 mb-6">Soy un apasionado por la tecnología disruptiva. Mi enfoque principal es la unión entre el software y la experiencia humana. Me especializo en optimización de rendimiento en motores 3D y en la creación de mecánicas de juego innovadoras para múltiples plataformas.</p>
+                        <ul class="about-list">
+                            <li tabindex="0">Ubicación: <strong>Santiago, Chile</strong></li>
+                            <li tabindex="0">Especialidad: <strong>Unity VR & Mobile Architecture</strong></li>
+                            <li tabindex="0">Disponibilidad: <strong>Práctica profesional part-time</strong></li>
+                        </ul>
+                    </div>
+                    <div id="about-stack" class="about-panel glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500" role="tabpanel" hidden>
+                        <p class="text-cyan-400 mb-4">// Herramientas de construcción</p>
+                        <ul class="about-list">
+                            <li tabindex="0">Motor: <strong>Unity Engine, XR Interaction Toolkit</strong></li>
+                            <li tabindex="0">Programación: <strong>C#, HLSL y Python</strong></li>
+                            <li tabindex="0">Producción: <strong>Blender, Git y GitHub</strong></li>
+                            <li tabindex="0">Objetivo: <strong>Experiencias fluidas en PC, móvil y VR</strong></li>
+                        </ul>
+                    </div>
+                    <div id="about-method" class="about-panel glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500" role="tabpanel" hidden>
+                        <p class="text-cyan-400 mb-4">// Cómo trabajo</p>
+                        <ul class="about-list">
+                            <li tabindex="0"><strong>01 · Explorar</strong> Entender el problema, el público y la plataforma.</li>
+                            <li tabindex="0"><strong>02 · Prototipar</strong> Convertir la idea en una interacción medible.</li>
+                            <li tabindex="0"><strong>03 · Pulir</strong> Optimizar rendimiento, claridad y sensación de uso.</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="order-1 lg:order-2 flex justify-center">
                     <div class="relative group">
-                        <div class="absolute -inset-4 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/40 transition-all"></div>
-                        <div class="w-64 h-64 md:w-80 md:h-80 bg-zinc-900 border-2 border-white/10 rounded-[4rem] overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700">
-                            <div class="absolute inset-0 flex items-center justify-center text-white/10 italic text-sm">Matías Villalobos C.</div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute -inset-6 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-500/35 transition-all"></div>
+                        <div class="profile-card rounded-[2rem]">
+                            <div class="profile-photo-frame rounded-[1.35rem]">
+                                <img src="MiFoto.jpeg" alt="Fotografía de Matías Villalobos" width="352" height="440" loading="lazy">
+                            </div>
+                            <div class="profile-card-meta"><span>MATÍAS V.</span><strong>UNITY / XR</strong></div>
                         </div>
                     </div>
                 </div>
@@ -334,15 +568,15 @@
                 </div>
                 
                 <div class="flex flex-wrap justify-center gap-6 md:gap-10 border-b border-white/10 pb-4 w-full md:w-auto">
-                    <button onclick="showPort('image')" id="btn-image" class="tab-btn active text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                    <button type="button" onclick="showPort('image')" id="btn-image" aria-pressed="true" class="tab-btn active text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         Blueprint (Fotos)
                     </button>
-                    <button onclick="showPort('video')" id="btn-video" class="tab-btn text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                    <button type="button" onclick="showPort('video')" id="btn-video" aria-pressed="false" class="tab-btn text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                         Cinema (Videos)
                     </button>
-                    <button onclick="showPort('model')" id="btn-model" class="tab-btn text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
+                    <button type="button" onclick="showPort('model')" id="btn-model" aria-pressed="false" class="tab-btn text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                         Artifacts (3D)
                     </button>
@@ -350,7 +584,7 @@
             </div>
 
             <div id="grid-image" class="port-item active grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-[2.5rem] p-4 group">
+                <div class="glass-card rounded-[2.5rem] p-4 group" data-project-skills="unity csharp">
                     <div class="aspect-square rounded-[2rem] bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20"></div>
                         <svg class="w-16 h-16 text-cyan-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -358,7 +592,7 @@
                     <h5 class="font-bold text-sm ml-2 group-hover:text-cyan-400 transition-colors">Sistema de Movimiento</h5>
                     <p class="text-white/40 text-xs mt-2 ml-2">Unity • C# • Physics</p>
                 </div>
-                <div class="glass-card rounded-[2.5rem] p-4 group">
+                <div class="glass-card rounded-[2.5rem] p-4 group" data-project-skills="unity csharp 3d">
                     <div class="aspect-square rounded-[2rem] bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20"></div>
                         <svg class="w-16 h-16 text-purple-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
@@ -366,7 +600,7 @@
                     <h5 class="font-bold text-sm ml-2 group-hover:text-cyan-400 transition-colors">Inventario & UI</h5>
                     <p class="text-white/40 text-xs mt-2 ml-2">Unity • UI Toolkit • C#</p>
                 </div>
-                <div class="glass-card rounded-[2.5rem] p-4 group">
+                <div class="glass-card rounded-[2.5rem] p-4 group" data-project-skills="unity xr 3d">
                     <div class="aspect-square rounded-[2rem] bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
                         <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20"></div>
                         <svg class="w-16 h-16 text-green-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
@@ -450,7 +684,45 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script>
+        if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.registerPlugin(ScrollTrigger);
+            const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            intro.from('#inicio .relative.inline-block, #inicio > div > p, #inicio > div > div.flex', {
+                y: 28,
+                opacity: 0,
+                duration: 0.75,
+                stagger: 0.12,
+                clearProps: 'transform'
+            });
+            gsap.utils.toArray('#sobre-mi, #proyectos, #contacto').forEach(section => {
+                gsap.from(section.querySelectorAll(':scope > div'), {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 82%',
+                        once: true
+                    },
+                    y: 32,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    clearProps: 'transform',
+                    delay: 0.05
+                });
+            });
+            gsap.from('.glass-card', {
+                y: 22,
+                opacity: 0,
+                duration: 0.65,
+                stagger: 0.1,
+                delay: 0.25,
+                ease: 'power2.out',
+                clearProps: 'transform'
+            });
+        }
+
         // Cursor Glow
         const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
@@ -461,10 +733,62 @@
 
         // Portfolio Switcher
         function showPort(type) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + type).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            const activeButton = document.getElementById('btn-' + type);
+            activeButton.classList.add('active');
+            activeButton.setAttribute('aria-pressed', 'true');
             document.querySelectorAll('.port-item').forEach(grid => grid.classList.remove('active'));
             document.getElementById('grid-' + type).classList.add('active');
+            document.querySelectorAll('[data-project-skills]').forEach(project => project.classList.remove('project-match-hidden'));
+            document.querySelectorAll('.skill-chip').forEach(chip => {
+                chip.classList.remove('active');
+                chip.setAttribute('aria-pressed', 'false');
+            });
+        }
+
+        function filterBySkill(skill, button) {
+            showPort('image');
+            document.querySelectorAll('[data-project-skills]').forEach(project => {
+                const skills = project.dataset.projectSkills.split(' ');
+                project.classList.toggle('project-match-hidden', !skills.includes(skill));
+            });
+            button.classList.add('active');
+            button.setAttribute('aria-pressed', 'true');
+            document.getElementById('proyectos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        document.querySelectorAll('.skill-chip').forEach(button => {
+            button.addEventListener('click', () => filterBySkill(button.dataset.skill, button));
+        });
+
+        document.querySelectorAll('[data-about-tab]').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('[data-about-tab]').forEach(tab => {
+                    const isSelected = tab === button;
+                    tab.classList.toggle('active', isSelected);
+                    tab.setAttribute('aria-selected', String(isSelected));
+                });
+                document.querySelectorAll('.about-panel').forEach(panel => {
+                    panel.hidden = panel.id !== button.dataset.aboutTab;
+                });
+            });
+        });
+
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.about-panel, .profile-card').forEach(element => {
+                element.addEventListener('pointermove', event => {
+                    const bounds = element.getBoundingClientRect();
+                    const rotateX = ((event.clientY - bounds.top) / bounds.height - 0.5) * -3;
+                    const rotateY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 3;
+                    element.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                element.addEventListener('pointerleave', () => {
+                    element.style.transform = '';
+                });
+            });
         }
 
         // Copy Email

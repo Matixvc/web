@@ -98,18 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Add responsive menu for mobile (if needed in future)
-    function handleResize() {
-        const container = document.querySelector('.cv-container');
-        if (window.innerWidth < 768) {
-            container.style.margin = '1rem';
-        } else {
-            container.style.margin = '2rem auto';
-        }
-    }
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial call
 });
 
 // Keyboard shortcuts
