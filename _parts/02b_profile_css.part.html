@@ -1,0 +1,95 @@
+
+        .about-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #06b6d4;
+            border-radius: 24px; padding: 2rem;
+            font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.7;
+            animation: fadeInUp 0.35s ease both;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            transform-style: preserve-3d;
+        }
+        .about-panel:hover {
+            border-color: rgba(0, 242, 255, 0.24);
+            box-shadow: 0 18px 50px rgba(0, 242, 255, 0.06);
+        }
+        .panel-comment { color: var(--accent); margin: 0 0 1rem; }
+        .panel-body { color: rgba(255, 255, 255, 0.7); margin: 0 0 1.5rem; }
+        .about-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; color: rgba(255, 255, 255, 0.55); }
+        .about-list li {
+            display: flex; gap: 0.65rem; align-items: flex-start;
+            padding: 0.65rem 0.75rem; border: 1px solid transparent;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+        .about-list li:hover, .about-list li:focus-visible {
+            transform: translateX(0.45rem);
+            border-color: rgba(0, 242, 255, 0.18);
+            background: rgba(0, 242, 255, 0.05);
+        }
+        .about-list li::before { content: '>'; color: var(--accent); font-family: 'Fira Code', monospace; }
+        .about-list strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
+
+        /* ===== Tarjeta de perfil ===== */
+        .profile-wrap { position: relative; display: flex; justify-content: center; }
+        .photo-halo {
+            position: absolute; inset: -1.5rem; border-radius: 9999px;
+            background: rgba(6, 182, 212, 0.2); filter: blur(56px);
+            transition: background 0.4s ease; z-index: 0;
+        }
+        .profile-wrap:hover .photo-halo { background: rgba(6, 182, 212, 0.35); }
+        .profile-card {
+            position: relative; z-index: 1;
+            width: min(100%, 22rem); padding: 1rem;
+            border: 1px solid var(--glass-border); border-radius: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+            transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .profile-card:hover {
+            border-color: rgba(0, 242, 255, 0.35);
+            box-shadow: 0 30px 90px rgba(0, 242, 255, 0.12); transform: translateY(-8px);
+        }
+        .profile-card::before {
+            content: ''; position: absolute; inset: 0.35rem;
+            border: 1px solid rgba(0, 242, 255, 0.12); pointer-events: none; z-index: 2;
+            border-radius: 26px;
+        }
+        .profile-photo-frame {
+            position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(0, 242, 255, 0.18); border-radius: 21px;
+            background: linear-gradient(145deg, rgba(0,242,255,.12), rgba(124,58,237,.18));
+        }
+        .profile-photo-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(0.2) contrast(1.05);
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+        .profile-card:hover .profile-photo-frame img { transform: scale(1.04); filter: grayscale(0) contrast(1.08); }
+        .profile-photo-frame::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,.72), transparent 50%);
+            pointer-events: none;
+        }
+        .profile-photo-frame::before {
+            content: ''; position: absolute; left: 0; right: 0; top: -10%; height: 1px;
+            background: var(--accent); box-shadow: 0 0 18px 3px rgba(0,242,255,.45);
+            opacity: 0.55; animation: profileScan 4.5s ease-in-out infinite; z-index: 1;
+        }
+        .profile-card-meta {
+            display: flex; justify-content: space-between; gap: 1rem;
+            padding: 1rem 0 0.25rem; color: rgba(255, 255, 255, 0.45);
+            font-family: 'Fira Code', monospace; font-size: 10px;
+        }
+        .profile-card-meta strong { color: var(--accent); font-weight: 500; }
+        @keyframes profileScan {
+            0%, 100% { transform: translateY(0); opacity: 0; }
+            15%, 80% { opacity: 0.55; }
+            90% { transform: translateY(540px); opacity: 0; }
+        }
+        @media (max-width: 640px) {
+            .about-tab { letter-spacing: 0.1em; }
+            .profile-card { width: min(100%, 19rem); }
+        }

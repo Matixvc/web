@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matías Villalobos C. | Portafolio</title>
+    <meta name="description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas de Matías Villalobos C., desarrollador especializado en Unity Engine y Realidad Virtual. Santiago, Chile.">
+    <meta name="author" content="Matías Villalobos Cautivo">
+    <meta name="theme-color" content="#030308">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="/portafolio/index.html">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Portafolio | Matías Villalobos - Unity Developer">
+    <meta property="og:description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas.">
+    <meta property="og:image" content="/og-image.png">
+    <meta property="og:url" content="/portafolio/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_CL">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portafolio | Matías Villalobos - Unity Developer">
+    <meta name="twitter:description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Tokens ===== */
+        :root {
+            --accent: #00f2ff;
+            --accent-dark: #0066ff;
+            --accent-secondary: #7c3aed;
+            --bg: #030308;
+            --text: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ===== Base ===== */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        ::selection { background: #06b6d4; color: #fff; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+        a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+        #inicio, #sobre-mi, #proyectos, #contacto { scroll-margin-top: 120px; }
+
+        /* ===== Fondo tecnológico ===== */
+        #canvas-container {
+            position: fixed; inset: 0; z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #030303 100%);
+        }
+        .glow-sphere {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,242,255,.05) 0%, rgba(0,102,255,.02) 50%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            transition: transform 0.25s ease-out;
+            will-change: transform;
+        }
+

@@ -1,0 +1,52 @@
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="section-pad" data-reveal>
+        <div class="wrap-xl">
+            <div class="work-header">
+                <div>
+                    <h2 class="eyebrow-label">Portfolio</h2>
+                    <h3 class="display-title">Galería</h3>
+                </div>
+
+                <div class="work-tabs" role="group" aria-label="Cambiar tipo de contenido">
+                    <button type="button" onclick="showPort('image')" id="btn-image" aria-pressed="true" class="tab-btn active">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        Blueprint (Fotos)
+                    </button>
+                    <button type="button" onclick="showPort('video')" id="btn-video" aria-pressed="false" class="tab-btn">
+                        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                        Cinema (Videos)
+                    </button>
+                    <button type="button" onclick="showPort('model')" id="btn-model" aria-pressed="false" class="tab-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        Artifacts (3D)
+                    </button>
+                </div>
+            </div>
+
+            <div id="grid-image" class="port-item active projects-grid" data-reveal-stagger>
+                <article class="project-card" data-project-skills="unity csharp">
+                    <div class="thumb">
+                        <div class="thumb-overlay ov-cp" aria-hidden="true"></div>
+                        <svg class="thumb-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="card-title">Sistema de Movimiento</h4>
+                    <p class="card-sub">Unity • C# • Physics</p>
+                </article>
+                <article class="project-card" data-project-skills="unity csharp 3d">
+                    <div class="thumb">
+                        <div class="thumb-overlay ov-pp" aria-hidden="true"></div>
+                        <svg class="thumb-icon tint-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h4 class="card-title">Inventario &amp; UI</h4>
+                    <p class="card-sub">Unity • UI Toolkit • C#</p>
+                </article>
+                <article class="project-card" data-project-skills="unity xr 3d">
+                    <div class="thumb">
+                        <div class="thumb-overlay ov-gc" aria-hidden="true"></div>
+                        <svg class="thumb-icon tint-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </div>
+                    <h4 class="card-title">Simulador XR</h4>
+                    <p class="card-sub">Unity • XR Toolkit • OpenXR</p>
+                </article>
+            </div>

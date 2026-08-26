@@ -1,513 +1,643 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matías Villalobos C. | Portafolio</title>
+    <meta name="description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas de Matías Villalobos C., desarrollador especializado en Unity Engine y Realidad Virtual. Santiago, Chile.">
+    <meta name="author" content="Matías Villalobos Cautivo">
+    <meta name="theme-color" content="#030308">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="/portafolio/index.html">
+    <!-- Open Graph -->
     <meta property="og:title" content="Portafolio | Matías Villalobos - Unity Developer">
     <meta property="og:description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas.">
-    <meta property="og:image" content="/og-image.svg">
+    <meta property="og:image" content="/og-image.png">
+    <meta property="og:url" content="/portafolio/index.html">
     <meta property="og:type" content="website">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta property="og:locale" content="es_CL">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portafolio | Matías Villalobos - Unity Developer">
+    <meta name="twitter:description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
     <style>
+        /* ===== Tokens ===== */
         :root {
             --accent: #00f2ff;
             --accent-dark: #0066ff;
             --accent-secondary: #7c3aed;
-            --bg: #030303;
+            --bg: #030308;
+            --text: #ffffff;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
         }
 
+        /* ===== Base ===== */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
             background-color: var(--bg);
-            color: #ffffff;
+            color: var(--text);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
+        ::selection { background: #06b6d4; color: #fff; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+        a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+        #inicio, #sobre-mi, #proyectos, #contacto { scroll-margin-top: 120px; }
 
-        /* Tech Background */
+        /* ===== Fondo tecnológico ===== */
         #canvas-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            position: fixed; inset: 0; z-index: -1;
             background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #030303 100%);
         }
-
         .glow-sphere {
             position: absolute;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 242, 255, 0.05) 0%, rgba(0, 102, 255, 0.02) 50%, transparent 70%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,242,255,.05) 0%, rgba(0,102,255,.02) 50%, transparent 70%);
             border-radius: 50%;
             filter: blur(80px);
             pointer-events: none;
-            transition: transform 0.3s ease-out;
+            transition: transform 0.25s ease-out;
+            will-change: transform;
         }
 
-        /* Glassmorphism */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        /* ===== Navegación superior ===== */
+        .site-navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            transition: background-color 0.35s ease, backdrop-filter 0.35s ease;
+        }
+        .site-navbar.is-scrolled {
+            background: rgba(3, 3, 3, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .navbar-inner {
+            max-width: 80rem; margin: 0 auto; padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .brand-row { display: flex; align-items: center; gap: 1rem; }
+        .logo-badge {
+            flex-shrink: 0; width: 40px; height: 40px; background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; transform: rotate(45deg);
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .logo-badge:hover { transform: rotate(225deg); }
+        .logo-badge span {
+            color: #000; font-weight: 800; font-size: 20px; transform: rotate(-45deg);
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .logo-badge:hover span { transform: rotate(-225deg); }
+        .brand-name {
+            font-weight: 700; letter-spacing: -0.03em; font-size: 20px; white-space: nowrap;
         }
 
+        /* ===== Enlaces entre páginas ===== */
+        .top-site-nav { display: flex; align-items: center; gap: 0.3rem; margin-left: 1rem; }
+        .top-site-link {
+            display: flex; align-items: center; gap: 0.45rem;
+            min-height: 44px; padding: 0.55rem 0.75rem; border-radius: 0.75rem;
+            color: rgba(255, 255, 255, 0.45); font-size: 10px; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+            transition: color 0.25s ease, background 0.25s ease;
+        }
+        .top-site-link:hover, .top-site-link:focus-visible,
+        .top-site-link.active, .top-site-link[aria-current="page"] {
+            color: var(--accent); background: rgba(0, 242, 255, 0.08);
+        }
+        .top-site-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+        /* ===== Nav de anclas ===== */
+        .page-nav {
+            position: relative; z-index: 2; display: flex; justify-content: center;
+            gap: clamp(1rem, 4vw, 3rem); width: min(100% - 2rem, 760px);
+            margin: 7rem auto 0; padding: 0.65rem 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.45); font-size: 10px; font-weight: 700;
+            letter-spacing: 0.16em; text-transform: uppercase;
+        }
+        .page-nav a {
+            min-height: 40px; display: flex; align-items: center;
+            padding: 0.5rem 0.25rem; text-decoration: none;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+        .page-nav a:hover, .page-nav a:focus-visible { color: var(--accent); transform: translateY(-2px); }
+
+        /* ===== Chips de habilidades ===== */
         .skill-chip {
-            color: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: inline-flex; align-items: center;
+            padding: 0.75rem 1.5rem; border-radius: 999px;
+            font-family: inherit; font-size: 12px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            color: rgba(255, 255, 255, 0.6); cursor: pointer; transition: all 0.3s ease;
         }
-        .skill-chip:hover,
-        .skill-chip:focus-visible,
-        .skill-chip.active {
-            color: var(--accent);
-            border-color: rgba(0, 242, 255, 0.4);
-            background: rgba(0, 242, 255, 0.08);
-            transform: translateY(-3px);
+        .skill-chip:hover, .skill-chip:focus-visible, .skill-chip.active {
+            color: var(--accent); border-color: rgba(0, 242, 255, 0.4);
+            background: rgba(0, 242, 255, 0.08); transform: translateY(-3px);
         }
         .skill-chip:active { transform: translateY(0); }
-        .skill-filter-note {
-            min-height: 1.5em;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.75rem;
-        }
+        .skill-filter-note { min-height: 1.5em; color: rgba(255, 255, 255, 0.4); font-size: 12px; margin-top: 1rem; }
 
-        .project-match-hidden { display: none; }
-
-        .about-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
+        /* ===== Tabs Sobre Mí ===== */
+        .about-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
         .about-tab {
-            min-height: 44px;
-            padding: 0.65rem 1rem;
-            border: 1px solid var(--glass-border);
-            border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.03);
-            color: rgba(255, 255, 255, 0.45);
-            cursor: pointer;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
+            min-height: 44px; padding: 0.65rem 1rem;
+            border: 1px solid var(--glass-border); border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.45);
+            cursor: pointer; font-family: inherit; font-size: 10px; font-weight: 700;
+            letter-spacing: 0.16em; text-transform: uppercase; transition: all 0.3s ease;
         }
-        .about-tab:hover,
-        .about-tab:focus-visible,
-        .about-tab.active {
+        .about-tab:hover, .about-tab:focus-visible, .about-tab.active {
             border-color: rgba(0, 242, 255, 0.45);
-            background: rgba(0, 242, 255, 0.1);
-            color: var(--accent);
+            background: rgba(0, 242, 255, 0.1); color: var(--accent);
         }
-        .about-panel[hidden] { display: none; }
-        .about-panel { animation: fadeInUp 0.35s ease both; transform-style: preserve-3d; transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
-        .about-panel:hover { border-color: rgba(0, 242, 255, 0.24); box-shadow: 0 18px 50px rgba(0, 242, 255, 0.06); }
+        [hidden] { display: none !important; }
+
+        .about-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #06b6d4;
+            border-radius: 24px; padding: 2rem;
+            font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.7;
+            animation: fadeInUp 0.35s ease both;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            transform-style: preserve-3d;
+        }
+        .about-panel:hover {
+            border-color: rgba(0, 242, 255, 0.24);
+            box-shadow: 0 18px 50px rgba(0, 242, 255, 0.06);
+        }
+        .panel-comment { color: var(--accent); margin: 0 0 1rem; }
+        .panel-body { color: rgba(255, 255, 255, 0.7); margin: 0 0 1.5rem; }
+        .about-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; color: rgba(255, 255, 255, 0.55); }
+        .about-list li {
+            display: flex; gap: 0.65rem; align-items: flex-start;
+            padding: 0.65rem 0.75rem; border: 1px solid transparent;
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+        }
+        .about-list li:hover, .about-list li:focus-visible {
+            transform: translateX(0.45rem);
+            border-color: rgba(0, 242, 255, 0.18);
+            background: rgba(0, 242, 255, 0.05);
+        }
+        .about-list li::before { content: '>'; color: var(--accent); font-family: 'Fira Code', monospace; }
+        .about-list strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
+
+        /* ===== Tarjeta de perfil ===== */
+        .profile-wrap { position: relative; display: flex; justify-content: center; }
+        .photo-halo {
+            position: absolute; inset: -1.5rem; border-radius: 9999px;
+            background: rgba(6, 182, 212, 0.2); filter: blur(56px);
+            transition: background 0.4s ease; z-index: 0;
+        }
+        .profile-wrap:hover .photo-halo { background: rgba(6, 182, 212, 0.35); }
         .profile-card {
-            position: relative;
-            width: min(100%, 22rem);
-            padding: 1rem;
-            border: 1px solid var(--glass-border);
+            position: relative; z-index: 1;
+            width: min(100%, 22rem); padding: 1rem;
+            border: 1px solid var(--glass-border); border-radius: 32px;
             background: rgba(255, 255, 255, 0.03);
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
             transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease;
         }
-        .profile-card:hover { border-color: rgba(0, 242, 255, 0.35); box-shadow: 0 30px 90px rgba(0, 242, 255, 0.12); transform: translateY(-8px); }
+        .profile-card:hover {
+            border-color: rgba(0, 242, 255, 0.35);
+            box-shadow: 0 30px 90px rgba(0, 242, 255, 0.12); transform: translateY(-8px);
+        }
         .profile-card::before {
-            content: '';
-            position: absolute;
-            inset: 0.35rem;
-            border: 1px solid rgba(0, 242, 255, 0.12);
-            pointer-events: none;
-            z-index: 2;
+            content: ''; position: absolute; inset: 0.35rem;
+            border: 1px solid rgba(0, 242, 255, 0.12); pointer-events: none; z-index: 2;
+            border-radius: 26px;
         }
         .profile-photo-frame {
-            position: relative;
-            aspect-ratio: 4 / 5;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(0, 242, 255, 0.18);
-            background: linear-gradient(145deg, rgba(0, 242, 255, 0.12), rgba(124, 58, 237, 0.18));
+            position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(0, 242, 255, 0.18); border-radius: 21px;
+            background: linear-gradient(145deg, rgba(0,242,255,.12), rgba(124,58,237,.18));
         }
-        .profile-photo-frame img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(0.2) contrast(1.05); transition: transform 0.6s ease, filter 0.6s ease; }
+        .profile-photo-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(0.2) contrast(1.05);
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
         .profile-card:hover .profile-photo-frame img { transform: scale(1.04); filter: grayscale(0) contrast(1.08); }
         .profile-photo-frame::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.72), transparent 50%);
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,.72), transparent 50%);
             pointer-events: none;
         }
         .profile-photo-frame::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: -10%;
-            height: 1px;
-            background: var(--accent);
-            box-shadow: 0 0 18px 3px rgba(0, 242, 255, 0.45);
-            opacity: 0.55;
-            animation: profileScan 4.5s ease-in-out infinite;
-            z-index: 1;
+            content: ''; position: absolute; left: 0; right: 0; top: -10%; height: 1px;
+            background: var(--accent); box-shadow: 0 0 18px 3px rgba(0,242,255,.45);
+            opacity: 0.55; animation: profileScan 4.5s ease-in-out infinite; z-index: 1;
         }
         .profile-card-meta {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 1rem 0 0.25rem;
-            color: rgba(255, 255, 255, 0.45);
-            font-family: 'Fira Code', monospace;
-            font-size: 0.65rem;
+            display: flex; justify-content: space-between; gap: 1rem;
+            padding: 1rem 0 0.25rem; color: rgba(255, 255, 255, 0.45);
+            font-family: 'Fira Code', monospace; font-size: 10px;
         }
         .profile-card-meta strong { color: var(--accent); font-weight: 500; }
-        .about-list { display: grid; gap: 0.65rem; color: rgba(255, 255, 255, 0.55); }
-        .about-list li { position: relative; display: flex; gap: 0.65rem; align-items: flex-start; padding: 0.65rem 0.75rem; border: 1px solid transparent; transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease; }
-        .about-list li:hover, .about-list li:focus-visible { transform: translateX(0.45rem); border-color: rgba(0, 242, 255, 0.18); background: rgba(0, 242, 255, 0.05); }
-        .about-list li::before { content: '>'; color: var(--accent); font-family: 'Fira Code', monospace; }
-        .about-list strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
-
-        @keyframes profileScan { 0%, 100% { transform: translateY(0); opacity: 0; } 15%, 80% { opacity: 0.55; } 90% { transform: translateY(540px); opacity: 0; } }
-        @media (prefers-reduced-motion: reduce) {
-            .profile-photo-frame::before { animation: none; display: none; }
-            .about-panel, .profile-card, .about-list li { transition: none; }
+        @keyframes profileScan {
+            0%, 100% { transform: translateY(0); opacity: 0; }
+            15%, 80% { opacity: 0.55; }
+            90% { transform: translateY(540px); opacity: 0; }
         }
-
         @media (max-width: 640px) {
-            .about-tabs { margin-bottom: 1.25rem; }
-            .about-tab { flex: 1 1 30%; padding-left: 0.55rem; padding-right: 0.55rem; letter-spacing: 0.1em; }
+            .about-tab { letter-spacing: 0.1em; }
             .profile-card { width: min(100%, 19rem); }
         }
 
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        /* ===== Secciones comunes ===== */
+        .section-pad { padding: 8rem 2rem; }
+        .wrap-lg { max-width: 72rem; margin: 0 auto; }
+        .wrap-xl { max-width: 80rem; margin: 0 auto; }
+        .eyebrow-label {
+            color: var(--accent); font-weight: 700; letter-spacing: 0.4em;
+            text-transform: uppercase; font-size: 10px; margin-bottom: 1rem;
+        }
+        .eyebrow-subtitle { color: var(--text-50); margin-top: 1rem; font-size: 18px; }
+
+        /* ===== Encabezado Proyectos ===== */
+        .work-header {
+            display: flex; flex-direction: column;
+            justify-content: space-between; align-items: stretch;
+            margin-bottom: 5rem; gap: 2rem;
+        }
+        .work-tabs {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 1.5rem 2.5rem; width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 1rem;
+        }
+        .tab-btn {
+            position: relative; min-height: 44px; padding: 8px 4px;
+            cursor: pointer; background: transparent; border: 0;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: inherit; font-size: 10px; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3); transition: all 0.3s ease;
+        }
+        .tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+        .tab-btn:active { transform: translateY(1px); }
+        .tab-btn.active { color: var(--accent); }
+        .tab-btn.active::after {
+            content: ''; position: absolute; bottom: -11px; left: 50%;
+            transform: translateX(-50%); width: 20px; height: 2px;
+            background: var(--accent); box-shadow: 0 0 10px var(--accent);
+        }
+        .tab-btn svg { width: 16px; height: 16px; }
+
+        /* ===== Grillas de proyectos ===== */
+        .port-item { display: none !important; }
+        .port-item.active { display: grid !important; animation: fadeInUp 0.6s ease forwards; }
+        .projects-grid { gap: 2rem; grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        .projects-grid--model { gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .projects-grid--video { gap: 2.5rem; grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        @media (min-width: 768px) {
+            .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .projects-grid--video { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .projects-grid--model { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .tab-btn { font-size: 12px; }
         }
 
-        .glass-card:hover {
+        /* ===== Tarjeta de proyecto ===== */
+        .project-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border); border-radius: 40px;
+            padding: 1rem; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .project-card:hover {
             transform: translateY(-10px);
             border-color: rgba(0, 242, 255, 0.3);
             background: rgba(255, 255, 255, 0.06);
             box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
         }
-
-        /* Trident Navigation */
-        .trident-nav {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            display: flex;
-            gap: 20px;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        .project-card--video { border-radius: 48px; padding: 1.5rem; }
+        .project-card--model { border-radius: 32px; text-align: center; }
+        .card-title {
+            margin: 0 0 0 0.5rem; font-weight: 700; font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        .project-card:hover .card-title { color: var(--accent); }
+        .card-sub { color: rgba(255, 255, 255, 0.4); font-size: 12px; margin: 0.5rem 0 0 0.5rem; }
+        .video-title { font-size: 24px; font-weight: 700; margin: 0 0 0.5rem; }
+        .video-desc { color: rgba(255, 255, 255, 0.4); font-size: 14px; margin: 0; }
+        .model-label {
+            font-size: 10px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.5);
         }
 
-        .trident-link {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            color: rgba(255, 255, 255, 0.6);
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-radius: 25px;
-            transition: all 0.3s ease;
+        /* ===== Miniaturas ===== */
+        .thumb {
+            aspect-ratio: 1; background: #18181b; border-radius: 32px;
+            margin-bottom: 1rem; display: flex; align-items: center;
+            justify-content: center; position: relative; overflow: hidden;
         }
-
-        .trident-link:hover {
-            color: var(--accent);
-            background: rgba(0, 242, 255, 0.1);
+        .thumb--video { aspect-ratio: 16 / 9; margin-bottom: 1.5rem; }
+        .thumb-overlay { position: absolute; inset: 0; }
+        .ov-cp { background: linear-gradient(to bottom right, rgba(6,182,212,.2), rgba(168,85,247,.2)); }
+        .ov-pp { background: linear-gradient(to bottom right, rgba(168,85,247,.2), rgba(236,72,153,.2)); }
+        .ov-gc { background: linear-gradient(to bottom right, rgba(34,197,94,.2), rgba(6,182,212,.2)); }
+        .thumb-icon { width: 64px; height: 64px; position: relative; z-index: 1; color: rgba(34,211,238,.6); }
+        .tint-purple { color: rgba(192, 132, 252, 0.6); }
+        .tint-green { color: rgba(74, 222, 128, 0.6); }
+        .play-icon { width: 64px; height: 64px; fill: currentColor; color: rgba(255, 255, 255, 0.2); transition: transform 0.4s ease; }
+        .project-card--video:hover .play-icon { transform: scale(1.25); }
+        .thumb-round {
+            aspect-ratio: 1; border-radius: 9999px; margin-bottom: 1rem;
+            background: linear-gradient(135deg, #27272a, #18181b);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; align-items: center; justify-content: center;
         }
-
-        .trident-link.active {
-            color: var(--accent);
-            background: rgba(0, 242, 255, 0.15);
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-        }
-
-        .trident-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* UI Tabs */
-        .tab-btn {
-            position: relative;
-            min-height: 44px;
-            padding: 8px 4px;
-            cursor: pointer;
-            background: transparent;
-            border: 0;
-            transition: all 0.3s ease;
-            color: rgba(255, 255, 255, 0.3);
-        }
-        .tab-btn:focus-visible,
-        .trident-link:focus-visible,
-        .btn-primary:focus-visible,
-        button:focus-visible,
-        a:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-        }
-        .tab-btn:active,
-        .btn-primary:active,
-        .trident-link:active {
-            transform: translateY(1px);
-        }
-        .tab-btn.active {
-            color: var(--accent);
-        }
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 2px;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-
-        /* Portfolio Items Visibility */
-        .port-item { display: none !important; }
-        .port-item.active { display: grid !important; animation: fadeInUp 0.6s ease forwards; }
+        .icon-sm { width: 32px; height: 32px; color: rgba(34, 211, 238, 0.4); }
 
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .code-font { font-family: 'Fira Code', monospace; }
-
-        .btn-primary {
-            background: #ffffff;
-            color: #000000;
-            transition: all 0.4s ease;
-        }
-        .btn-primary:hover {
-            background: var(--accent);
-            box-shadow: 0 0 30px var(--accent);
-            transform: scale(1.05);
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+        /* ===== Contacto ===== */
+        .contact-section { padding: 6rem 2rem; }
+        .contact-inner {
+            max-width: 72rem; margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 5rem;
+        }
+        .contact-head {
+            display: flex; flex-direction: column;
+            justify-content: space-between; margin-bottom: 4rem; gap: 1.5rem;
+        }
+        .contact-title {
+            font-size: clamp(3.25rem, 9vw, 6rem);
+            font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1;
+        }
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 0.75rem; width: max-content;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.625rem 1.25rem; border-radius: 16px;
+            font-size: 10px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.2em; color: rgba(255, 255, 255, 0.8);
+        }
+        .status-dot {
+            width: 8px; height: 8px; background: #22d3ee; border-radius: 999px;
+            animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            box-shadow: 0 0 10px #00f2ff;
+        }
+        .block-label {
+            display: block; color: var(--accent); font-size: 10px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 0.5rem; opacity: 0.5;
+        }
+        .email-row { display: flex; flex-direction: column; gap: 1.5rem; }
+        @media (min-width: 768px) { .email-row { flex-direction: row; align-items: center; } }
+        .email-link, .phone-link {
+            color: #fff; font-weight: 700; letter-spacing: -0.02em;
+            text-decoration: none; transition: color 0.3s ease; overflow-wrap: anywhere;
+        }
+        .email-link { font-size: clamp(1.05rem, 4vw, 4rem); }
+        .phone-link { font-size: clamp(1.5rem, 4vw, 2.25rem); line-height: 1.1; }
+        .email-link:hover, .phone-link:hover { color: var(--accent); }
+        .copy-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1rem; border-radius: 12px; width: max-content;
+            border: 1px solid rgba(255, 255, 255, 0.1); background: transparent;
+            color: rgba(255, 255, 255, 0.3); cursor: pointer;
+            font-family: inherit; font-size: 9px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.3s ease;
+        }
+        .copy-btn:hover { color: var(--accent); border-color: rgba(0, 242, 255, 0.4); }
+        .copy-btn svg { width: 12px; height: 12px; }
+        .phone-block { padding-top: 1rem; }
+        .credits-row {
+            margin-top: 6rem; padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex; flex-direction: column;
+            justify-content: space-between; align-items: center; gap: 1.5rem;
+            font-size: 9px; font-weight: 700; color: rgba(255, 255, 255, 0.2);
+            text-transform: uppercase; letter-spacing: 0.4em;
+        }
+        @media (min-width: 768px) { .credits-row { flex-direction: row; } }
+        .credit-links { display: flex; gap: 2rem; }
+        .credit-links a { text-decoration: none; transition: color 0.3s ease; }
+        .credit-links a:hover, .credit-links a:focus-visible { color: var(--accent); }
 
-        /* Tooltip for copy */
-        .copy-success {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: black;
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-weight: bold;
-            display: none;
-            z-index: 1000;
+        /* ===== Toast de copiado ===== */
+        .copy-toast {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--accent); color: #000;
+            padding: 10px 20px; border-radius: 10px;
+            font-weight: 700; font-size: 14px;
+            display: none; z-index: 1000; max-width: calc(100% - 24px);
+        }
+        .copy-toast.visible { display: block; animation: fadeInUp 0.3s ease; }
+
+        /* ===== Hero ===== */
+        .hero-section {
+            min-height: 100vh; display: flex; align-items: center;
+            justify-content: center; position: relative; padding: 5rem 1.5rem 0;
+        }
+        .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 10; }
+        .badge-wrap { margin-bottom: 1rem; }
+        .role-badge {
+            display: inline-block; color: #22d3ee; font-weight: 700;
+            letter-spacing: 0.4em; text-transform: uppercase; font-size: 12px; opacity: 0.85;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            padding: 0.25rem 1rem; border-radius: 999px; text-align: center; line-height: 1.6;
+        }
+        @media (min-width: 769px) { .role-badge { font-size: 14px; } }
+        .hero-title {
+            font-size: clamp(3.75rem, 12vw, 10rem);
+            font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;
+            margin: 2rem 0; overflow-wrap: anywhere;
+        }
+        .hero-copy {
+            font-size: clamp(18px, 3vw, 24px); color: rgba(255, 255, 255, 0.5);
+            font-weight: 300; max-width: 48rem; margin: 0 auto; line-height: 1.65;
+        }
+        .hl-strong { color: #fff; font-weight: 500; }
+        .hl-accent { color: var(--accent); }
+        .skill-filter {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 3rem;
         }
 
-        /* Dynamic Email Text */
-        .email-text {
-            font-size: clamp(1.2rem, 4vw, 4rem);
-            overflow-wrap: anywhere;
+        /* ===== Encabezados tipo display ===== */
+        .display-title {
+            font-size: clamp(3rem, 9vw, 4.75rem);
+            font-weight: 700; letter-spacing: -0.03em; margin: 0; line-height: 1.05;
+        }
+        .section-title-sm {
+            font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700;
+            letter-spacing: -0.02em; margin: 0 0 2rem;
         }
 
-        /* Responsive Trident Nav */
+        /* ===== Layout Sobre Mí ===== */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr;
+            gap: 4rem; align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
+            .about-text { order: -1; text-align: left; }
+            .about-photo-col { text-align: left; }
+        }
+
+        /* ===== Bloques de contacto ===== */
+        .contact-block + .contact-block { margin-top: 2.5rem; }
+
+
+        /* ===== Sistema de revelado (IntersectionObserver) ===== */
+        .reveal {
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.75s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+            transition-delay: var(--reveal-delay, 0s);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible { opacity: 1; transform: none; }
+
+        /* ===== Responsive compacto (<=768px) ===== */
         @media (max-width: 768px) {
-            #sobre-mi,
-            #proyectos,
-            #contacto {
-                text-align: center;
+            #sobre-mi, #proyectos, #contacto { text-align: center; }
+            #proyectos .work-header, #contacto .contact-head { align-items: center; }
+            .section-pad { padding: 6rem 1.25rem; }
+            .page-nav {
+                margin-top: 7rem; gap: 0.5rem; justify-content: space-around;
+                font-size: 9px; letter-spacing: 0.08em;
             }
-            #sobre-mi .grid,
-            #proyectos > div,
-            #contacto > div {
-                justify-items: center;
-            }
-            #sobre-mi .about-list {
-                text-align: center;
-            }
-            #sobre-mi .about-list li {
-                justify-content: center;
-            }
-            #sobre-mi .about-tabs,
-            #proyectos .tab-btn,
-            #contacto .flex {
-                justify-content: center;
-            }
-            #proyectos .glass-card,
-            #proyectos .port-item,
-            #contacto .group,
-            #contacto .space-y-4 {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            #contacto .email-text {
-                display: block;
-                text-align: center;
-            }
-            #inicio .relative.inline-block {
-                max-width: 100%;
-            }
-            #inicio .relative.inline-block > span {
-                width: auto;
-                max-width: 100%;
-                white-space: normal;
-                line-height: 1.5;
-                letter-spacing: 0.18em;
-            }
-            #inicio h1 {
-                max-width: 100%;
-                overflow-wrap: anywhere;
-            }
-            #navbar > div {
-                height: 76px;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            #navbar .btn-primary {
-                min-height: 44px;
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            .trident-nav {
-                bottom: max(12px, env(safe-area-inset-bottom));
-                width: calc(100% - 24px);
-                justify-content: space-around;
-                padding: 8px;
-                gap: 4px;
-            }
-            .trident-link {
-                min-width: 52px;
-                min-height: 44px;
-                justify-content: center;
-                padding: 8px 10px;
-                font-size: 9px;
-            }
-            .trident-link span {
-                display: none;
-            }
-            .trident-link svg {
-                width: 18px;
-                height: 18px;
-            }
-            .email-text { font-size: clamp(1.15rem, 6.5vw, 2rem); line-height: 1.2; }
-            .copy-success { right: 12px; bottom: 78px; max-width: calc(100% - 24px); }
+            .page-nav a { flex: 1; justify-content: center; text-align: center; }
+            .top-site-nav { flex: 1; justify-content: flex-end; margin-left: 0.35rem; }
+            .top-site-link { width: 42px; justify-content: center; padding: 0.55rem; }
+            .top-site-link > span { display: none; }
+            .top-site-link svg { width: 19px; height: 19px; }
+            .navbar-inner { min-height: 76px; height: auto; padding-left: 1rem; padding-right: 1rem; }
+            .work-tabs { justify-content: space-around; }
+            .email-row { align-items: center; }
+            .copy-btn { margin-inline: auto; }
+            .email-link { display: block; white-space: nowrap; font-size: clamp(0.85rem, 5.2vw, 2rem); line-height: 1.2; max-width: 100%; }
+            .credits-row { font-size: 8px; letter-spacing: 0.25em; }
+            .copy-toast { right: 12px; bottom: 78px; }
+        }
+        @media (max-width: 639px) { .brand-name { display: none; } }
+        @media (max-width: 374px) { .email-link { white-space: normal; } }
+
+        /* ===== Movimiento reducido ===== */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .profile-photo-frame::before { animation: none; display: none; }
+            .about-panel, .profile-card, .about-list li,
+            .project-card, .logo-badge, .logo-badge span,
+            .skill-chip, .tab-btn, .top-site-link, .page-nav a { transition: none; }
+            .glow-sphere { display: none; }
+            .status-dot { animation: none; }
+            .reveal, [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
         }
     </style>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-white">
-
-    <div id="canvas-container">
+<body>
+    <div id="canvas-container" aria-hidden="true">
         <div class="glow-sphere" id="cursor-glow"></div>
     </div>
 
-    <div id="copy-toast" class="copy-success">¡Correo copiado al portapapeles!</div>
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
 
-    <!-- Nav Bar -->
-    <nav class="fixed top-0 w-full z-[100] transition-all duration-500" id="navbar">
-        <div class="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <div class="w-10 h-10 bg-white flex items-center justify-center rounded-xl rotate-45 group hover:rotate-[225deg] transition-all duration-700">
-                    <span class="rotate-[-45deg] group-hover:rotate-[-225deg] transition-all duration-700 text-black font-black text-xl">M</span>
-                </div>
-                <span class="font-bold tracking-tighter text-xl hidden sm:block">VILLALOBOS C.</span>
+    <!-- Nav principal -->
+    <nav class="site-navbar" id="navbar" aria-label="Navegación principal">
+        <div class="navbar-inner">
+            <div class="brand-row">
+                <div class="logo-badge" aria-hidden="true"><span>M</span></div>
+                <span class="brand-name">VILLALOBOS C.</span>
+                <nav class="top-site-nav" aria-label="Navegación entre páginas">
+                    <a href="../index.html" class="top-site-link" aria-label="Ir a la página Web">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path stroke-linecap="round" d="M3 12h18M12 3c2.5 2.4 3.75 5.4 3.75 9S14.5 18.6 12 21c-2.5-2.4-3.75-5.4-3.75-9S9.5 5.4 12 3z"></path></svg>
+                        <span>Web</span>
+                    </a>
+                    <a href="index.html" class="top-site-link active" aria-label="Ir al Portafolio" aria-current="page">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        <span>Portafolio</span>
+                    </a>
+                    <a href="../cv/index.html" class="top-site-link" aria-label="Ir al CV">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span>CV</span>
+                    </a>
+                </nav>
             </div>
-            
-            <div class="glass-panel px-8 py-3 rounded-2xl hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">
-                <a href="#inicio" class="hover:text-cyan-400 transition-colors">Intro</a>
-                <a href="#sobre-mi" class="hover:text-cyan-400 transition-colors">Sobre Mí</a>
-                <a href="#proyectos" class="hover:text-cyan-400 transition-colors">Proyectos</a>
-                <a href="#contacto" class="hover:text-cyan-400 transition-colors">Contacto</a>
-            </div>
-
-            <a href="mailto:matias.villalobos.dev@gmail.com" class="btn-primary px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest">
-                Contratar
-            </a>
         </div>
     </nav>
 
-    <!-- Trident Navigation -->
-    <nav class="trident-nav">
-        <a href="../index.html" class="trident-link" id="trident-web">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-            <span>Web</span>
-        </a>
-        <a href="index.html" class="trident-link active" id="trident-portfolio">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-            <span>Portafolio</span>
-        </a>
-        <a href="../cv/index.html" class="trident-link" id="trident-cv">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-            <span>CV</span>
-        </a>
+    <!-- Nav de anclas -->
+    <nav class="page-nav" aria-label="Navegación de la página">
+        <a href="#inicio">Intro</a>
+        <a href="#sobre-mi">Sobre Mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contacto</a>
     </nav>
 
     <!-- Hero -->
-    <section id="inicio" class="min-h-screen flex items-center justify-center relative px-6 pt-20">
-        <div class="max-w-6xl w-full text-center z-10">
-            <div class="relative inline-block mb-4">
-                <span class="text-xs md:text-sm font-bold text-cyan-400 tracking-[0.4em] uppercase opacity-80 block mb-4 border border-cyan-400/30 py-1 px-4 rounded-full mx-auto w-max text-center">
-                    Ingeniero en Realidad virtual y diseño de juegos digitales
-                </span>
-                <h1 class="text-6xl md:text-8xl lg:text-[10rem] font-extrabold leading-none mb-8 tracking-tighter">
-                    Matías<br>Villalobos C.
-                </h1>
+    <section id="inicio" class="hero-section" data-reveal>
+        <div class="hero-inner">
+            <div class="badge-wrap">
+                <span class="role-badge">Ingeniero en Realidad Virtual y diseño de juegos digitales</span>
             </div>
-            <p class="text-lg md:text-2xl text-white/50 font-light max-w-3xl mx-auto leading-relaxed">
-                <span class="text-white font-medium">Unity Developer</span> especializado en experiencias interactivas para <span class="text-cyan-400">PC, dispositivos móviles y Realidad Virtual</span>. Transformo ideas en mundos digitales inmersivos.
+            <h1 class="hero-title">Matías<br>Villalobos C.</h1>
+            <p class="hero-copy">
+                <span class="hl-strong">Unity Developer</span> especializado en experiencias interactivas para
+                <span class="hl-accent">PC, dispositivos móviles y Realidad Virtual</span>.
+                Transformo ideas en mundos digitales inmersivos.
             </p>
-            
-            <div class="flex flex-wrap justify-center gap-4 mt-12" aria-label="Filtrar proyectos por habilidad">
-                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="unity" aria-pressed="false">
-                    Unity Engine
-                </button>
-                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="csharp" aria-pressed="false">
-                    C# Programming
-                </button>
-                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="xr" aria-pressed="false">
-                    XR/VR Development
-                </button>
-                <button type="button" class="skill-chip glass-panel px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest" data-skill="3d" aria-pressed="false">
-                    3D Modeling
-                </button>
+
+            <div class="skill-filter" aria-label="Filtrar proyectos por habilidad">
+                <button type="button" class="skill-chip" data-skill="unity" data-label="Unity Engine" aria-pressed="false">Unity Engine</button>
+                <button type="button" class="skill-chip" data-skill="csharp" data-label="C# Programming" aria-pressed="false">C# Programming</button>
+                <button type="button" class="skill-chip" data-skill="xr" data-label="XR/VR Development" aria-pressed="false">XR/VR Development</button>
+                <button type="button" class="skill-chip" data-skill="3d" data-label="3D Modeling" aria-pressed="false">3D Modeling</button>
             </div>
+            <p class="skill-filter-note" id="skill-note" aria-live="polite"></p>
         </div>
     </section>
 
     <!-- Sobre Mí -->
-    <section id="sobre-mi" class="py-32 px-8">
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="order-2 lg:order-1">
-                    <h2 class="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 text-center lg:text-left">Profile</h2>
-                    <h3 class="text-5xl font-bold mb-8 tracking-tight text-center lg:text-left">Sobre Mí</h3>
+    <section id="sobre-mi" class="section-pad" data-reveal>
+        <div class="wrap-lg">
+            <div class="about-grid">
+
+                <div class="about-photo-col">
+                    <div class="profile-wrap" data-reveal>
+                        <div class="photo-halo" aria-hidden="true"></div>
+                        <div class="profile-card">
+                            <div class="profile-photo-frame">
+                                <img src="../img/matias.jpg" alt="Fotografía de Matías Villalobos" width="352" height="440" loading="lazy">
+                            </div>
+                            <div class="profile-card-meta"><span>MATÍAS V.</span><strong>UNITY / XR</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-text">
+                    <h2 class="eyebrow-label">Profile</h2>
+                    <h3 class="section-title-sm">Sobre Mí</h3>
 
                     <div class="about-tabs" role="tablist" aria-label="Información sobre Matías">
                         <button type="button" class="about-tab active" role="tab" aria-selected="true" aria-controls="about-profile" data-about-tab="about-profile">Perfil</button>
@@ -515,17 +645,18 @@
                         <button type="button" class="about-tab" role="tab" aria-selected="false" aria-controls="about-method" data-about-tab="about-method">Método</button>
                     </div>
 
-                    <div id="about-profile" class="about-panel glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500" role="tabpanel">
-                        <p class="text-cyan-400 mb-4">// Biografía Técnica</p>
-                        <p class="text-white/70 mb-6">Soy un apasionado por la tecnología disruptiva. Mi enfoque principal es la unión entre el software y la experiencia humana. Me especializo en optimización de rendimiento en motores 3D y en la creación de mecánicas de juego innovadoras para múltiples plataformas.</p>
+                    <div id="about-profile" class="about-panel" role="tabpanel">
+                        <p class="panel-comment">// Biografía Técnica</p>
+                        <p class="panel-body">Soy un apasionado por la tecnología disruptiva. Mi enfoque principal es la unión entre el software y la experiencia humana. Me especializo en optimización de rendimiento en motores 3D y en la creación de mecánicas de juego innovadoras para múltiples plataformas.</p>
                         <ul class="about-list">
                             <li tabindex="0">Ubicación: <strong>Santiago, Chile</strong></li>
-                            <li tabindex="0">Especialidad: <strong>Unity VR & Mobile Architecture</strong></li>
+                            <li tabindex="0">Especialidad: <strong>Unity VR &amp; Mobile Architecture</strong></li>
                             <li tabindex="0">Disponibilidad: <strong>Práctica profesional part-time</strong></li>
                         </ul>
                     </div>
-                    <div id="about-stack" class="about-panel glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500" role="tabpanel" hidden>
-                        <p class="text-cyan-400 mb-4">// Herramientas de construcción</p>
+
+                    <div id="about-stack" class="about-panel" role="tabpanel" hidden>
+                        <p class="panel-comment">// Herramientas de construcción</p>
                         <ul class="about-list">
                             <li tabindex="0">Motor: <strong>Unity Engine, XR Interaction Toolkit</strong></li>
                             <li tabindex="0">Programación: <strong>C#, HLSL y Python</strong></li>
@@ -533,8 +664,9 @@
                             <li tabindex="0">Objetivo: <strong>Experiencias fluidas en PC, móvil y VR</strong></li>
                         </ul>
                     </div>
-                    <div id="about-method" class="about-panel glass-panel p-8 rounded-3xl code-font text-sm leading-relaxed border-l-4 border-l-cyan-500" role="tabpanel" hidden>
-                        <p class="text-cyan-400 mb-4">// Cómo trabajo</p>
+
+                    <div id="about-method" class="about-panel" role="tabpanel" hidden>
+                        <p class="panel-comment">// Cómo trabajo</p>
                         <ul class="about-list">
                             <li tabindex="0"><strong>01 · Explorar</strong> Entender el problema, el público y la plataforma.</li>
                             <li tabindex="0"><strong>02 · Prototipar</strong> Convertir la idea en una interacción medible.</li>
@@ -542,297 +674,307 @@
                         </ul>
                     </div>
                 </div>
-                
-                <div class="order-1 lg:order-2 flex justify-center">
-                    <div class="relative group">
-                        <div class="absolute -inset-6 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-500/35 transition-all"></div>
-                        <div class="profile-card rounded-[2rem]">
-                            <div class="profile-photo-frame rounded-[1.35rem]">
-                                <img src="MiFoto.jpeg" alt="Fotografía de Matías Villalobos" width="352" height="440" loading="lazy">
-                            </div>
-                            <div class="profile-card-meta"><span>MATÍAS V.</span><strong>UNITY / XR</strong></div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
 
     <!-- Proyectos -->
-    <section id="proyectos" class="py-32 px-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+    <section id="proyectos" class="section-pad" data-reveal>
+        <div class="wrap-xl">
+            <div class="work-header">
                 <div>
-                    <h2 class="text-cyan-400 font-bold tracking-[0.4em] uppercase text-[10px] mb-4 text-center md:text-left">Portfolio</h2>
-                    <h3 class="text-5xl md:text-7xl font-bold tracking-tighter text-center md:text-left">Galería</h3>
+                    <h2 class="eyebrow-label">Portfolio</h2>
+                    <h3 class="display-title">Galería</h3>
                 </div>
-                
-                <div class="flex flex-wrap justify-center gap-6 md:gap-10 border-b border-white/10 pb-4 w-full md:w-auto">
-                    <button type="button" onclick="showPort('image')" id="btn-image" aria-pressed="true" class="tab-btn active text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+
+                <div class="work-tabs" role="group" aria-label="Cambiar tipo de contenido">
+                    <button type="button" onclick="showPort('image')" id="btn-image" aria-pressed="true" class="tab-btn active">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         Blueprint (Fotos)
                     </button>
-                    <button type="button" onclick="showPort('video')" id="btn-video" aria-pressed="false" class="tab-btn text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    <button type="button" onclick="showPort('video')" id="btn-video" aria-pressed="false" class="tab-btn">
+                        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
                         Cinema (Videos)
                     </button>
-                    <button type="button" onclick="showPort('model')" id="btn-model" aria-pressed="false" class="tab-btn text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] flex items-center gap-2">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    <button type="button" onclick="showPort('model')" id="btn-model" aria-pressed="false" class="tab-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                         Artifacts (3D)
                     </button>
                 </div>
             </div>
 
-            <div id="grid-image" class="port-item active grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-[2.5rem] p-4 group" data-project-skills="unity csharp">
-                    <div class="aspect-square rounded-[2rem] bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20"></div>
-                        <svg class="w-16 h-16 text-cyan-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <div id="grid-image" class="port-item active projects-grid" data-reveal-stagger>
+                <article class="project-card" data-project-skills="unity csharp">
+                    <div class="thumb">
+                        <div class="thumb-overlay ov-cp" aria-hidden="true"></div>
+                        <svg class="thumb-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h5 class="font-bold text-sm ml-2 group-hover:text-cyan-400 transition-colors">Sistema de Movimiento</h5>
-                    <p class="text-white/40 text-xs mt-2 ml-2">Unity • C# • Physics</p>
-                </div>
-                <div class="glass-card rounded-[2.5rem] p-4 group" data-project-skills="unity csharp 3d">
-                    <div class="aspect-square rounded-[2rem] bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20"></div>
-                        <svg class="w-16 h-16 text-purple-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    <h4 class="card-title">Sistema de Movimiento</h4>
+                    <p class="card-sub">Unity • C# • Physics</p>
+                </article>
+                <article class="project-card" data-project-skills="unity csharp 3d">
+                    <div class="thumb">
+                        <div class="thumb-overlay ov-pp" aria-hidden="true"></div>
+                        <svg class="thumb-icon tint-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                     </div>
-                    <h5 class="font-bold text-sm ml-2 group-hover:text-cyan-400 transition-colors">Inventario & UI</h5>
-                    <p class="text-white/40 text-xs mt-2 ml-2">Unity • UI Toolkit • C#</p>
-                </div>
-                <div class="glass-card rounded-[2.5rem] p-4 group" data-project-skills="unity xr 3d">
-                    <div class="aspect-square rounded-[2rem] bg-zinc-900 mb-4 flex items-center justify-center overflow-hidden relative">
-                        <div class="absolute inset-0 bg-gradient-to-br from-green-500/20 to-cyan-500/20"></div>
-                        <svg class="w-16 h-16 text-green-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    <h4 class="card-title">Inventario &amp; UI</h4>
+                    <p class="card-sub">Unity • UI Toolkit • C#</p>
+                </article>
+                <article class="project-card" data-project-skills="unity xr 3d">
+                    <div class="thumb">
+                        <div class="thumb-overlay ov-gc" aria-hidden="true"></div>
+                        <svg class="thumb-icon tint-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                     </div>
-                    <h5 class="font-bold text-sm ml-2 group-hover:text-cyan-400 transition-colors">Simulador XR</h5>
-                    <p class="text-white/40 text-xs mt-2 ml-2">Unity • XR Toolkit • OpenXR</p>
-                </div>
+                    <h4 class="card-title">Simulador XR</h4>
+                    <p class="card-sub">Unity • XR Toolkit • OpenXR</p>
+                </article>
             </div>
 
-            <div id="grid-video" class="port-item grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div class="glass-card rounded-[3rem] p-6 group">
-                    <div class="aspect-video rounded-[2rem] bg-zinc-900 mb-6 flex items-center justify-center relative overflow-hidden">
-                        <svg class="w-16 h-16 text-white/20 group-hover:scale-125 transition-all" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <div id="grid-video" class="port-item projects-grid projects-grid--video" data-reveal-stagger>
+                <article class="project-card project-card--video">
+                    <div class="thumb thumb--video">
+                        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
                     </div>
-                    <h4 class="text-2xl font-bold mb-2">Video de Ejemplo</h4>
-                    <p class="text-white/40 text-sm">Demo técnica de gameplay o entorno.</p>
-                </div>
+                    <h4 class="video-title">Video de Ejemplo</h4>
+                    <p class="video-desc">Demo técnica de gameplay o entorno.</p>
+                </article>
             </div>
 
-            <div id="grid-model" class="port-item grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass-card rounded-[2rem] p-4 group text-center">
-                    <div class="aspect-square rounded-full bg-gradient-to-br from-zinc-800 to-zinc-900 mb-4 flex items-center justify-center border border-white/5">
-                        <svg class="w-8 h-8 text-cyan-400/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+            <div id="grid-model" class="port-item projects-grid projects-grid--model" data-reveal-stagger>
+                <article class="project-card project-card--model">
+                    <div class="thumb-round">
+                        <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
                     </div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-white/50">Modelo 3D</span>
-                </div>
+                    <span class="model-label">Modelo 3D</span>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Footer: CONTACTO OPTIMIZADO -->
-    <footer id="contacto" class="py-24 px-8">
-        <div class="max-w-6xl mx-auto border-t border-white/10 pt-20">
-            
-            <!-- Encabezado Compacto -->
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <!-- Footer: Contacto -->
+    <footer id="contacto" class="contact-section" data-reveal>
+        <div class="contact-inner">
+
+            <div class="contact-head">
                 <div>
-                    <h2 class="text-6xl md:text-8xl font-black tracking-tighter">Hablemos</h2>
-                    <p class="text-white/40 mt-4 text-lg">¿Listo para empezar algo grande?</p>
+                    <h2 class="contact-title">Hablemos</h2>
+                    <p class="eyebrow-subtitle">¿Listo para empezar algo grande?</p>
                 </div>
-                <div class="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-2.5 rounded-2xl w-max">
-                    <div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_10px_#00f2ff]"></div>
-                    <span class="text-[10px] font-extrabold uppercase tracking-[0.2em] text-white/80">Abierto a proyectos</span>
+                <div class="status-pill">
+                    <span class="status-dot" aria-hidden="true"></span>
+                    Abierto a proyectos
                 </div>
             </div>
 
-            <!-- Información de Contacto Fluida -->
-            <div class="space-y-4">
-                <!-- Gmail de una sola línea -->
-                <div class="group">
-                    <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.4em] block mb-2 opacity-50">Correo</span>
-                    <div class="flex flex-col md:flex-row md:items-center gap-6">
-                        <a href="mailto:matias.villalobos.dev@gmail.com" class="email-text font-bold tracking-tighter hover:text-cyan-400 transition-colors duration-300">
-                            matias.villalobos.dev@gmail.com
-                        </a>
-                        <button onclick="copyEmail()" class="flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-white/30 hover:text-cyan-400 transition-all border border-white/10 hover:border-cyan-400/40 px-4 py-2 rounded-lg w-max">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-                            Copiar
-                        </button>
-                    </div>
+            <div class="contact-block" data-reveal>
+                <span class="block-label">Correo</span>
+                <div class="email-row">
+                    <a href="mailto:matias.villalobos.dev@gmail.com" class="email-link">matias.villalobos.dev@gmail.com</a>
+                    <button type="button" onclick="copyEmail()" class="copy-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                        Copiar correo
+                    </button>
                 </div>
-
-                <!-- Teléfono cercano -->
-                <div class="pt-4">
-                    <span class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.4em] block mb-1 opacity-50">Celular</span>
-                    <a href="tel:+56987576708" class="text-2xl md:text-4xl font-bold tracking-tight hover:text-white transition-colors">
-                        +56 9 8757 6708
-                    </a>
-                </div>
-
             </div>
 
-            <!-- Créditos Finales -->
-            <div class="mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] font-bold text-white/20 uppercase tracking-[0.4em]">
-                <div>MATÍAS VILLALOBOS C. © 2026</div>
-                <div class="flex gap-8">
-                    <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" class="hover:text-cyan-400 transition-colors">LinkedIn</a>
-                    <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener" class="hover:text-cyan-400 transition-colors">GitHub</a>
+            <div class="contact-block phone-block" data-reveal>
+                <span class="block-label">Celular</span>
+                <div class="email-row">
+                    <a href="tel:+56987576708" class="phone-link">+56 9 8757 6708</a>
+                    <button type="button" onclick="copyPhone()" class="copy-btn">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+                        Copiar celular
+                    </button>
+                </div>
+            </div>
+
+            <div class="credits-row">
+                <span>MATÍAS VILLALOBOS C. © 2026</span>
+                <div class="credit-links">
+                    <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener">GitHub</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script>
-        if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            gsap.registerPlugin(ScrollTrigger);
-            const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
-            intro.from('#inicio .relative.inline-block, #inicio > div > p, #inicio > div > div.flex', {
-                y: 28,
-                opacity: 0,
-                duration: 0.75,
-                stagger: 0.12,
-                clearProps: 'transform'
-            });
-            gsap.utils.toArray('#sobre-mi, #proyectos, #contacto').forEach(section => {
-                gsap.from(section.querySelectorAll(':scope > div'), {
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 82%',
-                        once: true
-                    },
-                    y: 32,
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    clearProps: 'transform',
-                    delay: 0.05
+    (function () {
+        'use strict';
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        /* ===== Navbar scroll: passive + rAF ===== */
+        var nav = document.getElementById('navbar');
+        if (nav) {
+            var ticking = false;
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(function () {
+                        nav.classList.toggle('is-scrolled', window.scrollY > 80);
+                        ticking = false;
+                    });
+                }
+            }, { passive: true });
+        }
+
+        /* ===== Revelado al hacer scroll (IntersectionObserver nativo) ===== */
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
                 });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            document.querySelectorAll('[data-reveal]').forEach(function (el) {
+                el.classList.add('reveal');
+                io.observe(el);
             });
-            gsap.from('.glass-card', {
-                y: 22,
-                opacity: 0,
-                duration: 0.65,
-                stagger: 0.1,
-                delay: 0.25,
-                ease: 'power2.out',
-                clearProps: 'transform'
+            document.querySelectorAll('[data-reveal-stagger]').forEach(function (parent) {
+                Array.prototype.forEach.call(parent.children, function (child, i) {
+                    child.style.setProperty('--reveal-delay', (i * 0.09).toFixed(2) + 's');
+                    child.classList.add('reveal');
+                    io.observe(child);
+                });
             });
         }
 
-        // Cursor Glow
-        const glow = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            glow.style.transform = `translate(${x - 300}px, ${y - 300}px)`;
-        });
+        /* ===== Glow del cursor (solo puntero fino + sin movimiento reducido) ===== */
+        var glow = document.getElementById('cursor-glow');
+        if (glow && !reduceMotion && hoverCapable) {
+            var gx = 0, gy = 0, glowPending = false;
+            document.addEventListener('pointermove', function (e) {
+                gx = e.clientX; gy = e.clientY;
+                if (!glowPending) {
+                    glowPending = true;
+                    requestAnimationFrame(function () {
+                        glow.style.transform = 'translate(' + (gx - 300) + 'px,' + (gy - 300) + 'px)';
+                        glowPending = false;
+                    });
+                }
+            }, { passive: true });
+        }
 
-        // Portfolio Switcher
-        function showPort(type) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
+        /* ===== Tilt en tarjetas ===== */
+        if (!reduceMotion && hoverCapable) {
+            document.querySelectorAll('.about-panel, .profile-card').forEach(function (element) {
+                element.addEventListener('pointermove', function (event) {
+                    var bounds = element.getBoundingClientRect();
+                    var rotateX = ((event.clientY - bounds.top) / bounds.height - 0.5) * -3;
+                    var rotateY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 3;
+                    element.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+                });
+                element.addEventListener('pointerleave', function () { element.style.transform = ''; });
             });
-            const activeButton = document.getElementById('btn-' + type);
-            activeButton.classList.add('active');
-            activeButton.setAttribute('aria-pressed', 'true');
-            document.querySelectorAll('.port-item').forEach(grid => grid.classList.remove('active'));
-            document.getElementById('grid-' + type).classList.add('active');
-            document.querySelectorAll('[data-project-skills]').forEach(project => project.classList.remove('project-match-hidden'));
-            document.querySelectorAll('.skill-chip').forEach(chip => {
+        }
+
+        /* ===== Toast ===== */
+        var toast = document.getElementById('copy-toast');
+        var toastTimer = null;
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function () { toast.classList.remove('visible'); }, 3000);
+        }
+
+        /* ===== Clipboard: API moderna + fallback heredado ===== */
+        function legacyCopy(text) {
+            var area = document.createElement('textarea');
+            area.value = text;
+            area.setAttribute('readonly', '');
+            area.style.position = 'fixed';
+            area.style.opacity = '0';
+            document.body.appendChild(area);
+            area.select();
+            var ok = false;
+            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+            document.body.removeChild(area);
+            return ok;
+        }
+        async function copyContact(value, label) {
+            var done = false;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                try { await navigator.clipboard.writeText(value); done = true; }
+                catch (err) { done = false; }
+            }
+            if (!done) { done = legacyCopy(value); }
+            showToast(done ? (label + ' copiado al portapapeles')
+                           : ('No se pudo copiar el ' + label.toLowerCase()));
+        }
+        window.copyEmail = function () { copyContact('matias.villalobos.dev@gmail.com', 'Correo'); };
+        window.copyPhone = function () { copyContact('+56 9 8757 6708', 'Celular'); };
+
+        /* ===== Galería: pestañas y filtro de habilidades ===== */
+        var skillNote = document.getElementById('skill-note');
+        function resetSkills() {
+            document.querySelectorAll('.skill-chip').forEach(function (chip) {
                 chip.classList.remove('active');
                 chip.setAttribute('aria-pressed', 'false');
             });
+            document.querySelectorAll('[data-project-skills]').forEach(function (p) {
+                p.classList.remove('project-match-hidden');
+            });
+            if (skillNote) { skillNote.textContent = ''; }
         }
-
-        function filterBySkill(skill, button) {
+        window.showPort = function (type) {
+            document.querySelectorAll('.tab-btn').forEach(function (btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            var activeBtn = document.getElementById('btn-' + type);
+            if (activeBtn) {
+                activeBtn.classList.add('active');
+                activeBtn.setAttribute('aria-pressed', 'true');
+            }
+            document.querySelectorAll('.port-item').forEach(function (grid) { grid.classList.remove('active'); });
+            var target = document.getElementById('grid-' + type);
+            if (target) { target.classList.add('active'); }
+            resetSkills();
+        };
+        window.filterBySkill = function (skill, button) {
+            var wasActive = button.classList.contains('active');
             showPort('image');
-            document.querySelectorAll('[data-project-skills]').forEach(project => {
-                const skills = project.dataset.projectSkills.split(' ');
-                project.classList.toggle('project-match-hidden', !skills.includes(skill));
+            if (wasActive) { return; } // segundo clic sobre el chip: limpia el filtro
+            var visible = 0;
+            document.querySelectorAll('[data-project-skills]').forEach(function (project) {
+                var skills = project.dataset.projectSkills.split(' ');
+                var match = skills.indexOf(skill) !== -1;
+                project.classList.toggle('project-match-hidden', !match);
+                if (match) { visible++; }
             });
             button.classList.add('active');
             button.setAttribute('aria-pressed', 'true');
-            document.getElementById('proyectos').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        document.querySelectorAll('.skill-chip').forEach(button => {
-            button.addEventListener('click', () => filterBySkill(button.dataset.skill, button));
+            if (skillNote) {
+                skillNote.textContent = 'Mostrando ' + visible + ' proyecto(s) con "' +
+                    (button.dataset.label || skill) + '". Toca de nuevo para ver todos.';
+            }
+            document.getElementById('proyectos')
+                .scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        };
+        document.querySelectorAll('.skill-chip').forEach(function (chip) {
+            chip.addEventListener('click', function () { filterBySkill(chip.dataset.skill, chip); });
         });
 
-        document.querySelectorAll('[data-about-tab]').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('[data-about-tab]').forEach(tab => {
-                    const isSelected = tab === button;
-                    tab.classList.toggle('active', isSelected);
-                    tab.setAttribute('aria-selected', String(isSelected));
+        /* ===== Tabs "Sobre Mí" ===== */
+        document.querySelectorAll('[data-about-tab]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                document.querySelectorAll('[data-about-tab]').forEach(function (tab) {
+                    var selected = tab === button;
+                    tab.classList.toggle('active', selected);
+                    tab.setAttribute('aria-selected', String(selected));
                 });
-                document.querySelectorAll('.about-panel').forEach(panel => {
+                document.querySelectorAll('.about-panel').forEach(function (panel) {
                     panel.hidden = panel.id !== button.dataset.aboutTab;
                 });
             });
         });
-
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover)').matches) {
-            document.querySelectorAll('.about-panel, .profile-card').forEach(element => {
-                element.addEventListener('pointermove', event => {
-                    const bounds = element.getBoundingClientRect();
-                    const rotateX = ((event.clientY - bounds.top) / bounds.height - 0.5) * -3;
-                    const rotateY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 3;
-                    element.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-                element.addEventListener('pointerleave', () => {
-                    element.style.transform = '';
-                });
-            });
-        }
-
-        // Copy Email
-        function copyEmail() {
-            const email = "matias.villalobos.dev@gmail.com";
-            const tempInput = document.createElement("input");
-            tempInput.value = email;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            
-            const toast = document.getElementById('copy-toast');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
-        }
-
-        function copyPersonalEmail() {
-            const email = "matiasvillalobos2003@gmail.com";
-            const tempInput = document.createElement("input");
-            tempInput.value = email;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            
-            const toast = document.getElementById('copy-toast');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 3000);
-        }
-
-        // Navbar Scroll effect
-        window.onscroll = () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 80) {
-                nav.style.background = 'rgba(3,3,3,0.9)';
-                nav.style.backdropFilter = 'blur(15px)';
-                nav.style.height = '80px';
-            } else {
-                nav.style.background = 'transparent';
-                nav.style.backdropFilter = 'none';
-                nav.style.height = '96px';
-            }
-        };
+    })();
     </script>
 </body>
 </html>

@@ -1,0 +1,103 @@
+
+        /* ===== Hero ===== */
+        .hero-section {
+            min-height: 100vh; display: flex; align-items: center;
+            justify-content: center; position: relative; padding: 5rem 1.5rem 0;
+        }
+        .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 10; }
+        .badge-wrap { margin-bottom: 1rem; }
+        .role-badge {
+            display: inline-block; color: #22d3ee; font-weight: 700;
+            letter-spacing: 0.4em; text-transform: uppercase; font-size: 12px; opacity: 0.85;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            padding: 0.25rem 1rem; border-radius: 999px; text-align: center; line-height: 1.6;
+        }
+        @media (min-width: 769px) { .role-badge { font-size: 14px; } }
+        .hero-title {
+            font-size: clamp(3.75rem, 12vw, 10rem);
+            font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;
+            margin: 2rem 0; overflow-wrap: anywhere;
+        }
+        .hero-copy {
+            font-size: clamp(18px, 3vw, 24px); color: rgba(255, 255, 255, 0.5);
+            font-weight: 300; max-width: 48rem; margin: 0 auto; line-height: 1.65;
+        }
+        .hl-strong { color: #fff; font-weight: 500; }
+        .hl-accent { color: var(--accent); }
+        .skill-filter {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 3rem;
+        }
+
+        /* ===== Encabezados tipo display ===== */
+        .display-title {
+            font-size: clamp(3rem, 9vw, 4.75rem);
+            font-weight: 700; letter-spacing: -0.03em; margin: 0; line-height: 1.05;
+        }
+        .section-title-sm {
+            font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700;
+            letter-spacing: -0.02em; margin: 0 0 2rem;
+        }
+
+        /* ===== Layout Sobre Mí ===== */
+        .about-grid {
+            display: grid; grid-template-columns: 1fr;
+            gap: 4rem; align-items: center;
+        }
+        @media (min-width: 1024px) {
+            .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
+            .about-text { order: -1; text-align: left; }
+            .about-photo-col { text-align: left; }
+        }
+
+        /* ===== Bloques de contacto ===== */
+        .contact-block + .contact-block { margin-top: 2.5rem; }
+
+
+        /* ===== Sistema de revelado (IntersectionObserver) ===== */
+        .reveal {
+            opacity: 0; transform: translateY(28px);
+            transition: opacity 0.75s cubic-bezier(0.23, 1, 0.32, 1),
+                        transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+            transition-delay: var(--reveal-delay, 0s);
+            will-change: opacity, transform;
+        }
+        .reveal.is-visible { opacity: 1; transform: none; }
+
+        /* ===== Responsive compacto (<=768px) ===== */
+        @media (max-width: 768px) {
+            #sobre-mi, #proyectos, #contacto { text-align: center; }
+            #proyectos .work-header, #contacto .contact-head { align-items: center; }
+            .section-pad { padding: 6rem 1.25rem; }
+            .page-nav {
+                margin-top: 7rem; gap: 0.5rem; justify-content: space-around;
+                font-size: 9px; letter-spacing: 0.08em;
+            }
+            .page-nav a { flex: 1; justify-content: center; text-align: center; }
+            .top-site-nav { flex: 1; justify-content: flex-end; margin-left: 0.35rem; }
+            .top-site-link { width: 42px; justify-content: center; padding: 0.55rem; }
+            .top-site-link > span { display: none; }
+            .top-site-link svg { width: 19px; height: 19px; }
+            .navbar-inner { min-height: 76px; height: auto; padding-left: 1rem; padding-right: 1rem; }
+            .work-tabs { justify-content: space-around; }
+            .email-row { align-items: center; }
+            .copy-btn { margin-inline: auto; }
+            .email-link { display: block; white-space: nowrap; font-size: clamp(0.85rem, 5.2vw, 2rem); line-height: 1.2; max-width: 100%; }
+            .credits-row { font-size: 8px; letter-spacing: 0.25em; }
+            .copy-toast { right: 12px; bottom: 78px; }
+        }
+        @media (max-width: 639px) { .brand-name { display: none; } }
+        @media (max-width: 374px) { .email-link { white-space: normal; } }
+
+        /* ===== Movimiento reducido ===== */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .profile-photo-frame::before { animation: none; display: none; }
+            .about-panel, .profile-card, .about-list li,
+            .project-card, .logo-badge, .logo-badge span,
+            .skill-chip, .tab-btn, .top-site-link, .page-nav a { transition: none; }
+            .glow-sphere { display: none; }
+            .status-dot { animation: none; }
+            .reveal, [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
+        }
+    </style>
+</head>
