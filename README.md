@@ -18,12 +18,3 @@ Puedes abrir `public/index.html` directamente en el navegador. Para probarlo con
 python -m http.server 8080 --directory public
 ```
 
-Después visita `http://localhost:8080/`.
-
-No requiere Node.js, npm, React, Next.js ni compilación.
-
-## Vercel
-
-El archivo `vercel.json` configura Vercel para publicar directamente la carpeta `public/` sin ejecutar una compilación. Después de subir los cambios a GitHub, Vercel desplegará el sitio automáticamente.
-
-En **Project Settings > Build and Deployment**, deja vacío **Build Command**. Si aparece `npm run vercel-build`, elimínalo y vuelve a desplegar.
