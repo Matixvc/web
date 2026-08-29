@@ -29,7 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* Estilos específicos de la vista CV y Modo Claro/Oscuro */
+    /* Variables de la vista CV - Modo Claro por Defecto */
     :root {
       --bg-cv-primary: #f8fafc;
       --bg-cv-card: #ffffff;
@@ -41,6 +41,7 @@
       --shadow-cv: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
 
+    /* Variables - Modo Oscuro */
     body.dark-theme {
       --bg-cv-primary: #0a0c10;
       --bg-cv-card: rgba(22, 27, 34, 0.85);
@@ -58,13 +59,14 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* Header Nav Global */
     header {
       position: sticky;
       top: 0;
       width: 100%;
       background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--bg-card-border);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       z-index: 1000;
     }
 
@@ -153,6 +155,7 @@
       color: #000000;
     }
 
+    /* Hoja del CV con Encabezado Blanco/Claro */
     .cv-paper {
       background: var(--bg-cv-card);
       border: 1px solid var(--bg-cv-border);
@@ -166,6 +169,7 @@
       border-bottom: 2px solid var(--bg-cv-border);
       padding-bottom: 1rem;
       margin-bottom: 1.2rem;
+      background: transparent;
     }
 
     .cv-header h1 {
@@ -193,6 +197,7 @@
     .contact-info a {
       color: var(--text-cv-muted);
       text-decoration: none;
+      transition: color 0.2s ease;
     }
 
     .contact-info a:hover {
@@ -305,11 +310,11 @@
       border-top: 1px solid var(--bg-card-border);
       text-align: center;
       padding: 1.5rem;
-      color: var(--text-muted);
+      color: #8b949e;
       font-size: 0.85rem;
     }
 
-    /* Reglas de Impresión PDF a 1 Hoja Completa A4 */
+    /* Reglas de Impresión PDF a 1 Hoja A4 */
     @page {
       size: A4 portrait;
       margin: 8mm 10mm;
