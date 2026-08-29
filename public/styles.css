@@ -1,5 +1,6 @@
 /* ==========================================================================
-   SISTEMA DE DISEÑO GLOBAL OPTIMIZADO - MATÍAS VILLALOBOS CAUTIVO
+   SISTEMA DE DISEÑO GLOBAL OPTIMIZADO PARA MÓVIL Y DESKTOPS
+   Matías Villalobos Cautivo - XR & Software Developer
    ========================================================================== */
 
 :root {
@@ -14,7 +15,7 @@
   --text-main: #f0f6fc;
   --text-muted: #8b949e;
   
-  /* Fuentes & Métricas */
+  /* Fuentes & Métricas Responsivas */
   --font-main: 'Inter', system-ui, -apple-system, sans-serif;
   --font-code: 'JetBrains Mono', monospace;
   --max-width: 1200px;
@@ -24,7 +25,7 @@
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Tokens Modo Claro Global (Para la sección CV) */
+/* Tokens Modo Claro Global */
 body.light-theme {
   --bg-primary: #f8fafc;
   --bg-card: #ffffff;
@@ -36,11 +37,12 @@ body.light-theme {
   --text-muted: #475569;
 }
 
-/* Reset y Normalización */
+/* Reset y Normalización Móvil */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Elimina recuadro azul al tocar en iOS/Android */
 }
 
 html {
@@ -58,12 +60,25 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-/* Tipografía */
-h1, h2, h3, h4 {
-  color: var(--text-main);
-  font-weight: 700;
-  line-height: 1.25;
+/* Tipografía Escala Fluida */
+h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 3.2rem);
+  line-height: 1.15;
   letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 3vw + 0.8rem, 2.2rem);
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2vw + 0.5rem, 1.5rem);
+}
+
+p {
+  font-size: clamp(0.95rem, 1.2vw + 0.5rem, 1.1rem);
+  color: var(--text-muted);
 }
 
 a {
@@ -72,22 +87,26 @@ a {
   transition: color var(--transition-fast);
 }
 
-a:hover {
-  opacity: 0.85;
-}
-
-/* Botones e Interacciones */
+/* Botones & Áreas de Toque Móvil (Touch Targets >= 44px) */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 48px; /* Tamaño ideal de interacción táctil */
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-btn);
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
   border: none;
+  width: 100%; /* Por defecto ocupa el ancho en móviles para facilitar el toque */
   transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+@media (min-width: 600px) {
+  .btn {
+    width: auto; /* Ancho automático en pantallas medianas y grandes */
+  }
 }
 
 .btn-primary {
@@ -96,7 +115,7 @@ a:hover {
   box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:active {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
 }
@@ -107,13 +126,21 @@ a:hover {
   border: 1px solid var(--bg-card-border);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover, .btn-secondary:active {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
 }
 
-/* Efectos de Revelado al Scroll */
+/* Contenedores Adaptables */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Animaciones y Adaptabilidad Móvil */
 .reveal {
   opacity: 0;
   transform: translateY(20px);
@@ -125,7 +152,7 @@ a:hover {
   transform: translateY(0);
 }
 
-/* Respeto a Preferencia de Movimiento Reducido */
+/* Ajustes de Reducción de Movimiento */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
