@@ -299,7 +299,7 @@
       font-weight: 600;
     }
 
-    /* Estilos Modal de Caso de Estudio */
+    /* Modal de Caso de Estudio */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -383,6 +383,21 @@
       line-height: 1.6;
     }
 
+    .demo-placeholder {
+      width: 100%;
+      height: 220px;
+      background: #141923;
+      border: 1px dashed var(--bg-card-border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      margin-top: 0.8rem;
+    }
+
     footer {
       border-top: 1px solid var(--bg-card-border);
       text-align: center;
@@ -440,7 +455,7 @@
           <div class="project-links" onclick="event.stopPropagation()">
             <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
               class="link-btn primary-link">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal1')">Detalles Técnicos</button>
+            <button class="link-btn" onclick="openModal('modal1')">Caso de Estudio</button>
           </div>
         </div>
       </article>
@@ -460,7 +475,7 @@
           <div class="project-links" onclick="event.stopPropagation()">
             <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
               class="link-btn">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal2')">Detalles Técnicos</button>
+            <button class="link-btn" onclick="openModal('modal2')">Caso de Estudio</button>
           </div>
         </div>
       </article>
@@ -480,7 +495,7 @@
           <div class="project-links" onclick="event.stopPropagation()">
             <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener"
               class="link-btn">Código Fuente</a>
-            <button class="link-btn primary-link" onclick="openModal('modal3')">Detalles Técnicos</button>
+            <button class="link-btn primary-link" onclick="openModal('modal3')">Caso de Estudio</button>
           </div>
         </div>
       </article>
@@ -493,6 +508,11 @@
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
       <h3 class="modal-title">Sistema Interactivo URP & Shaders</h3>
+
+      <div class="modal-section">
+        <h4>Demo / Captura de Interacción</h4>
+        <div class="demo-placeholder">&lt; Demostración Interactiva URP &gt;</div>
+      </div>
 
       <div class="modal-section">
         <h4>Desafío Técnico</h4>
@@ -520,6 +540,11 @@
       <h3 class="modal-title">Módulos de Navegación & IA 3D</h3>
 
       <div class="modal-section">
+        <h4>Demo / Captura de Interacción</h4>
+        <div class="demo-placeholder">&lt; Demostración Algoritmo NavMesh &gt;</div>
+      </div>
+
+      <div class="modal-section">
         <h4>Desafío Técnico</h4>
         <p>Construir una arquitectura extensible para agentes autónomos en entornos virtuales dinámicos sin sobrecargar
           la CPU.</p>
@@ -543,6 +568,11 @@
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
       <h3 class="modal-title">Plataforma Web Personal & Hub</h3>
+
+      <div class="modal-section">
+        <h4>Demo / Captura de Interacción</h4>
+        <div class="demo-placeholder">&lt; Arquitectura Web PWA & Vercel &gt;</div>
+      </div>
 
       <div class="modal-section">
         <h4>Desafío Técnico</h4>

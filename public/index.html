@@ -5,21 +5,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Portafolio de proyectos de Matías Villalobos Cautivo. Desarrollo en Unity, C#, Realidad Virtual, Shaders y Simulaciones 3D.">
+    content="Sitio web profesional y portafolio de Matías Villalobos Cautivo. Ingeniería en Realidad Virtual, Desarrollo XR, Simulaciones 3D y Desarrollo Web.">
   <meta name="keywords"
-    content="Matías Villalobos Cautivo, Portafolio, Unity, C#, XR, Realidad Virtual, Shader Graph, VFX Graph">
+    content="Matías Villalobos Cautivo, XR, VR, Realidad Virtual, Unity, C#, JavaScript, Web Developer, Portfolio">
   <meta name="author" content="Matías Villalobos Cautivo">
   <meta name="theme-color" content="#0a0c10">
 
-  <!-- Open Graph -->
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://matiasdev-web.vercel.app/portafolio/">
-  <meta property="og:title" content="Portafolio de Proyectos | Matías Villalobos Cautivo">
+  <meta property="og:url" content="https://matiasdev-web.vercel.app/">
+  <meta property="og:title" content="Matías Villalobos Cautivo | VR & Software Developer">
   <meta property="og:description"
-    content="Proyectos destacados en Realidad Virtual, simulaciones interactivas y desarrollo de software.">
+    content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
-  <title>Portafolio | Matías Villalobos Cautivo</title>
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Matías Villalobos Cautivo | VR & Software Developer">
+  <meta name="twitter:description"
+    content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
+  <meta name="twitter:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
+
+  <!-- Marcado Estructurado JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matías Villalobos Cautivo",
+    "jobTitle": "Ingeniero en Realidad Virtual & Software Developer",
+    "url": "https://matiasdev-web.vercel.app/",
+    "sameAs": [
+      "https://www.linkedin.com/in/matias-vc-dev",
+      "https://github.com/matiasvillalobosdev-web"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santiago",
+      "addressCountry": "Chile"
+    },
+    "knowsAbout": [
+      "Unity",
+      "C#",
+      "Virtual Reality",
+      "Extended Reality (XR)",
+      "Shader Graph",
+      "JavaScript",
+      "HTML5/CSS3"
+    ]
+  }
+  </script>
+
+  <title>Matías Villalobos Cautivo | VR & Software Developer</title>
 
   <!-- Favicon -->
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
@@ -35,8 +74,11 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
 
+  <!-- Librería Liviana: Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
   <style>
-    /* Estilos Específicos del Portafolio */
+    /* Estilos del Navegador y Menú Móvil */
     header {
       position: sticky;
       top: 0;
@@ -61,6 +103,9 @@
       font-size: 1.2rem;
       color: var(--text-main);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .brand span {
@@ -122,288 +167,299 @@
       }
     }
 
-    .portfolio-header {
+    .hero {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 3rem 1.25rem 1.5rem 1.25rem;
-      text-align: center;
-    }
-
-    .portfolio-header h1 {
-      font-size: clamp(2rem, 4vw + 1rem, 2.8rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .portfolio-header p {
-      color: var(--text-muted);
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-      max-width: 650px;
-      margin: 0 auto 1.8rem auto;
-    }
-
-    /* Barra de Filtros */
-    .filter-container {
-      display: flex;
-      justify-content: flex-start;
-      gap: 0.6rem;
-      overflow-x: auto;
-      padding: 0.4rem 0.2rem 0.8rem 0.2rem;
-      margin-bottom: 2rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .filter-container::-webkit-scrollbar {
-      display: none;
+      padding: 4rem 1.25rem 2.5rem 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
     }
 
     @media (min-width: 768px) {
-      .filter-container {
-        justify-content: center;
+      .hero {
+        grid-template-columns: 1.2fr 0.8fr;
+        padding: 5rem 1.25rem 3.5rem 1.25rem;
       }
     }
 
-    .filter-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
-      color: var(--text-muted);
-      padding: 0.65rem 1.2rem;
-      border-radius: 20px;
-      font-family: var(--font-code);
-      font-size: 0.85rem;
-      cursor: pointer;
-      white-space: nowrap;
-      scroll-snap-align: start;
-      min-height: 44px;
+    .status-badge {
       display: inline-flex;
       align-items: center;
-      transition: all 0.3s ease;
+      gap: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 20px;
+      color: var(--accent-color);
+      font-family: var(--font-code);
+      font-size: 0.82rem;
+      margin-bottom: 1rem;
     }
 
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--accent-color);
-      color: #000000;
-      border-color: var(--accent-color);
-      font-weight: 600;
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
     }
 
-    /* Grid de Proyectos */
-    .projects-grid {
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 1.8rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .profile-card img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .modules {
       max-width: var(--max-width);
-      margin: 0 auto 4rem auto;
+      margin: 1.5rem auto 3rem auto;
       padding: 0 1.25rem;
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
 
-    @media (min-width: 640px) {
-      .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.8rem;
+    @media (min-width: 768px) {
+      .modules {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    .project-card {
+    .card-module {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      overflow: hidden;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
-      cursor: pointer;
-      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .project-card:hover {
+    .card-module:hover {
+      transform: translateY(-4px);
       border-color: rgba(0, 240, 255, 0.4);
-      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
     }
 
-    .project-body {
-      padding: 1.5rem;
+    .card-module h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
       display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-    }
-
-    .project-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-description {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
-      margin-bottom: 1.25rem;
-      flex-grow: 1;
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-    }
-
-    .tag {
-      font-family: var(--font-code);
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      background: rgba(0, 240, 255, 0.08);
-      color: var(--accent-color);
-      border-radius: 4px;
-      border: 1px solid rgba(0, 240, 255, 0.2);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .link-btn {
-      font-size: 0.88rem;
-      text-decoration: none;
-      color: var(--text-main);
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
-      transition: all 0.2s ease;
-      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      width: 100%;
+      gap: 0.5rem;
     }
 
-    @media (min-width: 480px) {
-      .link-btn {
-        width: auto;
+    .card-module p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Sección Skills & Tech Stack */
+    .skills-section {
+      max-width: var(--max-width);
+      margin: 0 auto 3rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .skills-section h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    .link-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .link-btn.primary-link {
-      background: rgba(0, 240, 255, 0.15);
-      border-color: rgba(0, 240, 255, 0.4);
-      color: var(--accent-color);
-      font-weight: 600;
-    }
-
-    /* Modal de Caso de Estudio */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 12, 16, 0.85);
-      backdrop-filter: blur(10px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      background: #0f131a;
+    .skill-category {
+      background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      max-width: 650px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 2rem;
-      position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
+      padding: 1.5rem;
     }
 
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.8rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .modal-close:hover {
+    .skill-category h3 {
+      font-size: 1.1rem;
       color: var(--accent-color);
-    }
-
-    .modal-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-      padding-right: 2rem;
-    }
-
-    .modal-section {
-      margin-top: 1.25rem;
-    }
-
-    .modal-section h4 {
-      font-size: 0.95rem;
-      color: var(--accent-color);
+      margin-bottom: 1rem;
       font-family: var(--font-code);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.4rem;
-    }
-
-    .modal-section p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .demo-placeholder {
-      width: 100%;
-      height: 220px;
-      background: #141923;
-      border: 1px dashed var(--bg-card-border);
-      border-radius: 8px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-family: var(--font-code);
-      font-size: 0.85rem;
-      margin-top: 0.8rem;
+      gap: 0.5rem;
     }
 
+    .chip-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-main);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-family: var(--font-code);
+    }
+
+    .contact-section {
+      max-width: var(--max-width);
+      margin: 0 auto 4rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      max-width: 550px;
+      margin: 0 auto 1.8rem auto;
+    }
+
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Footer Estructurado */
     footer {
       border-top: 1px solid var(--bg-card-border);
-      text-align: center;
-      padding: 2rem 1.25rem;
+      background: rgba(10, 12, 16, 0.95);
+      padding: 3rem 1.25rem 2rem 1.25rem;
+    }
+
+    .footer-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .footer-content {
+        grid-template-columns: 2fr 1fr 1fr;
+      }
+    }
+
+    .footer-brand h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 400px;
+    }
+
+    .footer-links h5 {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+      font-family: var(--font-code);
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
       color: var(--text-muted);
       font-size: 0.88rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .footer-bottom {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
     }
   </style>
 </head>
@@ -417,190 +473,154 @@
         ☰
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="/">Inicio</a></li>
-        <li><a href="/portafolio/" class="active">Portafolio</a></li>
+        <li><a href="/" class="active">Inicio</a></li>
+        <li><a href="/portafolio/">Portafolio</a></li>
         <li><a href="/cv/">CV</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="portfolio-header reveal">
-      <h1>Portafolio de Proyectos</h1>
-      <p>Explora mis desarrollos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación
-        web. <em>(Haz clic en cualquier tarjeta para ver el caso de estudio técnico)</em>.</p>
-
-      <div class="filter-container">
-        <button class="filter-btn active" onclick="filterProjects('all', event)">Todos</button>
-        <button class="filter-btn" onclick="filterProjects('unity', event)">Unity / XR</button>
-        <button class="filter-btn" onclick="filterProjects('graphics', event)">3D & Shaders</button>
-        <button class="filter-btn" onclick="filterProjects('web', event)">Web & Software</button>
+    <section class="hero reveal">
+      <div class="hero-content">
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          <span>Disponible para Práctica / Proyectos XR</span>
+        </div>
+        <h1>Matías Villalobos Cautivo</h1>
+        <p>Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales. Especializado en desarrollo
+          interactivo con Unity, C#, simulaciones 3D y tecnologías web.</p>
+        <div class="hero-buttons">
+          <a href="/portafolio/" class="btn btn-primary">Ver Portafolio</a>
+          <a href="/cv/" class="btn btn-secondary">Consultar CV</a>
+        </div>
+      </div>
+      <div class="profile-card">
+        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Cautivo" loading="lazy"
+          onerror="this.src='https://via.placeholder.com/140'">
+        <h3>Matías Villalobos Cautivo</h3>
+        <p style="color: var(--accent-color); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR Engineer</p>
       </div>
     </section>
 
-    <section class="projects-grid reveal" id="projectsGrid">
+    <!-- Módulos Principales -->
+    <section class="modules reveal">
+      <div class="card-module">
+        <div>
+          <h2>🚀 Portafolio Interactivo</h2>
+          <p>Explora mis proyectos de desarrollo en Unity, Shader Graph, simulaciones interactivas 3D y aplicaciones
+            desarrolladas en C# y JavaScript.</p>
+        </div>
+        <a href="/portafolio/" class="btn btn-secondary">Ir al Portafolio &rarr;</a>
+      </div>
 
-      <!-- PROYECTO 1 -->
-      <article class="project-card" data-category="unity graphics" onclick="openModal('modal1')">
-        <div class="project-body">
-          <h2 class="project-title">Sistema Interactivo URP</h2>
-          <p class="project-description">Simulación interactiva para plataforma móvil. Incorpora mecánicas de agitación
-            de árboles, instanciación de frutas y Shaders personalizados en Universal Render Pipeline.</p>
-          <div class="project-tags">
-            <span class="tag">Unity</span>
-            <span class="tag">C#</span>
-            <span class="tag">Shader Graph</span>
-            <span class="tag">URP</span>
-          </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
-              class="link-btn primary-link">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal1')">Caso de Estudio</button>
+      <div class="card-module">
+        <div>
+          <h2>📄 Curriculum Vitae</h2>
+          <p>Conoce mi trayectoria académica en la Universidad Bernardo O'Higgins, mis habilidades técnicas,
+            herramientas de desarrollo y experiencia general.</p>
+        </div>
+        <a href="/cv/" class="btn btn-secondary">Ver Currículum &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Sección de Habilidades & Tech Stack -->
+    <section class="skills-section reveal">
+      <h2>🛠️ Stack Tecnológico & Especialidades</h2>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>🎮 Unity & C#</h3>
+          <div class="chip-list">
+            <span class="chip">C# Modular</span>
+            <span class="chip">NavMesh IA</span>
+            <span class="chip">ScriptableObjects</span>
+            <span class="chip">Physics 3D</span>
+            <span class="chip">UI Toolkit</span>
           </div>
         </div>
-      </article>
 
-      <!-- PROYECTO 2 -->
-      <article class="project-card" data-category="unity" onclick="openModal('modal2')">
-        <div class="project-body">
-          <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
-          <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y
-            controladores de animación optimizados para simulación interactiva.</p>
-          <div class="project-tags">
-            <span class="tag">Unity</span>
-            <span class="tag">C#</span>
-            <span class="tag">NavMesh</span>
-            <span class="tag">ScriptableObjects</span>
-          </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
-              class="link-btn">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal2')">Caso de Estudio</button>
+        <div class="skill-category">
+          <h3>🕶️ XR & Gráficos 3D</h3>
+          <div class="chip-list">
+            <span class="chip">Universal Render Pipeline (URP)</span>
+            <span class="chip">Shader Graph</span>
+            <span class="chip">VFX Graph</span>
+            <span class="chip">Blender (3D Assets)</span>
           </div>
         </div>
-      </article>
 
-      <!-- PROYECTO 3 -->
-      <article class="project-card" data-category="web" onclick="openModal('modal3')">
-        <div class="project-body">
-          <h2 class="project-title">Plataforma Web Personal & Hub</h2>
-          <p class="project-description">Diseño y desarrollo del ecosistema web personal desplegado en Vercel,
-            optimizado para SEO, accesibilidad y velocidad de carga.</p>
-          <div class="project-tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">Vanilla JS</span>
-            <span class="tag">Vercel</span>
-          </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener"
-              class="link-btn">Código Fuente</a>
-            <button class="link-btn primary-link" onclick="openModal('modal3')">Caso de Estudio</button>
+        <div class="skill-category">
+          <h3>💻 Web & Tools</h3>
+          <div class="chip-list">
+            <span class="chip">HTML5 / CSS3</span>
+            <span class="chip">Vanilla JavaScript</span>
+            <span class="chip">Git / GitHub</span>
+            <span class="chip">VS Code</span>
+            <span class="chip">Vercel</span>
           </div>
         </div>
-      </article>
+      </div>
+    </section>
 
+    <!-- Sección de Contacto -->
+    <section class="contact-section reveal">
+      <div class="contact-card">
+        <h2>📬 Conectemos</h2>
+        <p>¿Tienes una oportunidad de práctica, proyecto XR o propuesta de colaboración en desarrollo Unity / C#?
+          Hablemos directamente.</p>
+
+        <div class="contact-grid">
+          <button onclick="copyAndCelebrate('matias.villalobos.dev@gmail.com', 'Correo electrónico')"
+            class="btn btn-secondary">
+            ✉️ Copiar Correo
+          </button>
+          <button onclick="copyAndCelebrate('+56987576708', 'Teléfono')" class="btn btn-secondary">
+            📞 Copiar Teléfono
+          </button>
+          <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener" class="btn btn-primary">
+            🔗 Ver LinkedIn
+          </a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- MODAL PROYECTO 1 -->
-  <div class="modal-overlay" id="modal1" onclick="closeModal('modal1')">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
-      <h3 class="modal-title">Sistema Interactivo URP & Shaders</h3>
-
-      <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Demostración Interactiva URP &gt;</div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Desafío Técnico</h4>
-        <p>Desarrollar una simulación móvil con rendimiento sostenido a 60 FPS en gráficos 3D que permita interactuar
-          con física de fluidos/partículas y agitación de objetos en tiempo real.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Solución Implementada</h4>
-        <p>Se crearon Custom Shaders en Shader Graph dentro de URP (Universal Render Pipeline) junto con scripts C#
-          modulados que gestionan la instanciación eficiente de prefabs usando Object Pooling.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Tecnologías Clave</h4>
-        <p>Unity, C#, Universal Render Pipeline, Shader Graph, VFX Graph, Input System.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL PROYECTO 2 -->
-  <div class="modal-overlay" id="modal2" onclick="closeModal('modal2')">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
-      <h3 class="modal-title">Módulos de Navegación & IA 3D</h3>
-
-      <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Demostración Algoritmo NavMesh &gt;</div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Desafío Técnico</h4>
-        <p>Construir una arquitectura extensible para agentes autónomos en entornos virtuales dinámicos sin sobrecargar
-          la CPU.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Solución Implementada</h4>
-        <p>Implementación de NavMesh Agent acoplado a ScriptableObjects para configurar comportamientos, rangos de
-          detección y máquinas de estado para los controladores de animación.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Tecnologías Clave</h4>
-        <p>Unity NavMesh, C#, ScriptableObjects, Animator Controller, C# Delegates & Events.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL PROYECTO 3 -->
-  <div class="modal-overlay" id="modal3" onclick="closeModal('modal3')">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-      <h3 class="modal-title">Plataforma Web Personal & Hub</h3>
-
-      <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Arquitectura Web PWA & Vercel &gt;</div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Desafío Técnico</h4>
-        <p>Ofrecer una velocidad de carga ultrarrápida (Lighthouse 95+), compatibilidad PWA y diseño responsivo completo
-          sin usar frameworks pesados.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Solución Implementada</h4>
-        <p>Desarrollo con HTML5 semántico, CSS3 modular con variables globales y JS puro en arquitectura limpia,
-          integrado a despliegues automatizados en Vercel.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Tecnologías Clave</h4>
-        <p>HTML5, CSS3, Vanilla JS, PWA Manifest, SEO JSON-LD, Vercel.</p>
-      </div>
-    </div>
-  </div>
-
+  <!-- Footer Profesional Completo -->
   <footer>
-    <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h4>Matías Villalobos Cautivo</h4>
+        <p>Ingeniería en Realidad Virtual y Diseño de Juegos Digitales — Universidad Bernardo O'Higgins, Santiago de
+          Chile.</p>
+      </div>
+
+      <div class="footer-links">
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/portafolio/">Portafolio</a></li>
+          <li><a href="/cv/">Curriculum Vitae</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h5>Redes & Código</h5>
+        <ul>
+          <li><a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:matias.villalobos.dev@gmail.com">Email Directo</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS. Desplegado en Vercel.</p>
+    </div>
   </footer>
 
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Lógica de Filtrado y Modales -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -611,42 +631,20 @@
       });
     }
 
-    function filterProjects(category, evt) {
-      const cards = document.querySelectorAll('.project-card');
-      const buttons = document.querySelectorAll('.filter-btn');
-
-      buttons.forEach(btn => btn.classList.remove('active'));
-      if (evt && evt.target) {
-        evt.target.classList.add('active');
+    function copyAndCelebrate(text, label) {
+      if (typeof copyToClipboard === 'function') {
+        copyToClipboard(text, label);
       }
-
-      cards.forEach(card => {
-        const categories = card.getAttribute('data-category');
-        if (category === 'all' || categories.includes(category)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.8 },
+          colors: ['#00f0ff', '#7000ff', '#ffffff']
+        });
       }
     }
   </script>
-
 </body>
 
 </html>
