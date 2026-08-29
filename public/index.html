@@ -6,6 +6,10 @@
   <meta name="description" content="Sitio web profesional y portafolio de Matías Villalobos Cautivo. Ingeniería en Realidad Virtual, Desarrollo XR, Simulaciones 3D y Desarrollo Web.">
   <meta name="keywords" content="Matías Villalobos Cautivo, XR, VR, Realidad Virtual, Unity, C#, JavaScript, Web Developer, Portfolio">
   <meta name="author" content="Matías Villalobos Cautivo">
+  <meta name="theme-color" content="#0a0c10">
+
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="/manifest.json">
 
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="website">
@@ -28,11 +32,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <!-- Librería Liviana: Canvas Confetti (Efectos de Micro-Interacción) -->
+  <!-- Librería Liviana: Canvas Confetti -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
   <style>
-    /* Estilos de la Landing Principal */
+    /* Estilos del Navegador y Menú Móvil */
     header {
       position: sticky;
       top: 0;
@@ -84,6 +88,41 @@
 
     .nav-links a:hover, .nav-links a.active {
       color: var(--accent-color);
+    }
+
+    /* Botón Menú Hamburguesa Móvil */
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 12, 16, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--bg-card-border);
+        display: none;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+      }
     }
 
     .hero {
@@ -147,8 +186,6 @@
       padding: 1.8rem;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      position: relative;
-      overflow: hidden;
     }
 
     .profile-card img {
@@ -204,7 +241,6 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Sección de Contacto Directo */
     .contact-section {
       max-width: var(--max-width);
       margin: 0 auto 5rem auto;
@@ -251,7 +287,10 @@
   <header>
     <nav aria-label="Navegación principal">
       <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
-      <ul class="nav-links">
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+        ☰
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="/" class="active">Inicio</a></li>
         <li><a href="/portafolio/">Portafolio</a></li>
         <li><a href="/cv/">CV</a></li>
@@ -295,7 +334,6 @@
       </div>
     </section>
 
-    <!-- Módulo de Contacto Directo con Micro-Interacciones -->
     <section class="contact-section reveal">
       <div class="contact-card">
         <h2>📬 Conectemos</h2>
@@ -323,8 +361,17 @@
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Script de Micro-Interacción Confetti -->
+  <!-- Toggle Menú Móvil y Confetti -->
   <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-open');
+      });
+    }
+
     function copyAndCelebrate(text, label) {
       if (typeof copyToClipboard === 'function') {
         copyToClipboard(text, label);
