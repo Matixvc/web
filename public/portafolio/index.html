@@ -1,980 +1,363 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matías Villalobos C. | Portafolio</title>
-    <meta name="description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas de Matías Villalobos C., desarrollador especializado en Unity Engine y Realidad Virtual. Santiago, Chile.">
-    <meta name="author" content="Matías Villalobos Cautivo">
-    <meta name="theme-color" content="#030308">
-    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-    <link rel="canonical" href="/portafolio/index.html">
-    <!-- Open Graph -->
-    <meta property="og:title" content="Portafolio | Matías Villalobos - Unity Developer">
-    <meta property="og:description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas.">
-    <meta property="og:image" content="/og-image.png">
-    <meta property="og:url" content="/portafolio/index.html">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_CL">
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Portafolio | Matías Villalobos - Unity Developer">
-    <meta name="twitter:description" content="Portafolio de proyectos Unity, XR/VR, videojuegos y experiencias interactivas.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Fira+Code:wght@300;500&display=swap" rel="stylesheet">
-    <style>
-        /* ===== Tokens ===== */
-        :root {
-            --accent: #00f2ff;
-            --accent-dark: #0066ff;
-            --accent-secondary: #7c3aed;
-            --bg: #030308;
-            --text: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio de proyectos de Matías Villalobos Cautivo. Desarrollo en Unity, C#, Realidad Virtual, Shaders y Simulaciones 3D.">
+  <meta name="keywords" content="Matías Villalobos Cautivo, Portafolio, Unity, C#, XR, Realidad Virtual, Shader Graph, VFX Graph">
+  <meta name="author" content="Matías Villalobos Cautivo">
 
-        /* ===== Base ===== */
-        *, *::before, *::after { box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        ::selection { background: #06b6d4; color: #fff; }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-        img { max-width: 100%; display: block; }
-        a { color: inherit; }
-        a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 4px;
-            border-radius: 4px;
-        }
-        #inicio, #sobre-mi, #proyectos, #contacto { scroll-margin-top: 120px; }
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://matiasdev-web.vercel.app/portafolio/">
+  <meta property="og:title" content="Portafolio de Proyectos | Matías Villalobos Cautivo">
+  <meta property="og:description" content="Proyectos destacados en Realidad Virtual, simulaciones interactivas y desarrollo de software.">
+  <meta property="og:image" content="/og-image.png">
 
-        /* ===== Fondo tecnológico ===== */
-        #canvas-container {
-            position: fixed; inset: 0; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #030303 100%);
-        }
-        .glow-sphere {
-            position: absolute;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(0,242,255,.05) 0%, rgba(0,102,255,.02) 50%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            transition: transform 0.25s ease-out;
-            will-change: transform;
-        }
+  <title>Portafolio | Matías Villalobos Cautivo</title>
 
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-        /* ===== Navegación superior ===== */
-        .site-navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            transition: background-color 0.35s ease, backdrop-filter 0.35s ease;
-        }
-        .site-navbar.is-scrolled {
-            background: rgba(3, 3, 3, 0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-        }
-        .navbar-inner {
-            max-width: 80rem; margin: 0 auto; padding: 0 2rem;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .brand-row { display: flex; align-items: center; gap: 1rem; }
-        .logo-badge {
-            flex-shrink: 0; width: 40px; height: 40px; background: #fff;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 12px; transform: rotate(45deg);
-            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .logo-badge:hover { transform: rotate(225deg); }
-        .logo-badge span {
-            color: #000; font-weight: 800; font-size: 20px; transform: rotate(-45deg);
-            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .logo-badge:hover span { transform: rotate(-225deg); }
-        .brand-name {
-            font-weight: 700; letter-spacing: -0.03em; font-size: 20px; white-space: nowrap;
-        }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-        /* ===== Enlaces entre páginas ===== */
-        .top-site-nav { display: flex; align-items: center; gap: 0.3rem; margin-left: 1rem; }
-        .top-site-link {
-            display: flex; align-items: center; gap: 0.45rem;
-            min-height: 44px; padding: 0.55rem 0.75rem; border-radius: 0.75rem;
-            color: rgba(255, 255, 255, 0.45); font-size: 10px; font-weight: 700;
-            letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
-            transition: color 0.25s ease, background 0.25s ease;
-        }
-        .top-site-link:hover, .top-site-link:focus-visible,
-        .top-site-link.active, .top-site-link[aria-current="page"] {
-            color: var(--accent); background: rgba(0, 242, 255, 0.08);
-        }
-        .top-site-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-card: rgba(22, 27, 34, 0.75);
+      --bg-card-border: rgba(255, 255, 255, 0.1);
+      --accent-color: #00f0ff;
+      --accent-gradient: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+      --max-width: 1200px;
+    }
 
-        /* ===== Nav de anclas ===== */
-        .page-nav {
-            position: relative; z-index: 2; display: flex; justify-content: center;
-            gap: clamp(1rem, 4vw, 3rem); width: min(100% - 2rem, 760px);
-            margin: 7rem auto 0; padding: 0.65rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.45); font-size: 10px; font-weight: 700;
-            letter-spacing: 0.16em; text-transform: uppercase;
-        }
-        .page-nav a {
-            min-height: 40px; display: flex; align-items: center;
-            padding: 0.5rem 0.25rem; text-decoration: none;
-            transition: color 0.25s ease, transform 0.25s ease;
-        }
-        .page-nav a:hover, .page-nav a:focus-visible { color: var(--accent); transform: translateY(-2px); }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        /* ===== Chips de habilidades ===== */
-        .skill-chip {
-            display: inline-flex; align-items: center;
-            padding: 0.75rem 1.5rem; border-radius: 999px;
-            font-family: inherit; font-size: 12px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.1em;
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            color: rgba(255, 255, 255, 0.6); cursor: pointer; transition: all 0.3s ease;
-        }
-        .skill-chip:hover, .skill-chip:focus-visible, .skill-chip.active {
-            color: var(--accent); border-color: rgba(0, 242, 255, 0.4);
-            background: rgba(0, 242, 255, 0.08); transform: translateY(-3px);
-        }
-        .skill-chip:active { transform: translateY(0); }
-        .skill-filter-note { min-height: 1.5em; color: rgba(255, 255, 255, 0.4); font-size: 12px; margin-top: 1rem; }
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        /* ===== Tabs Sobre Mí ===== */
-        .about-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .about-tab {
-            min-height: 44px; padding: 0.65rem 1rem;
-            border: 1px solid var(--glass-border); border-radius: 0.75rem;
-            background: rgba(255, 255, 255, 0.03); color: rgba(255, 255, 255, 0.45);
-            cursor: pointer; font-family: inherit; font-size: 10px; font-weight: 700;
-            letter-spacing: 0.16em; text-transform: uppercase; transition: all 0.3s ease;
-        }
-        .about-tab:hover, .about-tab:focus-visible, .about-tab.active {
-            border-color: rgba(0, 242, 255, 0.45);
-            background: rgba(0, 242, 255, 0.1); color: var(--accent);
-        }
-        [hidden] { display: none !important; }
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--bg-card-border);
+      z-index: 1000;
+    }
 
-        .about-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-left: 4px solid #06b6d4;
-            border-radius: 24px; padding: 2rem;
-            font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.7;
-            animation: fadeInUp 0.35s ease both;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            transform-style: preserve-3d;
-        }
-        .about-panel:hover {
-            border-color: rgba(0, 242, 255, 0.24);
-            box-shadow: 0 18px 50px rgba(0, 242, 255, 0.06);
-        }
-        .panel-comment { color: var(--accent); margin: 0 0 1rem; }
-        .panel-body { color: rgba(255, 255, 255, 0.7); margin: 0 0 1.5rem; }
-        .about-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.65rem; color: rgba(255, 255, 255, 0.55); }
-        .about-list li {
-            display: flex; gap: 0.65rem; align-items: flex-start;
-            padding: 0.65rem 0.75rem; border: 1px solid transparent;
-            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
-        }
-        .about-list li:hover, .about-list li:focus-visible {
-            transform: translateX(0.45rem);
-            border-color: rgba(0, 242, 255, 0.18);
-            background: rgba(0, 242, 255, 0.05);
-        }
-        .about-list li::before { content: '>'; color: var(--accent); font-family: 'Fira Code', monospace; }
-        .about-list strong { color: rgba(255, 255, 255, 0.9); font-weight: 500; }
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
 
-        /* ===== Tarjeta de perfil ===== */
-        .profile-wrap { position: relative; display: flex; justify-content: center; }
-        .photo-halo {
-            position: absolute; inset: -1.5rem; border-radius: 9999px;
-            background: rgba(6, 182, 212, 0.2); filter: blur(56px);
-            transition: background 0.4s ease; z-index: 0;
-        }
-        .profile-wrap:hover .photo-halo { background: rgba(6, 182, 212, 0.35); }
-        .profile-card {
-            position: relative; z-index: 1;
-            width: min(100%, 22rem); padding: 1rem;
-            border: 1px solid var(--glass-border); border-radius: 32px;
-            background: rgba(255, 255, 255, 0.03);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
-            transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .profile-card:hover {
-            border-color: rgba(0, 242, 255, 0.35);
-            box-shadow: 0 30px 90px rgba(0, 242, 255, 0.12); transform: translateY(-8px);
-        }
-        .profile-card::before {
-            content: ''; position: absolute; inset: 0.35rem;
-            border: 1px solid rgba(0, 242, 255, 0.12); pointer-events: none; z-index: 2;
-            border-radius: 26px;
-        }
-        .profile-photo-frame {
-            position: relative; aspect-ratio: 4 / 5; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(0, 242, 255, 0.18); border-radius: 21px;
-            background: linear-gradient(145deg, rgba(0,242,255,.12), rgba(124,58,237,.18));
-        }
-        .profile-photo-frame img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(0.2) contrast(1.05);
-            transition: transform 0.6s ease, filter 0.6s ease;
-        }
-        .profile-card:hover .profile-photo-frame img { transform: scale(1.04); filter: grayscale(0) contrast(1.08); }
-        .profile-photo-frame::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,.72), transparent 50%);
-            pointer-events: none;
-        }
-        .profile-photo-frame::before {
-            content: ''; position: absolute; left: 0; right: 0; top: -10%; height: 1px;
-            background: var(--accent); box-shadow: 0 0 18px 3px rgba(0,242,255,.45);
-            opacity: 0.55; animation: profileScan 4.5s ease-in-out infinite; z-index: 1;
-        }
-        .profile-card-meta {
-            display: flex; justify-content: space-between; gap: 1rem;
-            padding: 1rem 0 0.25rem; color: rgba(255, 255, 255, 0.45);
-            font-family: 'Fira Code', monospace; font-size: 10px;
-        }
-        .profile-card-meta strong { color: var(--accent); font-weight: 500; }
-        @keyframes profileScan {
-            0%, 100% { transform: translateY(0); opacity: 0; }
-            15%, 80% { opacity: 0.55; }
-            90% { transform: translateY(540px); opacity: 0; }
-        }
-        @media (max-width: 640px) {
-            .about-tab { letter-spacing: 0.1em; }
-            .profile-card { width: min(100%, 19rem); }
-        }
+    .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-main);
+      text-decoration: none;
+    }
 
-        /* ===== Secciones comunes ===== */
-        .section-pad { padding: 8rem 2rem; }
-        .wrap-lg { max-width: 72rem; margin: 0 auto; }
-        .wrap-xl { max-width: 80rem; margin: 0 auto; }
-        .eyebrow-label {
-            color: var(--accent); font-weight: 700; letter-spacing: 0.4em;
-            text-transform: uppercase; font-size: 10px; margin-bottom: 1rem;
-        }
-        .eyebrow-subtitle { color: var(--text-50); margin-top: 1rem; font-size: 18px; }
+    .brand span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        /* ===== Encabezado Proyectos ===== */
-        .work-header {
-            display: flex; flex-direction: column;
-            justify-content: space-between; align-items: stretch;
-            margin-bottom: 5rem; gap: 2rem;
-        }
-        .work-tabs {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 1.5rem 2.5rem; width: 100%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 1rem;
-        }
-        .tab-btn {
-            position: relative; min-height: 44px; padding: 8px 4px;
-            cursor: pointer; background: transparent; border: 0;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-family: inherit; font-size: 10px; font-weight: 700;
-            letter-spacing: 0.2em; text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.3); transition: all 0.3s ease;
-        }
-        .tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-        .tab-btn:active { transform: translateY(1px); }
-        .tab-btn.active { color: var(--accent); }
-        .tab-btn.active::after {
-            content: ''; position: absolute; bottom: -11px; left: 50%;
-            transform: translateX(-50%); width: 20px; height: 2px;
-            background: var(--accent); box-shadow: 0 0 10px var(--accent);
-        }
-        .tab-btn svg { width: 16px; height: 16px; }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
 
-        /* ===== Grillas de proyectos ===== */
-        .port-item { display: none !important; }
-        .port-item.active { display: grid !important; animation: fadeInUp 0.6s ease forwards; }
-        .projects-grid { gap: 2rem; grid-template-columns: repeat(1, minmax(0, 1fr)); }
-        .projects-grid--model { gap: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .projects-grid--video { gap: 2.5rem; grid-template-columns: repeat(1, minmax(0, 1fr)); }
-        @media (min-width: 768px) {
-            .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-            .projects-grid--video { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .projects-grid--model { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-            .tab-btn { font-size: 12px; }
-        }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
 
-        /* ===== Tarjeta de proyecto ===== */
-        .project-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border); border-radius: 40px;
-            padding: 1rem; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 242, 255, 0.3);
-            background: rgba(255, 255, 255, 0.06);
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.1);
-        }
-        .project-card--video { border-radius: 48px; padding: 1.5rem; }
-        .project-card--model { border-radius: 32px; text-align: center; }
-        .card-title {
-            margin: 0 0 0 0.5rem; font-weight: 700; font-size: 14px;
-            transition: color 0.3s ease;
-        }
-        .project-card:hover .card-title { color: var(--accent); }
-        .card-sub { color: rgba(255, 255, 255, 0.4); font-size: 12px; margin: 0.5rem 0 0 0.5rem; }
-        .video-title { font-size: 24px; font-weight: 700; margin: 0 0 0.5rem; }
-        .video-desc { color: rgba(255, 255, 255, 0.4); font-size: 14px; margin: 0; }
-        .model-label {
-            font-size: 10px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.5);
-        }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-color);
+    }
 
-        /* ===== Miniaturas ===== */
-        .thumb {
-            aspect-ratio: 1; background: #18181b; border-radius: 32px;
-            margin-bottom: 1rem; display: flex; align-items: center;
-            justify-content: center; position: relative; overflow: hidden;
-        }
-        .thumb--video { aspect-ratio: 16 / 9; margin-bottom: 1.5rem; }
-        .thumb-overlay { position: absolute; inset: 0; }
-        .ov-cp { background: linear-gradient(to bottom right, rgba(6,182,212,.2), rgba(168,85,247,.2)); }
-        .ov-pp { background: linear-gradient(to bottom right, rgba(168,85,247,.2), rgba(236,72,153,.2)); }
-        .ov-gc { background: linear-gradient(to bottom right, rgba(34,197,94,.2), rgba(6,182,212,.2)); }
-        .thumb-icon { width: 64px; height: 64px; position: relative; z-index: 1; color: rgba(34,211,238,.6); }
-        .tint-purple { color: rgba(192, 132, 252, 0.6); }
-        .tint-green { color: rgba(74, 222, 128, 0.6); }
-        .play-icon { width: 64px; height: 64px; fill: currentColor; color: rgba(255, 255, 255, 0.2); transition: transform 0.4s ease; }
-        .project-card--video:hover .play-icon { transform: scale(1.25); }
-        .thumb-round {
-            aspect-ratio: 1; border-radius: 9999px; margin-bottom: 1rem;
-            background: linear-gradient(135deg, #27272a, #18181b);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; align-items: center; justify-content: center;
-        }
-        .icon-sm { width: 32px; height: 32px; color: rgba(34, 211, 238, 0.4); }
+    /* Container Header */
+    .portfolio-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 1.5rem 2rem 1.5rem;
+      text-align: center;
+    }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
+    .portfolio-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
 
-        /* ===== Contacto ===== */
-        .contact-section { padding: 6rem 2rem; }
-        .contact-inner {
-            max-width: 72rem; margin: 0 auto;
-            border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 5rem;
-        }
-        .contact-head {
-            display: flex; flex-direction: column;
-            justify-content: space-between; margin-bottom: 4rem; gap: 1.5rem;
-        }
-        .contact-title {
-            font-size: clamp(3.25rem, 9vw, 6rem);
-            font-weight: 800; letter-spacing: -0.03em; margin: 0; line-height: 1;
-        }
-        .status-pill {
-            display: inline-flex; align-items: center; gap: 0.75rem; width: max-content;
-            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.625rem 1.25rem; border-radius: 16px;
-            font-size: 10px; font-weight: 800; text-transform: uppercase;
-            letter-spacing: 0.2em; color: rgba(255, 255, 255, 0.8);
-        }
-        .status-dot {
-            width: 8px; height: 8px; background: #22d3ee; border-radius: 999px;
-            animation: pulseGlow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-            box-shadow: 0 0 10px #00f2ff;
-        }
-        .block-label {
-            display: block; color: var(--accent); font-size: 10px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.4em; margin-bottom: 0.5rem; opacity: 0.5;
-        }
-        .email-row { display: flex; flex-direction: column; gap: 1.5rem; }
-        @media (min-width: 768px) { .email-row { flex-direction: row; align-items: center; } }
-        .email-link, .phone-link {
-            color: #fff; font-weight: 700; letter-spacing: -0.02em;
-            text-decoration: none; transition: color 0.3s ease; overflow-wrap: anywhere;
-        }
-        .email-link { font-size: clamp(1.05rem, 4vw, 4rem); }
-        .phone-link { font-size: clamp(1.5rem, 4vw, 2.25rem); line-height: 1.1; }
-        .email-link:hover, .phone-link:hover { color: var(--accent); }
-        .copy-btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1rem; border-radius: 12px; width: max-content;
-            border: 1px solid rgba(255, 255, 255, 0.1); background: transparent;
-            color: rgba(255, 255, 255, 0.3); cursor: pointer;
-            font-family: inherit; font-size: 9px; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.3s ease;
-        }
-        .copy-btn:hover { color: var(--accent); border-color: rgba(0, 242, 255, 0.4); }
-        .copy-btn svg { width: 12px; height: 12px; }
-        .phone-block { padding-top: 1rem; }
-        .credits-row {
-            margin-top: 6rem; padding-top: 3rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; flex-direction: column;
-            justify-content: space-between; align-items: center; gap: 1.5rem;
-            font-size: 9px; font-weight: 700; color: rgba(255, 255, 255, 0.2);
-            text-transform: uppercase; letter-spacing: 0.4em;
-        }
-        @media (min-width: 768px) { .credits-row { flex-direction: row; } }
-        .credit-links { display: flex; gap: 2rem; }
-        .credit-links a { text-decoration: none; transition: color 0.3s ease; }
-        .credit-links a:hover, .credit-links a:focus-visible { color: var(--accent); }
+    .portfolio-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin: 0 auto 2rem auto;
+    }
 
-        /* ===== Toast de copiado ===== */
-        .copy-toast {
-            position: fixed; bottom: 20px; right: 20px;
-            background: var(--accent); color: #000;
-            padding: 10px 20px; border-radius: 10px;
-            font-weight: 700; font-size: 14px;
-            display: none; z-index: 1000; max-width: calc(100% - 24px);
-        }
-        .copy-toast.visible { display: block; animation: fadeInUp 0.3s ease; }
+    /* Filter Buttons */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
 
-        /* ===== Hero ===== */
-        .hero-section {
-            min-height: 100vh; display: flex; align-items: center;
-            justify-content: center; position: relative; padding: 5rem 1.5rem 0;
-        }
-        .hero-inner { max-width: 72rem; margin: 0 auto; width: 100%; text-align: center; position: relative; z-index: 10; }
-        .badge-wrap { margin-bottom: 1rem; }
-        .role-badge {
-            display: inline-block; color: #22d3ee; font-weight: 700;
-            letter-spacing: 0.4em; text-transform: uppercase; font-size: 12px; opacity: 0.85;
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            padding: 0.25rem 1rem; border-radius: 999px; text-align: center; line-height: 1.6;
-        }
-        @media (min-width: 769px) { .role-badge { font-size: 14px; } }
-        .hero-title {
-            font-size: clamp(3.75rem, 12vw, 10rem);
-            font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;
-            margin: 2rem 0; overflow-wrap: anywhere;
-        }
-        .hero-copy {
-            font-size: clamp(18px, 3vw, 24px); color: rgba(255, 255, 255, 0.5);
-            font-weight: 300; max-width: 48rem; margin: 0 auto; line-height: 1.65;
-        }
-        .hl-strong { color: #fff; font-weight: 500; }
-        .hl-accent { color: var(--accent); }
-        .skill-filter {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 3rem;
-        }
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-        /* ===== Encabezados tipo display ===== */
-        .display-title {
-            font-size: clamp(3rem, 9vw, 4.75rem);
-            font-weight: 700; letter-spacing: -0.03em; margin: 0; line-height: 1.05;
-        }
-        .section-title-sm {
-            font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 700;
-            letter-spacing: -0.02em; margin: 0 0 2rem;
-        }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-color);
+      color: #000;
+      border-color: var(--accent-color);
+      font-weight: 600;
+    }
 
-        /* ===== Layout Sobre Mí ===== */
-        .about-grid {
-            display: grid; grid-template-columns: 1fr;
-            gap: 4rem; align-items: center;
-        }
-        @media (min-width: 1024px) {
-            .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4rem; }
-            .about-text { order: -1; text-align: left; }
-            .about-photo-col { text-align: left; }
-        }
+    /* Projects Grid */
+    .projects-grid {
+      max-width: var(--max-width);
+      margin: 0 auto 5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
 
-        /* ===== Bloques de contacto ===== */
-        .contact-block + .contact-block { margin-top: 2.5rem; }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
 
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 240, 255, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
+    }
 
-        /* ===== Sistema de revelado (IntersectionObserver) ===== */
-        .reveal {
-            opacity: 0; transform: translateY(28px);
-            transition: opacity 0.75s cubic-bezier(0.23, 1, 0.32, 1),
-                        transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
-            transition-delay: var(--reveal-delay, 0s);
-            will-change: opacity, transform;
-        }
-        .reveal.is-visible { opacity: 1; transform: none; }
+    .project-img {
+      width: 100%;
+      height: 200px;
+      background-color: #1a1e24;
+      object-fit: cover;
+      border-bottom: 1px solid var(--bg-card-border);
+    }
 
-        /* ===== Responsive compacto (<=768px) ===== */
-        @media (max-width: 768px) {
-            #sobre-mi, #proyectos, #contacto { text-align: center; }
-            #proyectos .work-header, #contacto .contact-head { align-items: center; }
-            .section-pad { padding: 6rem 1.25rem; }
-            .page-nav {
-                margin-top: 7rem; gap: 0.5rem; justify-content: space-around;
-                font-size: 9px; letter-spacing: 0.08em;
-            }
-            .page-nav a { flex: 1; justify-content: center; text-align: center; }
-            .top-site-nav { flex: 1; justify-content: flex-end; margin-left: 0.35rem; }
-            .top-site-link { width: 42px; justify-content: center; padding: 0.55rem; }
-            .top-site-link > span { display: none; }
-            .top-site-link svg { width: 19px; height: 19px; }
-            .navbar-inner { min-height: 76px; height: auto; padding-left: 1rem; padding-right: 1rem; }
-            .work-tabs { justify-content: space-around; }
-            .email-row { align-items: center; }
-            .copy-btn { margin-inline: auto; }
-            .email-link { display: block; white-space: nowrap; font-size: clamp(0.85rem, 5.2vw, 2rem); line-height: 1.2; max-width: 100%; }
-            .credits-row { font-size: 8px; letter-spacing: 0.25em; }
-            .copy-toast { right: 12px; bottom: 78px; }
-        }
-        @media (max-width: 639px) { .brand-name { display: none; } }
-        @media (max-width: 374px) { .email-link { white-space: normal; } }
+    .project-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
 
-        /* ===== Movimiento reducido ===== */
-        @media (prefers-reduced-motion: reduce) {
-            html { scroll-behavior: auto; }
-            .profile-photo-frame::before { animation: none; display: none; }
-            .about-panel, .profile-card, .about-list li,
-            .project-card, .logo-badge, .logo-badge span,
-            .skill-chip, .tab-btn, .top-site-link, .page-nav a { transition: none; }
-            .glow-sphere { display: none; }
-            .status-dot { animation: none; }
-            .reveal, [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
-        }
-    </style>
+    .project-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(0, 240, 255, 0.08);
+      color: var(--accent-color);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .link-btn {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--text-main);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      transition: background 0.2s ease;
+    }
+
+    .link-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    footer {
+      border-top: 1px solid var(--bg-card-border);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <div id="canvas-container" aria-hidden="true">
-        <div class="glow-sphere" id="cursor-glow"></div>
-    </div>
 
-    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite"></div>
-
-    <!-- Nav principal -->
-    <nav class="site-navbar" id="navbar" aria-label="Navegación principal">
-        <div class="navbar-inner">
-            <div class="brand-row">
-                <div class="logo-badge" aria-hidden="true"><span>M</span></div>
-                <span class="brand-name">VILLALOBOS C.</span>
-                <nav class="top-site-nav" aria-label="Navegación entre páginas">
-                    <a href="../index.html" class="top-site-link" aria-label="Ir a la página Web">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path stroke-linecap="round" d="M3 12h18M12 3c2.5 2.4 3.75 5.4 3.75 9S14.5 18.6 12 21c-2.5-2.4-3.75-5.4-3.75-9S9.5 5.4 12 3z"></path></svg>
-                        <span>Web</span>
-                    </a>
-                    <a href="index.html" class="top-site-link active" aria-label="Ir al Portafolio" aria-current="page">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                        <span>Portafolio</span>
-                    </a>
-                    <a href="../cv/index.html" class="top-site-link" aria-label="Ir al CV">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                        <span>CV</span>
-                    </a>
-                </nav>
-            </div>
-        </div>
+  <header>
+    <nav>
+      <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
+      <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/portafolio/" class="active">Portafolio</a></li>
+        <li><a href="/cv/">CV</a></li>
+      </ul>
     </nav>
+  </header>
 
-    <!-- Nav de anclas -->
-    <nav class="page-nav" aria-label="Navegación de la página">
-        <a href="#inicio">Intro</a>
-        <a href="#sobre-mi">Sobre Mí</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
+  <main>
+    <section class="portfolio-header">
+      <h1>Portafolio de Proyectos</h1>
+      <p>Una selección de desarrollos en Realidad Virtual, simulaciones interactivas 3D, lógica de programación y proyectos universitarios / personales.</p>
 
-    <!-- Hero -->
-    <section id="inicio" class="hero-section" data-reveal>
-        <div class="hero-inner">
-            <div class="badge-wrap">
-                <span class="role-badge">Ingeniero en Realidad Virtual y diseño de juegos digitales</span>
-            </div>
-            <h1 class="hero-title">Matías<br>Villalobos C.</h1>
-            <p class="hero-copy">
-                <span class="hl-strong">Unity Developer</span> especializado en experiencias interactivas para
-                <span class="hl-accent">PC, dispositivos móviles y Realidad Virtual</span>.
-                Transformo ideas en mundos digitales inmersivos.
-            </p>
-
-            <div class="skill-filter" aria-label="Filtrar proyectos por habilidad">
-                <button type="button" class="skill-chip" data-skill="unity" data-label="Unity Engine" aria-pressed="false">Unity Engine</button>
-                <button type="button" class="skill-chip" data-skill="csharp" data-label="C# Programming" aria-pressed="false">C# Programming</button>
-                <button type="button" class="skill-chip" data-skill="xr" data-label="XR/VR Development" aria-pressed="false">XR/VR Development</button>
-                <button type="button" class="skill-chip" data-skill="3d" data-label="3D Modeling" aria-pressed="false">3D Modeling</button>
-            </div>
-            <p class="skill-filter-note" id="skill-note" aria-live="polite"></p>
-        </div>
+      <div class="filter-container">
+        <button class="filter-btn active" onclick="filterProjects('all')">Todos</button>
+        <button class="filter-btn" onclick="filterProjects('unity')">Unity / XR</button>
+        <button class="filter-btn" onclick="filterProjects('graphics')">3D & Shaders</button>
+        <button class="filter-btn" onclick="filterProjects('web')">Web & Software</button>
+      </div>
     </section>
 
-    <!-- Sobre Mí -->
-    <section id="sobre-mi" class="section-pad" data-reveal>
-        <div class="wrap-lg">
-            <div class="about-grid">
-
-                <div class="about-photo-col">
-                    <div class="profile-wrap" data-reveal>
-                        <div class="photo-halo" aria-hidden="true"></div>
-                        <div class="profile-card">
-                            <div class="profile-photo-frame">
-                                <img src="../img/matias.jpg" alt="Fotografía de Matías Villalobos" width="352" height="440" loading="lazy">
-                            </div>
-                            <div class="profile-card-meta"><span>MATÍAS V.</span><strong>UNITY / XR</strong></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="about-text">
-                    <h2 class="eyebrow-label">Profile</h2>
-                    <h3 class="section-title-sm">Sobre Mí</h3>
-
-                    <div class="about-tabs" role="tablist" aria-label="Información sobre Matías">
-                        <button type="button" class="about-tab active" role="tab" aria-selected="true" aria-controls="about-profile" data-about-tab="about-profile">Perfil</button>
-                        <button type="button" class="about-tab" role="tab" aria-selected="false" aria-controls="about-stack" data-about-tab="about-stack">Stack</button>
-                        <button type="button" class="about-tab" role="tab" aria-selected="false" aria-controls="about-method" data-about-tab="about-method">Método</button>
-                    </div>
-
-                    <div id="about-profile" class="about-panel" role="tabpanel">
-                        <p class="panel-comment">// Biografía Técnica</p>
-                        <p class="panel-body">Soy un apasionado por la tecnología disruptiva. Mi enfoque principal es la unión entre el software y la experiencia humana. Me especializo en optimización de rendimiento en motores 3D y en la creación de mecánicas de juego innovadoras para múltiples plataformas.</p>
-                        <ul class="about-list">
-                            <li tabindex="0">Ubicación: <strong>Santiago, Chile</strong></li>
-                            <li tabindex="0">Especialidad: <strong>Unity VR &amp; Mobile Architecture</strong></li>
-                            <li tabindex="0">Disponibilidad: <strong>Práctica profesional part-time</strong></li>
-                        </ul>
-                    </div>
-
-                    <div id="about-stack" class="about-panel" role="tabpanel" hidden>
-                        <p class="panel-comment">// Herramientas de construcción</p>
-                        <ul class="about-list">
-                            <li tabindex="0">Motor: <strong>Unity Engine, XR Interaction Toolkit</strong></li>
-                            <li tabindex="0">Programación: <strong>C#, HLSL y Python</strong></li>
-                            <li tabindex="0">Producción: <strong>Blender, Git y GitHub</strong></li>
-                            <li tabindex="0">Objetivo: <strong>Experiencias fluidas en PC, móvil y VR</strong></li>
-                        </ul>
-                    </div>
-
-                    <div id="about-method" class="about-panel" role="tabpanel" hidden>
-                        <p class="panel-comment">// Cómo trabajo</p>
-                        <ul class="about-list">
-                            <li tabindex="0"><strong>01 · Explorar</strong> Entender el problema, el público y la plataforma.</li>
-                            <li tabindex="0"><strong>02 · Prototipar</strong> Convertir la idea en una interacción medible.</li>
-                            <li tabindex="0"><strong>03 · Pulir</strong> Optimizar rendimiento, claridad y sensación de uso.</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
+    <section class="projects-grid" id="projectsGrid">
+      <!-- Proyecto 1: Efectos Especiales / UBO -->
+      <article class="project-card" data-category="unity graphics">
+        <img src="/og-image.png" alt="Proyecto Efectos Especiales UBO" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Proyecto+XR'">
+        <div class="project-body">
+          <h2 class="project-title">Sistema Interactivo URP</h2>
+          <p class="project-description">Proyecto de simulación interactiva con mecánicas de agitación de árboles, generación dinámica de objetos y shaders optimizados en Universal Render Pipeline (URP).</p>
+          <div class="project-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">Shader Graph</span>
+            <span class="tag">URP</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/matixvc" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+          </div>
         </div>
+      </article>
+
+      <!-- Proyecto 2: Desarrollo Web Portfolio -->
+      <article class="project-card" data-category="web">
+        <img src="/og-image.png" alt="Web Portfolio Hub" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Web+Portfolio'">
+        <div class="project-body">
+          <h2 class="project-title">Plataforma Web Personal & Hub</h2>
+          <p class="project-description">Diseño y desarrollo de sitio web profesional responsivo desplegado en Vercel, optimizado para presentar credenciales en ingeniería XR y software.</p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">Vercel</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/matixvc/web" target="_blank" rel="noopener" class="link-btn">Código Fuente</a>
+            <a href="/" class="link-btn">Ver Sitio</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Proyecto 3: Mecánicas C# / Simulaciones -->
+      <article class="project-card" data-category="unity">
+        <img src="/og-image.png" alt="Mecánicas C# Unity" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Mec%C3%A1nicas+3D'">
+        <div class="project-body">
+          <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
+          <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y controladores de animación optimizados para simulación interactiva.</p>
+          <div class="project-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">NavMesh</span>
+            <span class="tag">AI Behavior</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/matixvc" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+          </div>
+        </div>
+      </article>
     </section>
+  </main>
 
-    <!-- Proyectos -->
-    <section id="proyectos" class="section-pad" data-reveal>
-        <div class="wrap-xl">
-            <div class="work-header">
-                <div>
-                    <h2 class="eyebrow-label">Portfolio</h2>
-                    <h3 class="display-title">Galería</h3>
-                </div>
+  <footer>
+    <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
+  </footer>
 
-                <div class="work-tabs" role="group" aria-label="Cambiar tipo de contenido">
-                    <button type="button" onclick="showPort('image')" id="btn-image" aria-pressed="true" class="tab-btn active">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        Blueprint (Fotos)
-                    </button>
-                    <button type="button" onclick="showPort('video')" id="btn-video" aria-pressed="false" class="tab-btn">
-                        <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-                        Cinema (Videos)
-                    </button>
-                    <button type="button" onclick="showPort('model')" id="btn-model" aria-pressed="false" class="tab-btn">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                        Artifacts (3D)
-                    </button>
-                </div>
-            </div>
+  <script>
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
 
-            <div id="grid-image" class="port-item active projects-grid" data-reveal-stagger>
-                <article class="project-card" data-project-skills="unity csharp">
-                    <div class="thumb">
-                        <div class="thumb-overlay ov-cp" aria-hidden="true"></div>
-                        <svg class="thumb-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h4 class="card-title">Sistema de Movimiento</h4>
-                    <p class="card-sub">Unity • C# • Physics</p>
-                </article>
-                <article class="project-card" data-project-skills="unity csharp 3d">
-                    <div class="thumb">
-                        <div class="thumb-overlay ov-pp" aria-hidden="true"></div>
-                        <svg class="thumb-icon tint-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    </div>
-                    <h4 class="card-title">Inventario &amp; UI</h4>
-                    <p class="card-sub">Unity • UI Toolkit • C#</p>
-                </article>
-                <article class="project-card" data-project-skills="unity xr 3d">
-                    <div class="thumb">
-                        <div class="thumb-overlay ov-gc" aria-hidden="true"></div>
-                        <svg class="thumb-icon tint-green" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                    </div>
-                    <h4 class="card-title">Simulador XR</h4>
-                    <p class="card-sub">Unity • XR Toolkit • OpenXR</p>
-                </article>
-            </div>
+      // Actualizar botón activo
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
 
-            <div id="grid-video" class="port-item projects-grid projects-grid--video" data-reveal-stagger>
-                <article class="project-card project-card--video">
-                    <div class="thumb thumb--video">
-                        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-                    </div>
-                    <h4 class="video-title">Video de Ejemplo</h4>
-                    <p class="video-desc">Demo técnica de gameplay o entorno.</p>
-                </article>
-            </div>
-
-            <div id="grid-model" class="port-item projects-grid projects-grid--model" data-reveal-stagger>
-                <article class="project-card project-card--model">
-                    <div class="thumb-round">
-                        <svg class="icon-sm" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    </div>
-                    <span class="model-label">Modelo 3D</span>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer: Contacto -->
-    <footer id="contacto" class="contact-section" data-reveal>
-        <div class="contact-inner">
-
-            <div class="contact-head">
-                <div>
-                    <h2 class="contact-title">Hablemos</h2>
-                    <p class="eyebrow-subtitle">¿Listo para empezar algo grande?</p>
-                </div>
-                <div class="status-pill">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    Abierto a proyectos
-                </div>
-            </div>
-
-            <div class="contact-block" data-reveal>
-                <span class="block-label">Correo</span>
-                <div class="email-row">
-                    <a href="mailto:matias.villalobos.dev@gmail.com" class="email-link">matias.villalobos.dev@gmail.com</a>
-                    <button type="button" onclick="copyEmail()" class="copy-btn">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-                        Copiar correo
-                    </button>
-                </div>
-            </div>
-
-            <div class="contact-block phone-block" data-reveal>
-                <span class="block-label">Celular</span>
-                <div class="email-row">
-                    <a href="tel:+56987576708" class="phone-link">+56 9 8757 6708</a>
-                    <button type="button" onclick="copyPhone()" class="copy-btn">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
-                        Copiar celular
-                    </button>
-                </div>
-            </div>
-
-            <div class="credits-row">
-                <span>MATÍAS VILLALOBOS C. © 2026</span>
-                <div class="credit-links">
-                    <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener">LinkedIn</a>
-                    <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-    (function () {
-        'use strict';
-        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-        /* ===== Navbar scroll: passive + rAF ===== */
-        var nav = document.getElementById('navbar');
-        if (nav) {
-            var ticking = false;
-            window.addEventListener('scroll', function () {
-                if (!ticking) {
-                    ticking = true;
-                    requestAnimationFrame(function () {
-                        nav.classList.toggle('is-scrolled', window.scrollY > 80);
-                        ticking = false;
-                    });
-                }
-            }, { passive: true });
+      // Filtrar tarjetas
+      cards.forEach(card => {
+        const categories = card.getAttribute('data-category');
+        if (category === 'all' || categories.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
         }
+      });
+    }
+  </script>
 
-        /* ===== Revelado al hacer scroll (IntersectionObserver nativo) ===== */
-        if (!reduceMotion && 'IntersectionObserver' in window) {
-            var io = new IntersectionObserver(function (entries) {
-                entries.forEach(function (entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-            document.querySelectorAll('[data-reveal]').forEach(function (el) {
-                el.classList.add('reveal');
-                io.observe(el);
-            });
-            document.querySelectorAll('[data-reveal-stagger]').forEach(function (parent) {
-                Array.prototype.forEach.call(parent.children, function (child, i) {
-                    child.style.setProperty('--reveal-delay', (i * 0.09).toFixed(2) + 's');
-                    child.classList.add('reveal');
-                    io.observe(child);
-                });
-            });
-        }
-
-        /* ===== Glow del cursor (solo puntero fino + sin movimiento reducido) ===== */
-        var glow = document.getElementById('cursor-glow');
-        if (glow && !reduceMotion && hoverCapable) {
-            var gx = 0, gy = 0, glowPending = false;
-            document.addEventListener('pointermove', function (e) {
-                gx = e.clientX; gy = e.clientY;
-                if (!glowPending) {
-                    glowPending = true;
-                    requestAnimationFrame(function () {
-                        glow.style.transform = 'translate(' + (gx - 300) + 'px,' + (gy - 300) + 'px)';
-                        glowPending = false;
-                    });
-                }
-            }, { passive: true });
-        }
-
-        /* ===== Tilt en tarjetas ===== */
-        if (!reduceMotion && hoverCapable) {
-            document.querySelectorAll('.about-panel, .profile-card').forEach(function (element) {
-                element.addEventListener('pointermove', function (event) {
-                    var bounds = element.getBoundingClientRect();
-                    var rotateX = ((event.clientY - bounds.top) / bounds.height - 0.5) * -3;
-                    var rotateY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 3;
-                    element.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
-                });
-                element.addEventListener('pointerleave', function () { element.style.transform = ''; });
-            });
-        }
-
-        /* ===== Toast ===== */
-        var toast = document.getElementById('copy-toast');
-        var toastTimer = null;
-        function showToast(message) {
-            toast.textContent = message;
-            toast.classList.add('visible');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(function () { toast.classList.remove('visible'); }, 3000);
-        }
-
-        /* ===== Clipboard: API moderna + fallback heredado ===== */
-        function legacyCopy(text) {
-            var area = document.createElement('textarea');
-            area.value = text;
-            area.setAttribute('readonly', '');
-            area.style.position = 'fixed';
-            area.style.opacity = '0';
-            document.body.appendChild(area);
-            area.select();
-            var ok = false;
-            try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
-            document.body.removeChild(area);
-            return ok;
-        }
-        async function copyContact(value, label) {
-            var done = false;
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                try { await navigator.clipboard.writeText(value); done = true; }
-                catch (err) { done = false; }
-            }
-            if (!done) { done = legacyCopy(value); }
-            showToast(done ? (label + ' copiado al portapapeles')
-                           : ('No se pudo copiar el ' + label.toLowerCase()));
-        }
-        window.copyEmail = function () { copyContact('matias.villalobos.dev@gmail.com', 'Correo'); };
-        window.copyPhone = function () { copyContact('+56 9 8757 6708', 'Celular'); };
-
-        /* ===== Galería: pestañas y filtro de habilidades ===== */
-        var skillNote = document.getElementById('skill-note');
-        function resetSkills() {
-            document.querySelectorAll('.skill-chip').forEach(function (chip) {
-                chip.classList.remove('active');
-                chip.setAttribute('aria-pressed', 'false');
-            });
-            document.querySelectorAll('[data-project-skills]').forEach(function (p) {
-                p.classList.remove('project-match-hidden');
-            });
-            if (skillNote) { skillNote.textContent = ''; }
-        }
-        window.showPort = function (type) {
-            document.querySelectorAll('.tab-btn').forEach(function (btn) {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            });
-            var activeBtn = document.getElementById('btn-' + type);
-            if (activeBtn) {
-                activeBtn.classList.add('active');
-                activeBtn.setAttribute('aria-pressed', 'true');
-            }
-            document.querySelectorAll('.port-item').forEach(function (grid) { grid.classList.remove('active'); });
-            var target = document.getElementById('grid-' + type);
-            if (target) { target.classList.add('active'); }
-            resetSkills();
-        };
-        window.filterBySkill = function (skill, button) {
-            var wasActive = button.classList.contains('active');
-            showPort('image');
-            if (wasActive) { return; } // segundo clic sobre el chip: limpia el filtro
-            var visible = 0;
-            document.querySelectorAll('[data-project-skills]').forEach(function (project) {
-                var skills = project.dataset.projectSkills.split(' ');
-                var match = skills.indexOf(skill) !== -1;
-                project.classList.toggle('project-match-hidden', !match);
-                if (match) { visible++; }
-            });
-            button.classList.add('active');
-            button.setAttribute('aria-pressed', 'true');
-            if (skillNote) {
-                skillNote.textContent = 'Mostrando ' + visible + ' proyecto(s) con "' +
-                    (button.dataset.label || skill) + '". Toca de nuevo para ver todos.';
-            }
-            document.getElementById('proyectos')
-                .scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
-        };
-        document.querySelectorAll('.skill-chip').forEach(function (chip) {
-            chip.addEventListener('click', function () { filterBySkill(chip.dataset.skill, chip); });
-        });
-
-        /* ===== Tabs "Sobre Mí" ===== */
-        document.querySelectorAll('[data-about-tab]').forEach(function (button) {
-            button.addEventListener('click', function () {
-                document.querySelectorAll('[data-about-tab]').forEach(function (tab) {
-                    var selected = tab === button;
-                    tab.classList.toggle('active', selected);
-                    tab.setAttribute('aria-selected', String(selected));
-                });
-                document.querySelectorAll('.about-panel').forEach(function (panel) {
-                    panel.hidden = panel.id !== button.dataset.aboutTab;
-                });
-            });
-        });
-    })();
-    </script>
 </body>
 </html>
