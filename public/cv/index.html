@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* Variables Base - Modo Claro por Defecto para la Web */
+    /* Variables Base - Modo Claro Web */
     :root {
       --bg-primary: #f8fafc;
       --bg-nav: rgba(255, 255, 255, 0.9);
@@ -42,7 +42,7 @@
       --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
     }
 
-    /* Variables Overrides - Modo Oscuro Web */
+    /* Variables - Modo Oscuro Web */
     body.dark-theme {
       --bg-primary: #0a0c10;
       --bg-nav: rgba(10, 12, 16, 0.85);
@@ -176,7 +176,7 @@
       box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
     }
 
-    /* CV Paper Structure */
+    /* Paper Document Structure */
     .cv-paper {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
@@ -341,11 +341,11 @@
     }
 
     /* ===================================================
-       REGLAS EXCLUSIVAS DE IMPRESIÓN / DESCARGA PDF (ESCALADO PERFECTO A4)
+       REGLAS DE IMPRESIÓN Y DESCARGA EN PDF (ESCALA 100% HOJA A4)
        =================================================== */
     @page {
       size: A4 portrait;
-      margin: 10mm 12mm;
+      margin: 8mm 10mm;
     }
 
     @media print {
@@ -357,8 +357,9 @@
         background-color: #ffffff !important;
         color: #0f172a !important;
         font-family: Arial, Helvetica, sans-serif !important;
-        font-size: 9.8pt !important;
-        line-height: 1.45 !important;
+        font-size: 10pt !important;
+        line-height: 1.5 !important;
+        zoom: 1.05;
       }
 
       .cv-container {
@@ -376,25 +377,25 @@
 
       .cv-header {
         border-bottom: 2pt solid #0f172a !important;
-        padding-bottom: 8pt !important;
-        margin-bottom: 12pt !important;
+        padding-bottom: 10pt !important;
+        margin-bottom: 14pt !important;
       }
 
       .cv-header h1 {
         color: #000000 !important;
-        font-size: 20pt !important;
+        font-size: 22pt !important;
       }
 
       .cv-header .subtitle {
         color: #0284c7 !important;
-        font-size: 10.5pt !important;
-        margin-bottom: 6pt !important;
+        font-size: 11pt !important;
+        margin-bottom: 8pt !important;
       }
 
       .contact-info {
-        font-size: 9pt !important;
+        font-size: 9.5pt !important;
         color: #334155 !important;
-        gap: 10pt !important;
+        gap: 12pt !important;
       }
 
       .contact-info a {
@@ -404,68 +405,68 @@
       .cv-grid {
         display: grid !important;
         grid-template-columns: 1.8fr 1.2fr !important;
-        gap: 14pt !important;
+        gap: 16pt !important;
       }
 
       .cv-section {
-        margin-bottom: 12pt !important;
+        margin-bottom: 14pt !important;
       }
 
       .cv-section h2 {
         color: #0284c7 !important;
         border-bottom: 1.5pt solid #cbd5e1 !important;
-        font-size: 10.5pt !important;
-        padding-bottom: 3pt !important;
-        margin-bottom: 8pt !important;
+        font-size: 11pt !important;
+        padding-bottom: 4pt !important;
+        margin-bottom: 10pt !important;
       }
 
       .cv-section p, .item-bullets li {
-        font-size: 9.2pt !important;
+        font-size: 9.5pt !important;
         color: #1e293b !important;
       }
 
       .sidebar-block {
         background: #f8fafc !important;
         border: 0.5pt solid #cbd5e1 !important;
-        padding: 8pt 10pt !important;
-        margin-bottom: 10pt !important;
+        padding: 10pt 12pt !important;
+        margin-bottom: 12pt !important;
       }
 
       .sidebar-block h3 {
-        font-size: 9.5pt !important;
-        color: #0f172a !important;
-      }
-
-      .sidebar-block p, .sidebar-block ul li {
-        font-size: 8.8pt !important;
-        color: #334155 !important;
-      }
-
-      .item-block {
-        margin-bottom: 10pt !important;
-      }
-
-      .item-title {
         font-size: 10pt !important;
         color: #0f172a !important;
       }
 
+      .sidebar-block p, .sidebar-block ul li {
+        font-size: 9pt !important;
+        color: #334155 !important;
+      }
+
+      .item-block {
+        margin-bottom: 12pt !important;
+      }
+
+      .item-title {
+        font-size: 10.5pt !important;
+        color: #0f172a !important;
+      }
+
       .item-date {
-        font-size: 8.8pt !important;
+        font-size: 9pt !important;
         color: #0284c7 !important;
       }
 
       .item-sub {
-        font-size: 8.8pt !important;
-        margin-bottom: 4pt !important;
+        font-size: 9pt !important;
+        margin-bottom: 5pt !important;
       }
 
       .item-bullets {
-        padding-left: 12pt !important;
+        padding-left: 14pt !important;
       }
 
       .item-bullets li {
-        margin-bottom: 3pt !important;
+        margin-bottom: 4pt !important;
       }
     }
   </style>
@@ -484,7 +485,6 @@
   </header>
 
   <main class="cv-container">
-    <!-- Barra de Acciones Web -->
     <div class="action-bar">
       <button onclick="toggleTheme()" class="btn-action theme-toggle-btn" id="themeBtn">
         🌙 Modo Oscuro
