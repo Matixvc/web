@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sitio web profesional y portafolio de Matías Villalobos Cautivo. Ingeniería en Realidad Virtual, Desarrollo XR, Simulaciones 3D y Desarrollo Web.">
-  <meta name="keywords" content="Matías Villalobos Cautivo, XR, VR, Realidad Virtual, Unity, C#, JavaScript, Web Developer, Portfolio">
+  <meta name="description" content="Portafolio de proyectos de Matías Villalobos Cautivo. Desarrollo en Unity, C#, Realidad Virtual, Shaders y Simulaciones 3D.">
+  <meta name="keywords" content="Matías Villalobos Cautivo, Portafolio, Unity, C#, XR, Realidad Virtual, Shader Graph, VFX Graph">
   <meta name="author" content="Matías Villalobos Cautivo">
 
-  <!-- Open Graph / Redes Sociales (Rutas actualizadas a /img/) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://matiasdev-web.vercel.app/">
-  <meta property="og:title" content="Matías Villalobos Cautivo | VR & Software Developer">
-  <meta property="og:description" content="Explora mis proyectos de Realidad Virtual, Simulaciones 3D y Desarrollo Web.">
+  <meta property="og:url" content="https://matiasdev-web.vercel.app/portafolio/">
+  <meta property="og:title" content="Portafolio de Proyectos | Matías Villalobos Cautivo">
+  <meta property="og:description" content="Proyectos destacados en Realidad Virtual, simulaciones interactivas y desarrollo de software.">
   <meta property="og:image" content="/img/og-image.png">
 
-  <title>Matías Villalobos Cautivo | VR & Software Developer</title>
+  <title>Portafolio | Matías Villalobos Cautivo</title>
 
-  <!-- Favicon (Ruta actualizada a /img/) -->
+  <!-- Favicon -->
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   <link rel="alternate icon" href="/img/favicon.ico">
 
@@ -29,7 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* Estilos específicos de la página principal */
+    /* Estilos específicos para la vista de Portafolio */
     header {
       position: sticky;
       top: 0;
@@ -54,9 +54,6 @@
       font-size: 1.2rem;
       color: var(--text-main);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
     .brand span {
@@ -83,120 +80,156 @@
       color: var(--accent-color);
     }
 
-    .hero {
+    .portfolio-header {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 5rem 1.5rem 3rem 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: center;
+      padding: 4rem 1.5rem 2rem 1.5rem;
+      text-align: center;
     }
 
-    @media (min-width: 768px) {
-      .hero {
-        grid-template-columns: 1.2fr 0.8fr;
-        padding: 6rem 1.5rem 4rem 1.5rem;
-      }
+    .portfolio-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
     }
 
-    .tagline {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: 20px;
-      color: var(--accent-color);
-      font-family: var(--font-code);
-      font-size: 0.85rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      line-height: 1.15;
-      margin-bottom: 1rem;
-    }
-
-    @media (min-width: 768px) {
-      .hero h1 {
-        font-size: 3.2rem;
-      }
-    }
-
-    .hero p {
+    .portfolio-header p {
       color: var(--text-muted);
       font-size: 1.1rem;
-      margin-bottom: 2rem;
-      max-width: 600px;
+      max-width: 650px;
+      margin: 0 auto 2rem auto;
     }
 
-    .hero-buttons {
+    /* Botones de Filtro */
+    .filter-container {
       display: flex;
-      gap: 1rem;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-color);
+      color: #000;
+      border-color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    /* Grid de Proyectos */
+    .projects-grid {
+      max-width: var(--max-width);
+      margin: 0 auto 5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 240, 255, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
+    }
+
+    .project-img {
+      width: 100%;
+      height: 200px;
+      background-color: #12161f;
+      object-fit: cover;
+      border-bottom: 1px solid var(--bg-card-border);
+    }
+
+    .project-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .project-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      background: rgba(0, 240, 255, 0.08);
+      color: var(--accent-color);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
 
-    .profile-card {
-      background: var(--bg-card);
+    .link-btn {
+      font-size: 0.85rem;
+      text-decoration: none;
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--bg-card-border);
-      border-radius: var(--radius-card);
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .profile-card img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--accent-color);
-      margin-bottom: 1rem;
-    }
-
-    .modules {
-      max-width: var(--max-width);
-      margin: 2rem auto 5rem auto;
-      padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .modules {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .card-module {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: var(--radius-card);
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .card-module:hover {
-      transform: translateY(-4px);
-      border-color: rgba(0, 240, 255, 0.4);
-    }
-
-    .card-module h2 {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-      display: flex;
+      transition: all 0.2s ease;
+      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
-    .card-module p {
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
+    .link-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .link-btn.primary-link {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.4);
+      color: var(--accent-color);
+    }
+
+    .link-btn.primary-link:hover {
+      background: rgba(0, 240, 255, 0.25);
     }
 
     footer {
@@ -214,47 +247,83 @@
     <nav>
       <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
       <ul class="nav-links">
-        <li><a href="/" class="active">Inicio</a></li>
-        <li><a href="/portafolio/">Portafolio</a></li>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/portafolio/" class="active">Portafolio</a></li>
         <li><a href="/cv/">CV</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero reveal">
-      <div class="hero-content">
-        <span class="tagline">&lt;XR & Interactive Systems /&gt;</span>
-        <h1>Matías Villalobos Cautivo</h1>
-        <p>Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales. Especializado en desarrollo interactivo con Unity, C#, simulaciones 3D y tecnologías web.</p>
-        <div class="hero-buttons">
-          <a href="/portafolio/" class="btn btn-primary">Ver Portafolio</a>
-          <a href="/cv/" class="btn btn-secondary">Consultar CV</a>
-        </div>
-      </div>
-      <div class="profile-card">
-        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Cautivo" onerror="this.src='https://via.placeholder.com/140'">
-        <h3>Matías Villalobos Cautivo</h3>
-        <p style="color: var(--accent-color); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR Engineer</p>
+    <section class="portfolio-header reveal">
+      <h1>Portafolio de Proyectos</h1>
+      <p>Explora mis proyectos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación web.</p>
+
+      <div class="filter-container">
+        <button class="filter-btn active" onclick="filterProjects('all', event)">Todos</button>
+        <button class="filter-btn" onclick="filterProjects('unity', event)">Unity / XR</button>
+        <button class="filter-btn" onclick="filterProjects('graphics', event)">3D & Shaders</button>
+        <button class="filter-btn" onclick="filterProjects('web', event)">Web & Software</button>
       </div>
     </section>
 
-    <section class="modules reveal">
-      <div class="card-module">
-        <div>
-          <h2>🚀 Portafolio Interactivo</h2>
-          <p>Explora mis proyectos de desarrollo en Unity, Shader Graph, simulaciones interactivas 3D y aplicaciones desarrolladas en C# y JavaScript.</p>
+    <section class="projects-grid reveal" id="projectsGrid">
+      
+      <!-- PROYECTO 1 -->
+      <article class="project-card" data-category="unity graphics">
+        <img src="/img/matias.jpg" alt="Proyecto URP Interactivo" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Proyecto+Unity+URP'">
+        <div class="project-body">
+          <h2 class="project-title">Sistema Interactivo URP</h2>
+          <p class="project-description">Simulación interactiva para plataforma móvil. Incorpora mecánicas de agitación de árboles, instanciación de frutas y Shaders personalizados en Universal Render Pipeline.</p>
+          <div class="project-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">Shader Graph</span>
+            <span class="tag">URP</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener" class="link-btn primary-link">GitHub</a>
+          </div>
         </div>
-        <a href="/portafolio/" class="btn btn-secondary" style="width: fit-content;">Ir al Portafolio &rarr;</a>
-      </div>
+      </article>
 
-      <div class="card-module">
-        <div>
-          <h2>📄 Curriculum Vitae</h2>
-          <p>Conoce mi trayectoria académica en la Universidad Bernardo O'Higgins, mis habilidades técnicas, herramientas de desarrollo y experiencia general.</p>
+      <!-- PROYECTO 2 -->
+      <article class="project-card" data-category="unity">
+        <img src="/img/og-image.png" alt="Módulos de Navegación 3D" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Mec%C3%A1nicas+C%23'">
+        <div class="project-body">
+          <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
+          <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y controladores de animación optimizados para simulación interactiva.</p>
+          <div class="project-tags">
+            <span class="tag">Unity</span>
+            <span class="tag">C#</span>
+            <span class="tag">NavMesh</span>
+            <span class="tag">ScriptableObjects</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+          </div>
         </div>
-        <a href="/cv/" class="btn btn-secondary" style="width: fit-content;">Ver Currículum &rarr;</a>
-      </div>
+      </article>
+
+      <!-- PROYECTO 3 -->
+      <article class="project-card" data-category="web">
+        <img src="/img/og-image.png" alt="Plataforma Web Personal" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Plataforma+Web'">
+        <div class="project-body">
+          <h2 class="project-title">Plataforma Web Personal & Hub</h2>
+          <p class="project-description">Diseño y desarrollo del ecosistema web personal desplegado en Vercel, optimizado para SEO, accesibilidad y velocidad de carga.</p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">Vercel</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener" class="link-btn">Código Fuente</a>
+            <a href="/" class="link-btn primary-link">Ver Sitio Vivo</a>
+          </div>
+        </div>
+      </article>
+
     </section>
   </main>
 
@@ -264,5 +333,28 @@
 
   <!-- Script Global -->
   <script src="/script.js"></script>
+
+  <!-- Script de Filtrado para Portafolio -->
+  <script>
+    function filterProjects(category, evt) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      if (evt && evt.target) {
+        evt.target.classList.add('active');
+      }
+
+      cards.forEach(card => {
+        const categories = card.getAttribute('data-category');
+        if (category === 'all' || categories.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
 </body>
 </html>

@@ -12,79 +12,64 @@
   <meta property="og:url" content="https://matiasdev-web.vercel.app/cv/">
   <meta property="og:title" content="Curriculum Vitae | Matías Villalobos Cautivo">
   <meta property="og:description" content="Desarrollador Unity y XR en formación. Especializado en experiencias 3D, simulaciones y C#.">
-  <meta property="og:image" content="/og-image.png">
+  <meta property="og:image" content="/img/og-image.png">
 
   <title>Curriculum Vitae | Matías Villalobos Cautivo</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/img/favicon.ico">
 
-  <!-- Google Fonts -->
+  <!-- Estilos Globales Compartidos -->
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* Variables Base - Modo Claro Web */
+    /* Estilos específicos de la vista CV y Modo Claro/Oscuro */
     :root {
-      --bg-primary: #f8fafc;
-      --bg-nav: rgba(255, 255, 255, 0.9);
-      --bg-card: #ffffff;
-      --bg-card-border: #e2e8f0;
-      --bg-sidebar-box: #f1f5f9;
-      --accent-color: #0284c7;
-      --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
-      --text-main: #0f172a;
-      --text-muted: #475569;
-      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-      --font-code: 'JetBrains Mono', monospace;
-      --max-width: 980px;
-      --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --bg-cv-primary: #f8fafc;
+      --bg-cv-card: #ffffff;
+      --bg-cv-border: #e2e8f0;
+      --bg-cv-sidebar: #f1f5f9;
+      --text-cv-main: #0f172a;
+      --text-cv-muted: #475569;
+      --accent-cv: #0284c7;
+      --shadow-cv: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
 
-    /* Variables - Modo Oscuro Web */
     body.dark-theme {
-      --bg-primary: #0a0c10;
-      --bg-nav: rgba(10, 12, 16, 0.85);
-      --bg-card: rgba(22, 27, 34, 0.85);
-      --bg-card-border: rgba(255, 255, 255, 0.1);
-      --bg-sidebar-box: rgba(255, 255, 255, 0.03);
-      --accent-color: #00f0ff;
-      --accent-gradient: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
-      --text-main: #f0f6fc;
-      --text-muted: #94a3b8;
-      --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      --bg-cv-primary: #0a0c10;
+      --bg-cv-card: rgba(22, 27, 34, 0.85);
+      --bg-cv-border: rgba(255, 255, 255, 0.1);
+      --bg-cv-sidebar: rgba(255, 255, 255, 0.03);
+      --text-cv-main: #f0f6fc;
+      --text-cv-muted: #94a3b8;
+      --accent-cv: #00f0ff;
+      --shadow-cv: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      line-height: 1.5;
-      overflow-x: hidden;
+      background-color: var(--bg-cv-primary);
+      color: var(--text-cv-main);
       transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* Header Web */
     header {
       position: sticky;
       top: 0;
       width: 100%;
-      background: var(--bg-nav);
+      background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--bg-card-border);
       z-index: 1000;
-      transition: background 0.3s ease;
     }
 
     nav {
-      max-width: 1200px;
+      max-width: var(--max-width);
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -95,7 +80,7 @@
     .brand {
       font-weight: 700;
       font-size: 1.2rem;
-      color: var(--text-main);
+      color: #f0f6fc;
       text-decoration: none;
     }
 
@@ -112,7 +97,7 @@
     }
 
     .nav-links a {
-      color: var(--text-muted);
+      color: #8b949e;
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -123,9 +108,8 @@
       color: var(--accent-color);
     }
 
-    /* CV Container Web */
     .cv-container {
-      max-width: var(--max-width);
+      max-width: 980px;
       margin: 1.5rem auto 3rem auto;
       padding: 0 1.5rem;
     }
@@ -138,13 +122,12 @@
     }
 
     .btn-action {
-      background: var(--bg-card);
-      color: var(--text-main);
+      background: var(--bg-cv-card);
+      color: var(--text-cv-main);
       font-weight: 600;
       padding: 0.55rem 1.2rem;
       border-radius: 8px;
-      text-decoration: none;
-      border: 1px solid var(--bg-card-border);
+      border: 1px solid var(--bg-cv-border);
       cursor: pointer;
       font-family: var(--font-main);
       font-size: 0.88rem;
@@ -152,13 +135,12 @@
       align-items: center;
       gap: 0.4rem;
       transition: all 0.2s ease;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
 
     .btn-action:hover {
       transform: translateY(-2px);
-      border-color: var(--accent-color);
-      color: var(--accent-color);
+      border-color: var(--accent-cv);
+      color: var(--accent-cv);
     }
 
     .btn-primary-action {
@@ -171,36 +153,29 @@
       color: #000000;
     }
 
-    .btn-primary-action:hover {
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
-    }
-
-    /* Paper Document Structure */
     .cv-paper {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
+      background: var(--bg-cv-card);
+      border: 1px solid var(--bg-cv-border);
       border-radius: 14px;
       padding: 2.2rem;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-cv);
       transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     .cv-header {
-      border-bottom: 2px solid var(--bg-card-border);
+      border-bottom: 2px solid var(--bg-cv-border);
       padding-bottom: 1rem;
       margin-bottom: 1.2rem;
     }
 
     .cv-header h1 {
       font-size: 2.1rem;
-      color: var(--text-main);
+      color: var(--text-cv-main);
       margin-bottom: 0.2rem;
-      letter-spacing: -0.5px;
     }
 
     .cv-header .subtitle {
-      color: var(--accent-color);
+      color: var(--accent-cv);
       font-family: var(--font-code);
       font-size: 0.95rem;
       font-weight: 600;
@@ -211,21 +186,19 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.9rem;
-      color: var(--text-muted);
+      color: var(--text-cv-muted);
       font-size: 0.85rem;
     }
 
     .contact-info a {
-      color: var(--text-muted);
+      color: var(--text-cv-muted);
       text-decoration: none;
-      transition: color 0.2s ease;
     }
 
     .contact-info a:hover {
-      color: var(--accent-color);
+      color: var(--accent-cv);
     }
 
-    /* Grid Layout Web */
     .cv-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -246,15 +219,15 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--accent-color);
-      border-bottom: 1.5px solid var(--bg-card-border);
+      color: var(--accent-cv);
+      border-bottom: 1.5px solid var(--bg-cv-border);
       padding-bottom: 0.2rem;
       margin-bottom: 0.6rem;
       font-weight: 700;
     }
 
     .cv-section p {
-      color: var(--text-main);
+      color: var(--text-cv-main);
       font-size: 0.88rem;
       line-height: 1.45;
     }
@@ -274,18 +247,18 @@
     .item-title {
       font-size: 0.93rem;
       font-weight: 600;
-      color: var(--text-main);
+      color: var(--text-cv-main);
     }
 
     .item-date {
       font-family: var(--font-code);
       font-size: 0.8rem;
-      color: var(--accent-color);
+      color: var(--accent-cv);
       font-weight: 500;
     }
 
     .item-sub {
-      color: var(--text-muted);
+      color: var(--text-cv-muted);
       font-size: 0.82rem;
       margin-bottom: 0.3rem;
       font-style: italic;
@@ -294,7 +267,7 @@
     .item-bullets {
       list-style-type: disc;
       padding-left: 1rem;
-      color: var(--text-muted);
+      color: var(--text-cv-muted);
       font-size: 0.84rem;
     }
 
@@ -303,8 +276,8 @@
     }
 
     .sidebar-block {
-      background: var(--bg-sidebar-box);
-      border: 1px solid var(--bg-card-border);
+      background: var(--bg-cv-sidebar);
+      border: 1px solid var(--bg-cv-border);
       border-radius: 8px;
       padding: 0.75rem 0.85rem;
       margin-bottom: 0.8rem;
@@ -312,24 +285,20 @@
 
     .sidebar-block h3 {
       font-size: 0.85rem;
-      color: var(--text-main);
+      color: var(--text-cv-main);
       margin-bottom: 0.3rem;
       font-family: var(--font-code);
       font-weight: 600;
     }
 
     .sidebar-block p, .sidebar-block ul {
-      color: var(--text-muted);
+      color: var(--text-cv-muted);
       font-size: 0.82rem;
       line-height: 1.4;
     }
 
     .sidebar-block ul {
       list-style: none;
-    }
-
-    .sidebar-block ul li {
-      margin-bottom: 0.2rem;
     }
 
     footer {
@@ -340,16 +309,14 @@
       font-size: 0.85rem;
     }
 
-    /* ===================================================
-       REGLAS DE IMPRESIÓN Y DESCARGA EN PDF (ESCALA 100% HOJA A4)
-       =================================================== */
+    /* Reglas de Impresión PDF a 1 Hoja Completa A4 */
     @page {
       size: A4 portrait;
       margin: 8mm 10mm;
     }
 
     @media print {
-      header, footer, .action-bar, .nav-links, .theme-toggle-btn {
+      header, footer, .action-bar, .nav-links {
         display: none !important;
       }
 
@@ -486,7 +453,7 @@
 
   <main class="cv-container">
     <div class="action-bar">
-      <button onclick="toggleTheme()" class="btn-action theme-toggle-btn" id="themeBtn">
+      <button onclick="toggleTheme()" class="btn-action" id="themeBtn">
         🌙 Modo Oscuro
       </button>
       <button onclick="window.print()" class="btn-action btn-primary-action">
@@ -495,7 +462,6 @@
     </div>
 
     <article class="cv-paper">
-      <!-- Encabezado Principal -->
       <header class="cv-header">
         <h1>Matías Villalobos Cautivo</h1>
         <div class="subtitle">Unity Developer (Trainee) | XR/VR Developer | C# | Experiencias 3D Interactivas</div>
@@ -508,12 +474,8 @@
         </div>
       </header>
 
-      <!-- Layout de 2 Columnas -->
       <div class="cv-grid">
-        
-        <!-- Columna Principal (Izquierda) -->
         <div class="main-column">
-          
           <section class="cv-section">
             <h2>Perfil Profesional</h2>
             <p>Desarrollador Unity en formación y estudiante de Ingeniería en Realidad Virtual. Enfocado en la creación de videojuegos, simulaciones 3D y entornos XR/VR/AR. Destaco por construir código C# modular, escalable y optimizado para rendimiento gráfico e interacción en tiempo real. Disponible para Práctica Profesional (Part-Time / Full-Time).</p>
@@ -561,12 +523,9 @@
               </ul>
             </div>
           </section>
-
         </div>
 
-        <!-- Columna Lateral (Derecha) -->
         <div class="sidebar-column">
-          
           <section class="cv-section">
             <h2>Aptitudes Principales</h2>
             
@@ -605,9 +564,7 @@
               </ul>
             </div>
           </section>
-
         </div>
-
       </div>
     </article>
   </main>
@@ -616,6 +573,10 @@
     <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
   </footer>
 
+  <!-- Script Global -->
+  <script src="/script.js"></script>
+
+  <!-- Script Específico de Cambio de Tema para el CV -->
   <script>
     function toggleTheme() {
       const body = document.body;
