@@ -28,6 +28,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+  <!-- Librería Liviana: Canvas Confetti (Efectos de Micro-Interacción) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+
   <style>
     /* Estilos de la Landing Principal */
     header {
@@ -141,9 +144,11 @@
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 1.5rem;
+      padding: 1.8rem;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
     }
 
     .profile-card img {
@@ -157,7 +162,7 @@
 
     .modules {
       max-width: var(--max-width);
-      margin: 2rem auto 5rem auto;
+      margin: 2rem auto 3rem auto;
       padding: 0 1.5rem;
       display: grid;
       grid-template-columns: 1fr;
@@ -199,6 +204,39 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Sección de Contacto Directo */
+    .contact-section {
+      max-width: var(--max-width);
+      margin: 0 auto 5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      max-width: 550px;
+      margin: 0 auto 1.8rem auto;
+    }
+
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
     footer {
       border-top: 1px solid var(--bg-card-border);
       text-align: center;
@@ -211,7 +249,7 @@
 <body>
 
   <header>
-    <nav>
+    <nav aria-label="Navegación principal">
       <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
       <ul class="nav-links">
         <li><a href="/" class="active">Inicio</a></li>
@@ -233,7 +271,7 @@
         </div>
       </div>
       <div class="profile-card">
-        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Cautivo" onerror="this.src='https://via.placeholder.com/140'">
+        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Cautivo" loading="lazy" onerror="this.src='https://via.placeholder.com/140'">
         <h3>Matías Villalobos Cautivo</h3>
         <p style="color: var(--accent-color); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR Engineer</p>
       </div>
@@ -256,6 +294,26 @@
         <a href="/cv/" class="btn btn-secondary" style="width: fit-content;">Ver Currículum &rarr;</a>
       </div>
     </section>
+
+    <!-- Módulo de Contacto Directo con Micro-Interacciones -->
+    <section class="contact-section reveal">
+      <div class="contact-card">
+        <h2>📬 Conectemos</h2>
+        <p>¿Tienes una oportunidad de práctica, proyecto XR o propuesta de colaboración en desarrollo Unity / C#? Hablemos directamente.</p>
+        
+        <div class="contact-grid">
+          <button onclick="copyAndCelebrate('matias.villalobos.dev@gmail.com', 'Correo electrónico')" class="btn btn-secondary">
+            ✉️ Copiar Correo
+          </button>
+          <button onclick="copyAndCelebrate('+56987576708', 'Teléfono')" class="btn btn-secondary">
+            📞 Copiar Teléfono
+          </button>
+          <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener" class="btn btn-primary">
+            🔗 Ver LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -264,5 +322,22 @@
 
   <!-- Script Global -->
   <script src="/script.js"></script>
+
+  <!-- Script de Micro-Interacción Confetti -->
+  <script>
+    function copyAndCelebrate(text, label) {
+      if (typeof copyToClipboard === 'function') {
+        copyToClipboard(text, label);
+      }
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 40,
+          spread: 60,
+          origin: { y: 0.8 },
+          colors: ['#00f0ff', '#7000ff', '#ffffff']
+        });
+      }
+    }
+  </script>
 </body>
 </html>
