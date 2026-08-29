@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Curriculum Vitae Profesional de Matías Villalobos Cautivo. Ingeniero en Realidad Virtual y Diseño de Juegos Digitales.">
-  <meta name="keywords" content="Matías Villalobos Cautivo, Curriculum Vitae, CV, VR Engineer, XR Developer, C#, Unity, Software Engineer">
+  <meta name="description" content="Curriculum Vitae de Matías Villalobos Cautivo - Unity Developer (Trainee) | XR/VR Developer | C# | Experiencias 3D Interactivas.">
+  <meta name="keywords" content="Matías Villalobos Cautivo, Unity Developer, XR Developer, VR, C#, Shaders, Juegos Digitales, Santiago Chile">
   <meta name="author" content="Matías Villalobos Cautivo">
 
   <!-- Open Graph -->
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/cv/">
   <meta property="og:title" content="Curriculum Vitae | Matías Villalobos Cautivo">
-  <meta property="og:description" content="Perfil profesional, habilidades técnicas y trayectoria académica en Realidad Virtual y Desarrollo de Software.">
+  <meta property="og:description" content="Desarrollador Unity y XR en formación. Especializado en experiencias 3D, simulaciones y C#.">
   <meta property="og:image" content="/og-image.png">
 
   <title>Curriculum Vitae | Matías Villalobos Cautivo</title>
@@ -19,10 +19,10 @@
   <!-- Favicon -->
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
-  <!-- Tipografía Google Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -48,11 +48,11 @@
       background-color: var(--bg-primary);
       color: var(--text-main);
       font-family: var(--font-main);
-      line-height: 1.6;
+      line-height: 1.5;
       overflow-x: hidden;
     }
 
-    /* Header & Navigation */
+    /* Header & Navigation Web */
     header {
       position: sticky;
       top: 0;
@@ -103,21 +103,17 @@
       color: var(--accent-color);
     }
 
-    /* CV Layout Main Container */
+    /* Main Container */
     .cv-container {
       max-width: var(--max-width);
-      margin: 3rem auto 5rem auto;
+      margin: 2rem auto 4rem auto;
       padding: 0 1.5rem;
     }
 
-    /* Top Action Bar */
     .action-bar {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-      gap: 1rem;
+      justify-content: flex-end;
+      margin-bottom: 1.5rem;
     }
 
     .btn-download {
@@ -141,40 +137,42 @@
       box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
     }
 
-    /* CV Card Document Structure */
+    /* Hoja de CV */
     .cv-paper {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: 16px;
-      padding: 3rem;
+      padding: 2.5rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .cv-header {
       border-bottom: 1px solid var(--bg-card-border);
-      padding-bottom: 2rem;
-      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
     }
 
     .cv-header h1 {
       font-size: 2.2rem;
       color: var(--text-main);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
+      letter-spacing: -0.5px;
     }
 
     .cv-header .subtitle {
       color: var(--accent-color);
       font-family: var(--font-code);
-      font-size: 1.05rem;
+      font-size: 1rem;
+      font-weight: 500;
       margin-bottom: 1rem;
     }
 
     .contact-info {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      gap: 1rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     .contact-info a {
@@ -189,106 +187,111 @@
 
     /* CV Sections */
     .cv-section {
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.8rem;
     }
 
     .cv-section h2 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--accent-color);
       border-bottom: 1px solid rgba(0, 240, 255, 0.2);
-      padding-bottom: 0.4rem;
-      margin-bottom: 1.2rem;
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.8rem;
     }
 
     .cv-section p {
       color: var(--text-main);
-      font-size: 0.98rem;
-      margin-bottom: 1rem;
+      font-size: 0.93rem;
+      margin-bottom: 0.5rem;
     }
 
-    /* Grid Habilidades ATS */
+    /* Competencias Grid */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
     }
 
     .skill-box {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--bg-card-border);
-      padding: 1rem;
+      padding: 0.75rem 0.9rem;
       border-radius: 8px;
     }
 
     .skill-box h3 {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       color: var(--text-main);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
       font-family: var(--font-code);
     }
 
     .skill-box p {
       color: var(--text-muted);
-      font-size: 0.88rem;
+      font-size: 0.83rem;
       margin-bottom: 0;
     }
 
-    /* Lista de Experiencia / Proyectos */
+    /* Bloques de Experiencia y Educación */
     .item-block {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .item-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
       flex-wrap: wrap;
     }
 
     .item-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--text-main);
     }
 
     .item-date {
       font-family: var(--font-code);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--accent-color);
     }
 
     .item-sub {
       color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
       font-style: italic;
     }
 
     .item-bullets {
       list-style-type: disc;
-      padding-left: 1.2rem;
+      padding-left: 1.1rem;
       color: var(--text-muted);
-      font-size: 0.93rem;
+      font-size: 0.88rem;
     }
 
     .item-bullets li {
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.25rem;
     }
 
     footer {
       border-top: 1px solid var(--bg-card-border);
       text-align: center;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     /* ===================================================
-       ESTILOS EXCLUSIVOS DE IMPRESIÓN (OPTIMIZADO PARA ATS Y PDF)
+       REGLAS ESTRICTAS DE IMPRESIÓN (1 SOLA PÁGINA A4/CARTA)
        =================================================== */
+    @page {
+      size: letter;
+      margin: 12mm 15mm;
+    }
+
     @media print {
       header, footer, .action-bar, .nav-links {
         display: none !important;
@@ -298,6 +301,8 @@
         background-color: #ffffff !important;
         color: #111111 !important;
         font-family: Arial, Helvetica, sans-serif !important;
+        font-size: 9.5pt !important;
+        line-height: 1.35 !important;
       }
 
       .cv-container {
@@ -313,38 +318,103 @@
         box-shadow: none !important;
       }
 
+      .cv-header {
+        border-bottom: 1.5pt solid #111111 !important;
+        padding-bottom: 8pt !important;
+        margin-bottom: 10pt !important;
+      }
+
       .cv-header h1 {
         color: #000000 !important;
+        font-size: 18pt !important;
       }
 
       .cv-header .subtitle {
-        color: #333333 !important;
+        color: #222222 !important;
+        font-size: 10pt !important;
+        margin-bottom: 6pt !important;
       }
 
-      .contact-info, .contact-info a {
-        color: #444444 !important;
+      .contact-info {
+        font-size: 8.5pt !important;
+        color: #333333 !important;
+        gap: 8pt !important;
+      }
+
+      .contact-info a {
+        color: #000000 !important;
+      }
+
+      .cv-section {
+        margin-bottom: 10pt !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
       }
 
       .cv-section h2 {
         color: #000000 !important;
-        border-bottom: 1.5pt solid #111111 !important;
+        border-bottom: 1pt solid #333333 !important;
+        font-size: 10pt !important;
+        padding-bottom: 2pt !important;
+        margin-bottom: 6pt !important;
+      }
+
+      .cv-section p {
+        font-size: 9pt !important;
+        color: #222222 !important;
+        margin-bottom: 4pt !important;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6pt !important;
       }
 
       .skill-box {
         background: none !important;
-        border: 1px solid #ccc !important;
+        border: 0.5pt solid #bbb !important;
+        padding: 4pt 6pt !important;
       }
 
-      .skill-box h3, .item-title {
+      .skill-box h3 {
+        font-size: 8.5pt !important;
+        color: #000000 !important;
+      }
+
+      .skill-box p {
+        font-size: 8pt !important;
+        color: #333333 !important;
+      }
+
+      .item-block {
+        margin-bottom: 8pt !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .item-title {
+        font-size: 9.5pt !important;
         color: #000000 !important;
       }
 
       .item-date {
+        font-size: 8.5pt !important;
         color: #333333 !important;
       }
 
-      .item-bullets, .cv-section p, .skill-box p, .item-sub {
+      .item-sub {
+        font-size: 8.5pt !important;
+        margin-bottom: 3pt !important;
+      }
+
+      .item-bullets {
+        font-size: 8.5pt !important;
+        padding-left: 12pt !important;
         color: #222222 !important;
+      }
+
+      .item-bullets li {
+        margin-bottom: 1.5pt !important;
       }
     }
   </style>
@@ -364,7 +434,6 @@
 
   <main class="cv-container">
     <div class="action-bar">
-      <span style="color: var(--text-muted); font-size: 0.9rem;">Formato ATS Optimizado para Reclutamiento</span>
       <button onclick="window.print()" class="btn-download">🖨️ Descargar CV en PDF</button>
     </div>
 
@@ -372,40 +441,60 @@
       <!-- Encabezado Principal -->
       <header class="cv-header">
         <h1>Matías Villalobos Cautivo</h1>
-        <div class="subtitle">Ingeniero en Realidad Virtual y Diseño de Juegos Digitales</div>
+        <div class="subtitle">Unity Developer (Trainee) | XR/VR Developer | C# | Experiencias 3D Interactivas</div>
         <div class="contact-info">
-          <span>📍 Santiago, Chile</span>
-          <span>🌐 <a href="https://matiasdev-web.vercel.app/" target="_blank">matiasdev-web.vercel.app</a></span>
-          <span>💻 <a href="https://github.com/matixvc" target="_blank">github.com/matixvc</a></span>
+          <span>📍 Santiago, Chile (Remoto / Híbrido / Presencial)</span>
+          <span>📞 <a href="tel:+56987576708">+56 9 87576708</a></span>
+          <span>✉️ <a href="mailto:matias.villalobos.dev@gmail.com">matias.villalobos.dev@gmail.com</a></span>
+          <span>🔗 <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank">linkedin.com/in/matias-vc-dev</a></span>
+          <span>💻 <a href="https://github.com/matiasvillalobosdev-web" target="_blank">github.com/matiasvillalobosdev-web</a></span>
         </div>
       </header>
 
       <!-- Perfil Profesional -->
       <section class="cv-section">
         <h2>Perfil Profesional</h2>
-        <p>Estudiante avanzado de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins. Especializado en el desarrollo de entornos interactivos 3D, simulaciones, programación en C# para Unity y desarrollo web moderno. Sólida experiencia en optimización de rendimiento gráfico mediante URP, Shader Graph y arquitectura de código orientada a objetos.</p>
+        <p>Desarrollador Unity en formación, enfocado en la creación de videojuegos, simulaciones 3D y experiencias interactivas. Disponible para Práctica Profesional (Part-Time / Full-Time). Con especial interés en proyectos XR/VR/AR, destaco por crear soluciones ordenadas, optimizadas y escalables en C# e integrando flujos de trabajo con motores gráficos y modelos 3D.</p>
       </section>
 
-      <!-- Competencias Técnicas (Keywords para ATS) -->
+      <!-- Competencias Técnicas -->
       <section class="cv-section">
-        <h2>Competencias Técnicas</h2>
+        <h2>Aptitudes Principales & Tecnologías</h2>
         <div class="skills-grid">
           <div class="skill-box">
-            <h3>Motores & XR</h3>
-            <p>Unity, Universal Render Pipeline (URP), NavMesh, Scriptable Objects, Animator Controller.</p>
+            <h3>Desarrollo Unity & C#</h3>
+            <p>Movimiento de personaje, UI/HUD, inventarios, sistema de vida/daño, IA básica, guardado/carga y físicas.</p>
           </div>
           <div class="skill-box">
-            <h3>Lenguajes de Programación</h3>
-            <p>C#, JavaScript (ES6+), HTML5, CSS3, SQL básico.</p>
+            <h3>XR / VR & Shaders</h3>
+            <p>Creación de Shaders, Shader Graph, VFX Graph, optimización de escenas y rendimiento para entornos VR/AR.</p>
           </div>
           <div class="skill-box">
-            <h3>Gráficos & Shaders</h3>
-            <p>Shader Graph, VFX Graph, Sistemas de Partículas, Blender (Assets funcionales).</p>
+            <h3>Modelado & Asset Pipeline</h3>
+            <p>Creación e integración de modelos 3D optimizados en Blender para entornos interactivos.</p>
           </div>
           <div class="skill-box">
-            <h3>Herramientas & Entorno</h3>
-            <p>Git, GitHub, VS Code, Vercel, Expo, React Native.</p>
+            <h3>Herramientas & Herramientas IA</h3>
+            <p>Git, GitHub, Vercel, VS Code, Prompt Engineering aplicado a prototipado, documentación y debugging.</p>
           </div>
+        </div>
+      </section>
+
+      <!-- Experiencia / Práctica -->
+      <section class="cv-section">
+        <h2>Experiencia / Formación</h2>
+
+        <div class="item-block">
+          <div class="item-header">
+            <span class="item-title">Unity Developer — Proyectos Académicos y Personales</span>
+            <span class="item-date">marzo de 2021 – Presente</span>
+          </div>
+          <div class="item-sub">Freelance / Formación — Región Metropolitana de Santiago, Chile</div>
+          <ul class="item-bullets">
+            <li>Desarrollo de prototipos y sistemas interactivos en Unity utilizando C#, implementando lógica de gameplay, interacción y UI.</li>
+            <li>Optimización de escenas 3D y rendimiento técnico integrando modelos creados en Blender.</li>
+            <li>Uso de herramientas de IA generativa para agilizar flujos de prototipado, generación de documentación técnica y resolución de bugs.</li>
+          </ul>
         </div>
       </section>
 
@@ -415,41 +504,11 @@
         <div class="item-block">
           <div class="item-header">
             <span class="item-title">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</span>
-            <span class="item-date">En Curso</span>
+            <span class="item-date">marzo de 2021 – julio de 2027</span>
           </div>
           <div class="item-sub">Universidad Bernardo O'Higgins — Santiago, Chile</div>
           <ul class="item-bullets">
-            <li>Formación integral en motores de juego, cálculo aplicado, animación 3D, optimización y arquitectura de software.</li>
-            <li>Desarrollo de proyectos interdisciplinarios orientados a la solución de problemas mediante prototipado interactivo.</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Proyectos Destacados -->
-      <section class="cv-section">
-        <h2>Proyectos Académicos y Profesionales</h2>
-
-        <div class="item-block">
-          <div class="item-header">
-            <span class="item-title">Sistema Interactivo de Simulación Móvil URP</span>
-            <span class="item-date">2026</span>
-          </div>
-          <div class="item-sub">Proyecto Universitario de Efectos Especiales — C# & Unity</div>
-          <ul class="item-bullets">
-            <li>Diseño e implementación de mecánicas interactivas de agitación e instanciación de objetos en tiempo real.</li>
-            <li>Configuración de Shader Graph y efectos visuales optimizados bajo el Universal Render Pipeline para dispositivos móviles.</li>
-          </ul>
-        </div>
-
-        <div class="item-block">
-          <div class="item-header">
-            <span class="item-title">Plataforma Web Personal & Hub Profesional</span>
-            <span class="item-date">2026</span>
-          </div>
-          <div class="item-sub">Desarrollo Web Full-Stack — HTML5, CSS3, JS & Vercel</div>
-          <ul class="item-bullets">
-            <li>Construcción y despliegue de arquitectura web centralizada para la exhibición de portafolio y credenciales técnicas.</li>
-            <li>Implementación de prácticas SEO, diseño responsivo, filtrado dinámico de proyectos y estandarización ATS.</li>
+            <li>Formación universitaria avanzada en motores de juego, cálculo aplicado, simulación interactiva y diseño de nivel.</li>
           </ul>
         </div>
       </section>
