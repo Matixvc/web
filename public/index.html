@@ -1,60 +1,326 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Matías Villalobos C., Unity Developer especializado en XR/VR y experiencias digitales.">
-    <meta name="theme-color" content="#07111f">
-    <title>Matías Villalobos | Unity Developer</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sitio web profesional y portafolio de Matías Villalobos Cautivo. Ingeniería en Realidad Virtual, Desarrollo XR, Simulaciones 3D y Desarrollo Web.">
+  <meta name="keywords" content="Matías Villalobos Cautivo, XR, VR, Realidad Virtual, Unity, C#, JavaScript, Web Developer, Portfolio">
+  <meta name="author" content="Matías Villalobos Cautivo">
+
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://matiasdev-web.vercel.app/">
+  <meta property="og:title" content="Matías Villalobos Cautivo | VR & Software Developer">
+  <meta property="og:description" content="Explora mis proyectos de Realidad Virtual, Simulaciones 3D y Desarrollo Web.">
+  <meta property="og:image" content="/og-image.png">
+
+  <title>Matías Villalobos Cautivo | VR & Software Developer</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #0a0c10;
+      --bg-card: rgba(22, 27, 34, 0.75);
+      --bg-card-border: rgba(255, 255, 255, 0.1);
+      --accent-color: #00f0ff;
+      --accent-gradient: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header & Nav */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--bg-card-border);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand span {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 5rem 1.5rem 3rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .hero {
+        grid-template-columns: 1.2fr 0.8fr;
+        padding: 6rem 1.5rem 4rem 1.5rem;
+      }
+    }
+
+    .tagline {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 20px;
+      color: var(--accent-color);
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #000;
+      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--bg-card-border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .profile-card img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    /* Modules Grid */
+    .modules {
+      max-width: var(--max-width);
+      margin: 2rem auto 5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .modules {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card-module {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card-module:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .card-module h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-module p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--bg-card-border);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="background" aria-hidden="true"><span></span><span></span><span></span></div>
 
-    <header class="site-header">
-        <a class="brand" href="index.html" aria-label="Ir al inicio">MV</a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menú</button>
-        <nav id="main-menu" class="main-nav" aria-label="Navegación principal">
-            <a href="index.html" class="active">Inicio</a>
-            <a href="portafolio/index.html">Portafolio</a>
-            <a href="cv/index.html">CV</a>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
+      <ul class="nav-links">
+        <li><a href="/" class="active">Inicio</a></li>
+        <li><a href="/portafolio/">Portafolio</a></li>
+        <li><a href="/cv/">CV</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="hero" id="inicio">
-            <div class="eyebrow">Unity Developer · XR/VR · Game Design</div>
-            <div class="hero-photo-wrap">
-                <img class="hero-photo" src="img/matias.jpg" alt="Fotografía de Matías Villalobos" width="112" height="112">
-            </div>
-            <h1>Matías<br><strong>Villalobos</strong></h1>
-            <p class="hero-copy">Diseño experiencias interactivas para PC, dispositivos móviles y realidad virtual. Transformo ideas en mundos digitales inmersivos.</p>
-            <div class="hero-actions">
-                <a class="button button-primary" href="portafolio/index.html">Explorar portafolio <span aria-hidden="true">↗</span></a>
-                <a class="button button-quiet" href="cv/index.html">Ver currículum</a>
-            </div>
-            <div class="availability"><span></span> Disponible para proyectos y práctica profesional</div>
-        </section>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="tagline">&lt;XR & Interactive Systems /&gt;</span>
+        <h1>Matías Villalobos Cautivo</h1>
+        <p>Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales. Especializado en desarrollo interactivo con Unity, C#, simulaciones 3D y tecnologías web.</p>
+        <div class="hero-buttons">
+          <a href="/portafolio/" class="btn btn-primary">Ver Portafolio</a>
+          <a href="/cv/" class="btn btn-secondary">Consultar CV</a>
+        </div>
+      </div>
+      <div class="profile-card">
+        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Cautivo" onerror="this.src='https://via.placeholder.com/140'">
+        <h3>Matías Villalobos Cautivo</h3>
+        <p style="color: var(--accent-color); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR Engineer</p>
+      </div>
+    </section>
 
-        <section class="focus" aria-labelledby="focus-title">
-            <div class="section-label">01 / Enfoque</div>
-            <h2 id="focus-title">Código que se siente.</h2>
-            <div class="focus-grid">
-                <article><span class="number">01</span><h3>Unity & C#</h3><p>Gameplay, sistemas interactivos, UI y físicas para experiencias consistentes.</p></article>
-                <article><span class="number">02</span><h3>XR / VR / AR</h3><p>Interfaces espaciales y entornos inmersivos pensados para la experiencia humana.</p></article>
-                <article><span class="number">03</span><h3>3D & Performance</h3><p>Modelado, integración de assets y optimización para múltiples plataformas.</p></article>
-            </div>
-        </section>
-    </main>
+    <section class="modules">
+      <div class="card-module">
+        <div>
+          <h2>🚀 Portafolio Interactivo</h2>
+          <p>Explora mis proyectos de desarrollo en Unity, Shader Graph, simulaciones interactivas 3D y aplicaciones desarrolladas en C# y JavaScript.</p>
+        </div>
+        <a href="/portafolio/" class="btn btn-secondary" style="width: fit-content;">Ir al Portafolio &rarr;</a>
+      </div>
 
-    <footer class="site-footer">
-        <span>MATÍAS VILLALOBOS C. © <span data-year>2026</span></span>
-        <div><a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener">GitHub</a><a href="mailto:matias.villalobos.dev@gmail.com">Contacto</a></div>
-    </footer>
-    <script src="script.js"></script>
+      <div class="card-module">
+        <div>
+          <h2>📄 Curriculum Vitae</h2>
+          <p>Conoce mi trayectoria académica en la Universidad Bernardo O'Higgins, mis habilidades técnicas, herramientas de desarrollo y experiencia general.</p>
+        </div>
+        <a href="/cv/" class="btn btn-secondary" style="width: fit-content;">Ver Currículum &rarr;</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
+  </footer>
+
 </body>
 </html>
