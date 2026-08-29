@@ -6,53 +6,31 @@
   <meta name="description" content="Portafolio de proyectos de Matías Villalobos Cautivo. Desarrollo en Unity, C#, Realidad Virtual, Shaders y Simulaciones 3D.">
   <meta name="keywords" content="Matías Villalobos Cautivo, Portafolio, Unity, C#, XR, Realidad Virtual, Shader Graph, VFX Graph">
   <meta name="author" content="Matías Villalobos Cautivo">
+  <meta name="theme-color" content="#0a0c10">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/portafolio/">
   <meta property="og:title" content="Portafolio de Proyectos | Matías Villalobos Cautivo">
   <meta property="og:description" content="Proyectos destacados en Realidad Virtual, simulaciones interactivas y desarrollo de software.">
-  <meta property="og:image" content="/og-image.png">
+  <meta property="og:image" content="/img/og-image.png">
 
   <title>Portafolio | Matías Villalobos Cautivo</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/img/favicon.ico">
 
-  <!-- Google Fonts -->
+  <!-- Estilos Globales Compartidos -->
+  <link rel="stylesheet" href="/styles.css">
+
+  <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg-primary: #0a0c10;
-      --bg-card: rgba(22, 27, 34, 0.75);
-      --bg-card-border: rgba(255, 255, 255, 0.1);
-      --accent-color: #00f0ff;
-      --accent-gradient: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
-      --text-main: #f0f6fc;
-      --text-muted: #8b949e;
-      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-      --font-code: 'JetBrains Mono', monospace;
-      --max-width: 1200px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Header & Navigation */
+    /* Estilos Específicos del Portafolio con Enfoque Móvil */
     header {
       position: sticky;
       top: 0;
@@ -69,7 +47,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
     }
 
     .brand {
@@ -103,68 +81,127 @@
       color: var(--accent-color);
     }
 
-    /* Header Sección */
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 12, 16, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--bg-card-border);
+        display: none;
+      }
+
+      .nav-links.mobile-open {
+        display: flex;
+      }
+    }
+
     .portfolio-header {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 4rem 1.5rem 2rem 1.5rem;
+      padding: 3rem 1.25rem 1.5rem 1.25rem;
       text-align: center;
     }
 
     .portfolio-header h1 {
-      font-size: 2.8rem;
+      font-size: clamp(2rem, 4vw + 1rem, 2.8rem);
       margin-bottom: 0.5rem;
     }
 
     .portfolio-header p {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
       max-width: 650px;
-      margin: 0 auto 2rem auto;
+      margin: 0 auto 1.8rem auto;
     }
 
-    /* Botones de Filtro */
+    /* Barra de Filtros Deslizable Móvil */
     .filter-container {
       display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
+      justify-content: flex-start;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding: 0.4rem 0.2rem 0.8rem 0.2rem;
+      margin-bottom: 2rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Oculta scrollbar en Firefox */
+    }
+
+    .filter-container::-webkit-scrollbar {
+      display: none; /* Oculta scrollbar en Chrome/Safari */
+    }
+
+    @media (min-width: 768px) {
+      .filter-container {
+        justify-content: center;
+      }
     }
 
     .filter-btn {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--bg-card-border);
       color: var(--text-muted);
-      padding: 0.5rem 1.2rem;
+      padding: 0.65rem 1.2rem;
       border-radius: 20px;
       font-family: var(--font-code);
       font-size: 0.85rem;
       cursor: pointer;
+      white-space: nowrap;
+      scroll-snap-align: start;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
       transition: all 0.3s ease;
     }
 
     .filter-btn:hover, .filter-btn.active {
       background: var(--accent-color);
-      color: #000;
+      color: #000000;
       border-color: var(--accent-color);
       font-weight: 600;
     }
 
-    /* Grid de Proyectos */
+    /* Grid de Proyectos Responsivo */
     .projects-grid {
       max-width: var(--max-width);
-      margin: 0 auto 5rem auto;
-      padding: 0 1.5rem;
+      margin: 0 auto 4rem auto;
+      padding: 0 1.25rem;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .projects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.8rem;
+      }
     }
 
     .project-card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
-      border-radius: 16px;
+      border-radius: var(--radius-card);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -172,17 +209,8 @@
     }
 
     .project-card:hover {
-      transform: translateY(-6px);
       border-color: rgba(0, 240, 255, 0.4);
       box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
-    }
-
-    .project-img {
-      width: 100%;
-      height: 200px;
-      background-color: #12161f;
-      object-fit: cover;
-      border-bottom: 1px solid var(--bg-card-border);
     }
 
     .project-body {
@@ -193,20 +221,21 @@
     }
 
     .project-title {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       margin-bottom: 0.5rem;
     }
 
     .project-description {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
+      line-height: 1.5;
       margin-bottom: 1.25rem;
       flex-grow: 1;
     }
 
     .project-tags {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.4rem;
       flex-wrap: wrap;
       margin-bottom: 1.25rem;
     }
@@ -214,7 +243,7 @@
     .tag {
       font-family: var(--font-code);
       font-size: 0.75rem;
-      padding: 0.2rem 0.6rem;
+      padding: 0.25rem 0.6rem;
       background: rgba(0, 240, 255, 0.08);
       color: var(--accent-color);
       border-radius: 4px;
@@ -228,17 +257,25 @@
     }
 
     .link-btn {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       text-decoration: none;
       color: var(--text-main);
-      padding: 0.45rem 0.9rem;
+      padding: 0.6rem 1rem;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--bg-card-border);
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      justify-content: center;
+      min-height: 44px;
+      width: 100%;
+    }
+
+    @media (min-width: 480px) {
+      .link-btn {
+        width: auto;
+      }
     }
 
     .link-btn:hover {
@@ -250,6 +287,7 @@
       background: rgba(0, 240, 255, 0.15);
       border-color: rgba(0, 240, 255, 0.4);
       color: var(--accent-color);
+      font-weight: 600;
     }
 
     .link-btn.primary-link:hover {
@@ -259,18 +297,21 @@
     footer {
       border-top: 1px solid var(--bg-card-border);
       text-align: center;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.25rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <nav>
+    <nav aria-label="Navegación principal">
       <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
-      <ul class="nav-links">
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+        ☰
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="/">Inicio</a></li>
         <li><a href="/portafolio/" class="active">Portafolio</a></li>
         <li><a href="/cv/">CV</a></li>
@@ -279,9 +320,9 @@
   </header>
 
   <main>
-    <section class="portfolio-header">
+    <section class="portfolio-header reveal">
       <h1>Portafolio de Proyectos</h1>
-      <p>Explora mis proyectos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación web.</p>
+      <p>Explora mis desarrollos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación web.</p>
 
       <div class="filter-container">
         <button class="filter-btn active" onclick="filterProjects('all', event)">Todos</button>
@@ -291,11 +332,10 @@
       </div>
     </section>
 
-    <section class="projects-grid" id="projectsGrid">
+    <section class="projects-grid reveal" id="projectsGrid">
       
-        <!-- PROYECTO 1 -->
+      <!-- PROYECTO 1 -->
       <article class="project-card" data-category="unity graphics">
-        <img src="/og-image.png" alt="Módulos de Navegación 3D" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Mec%C3%A1nicas+C%23'">
         <div class="project-body">
           <h2 class="project-title">Sistema Interactivo URP</h2>
           <p class="project-description">Simulación interactiva para plataforma móvil. Incorpora mecánicas de agitación de árboles, instanciación de frutas y Shaders personalizados en Universal Render Pipeline.</p>
@@ -310,10 +350,9 @@
           </div>
         </div>
       </article>
-      
+
       <!-- PROYECTO 2 -->
       <article class="project-card" data-category="unity">
-        <img src="/og-image.png" alt="Módulos de Navegación 3D" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Mec%C3%A1nicas+C%23'">
         <div class="project-body">
           <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
           <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y controladores de animación optimizados para simulación interactiva.</p>
@@ -324,14 +363,13 @@
             <span class="tag">ScriptableObjects</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/matixvc" target="_blank" rel="noopener" class="link-btn">GitHub</a>
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener" class="link-btn">GitHub</a>
           </div>
         </div>
       </article>
 
       <!-- PROYECTO 3 -->
       <article class="project-card" data-category="web">
-        <img src="/og-image.png" alt="Plataforma Web Personal" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Plataforma+Web'">
         <div class="project-body">
           <h2 class="project-title">Plataforma Web Personal & Hub</h2>
           <p class="project-description">Diseño y desarrollo del ecosistema web personal desplegado en Vercel, optimizado para SEO, accesibilidad y velocidad de carga.</p>
@@ -342,7 +380,7 @@
             <span class="tag">Vercel</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/matixvc/web" target="_blank" rel="noopener" class="link-btn">Código Fuente</a>
+            <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener" class="link-btn">Código Fuente</a>
             <a href="/" class="link-btn primary-link">Ver Sitio Vivo</a>
           </div>
         </div>
@@ -355,7 +393,20 @@
     <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
   </footer>
 
+  <!-- Script Global -->
+  <script src="/script.js"></script>
+
+  <!-- Script de Filtrado e Interacción Móvil -->
   <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-open');
+      });
+    }
+
     function filterProjects(category, evt) {
       const cards = document.querySelectorAll('.project-card');
       const buttons = document.querySelectorAll('.filter-btn');
