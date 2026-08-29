@@ -25,7 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* Variables Base - Modo Claro por Defecto para el CV */
+    /* Variables Base - Modo Claro por Defecto para la Web */
     :root {
       --bg-primary: #f8fafc;
       --bg-nav: rgba(255, 255, 255, 0.9);
@@ -123,7 +123,7 @@
       color: var(--accent-color);
     }
 
-    /* CV Container */
+    /* CV Container Web */
     .cv-container {
       max-width: var(--max-width);
       margin: 1.5rem auto 3rem auto;
@@ -167,10 +167,6 @@
       border: none;
     }
 
-    body:not(.dark-theme) .btn-primary-action {
-      color: #ffffff;
-    }
-
     body.dark-theme .btn-primary-action {
       color: #000000;
     }
@@ -180,7 +176,7 @@
       box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
     }
 
-    /* CV Paper & Layout 2 Columnas */
+    /* CV Paper Structure */
     .cv-paper {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
@@ -229,7 +225,7 @@
       color: var(--accent-color);
     }
 
-    /* Grid Layout */
+    /* Grid Layout Web */
     .cv-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -263,7 +259,6 @@
       line-height: 1.45;
     }
 
-    /* Bloques Principales */
     .item-block {
       margin-bottom: 0.9rem;
     }
@@ -307,7 +302,6 @@
       margin-bottom: 0.2rem;
     }
 
-    /* Sidebar Blocks */
     .sidebar-block {
       background: var(--bg-sidebar-box);
       border: 1px solid var(--bg-card-border);
@@ -347,15 +341,14 @@
     }
 
     /* ===================================================
-       REGLAS DE IMPRESIÓN PERFECTAS (AJUSTE A 1 HOJA A4 EXACTA)
+       REGLAS EXCLUSIVAS DE IMPRESIÓN / DESCARGA PDF (ESCALADO PERFECTO A4)
        =================================================== */
     @page {
       size: A4 portrait;
-      margin: 8mm 10mm;
+      margin: 10mm 12mm;
     }
 
     @media print {
-      /* Ocultar elementos interactivos web */
       header, footer, .action-bar, .nav-links, .theme-toggle-btn {
         display: none !important;
       }
@@ -364,8 +357,8 @@
         background-color: #ffffff !important;
         color: #0f172a !important;
         font-family: Arial, Helvetica, sans-serif !important;
-        font-size: 9pt !important;
-        line-height: 1.35 !important;
+        font-size: 9.8pt !important;
+        line-height: 1.45 !important;
       }
 
       .cv-container {
@@ -382,26 +375,26 @@
       }
 
       .cv-header {
-        border-bottom: 1.5pt solid #0f172a !important;
-        padding-bottom: 6pt !important;
-        margin-bottom: 8pt !important;
+        border-bottom: 2pt solid #0f172a !important;
+        padding-bottom: 8pt !important;
+        margin-bottom: 12pt !important;
       }
 
       .cv-header h1 {
         color: #000000 !important;
-        font-size: 18pt !important;
+        font-size: 20pt !important;
       }
 
       .cv-header .subtitle {
         color: #0284c7 !important;
-        font-size: 9.5pt !important;
-        margin-bottom: 5pt !important;
+        font-size: 10.5pt !important;
+        margin-bottom: 6pt !important;
       }
 
       .contact-info {
-        font-size: 8.5pt !important;
+        font-size: 9pt !important;
         color: #334155 !important;
-        gap: 8pt !important;
+        gap: 10pt !important;
       }
 
       .contact-info a {
@@ -411,64 +404,68 @@
       .cv-grid {
         display: grid !important;
         grid-template-columns: 1.8fr 1.2fr !important;
-        gap: 12pt !important;
+        gap: 14pt !important;
       }
 
       .cv-section {
-        margin-bottom: 8pt !important;
+        margin-bottom: 12pt !important;
       }
 
       .cv-section h2 {
         color: #0284c7 !important;
-        border-bottom: 1pt solid #cbd5e1 !important;
-        font-size: 9.5pt !important;
-        padding-bottom: 2pt !important;
-        margin-bottom: 5pt !important;
+        border-bottom: 1.5pt solid #cbd5e1 !important;
+        font-size: 10.5pt !important;
+        padding-bottom: 3pt !important;
+        margin-bottom: 8pt !important;
       }
 
       .cv-section p, .item-bullets li {
-        font-size: 8.5pt !important;
+        font-size: 9.2pt !important;
         color: #1e293b !important;
       }
 
       .sidebar-block {
         background: #f8fafc !important;
         border: 0.5pt solid #cbd5e1 !important;
-        padding: 5pt 7pt !important;
-        margin-bottom: 6pt !important;
+        padding: 8pt 10pt !important;
+        margin-bottom: 10pt !important;
       }
 
       .sidebar-block h3 {
-        font-size: 8.5pt !important;
+        font-size: 9.5pt !important;
         color: #0f172a !important;
       }
 
       .sidebar-block p, .sidebar-block ul li {
-        font-size: 8pt !important;
+        font-size: 8.8pt !important;
         color: #334155 !important;
       }
 
       .item-block {
-        margin-bottom: 6pt !important;
+        margin-bottom: 10pt !important;
       }
 
       .item-title {
-        font-size: 9pt !important;
+        font-size: 10pt !important;
         color: #0f172a !important;
       }
 
       .item-date {
-        font-size: 8pt !important;
+        font-size: 8.8pt !important;
         color: #0284c7 !important;
       }
 
       .item-sub {
-        font-size: 8pt !important;
-        margin-bottom: 2pt !important;
+        font-size: 8.8pt !important;
+        margin-bottom: 4pt !important;
       }
 
       .item-bullets {
-        padding-left: 10pt !important;
+        padding-left: 12pt !important;
+      }
+
+      .item-bullets li {
+        margin-bottom: 3pt !important;
       }
     }
   </style>
@@ -487,7 +484,7 @@
   </header>
 
   <main class="cv-container">
-    <!-- Barra de Acciones (Cambio de Tema y Descarga PDF) -->
+    <!-- Barra de Acciones Web -->
     <div class="action-bar">
       <button onclick="toggleTheme()" class="btn-action theme-toggle-btn" id="themeBtn">
         🌙 Modo Oscuro
@@ -519,7 +516,7 @@
           
           <section class="cv-section">
             <h2>Perfil Profesional</h2>
-            <p>Desarrollador Unity en formación y estudiante de Ingeniería en Realidad Virtual. Enfocado en la creación de videojuegos, simulaciones 3D y entornos XR/VR/AR[cite: 2]. Destaco por construir código C# modular, escalable y optimizado para rendimiento gráfico e interacción en tiempo real[cite: 2]. Disponible para Práctica Profesional (Part-Time / Full-Time)[cite: 2].</p>
+            <p>Desarrollador Unity en formación y estudiante de Ingeniería en Realidad Virtual. Enfocado en la creación de videojuegos, simulaciones 3D y entornos XR/VR/AR. Destaco por construir código C# modular, escalable y optimizado para rendimiento gráfico e interacción en tiempo real. Disponible para Práctica Profesional (Part-Time / Full-Time).</p>
           </section>
 
           <section class="cv-section">
@@ -530,11 +527,11 @@
                 <span class="item-title">Unity Developer — Proyectos Académicos y Personales</span>
                 <span class="item-date">2021 – Presente</span>
               </div>
-              <div class="item-sub">Freelance / Prototipado Interactivo — Santiago, Chile[cite: 2]</div>
+              <div class="item-sub">Freelance / Prototipado Interactivo — Santiago, Chile</div>
               <ul class="item-bullets">
-                <li>Desarrollo de prototipos interactivos en C#: mecánicas de movimiento, inventarios, UI/HUD, sistemas de daño/vida e IA básica[cite: 2].</li>
-                <li>Integración y optimización de assets 3D creados en Blender para entornos virtuales en tiempo real[cite: 2].</li>
-                <li>Uso de Prompt Engineering e IA generativa para agilizar la documentación, pruebas de concepto y depuración de errores[cite: 2].</li>
+                <li>Desarrollo de prototipos interactivos en C#: mecánicas de movimiento, inventarios, UI/HUD, sistemas de daño/vida e IA básica.</li>
+                <li>Integración y optimización de assets 3D creados en Blender para entornos virtuales en tiempo real.</li>
+                <li>Uso de Prompt Engineering e IA generativa para agilizar la documentación, pruebas de concepto y depuración de errores.</li>
               </ul>
             </div>
 
@@ -558,9 +555,9 @@
                 <span class="item-title">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</span>
                 <span class="item-date">2021 – 2027</span>
               </div>
-              <div class="item-sub">Universidad Bernardo O'Higgins — Santiago, Chile[cite: 2]</div>
+              <div class="item-sub">Universidad Bernardo O'Higgins — Santiago, Chile</div>
               <ul class="item-bullets">
-                <li>Formación en motores de juego, cálculo aplicado, optimización gráfica, diseño de nivel y desarrollo de sistemas interactivos[cite: 2].</li>
+                <li>Formación en motores de juego, cálculo aplicado, optimización gráfica, diseño de nivel y desarrollo de sistemas interactivos.</li>
               </ul>
             </div>
           </section>
@@ -574,18 +571,18 @@
             <h2>Aptitudes Principales</h2>
             
             <div class="sidebar-block">
-              <h3>Unity & C#[cite: 2]</h3>
-              <p>Gameplay, físicas 3D, controladores de animación, NavMesh, Scriptable Objects, UI/HUD, guardado de datos[cite: 2].</p>
+              <h3>Unity & C#</h3>
+              <p>Gameplay, físicas 3D, controladores de animación, NavMesh, Scriptable Objects, UI/HUD, guardado de datos.</p>
             </div>
 
             <div class="sidebar-block">
-              <h3>XR & Gráficos[cite: 2]</h3>
-              <p>Creación de Shaders, Shader Graph, VFX Graph, optimización URP, iluminación y renderizado[cite: 2].</p>
+              <h3>XR & Gráficos</h3>
+              <p>Creación de Shaders, Shader Graph, VFX Graph, optimización URP, iluminación y renderizado.</p>
             </div>
 
             <div class="sidebar-block">
               <h3>Herramientas & Pipeline</h3>
-              <p>Git, GitHub, VS Code, Blender (3D Básico), Vercel, HTML5/CSS3/JS[cite: 2].</p>
+              <p>Git, GitHub, VS Code, Blender (3D Básico), Vercel, HTML5/CSS3/JS.</p>
             </div>
           </section>
 
@@ -593,8 +590,8 @@
             <h2>Disponibilidad</h2>
             <div class="sidebar-block">
               <ul>
-                <li>• Práctica Profesional (Part-Time / Full-Time)[cite: 2]</li>
-                <li>• Modalidad: Remoto / Híbrido / Presencial (Santiago)[cite: 2]</li>
+                <li>• Práctica Profesional (Part-Time / Full-Time)</li>
+                <li>• Modalidad: Remoto / Híbrido / Presencial (Santiago)</li>
               </ul>
             </div>
           </section>
