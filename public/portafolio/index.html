@@ -157,7 +157,7 @@
       margin: 0 auto 5rem auto;
       padding: 0 1.5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 2rem;
     }
 
@@ -177,28 +177,12 @@
       box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
     }
 
-    /* Contenedor Multimedia (Soporta Img, Video e Iframe) */
-    .media-container {
-      position: relative;
+    .project-img {
       width: 100%;
-      height: 210px;
+      height: 200px;
       background-color: #12161f;
-      overflow: hidden;
-      border-bottom: 1px solid var(--bg-card-border);
-    }
-
-    .media-container img, 
-    .media-container video {
-      width: 100%;
-      height: 100%;
       object-fit: cover;
-      display: block;
-    }
-
-    .media-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+      border-bottom: 1px solid var(--bg-card-border);
     }
 
     .project-body {
@@ -297,24 +281,21 @@
   <main>
     <section class="portfolio-header">
       <h1>Portafolio de Proyectos</h1>
-      <p>Explora mis simulaciones 3D, desarrollos en Unity, Shaders, proyectos web y aplicaciones interactivas.</p>
+      <p>Explora mis proyectos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación web.</p>
 
       <div class="filter-container">
         <button class="filter-btn active" onclick="filterProjects('all', event)">Todos</button>
         <button class="filter-btn" onclick="filterProjects('unity', event)">Unity / XR</button>
         <button class="filter-btn" onclick="filterProjects('graphics', event)">3D & Shaders</button>
-        <button class="filter-btn" onclick="filterProjects('web', event)">Web & App</button>
+        <button class="filter-btn" onclick="filterProjects('web', event)">Web & Software</button>
       </div>
     </section>
 
     <section class="projects-grid" id="projectsGrid">
       
-      <!-- EJEMPLO 1: PROYECTO CON IMAGEN / CAPTURA DE PANTALLA -->
+      <!-- PROYECTO 1 -->
       <article class="project-card" data-category="unity graphics">
-        <div class="media-container">
-          <!-- Puedes reemplazar /img/matias.jpg por tu captura /img/efectos-ubo.jpg -->
-          <img src="/img/matias.jpg" alt="Captura de Proyecto URP" onerror="this.src='https://via.placeholder.com/400x210?text=Captura+Unity+URP'">
-        </div>
+        <img src="/img/matias.jpg" alt="Proyecto URP Interactivo" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Proyecto+Unity+URP'">
         <div class="project-body">
           <h2 class="project-title">Sistema Interactivo URP</h2>
           <p class="project-description">Simulación interactiva para plataforma móvil. Incorpora mecánicas de agitación de árboles, instanciación de frutas y Shaders personalizados en Universal Render Pipeline.</p>
@@ -325,25 +306,17 @@
             <span class="tag">URP</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/matixvc" target="_blank" rel="noopener" class="link-btn primary-link">
-              📂 Repositorio GitHub
-            </a>
+            <a href="https://github.com/matixvc" target="_blank" rel="noopener" class="link-btn primary-link">GitHub</a>
           </div>
         </div>
       </article>
 
-      <!-- EJEMPLO 2: PROYECTO CON VIDEO DEMO (MP4 o GIF ANIMADO) -->
+      <!-- PROYECTO 2 -->
       <article class="project-card" data-category="unity">
-        <div class="media-container">
-          <!-- Si tienes un archivo .mp4 o un .gif con la animación de tus mecánicas, colócalo aquí -->
-          <video autoplay loop muted playsinline poster="/og-image.png">
-            <source src="/img/demo-gameplay.mp4" type="video/mp4">
-            Tu navegador no soporta reproducción de video.
-          </video>
-        </div>
+        <img src="/og-image.png" alt="Módulos de Navegación 3D" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Mec%C3%A1nicas+C%23'">
         <div class="project-body">
-          <h2 class="project-title">Módulos de Navegación NavMesh & IA</h2>
-          <p class="project-description">Implementación de mecánicas avanzadas de pathfinding en 3D, controladores de animación por estados y arquitectura basada en Scriptable Objects.</p>
+          <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
+          <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y controladores de animación optimizados para simulación interactiva.</p>
           <div class="project-tags">
             <span class="tag">Unity</span>
             <span class="tag">C#</span>
@@ -352,38 +325,13 @@
           </div>
           <div class="project-links">
             <a href="https://github.com/matixvc" target="_blank" rel="noopener" class="link-btn">GitHub</a>
-            <a href="#" class="link-btn">Ver Documentación</a>
           </div>
         </div>
       </article>
 
-      <!-- EJEMPLO 3: PROYECTO CON VIDEO ENBEBIDO DE YOUTUBE -->
-      <article class="project-card" data-category="graphics">
-        <div class="media-container">
-          <!-- Reemplaza el ID del video de YouTube (ej. dQw4w9WgXcQ) por el de tu propio Demo Reel / Proyecto -->
-          <iframe src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ" title="Demo Reel 3D / Shaders" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="project-body">
-          <h2 class="project-title">Shader Graph & VFX Particle Suite</h2>
-          <p class="project-description">Colección de efectos visuales y materiales procedurales optimizados para simulaciones en tiempo real y optimización de renderizado.</p>
-          <div class="project-tags">
-            <span class="tag">Shader Graph</span>
-            <span class="tag">VFX Graph</span>
-            <span class="tag">Blender</span>
-          </div>
-          <div class="project-links">
-            <a href="https://youtube.com" target="_blank" rel="noopener" class="link-btn primary-link">
-              ▶ Ver Video HD
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <!-- EJEMPLO 4: PROYECTO WEB / SOFTWARE -->
+      <!-- PROYECTO 3 -->
       <article class="project-card" data-category="web">
-        <div class="media-container">
-          <img src="/og-image.png" alt="Plataforma Web Personal" onerror="this.src='https://via.placeholder.com/400x210?text=Web+Platform'">
-        </div>
+        <img src="/og-image.png" alt="Plataforma Web Personal" class="project-img" onerror="this.src='https://via.placeholder.com/400x200?text=Plataforma+Web'">
         <div class="project-body">
           <h2 class="project-title">Plataforma Web Personal & Hub</h2>
           <p class="project-description">Diseño y desarrollo del ecosistema web personal desplegado en Vercel, optimizado para SEO, accesibilidad y velocidad de carga.</p>
@@ -412,13 +360,11 @@
       const cards = document.querySelectorAll('.project-card');
       const buttons = document.querySelectorAll('.filter-btn');
 
-      // Actualizar estado del botón activo
       buttons.forEach(btn => btn.classList.remove('active'));
       if (evt && evt.target) {
         evt.target.classList.add('active');
       }
 
-      // Filtrar elementos
       cards.forEach(card => {
         const categories = card.getAttribute('data-category');
         if (category === 'all' || categories.includes(category)) {
