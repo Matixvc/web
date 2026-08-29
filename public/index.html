@@ -15,8 +15,43 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/">
   <meta property="og:title" content="Matías Villalobos Cautivo | VR & Software Developer">
-  <meta property="og:description" content="Explora mis proyectos de Realidad Virtual, Simulaciones 3D y Desarrollo Web.">
-  <meta property="og:image" content="/img/og-image.png">
+  <meta property="og:description" content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
+  <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Matías Villalobos Cautivo | VR & Software Developer">
+  <meta name="twitter:description" content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
+  <meta name="twitter:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
+
+  <!-- Marcado Estructurado JSON-LD (Schema.org / Person) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matías Villalobos Cautivo",
+    "jobTitle": "Ingeniero en Realidad Virtual & Software Developer",
+    "url": "https://matiasdev-web.vercel.app/",
+    "sameAs": [
+      "https://www.linkedin.com/in/matias-vc-dev",
+      "https://github.com/matiasvillalobosdev-web"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santiago",
+      "addressCountry": "Chile"
+    },
+    "knowsAbout": [
+      "Unity",
+      "C#",
+      "Virtual Reality",
+      "Extended Reality (XR)",
+      "Shader Graph",
+      "JavaScript",
+      "HTML5/CSS3"
+    ]
+  }
+  </script>
 
   <title>Matías Villalobos Cautivo | VR & Software Developer</title>
 
@@ -53,7 +88,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
     }
 
     .brand {
@@ -90,7 +125,6 @@
       color: var(--accent-color);
     }
 
-    /* Botón Menú Hamburguesa Móvil */
     .mobile-menu-toggle {
       display: none;
       background: transparent;
@@ -128,7 +162,7 @@
     .hero {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 5rem 1.5rem 3rem 1.5rem;
+      padding: 5rem 1.25rem 3rem 1.25rem;
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
@@ -138,7 +172,7 @@
     @media (min-width: 768px) {
       .hero {
         grid-template-columns: 1.2fr 0.8fr;
-        padding: 6rem 1.5rem 4rem 1.5rem;
+        padding: 6rem 1.25rem 4rem 1.25rem;
       }
     }
 
@@ -155,20 +189,14 @@
     }
 
     .hero h1 {
-      font-size: 2.5rem;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       line-height: 1.15;
       margin-bottom: 1rem;
     }
 
-    @media (min-width: 768px) {
-      .hero h1 {
-        font-size: 3.2rem;
-      }
-    }
-
     .hero p {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
       margin-bottom: 2rem;
       max-width: 600px;
     }
@@ -200,7 +228,7 @@
     .modules {
       max-width: var(--max-width);
       margin: 2rem auto 3rem auto;
-      padding: 0 1.5rem;
+      padding: 0 1.25rem;
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
@@ -244,14 +272,14 @@
     .contact-section {
       max-width: var(--max-width);
       margin: 0 auto 5rem auto;
-      padding: 0 1.5rem;
+      padding: 0 1.25rem;
     }
 
     .contact-card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 2.5rem 2rem;
+      padding: 2.5rem 1.5rem;
       text-align: center;
     }
 
@@ -276,7 +304,7 @@
     footer {
       border-top: 1px solid var(--bg-card-border);
       text-align: center;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.25rem;
       color: var(--text-muted);
       font-size: 0.9rem;
     }
@@ -322,7 +350,7 @@
           <h2>🚀 Portafolio Interactivo</h2>
           <p>Explora mis proyectos de desarrollo en Unity, Shader Graph, simulaciones interactivas 3D y aplicaciones desarrolladas en C# y JavaScript.</p>
         </div>
-        <a href="/portafolio/" class="btn btn-secondary" style="width: fit-content;">Ir al Portafolio &rarr;</a>
+        <a href="/portafolio/" class="btn btn-secondary">Ir al Portafolio &rarr;</a>
       </div>
 
       <div class="card-module">
@@ -330,7 +358,7 @@
           <h2>📄 Curriculum Vitae</h2>
           <p>Conoce mi trayectoria académica en la Universidad Bernardo O'Higgins, mis habilidades técnicas, herramientas de desarrollo y experiencia general.</p>
         </div>
-        <a href="/cv/" class="btn btn-secondary" style="width: fit-content;">Ver Currículum &rarr;</a>
+        <a href="/cv/" class="btn btn-secondary">Ver Currículum &rarr;</a>
       </div>
     </section>
 
@@ -361,7 +389,6 @@
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Toggle Menú Móvil y Confetti -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
