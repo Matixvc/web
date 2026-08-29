@@ -7,17 +7,21 @@
   <meta name="keywords" content="Matías Villalobos Cautivo, XR, VR, Realidad Virtual, Unity, C#, JavaScript, Web Developer, Portfolio">
   <meta name="author" content="Matías Villalobos Cautivo">
 
-  <!-- Open Graph / Redes Sociales -->
+  <!-- Open Graph / Redes Sociales (Rutas actualizadas a /img/) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/">
   <meta property="og:title" content="Matías Villalobos Cautivo | VR & Software Developer">
   <meta property="og:description" content="Explora mis proyectos de Realidad Virtual, Simulaciones 3D y Desarrollo Web.">
-  <meta property="og:image" content="/og-image.png">
+  <meta property="og:image" content="/img/og-image.png">
 
   <title>Matías Villalobos Cautivo | VR & Software Developer</title>
 
-  <!-- Favicon -->
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <!-- Favicon (Ruta actualizada a /img/) -->
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/img/favicon.ico">
+
+  <!-- Estilos Globales Compartidos -->
+  <link rel="stylesheet" href="/styles.css">
 
   <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,34 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg-primary: #0a0c10;
-      --bg-card: rgba(22, 27, 34, 0.75);
-      --bg-card-border: rgba(255, 255, 255, 0.1);
-      --accent-color: #00f0ff;
-      --accent-gradient: linear-gradient(135deg, #00f0ff 0%, #7000ff 100%);
-      --text-main: #f0f6fc;
-      --text-muted: #8b949e;
-      --font-main: 'Inter', system-ui, -apple-system, sans-serif;
-      --font-code: 'JetBrains Mono', monospace;
-      --max-width: 1100px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      font-family: var(--font-main);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Header & Nav */
+    /* Estilos específicos de la página principal */
     header {
       position: sticky;
       top: 0;
@@ -75,7 +52,6 @@
     .brand {
       font-weight: 700;
       font-size: 1.2rem;
-      letter-spacing: -0.5px;
       color: var(--text-main);
       text-decoration: none;
       display: flex;
@@ -107,7 +83,6 @@
       color: var(--accent-color);
     }
 
-    /* Hero Section */
     .hero {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -162,44 +137,10 @@
       flex-wrap: wrap;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem 1.6rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--accent-gradient);
-      color: #000;
-      box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-      border: 1px solid var(--bg-card-border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-
     .profile-card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
-      border-radius: 16px;
+      border-radius: var(--radius-card);
       padding: 1.5rem;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
@@ -214,7 +155,6 @@
       margin-bottom: 1rem;
     }
 
-    /* Modules Grid */
     .modules {
       max-width: var(--max-width);
       margin: 2rem auto 5rem auto;
@@ -233,7 +173,7 @@
     .card-module {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
-      border-radius: 16px;
+      border-radius: var(--radius-card);
       padding: 2rem;
       display: flex;
       flex-direction: column;
@@ -282,7 +222,7 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero reveal">
       <div class="hero-content">
         <span class="tagline">&lt;XR & Interactive Systems /&gt;</span>
         <h1>Matías Villalobos Cautivo</h1>
@@ -299,7 +239,7 @@
       </div>
     </section>
 
-    <section class="modules">
+    <section class="modules reveal">
       <div class="card-module">
         <div>
           <h2>🚀 Portafolio Interactivo</h2>
@@ -322,5 +262,7 @@
     <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
   </footer>
 
+  <!-- Script Global -->
+  <script src="/script.js"></script>
 </body>
 </html>
