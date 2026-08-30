@@ -41,7 +41,6 @@
     rel="stylesheet">
 
   <style>
-    /* Estilos Específicos del Portafolio */
     header {
       position: sticky;
       top: 0;
@@ -140,6 +139,11 @@
         width: 100%;
         text-align: center;
       }
+    }
+
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
     }
 
     .portfolio-header {
@@ -250,11 +254,48 @@
       flex-direction: column;
       cursor: pointer;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
     }
 
     .project-card:hover {
+      transform: translateY(-4px);
       border-color: rgba(0, 240, 255, 0.4);
       box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
+    }
+
+    /* Generador Gráfico Interactivo para Vistas Previas */
+    .project-preview-box {
+      width: 100%;
+      height: 160px;
+      background: #080b10;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--bg-card-border);
+    }
+
+    .preview-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .preview-tag-overlay {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      background: rgba(10, 12, 16, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--bg-card-border);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--accent-color);
     }
 
     .project-body {
@@ -341,8 +382,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(10, 12, 16, 0.85);
-      backdrop-filter: blur(10px);
+      background: rgba(10, 12, 16, 0.88);
+      backdrop-filter: blur(12px);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -360,7 +401,7 @@
 
     .modal-card {
       background: #0f131a;
-      border: 1px solid var(--bg-card-border);
+      border: 1px solid rgba(0, 240, 255, 0.3);
       border-radius: var(--radius-card);
       max-width: 650px;
       width: 100%;
@@ -368,7 +409,7 @@
       overflow-y: auto;
       padding: 2rem;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+      box-shadow: 0 20px 50px rgba(0, 240, 255, 0.2);
       transform: translateY(20px);
       transition: transform 0.3s ease;
     }
@@ -394,7 +435,9 @@
     }
 
     .modal-title {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      font-family: var(--font-code);
       margin-bottom: 0.5rem;
       padding-right: 2rem;
     }
@@ -405,7 +448,7 @@
 
     .modal-section h4 {
       font-size: 0.95rem;
-      color: var(--accent-color);
+      color: var(--text-main);
       font-family: var(--font-code);
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -416,21 +459,6 @@
       font-size: 0.92rem;
       color: var(--text-muted);
       line-height: 1.6;
-    }
-
-    .demo-placeholder {
-      width: 100%;
-      height: 200px;
-      background: #141923;
-      border: 1px dashed var(--bg-card-border);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-family: var(--font-code);
-      font-size: 0.85rem;
-      margin-top: 0.8rem;
     }
 
     footer {
@@ -469,7 +497,7 @@
     <section class="portfolio-header reveal">
       <h1>Portafolio de Proyectos</h1>
       <p>Explora mis desarrollos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación
-        web. <em>(Haz clic en cualquier tarjeta para ver el caso de estudio técnico)</em>.</p>
+        web. <em>(Selecciona cualquier tarjeta para examinar el desglose técnico)</em>.</p>
 
       <div class="filter-wrapper">
         <div class="filter-container" role="tablist" aria-label="Filtro de proyectos">
@@ -490,13 +518,17 @@
 
       <!-- PROYECTO 1 -->
       <article class="project-card" data-category="unity graphics" onclick="openModal('modal1')">
+        <div class="project-preview-box">
+          <canvas class="preview-canvas" id="canvasShaderPrev"></canvas>
+          <span class="preview-tag-overlay">URP Shader Engine</span>
+        </div>
         <div class="project-body">
-          <h2 class="project-title">Sistema Interactivo URP</h2>
-          <p class="project-description">Simulación interactiva para plataforma móvil. Incorpora mecánicas de agitación
-            de árboles, instanciación de frutas y Shaders personalizados en Universal Render Pipeline.</p>
+          <h2 class="project-title">Sistema Interactivo URP & Shaders</h2>
+          <p class="project-description">Simulación interactiva para plataformas móviles. Incorpora mecánicas de
+            interacción 3D, física de follaje y Shaders optimizados en Universal Render Pipeline.</p>
           <div class="project-tags">
-            <span class="tag">Unity</span>
-            <span class="tag">C#</span>
+            <span class="tag">Unity 3D</span>
+            <span class="tag">C# Modular</span>
             <span class="tag">Shader Graph</span>
             <span class="tag">URP</span>
           </div>
@@ -510,14 +542,18 @@
 
       <!-- PROYECTO 2 -->
       <article class="project-card" data-category="unity" onclick="openModal('modal2')">
+        <div class="project-preview-box">
+          <canvas class="preview-canvas" id="canvasNavPrev"></canvas>
+          <span class="preview-tag-overlay">Pathfinding IA</span>
+        </div>
         <div class="project-body">
           <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
-          <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y
-            controladores de animación optimizados para simulación interactiva.</p>
+          <p class="project-description">Sistemas de navegación autónoma utilizando NavMesh, arquitecturas desacopladas
+            con Scriptable Objects y controladores de animación C#.</p>
           <div class="project-tags">
-            <span class="tag">Unity</span>
-            <span class="tag">C#</span>
-            <span class="tag">NavMesh</span>
+            <span class="tag">Unity 3D</span>
+            <span class="tag">C# Delegates</span>
+            <span class="tag">NavMesh IA</span>
             <span class="tag">ScriptableObjects</span>
           </div>
           <div class="project-links" onclick="event.stopPropagation()">
@@ -530,15 +566,19 @@
 
       <!-- PROYECTO 3 -->
       <article class="project-card" data-category="web" onclick="openModal('modal3')">
+        <div class="project-preview-box">
+          <canvas class="preview-canvas" id="canvasWebPrev"></canvas>
+          <span class="preview-tag-overlay">Full-Stack Hub</span>
+        </div>
         <div class="project-body">
           <h2 class="project-title">Plataforma Web Personal & Hub</h2>
-          <p class="project-description">Diseño y desarrollo del ecosistema web personal desplegado en Vercel,
-            optimizado para SEO, accesibilidad y velocidad de carga.</p>
+          <p class="project-description">Ecosistema web personal adaptado a dispositivos móviles, optimizado para SEO
+            con JSON-LD, PWA Manifest y despliegue continuo en Vercel.</p>
           <div class="project-tags">
             <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
+            <span class="tag">CSS3 Grid</span>
             <span class="tag">Vanilla JS</span>
-            <span class="tag">Vercel</span>
+            <span class="tag">Vercel PWA</span>
           </div>
           <div class="project-links" onclick="event.stopPropagation()">
             <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener"
@@ -558,25 +598,21 @@
       <h3 class="modal-title">Sistema Interactivo URP & Shaders</h3>
 
       <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Demostración Interactiva URP &gt;</div>
-      </div>
-
-      <div class="modal-section">
         <h4>Desafío Técnico</h4>
-        <p>Desarrollar una simulación móvil con rendimiento sostenido a 60 FPS en gráficos 3D que permita interactuar
-          con física de fluidos/partículas y agitación de objetos en tiempo real.</p>
+        <p>Desarrollar una simulación móvil interactiva sosteniendo 60 FPS estables con renderizado 3D dinámico,
+          interacciones físicas y Custom Shaders sin saturar el procesamiento del dispositivo.</p>
       </div>
 
       <div class="modal-section">
         <h4>Solución Implementada</h4>
-        <p>Se crearon Custom Shaders en Shader Graph dentro de URP (Universal Render Pipeline) junto con scripts C#
-          modulados que gestionan la instanciación eficiente de prefabs usando Object Pooling.</p>
+        <p>Construcción de Shaders personalizados mediante Shader Graph dentro de Universal Render Pipeline (URP),
+          combinados con algoritmos en C# que gestionan la instanciación eficiente de elementos gráficos mediante Object
+          Pooling.</p>
       </div>
 
       <div class="modal-section">
         <h4>Tecnologías Clave</h4>
-        <p>Unity, C#, Universal Render Pipeline, Shader Graph, VFX Graph, Input System.</p>
+        <p>Unity 3D, C#, Universal Render Pipeline (URP), Shader Graph, VFX Graph, Input System.</p>
       </div>
     </div>
   </div>
@@ -588,20 +624,15 @@
       <h3 class="modal-title">Módulos de Navegación & IA 3D</h3>
 
       <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Demostración Algoritmo NavMesh &gt;</div>
-      </div>
-
-      <div class="modal-section">
         <h4>Desafío Técnico</h4>
-        <p>Construir una arquitectura extensible para agentes autónomos en entornos virtuales dinámicos sin sobrecargar
-          la CPU.</p>
+        <p>Diseñar un sistema de pathfinding escalable para múltiples entidades autónomas en entornos tridimensionales
+          complejos, manteniendo desacoplada la lógica del motor.</p>
       </div>
 
       <div class="modal-section">
         <h4>Solución Implementada</h4>
-        <p>Implementación de NavMesh Agent acoplado a ScriptableObjects para configurar comportamientos, rangos de
-          detección y máquinas de estado para los controladores de animación.</p>
+        <p>Implementación de NavMesh Agent acoplado a ScriptableObjects para parametrizar comportamientos y rangos de
+          visión de las entidades, usando Delegados y Eventos en C# para coordinar la animación.</p>
       </div>
 
       <div class="modal-section">
@@ -618,20 +649,15 @@
       <h3 class="modal-title">Plataforma Web Personal & Hub</h3>
 
       <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Arquitectura Web PWA & Vercel &gt;</div>
-      </div>
-
-      <div class="modal-section">
         <h4>Desafío Técnico</h4>
-        <p>Ofrecer una velocidad de carga ultrarrápida (Lighthouse 95+), compatibilidad PWA y diseño responsivo completo
-          sin usar frameworks pesados.</p>
+        <p>Construir un portafolio web con estética Cyber-Tech de carga ultrarrápida, navegación fluida sin frameworks
+          pesados y reglas de impresión PDF optimizadas a una sola página.</p>
       </div>
 
       <div class="modal-section">
         <h4>Solución Implementada</h4>
-        <p>Desarrollo con HTML5 semántico, CSS3 modular con variables globales y JS puro en arquitectura limpia,
-          integrado a despliegues automatizados en Vercel.</p>
+        <p>Desarrollo en HTML5 semántico, CSS3 modular con variables CSS, animaciones Canvas 2D adaptativas y JavaScript
+          Vanilla integrado a pipelines de despliegue en Vercel.</p>
       </div>
 
       <div class="modal-section">
@@ -648,10 +674,9 @@
     </div>
   </footer>
 
-  <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Lógica de Filtrado y Modales -->
+  <!-- Lógica de Filtrado, Modales y Renderizado de Canvas Previews -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -708,8 +733,86 @@
         document.body.style.overflow = 'auto';
       }
     }
-  </script>
 
+    /* Generadores de Vistas Previas Animadas en Canvas */
+    function initCanvasPreviews() {
+      // Preview 1: Onda Shader
+      const c1 = document.getElementById('canvasShaderPrev');
+      if (c1) {
+        const ctx1 = c1.getContext('2d');
+        let t1 = 0;
+        function render1() {
+          c1.width = c1.parentElement.clientWidth;
+          c1.height = c1.parentElement.clientHeight;
+          ctx1.clearRect(0, 0, c1.width, c1.height);
+          ctx1.beginPath();
+          ctx1.moveTo(0, c1.height / 2);
+          for (let x = 0; x < c1.width; x++) {
+            let y = c1.height / 2 + Math.sin(x * 0.03 + t1) * 20;
+            ctx1.lineTo(x, y);
+          }
+          ctx1.strokeStyle = '#00f0ff';
+          ctx1.lineWidth = 2;
+          ctx1.stroke();
+          t1 += 0.05;
+          requestAnimationFrame(render1);
+        }
+        render1();
+      }
+
+      // Preview 2: Nodos IA NavMesh
+      const c2 = document.getElementById('canvasNavPrev');
+      if (c2) {
+        const ctx2 = c2.getContext('2d');
+        let t2 = 0;
+        function render2() {
+          c2.width = c2.parentElement.clientWidth;
+          c2.height = c2.parentElement.clientHeight;
+          ctx2.clearRect(0, 0, c2.width, c2.height);
+          let px = (Math.sin(t2) * 0.3 + 0.5) * c2.width;
+          let py = c2.height / 2;
+
+          ctx2.beginPath();
+          ctx2.arc(px, py, 6, 0, Math.PI * 2);
+          ctx2.fillStyle = '#7000ff';
+          ctx2.fill();
+
+          ctx2.beginPath();
+          ctx2.moveTo(20, c2.height / 2);
+          ctx2.lineTo(c2.width - 20, c2.height / 2);
+          ctx2.strokeStyle = 'rgba(112, 0, 255, 0.3)';
+          ctx2.setLineDash([4, 4]);
+          ctx2.stroke();
+
+          t2 += 0.03;
+          requestAnimationFrame(render2);
+        }
+        render2();
+      }
+
+      // Preview 3: Grid Web Tech
+      const c3 = document.getElementById('canvasWebPrev');
+      if (c3) {
+        const ctx3 = c3.getContext('2d');
+        function render3() {
+          c3.width = c3.parentElement.clientWidth;
+          c3.height = c3.parentElement.clientHeight;
+          ctx3.clearRect(0, 0, c3.width, c3.height);
+          ctx3.strokeStyle = 'rgba(0, 240, 255, 0.15)';
+          ctx3.lineWidth = 1;
+          for (let x = 0; x < c3.width; x += 20) {
+            ctx3.beginPath(); ctx3.moveTo(x, 0); ctx3.lineTo(x, c3.height); ctx3.stroke();
+          }
+          for (let y = 0; y < c3.height; y += 20) {
+            ctx3.beginPath(); ctx3.moveTo(0, y); ctx3.lineTo(c3.width, y); ctx3.stroke();
+          }
+        }
+        render3();
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', initCanvasPreviews);
+  </script>
 </body>
 
 </html>
