@@ -6,24 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Básico & Palabras Clave Focales -->
-  <title>Portafolio de Proyectos | Matías Villalobos Dev</title>
+  <title>Curriculum Vitae | Matías Villalobos Dev</title>
   <meta name="description"
-    content="Portafolio oficial de proyectos de Matías Villalobos Dev (Matías Villalobos Cautivo). Desarrollo en Unity, C#, Realidad Virtual, Shaders y Simulaciones 3D.">
+    content="Curriculum Vitae profesional e interactivo de Matías Villalobos Dev (Matías Villalobos Cautivo). Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales.">
   <meta name="keywords"
-    content="Matías Villalobos Cautivo Portafolio, Matias Villalobos Dev Proyectos, Unity XR Projects, C# Shader Graph">
+    content="Matías Villalobos Cautivo CV, Matias Villalobos Dev Currículum, VR Engineer Chile, Unity Developer CV">
   <meta name="author" content="Matías Villalobos Cautivo">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0c10">
 
   <!-- URL Canónica -->
-  <link rel="canonical" href="https://matiasdev-web.vercel.app/portafolio/">
+  <link rel="canonical" href="https://matiasdev-web.vercel.app/cv/">
 
   <!-- Open Graph / Redes Sociales -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://matiasdev-web.vercel.app/portafolio/">
-  <meta property="og:title" content="Portafolio de Proyectos | Matías Villalobos Dev">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://matiasdev-web.vercel.app/cv/">
+  <meta property="og:title" content="Curriculum Vitae | Matías Villalobos Dev">
   <meta property="og:description"
-    content="Explora desarrollos destacados en Realidad Virtual, simulaciones 3D interactivas y arquitectura de software.">
+    content="Consulta mi trayectoria académica, competencias técnicas en Unity, C#, Realidad Virtual y desarrollo web.">
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
   <!-- Favicon -->
@@ -41,7 +41,7 @@
     rel="stylesheet">
 
   <style>
-    /* Estilos Específicos del Portafolio */
+    /* Estilos del Navegador */
     header {
       position: sticky;
       top: 0;
@@ -142,295 +142,297 @@
       }
     }
 
-    .portfolio-header {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 3rem 1.25rem 1.5rem 1.25rem;
-      text-align: center;
+    /* Fondo Cyber Grid */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(0, 240, 255, 0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
     }
 
-    .portfolio-header h1 {
-      font-size: clamp(2rem, 4vw + 1rem, 2.8rem);
-      margin-bottom: 0.5rem;
+    /* Layout Interactivo de CV */
+    .cv-main-wrapper {
+      max-width: 950px;
+      margin: 2rem auto 4rem auto;
+      padding: 0 1.25rem;
     }
 
-    .portfolio-header p {
-      color: var(--text-muted);
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-      max-width: 650px;
-      margin: 0 auto 1.5rem auto;
-    }
-
-    /* Barra de Filtros Deslizable Móvil */
-    .filter-wrapper {
+    .cv-top-actions {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
-    .filter-container {
-      display: flex;
-      justify-content: flex-start;
-      gap: 0.6rem;
-      overflow-x: auto;
-      padding: 0.4rem 0.2rem 0.8rem 0.2rem;
-      width: 100%;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-
-    .filter-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    @media (min-width: 768px) {
-      .filter-container {
-        justify-content: center;
-        width: auto;
-      }
-    }
-
-    .filter-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
-      color: var(--text-muted);
-      padding: 0.65rem 1.2rem;
-      border-radius: 20px;
-      font-family: var(--font-code);
-      font-size: 0.85rem;
-      cursor: pointer;
-      white-space: nowrap;
-      scroll-snap-align: start;
-      min-height: 44px;
+    .cv-badge-status {
       display: inline-flex;
       align-items: center;
-      transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active {
-      background: var(--accent-color);
-      color: #000000;
-      border-color: var(--accent-color);
-      font-weight: 600;
-    }
-
-    .project-counter {
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      background: rgba(0, 240, 255, 0.08);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 20px;
+      color: var(--accent-color);
       font-family: var(--font-code);
       font-size: 0.82rem;
-      color: var(--text-muted);
     }
 
-    /* Grid de Proyectos */
-    .projects-grid {
-      max-width: var(--max-width);
-      margin: 0 auto 4rem auto;
-      padding: 0 1.25rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
     }
 
-    @media (min-width: 640px) {
-      .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.8rem;
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+      }
+
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
       }
     }
 
-    .project-card {
+    /* Tarjetas Interactivas con Borde Resplandeciente */
+    .cv-card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      position: relative;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .project-card:hover {
+    .cv-card:hover {
+      transform: translateY(-3px);
       border-color: rgba(0, 240, 255, 0.4);
-      box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
+      box-shadow: 0 12px 35px rgba(0, 240, 255, 0.15);
     }
 
-    .project-body {
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
+    .cv-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-gradient);
     }
 
-    .project-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-description {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
-      margin-bottom: 1.25rem;
-      flex-grow: 1;
-    }
-
-    .project-tags {
-      display: flex;
-      gap: 0.4rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.25rem;
-    }
-
-    .tag {
-      font-family: var(--font-code);
-      font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      background: rgba(0, 240, 255, 0.08);
-      color: var(--accent-color);
-      border-radius: 4px;
-      border: 1px solid rgba(0, 240, 255, 0.2);
-    }
-
-    .project-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .link-btn {
-      font-size: 0.88rem;
-      text-decoration: none;
-      color: var(--text-main);
-      padding: 0.6rem 1rem;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
-      transition: all 0.2s ease;
-      display: inline-flex;
+    .cv-header-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
       align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      width: 100%;
     }
 
-    @media (min-width: 480px) {
-      .link-btn {
-        width: auto;
+    @media (min-width: 640px) {
+      .cv-header-grid {
+        grid-template-columns: auto 1fr;
       }
     }
 
-    .link-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.3);
+    .cv-avatar-frame {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      padding: 3px;
+      background: var(--accent-gradient);
+      margin: 0 auto;
     }
 
-    .link-btn.primary-link {
-      background: rgba(0, 240, 255, 0.15);
-      border-color: rgba(0, 240, 255, 0.4);
+    .cv-avatar-frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #0d1117;
+    }
+
+    .cv-header-info h1 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      margin-bottom: 0.25rem;
+    }
+
+    .cv-header-info h2 {
+      font-size: 1rem;
       color: var(--accent-color);
+      font-family: var(--font-code);
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .cv-contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .contact-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-muted);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .contact-chip:hover {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--accent-color);
+      border-color: rgba(0, 240, 255, 0.3);
+    }
+
+    /* Pestañas de Selector de Vista */
+    .tabs-navigation {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.4rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .tabs-navigation::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--bg-card-border);
+      color: var(--text-muted);
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      font-family: var(--font-code);
+      font-size: 0.88rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tab-btn:hover,
+    .tab-btn.active {
+      background: var(--accent-gradient);
+      color: #000000;
+      border-color: transparent;
       font-weight: 600;
     }
 
-    /* Modales */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 12, 16, 0.85);
-      backdrop-filter: blur(10px);
-      z-index: 2000;
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 1.25rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-card {
-      background: #0f131a;
-      border: 1px solid var(--bg-card-border);
-      border-radius: var(--radius-card);
-      max-width: 650px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 2rem;
-      position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-card {
-      transform: translateY(0);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.8rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-
-    .modal-close:hover {
-      color: var(--accent-color);
-    }
-
-    .modal-title {
-      font-size: 1.6rem;
-      margin-bottom: 0.5rem;
-      padding-right: 2rem;
-    }
-
-    .modal-section {
-      margin-top: 1.25rem;
-    }
-
-    .modal-section h4 {
-      font-size: 0.95rem;
-      color: var(--accent-color);
+      gap: 0.6rem;
       font-family: var(--font-code);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    }
+
+    .section-title span {
+      color: var(--accent-color);
+    }
+
+    .cv-text-block {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 0.94rem;
+    }
+
+    /* Barras de Nivel Técnico */
+    .skill-progress-item {
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-progress-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      font-family: var(--font-code);
       margin-bottom: 0.4rem;
     }
 
-    .modal-section p {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+    .skill-progress-bar {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--bg-card-border);
     }
 
-    .demo-placeholder {
-      width: 100%;
-      height: 200px;
-      background: #141923;
-      border: 1px dashed var(--bg-card-border);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
+    .skill-progress-fill {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 4px;
+      transition: width 1s ease-in-out;
+    }
+
+    /* Línea de Tiempo Interactiva */
+    .timeline-interactive {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid rgba(0, 240, 255, 0.3);
+    }
+
+    .timeline-card-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .timeline-card-item::before {
+      content: '';
+      position: absolute;
+      left: -1.95rem;
+      top: 0.2rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      box-shadow: 0 0 10px var(--accent-color);
+    }
+
+    .timeline-card-item h4 {
+      font-size: 1.05rem;
+      color: var(--text-main);
+    }
+
+    .timeline-card-item span {
+      font-size: 0.82rem;
+      color: var(--accent-color);
       font-family: var(--font-code);
-      font-size: 0.85rem;
-      margin-top: 0.8rem;
+      display: block;
+      margin-bottom: 0.4rem;
     }
 
     footer {
@@ -446,6 +448,138 @@
       color: var(--text-muted);
       font-size: 0.82rem;
     }
+
+    /* ==========================================
+       REGLAS DE IMPRESIÓN PARA PDF EN 1 PÁGINA
+       ========================================== */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 8mm 10mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.5pt !important;
+      }
+
+      header,
+      footer,
+      .cv-top-actions,
+      .mobile-menu-toggle,
+      .tabs-navigation {
+        display: none !important;
+      }
+
+      .tab-content {
+        display: block !important;
+      }
+
+      .cv-main-wrapper {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .cv-card {
+        background: #ffffff !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin-bottom: 0.8rem !important;
+        transform: none !important;
+      }
+
+      .cv-card::before {
+        display: none !important;
+      }
+
+      .cv-avatar-frame {
+        display: none !important;
+      }
+
+      .cv-header-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.4rem !important;
+      }
+
+      .cv-header-info h1 {
+        color: #000000 !important;
+        font-size: 16pt !important;
+        margin-bottom: 0.1rem !important;
+      }
+
+      .cv-header-info h2 {
+        color: #005588 !important;
+        font-size: 10pt !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      .cv-contact-chips {
+        gap: 0.4rem !important;
+      }
+
+      .contact-chip {
+        background: transparent !important;
+        border: none !important;
+        color: #333333 !important;
+        padding: 0 !important;
+        font-size: 8.5pt !important;
+      }
+
+      .section-title {
+        color: #005588 !important;
+        border-bottom: 1.5pt solid #005588 !important;
+        font-size: 10.5pt !important;
+        margin-bottom: 0.4rem !important;
+        padding-bottom: 0.2rem !important;
+      }
+
+      .section-title span {
+        display: none !important;
+      }
+
+      .cv-text-block,
+      .timeline-card-item p {
+        color: #222222 !important;
+        font-size: 9pt !important;
+        line-height: 1.35 !important;
+      }
+
+      .skill-progress-bar {
+        background: #e0e0e0 !important;
+        border: 1px solid #cccccc !important;
+        height: 6px !important;
+      }
+
+      .skill-progress-fill {
+        background: #005588 !important;
+      }
+
+      .timeline-interactive {
+        border-left: 1.5pt solid #005588 !important;
+        padding-left: 0.8rem !important;
+      }
+
+      .timeline-card-item::before {
+        background: #005588 !important;
+        box-shadow: none !important;
+        left: -1.15rem !important;
+        width: 8px !important;
+        height: 8px !important;
+      }
+
+      .timeline-card-item h4 {
+        color: #000000 !important;
+        font-size: 9.5pt !important;
+      }
+
+      .timeline-card-item span {
+        color: #005588 !important;
+        font-size: 8pt !important;
+      }
+    }
   </style>
 </head>
 
@@ -459,188 +593,154 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="/">Inicio</a></li>
-        <li><a href="/portafolio/" class="active">Portafolio</a></li>
-        <li><a href="/cv/">CV</a></li>
+        <li><a href="/portafolio/">Portafolio</a></li>
+        <li><a href="/cv/" class="active">CV</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="portfolio-header reveal">
-      <h1>Portafolio de Proyectos</h1>
-      <p>Explora mis desarrollos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación
-        web. <em>(Haz clic en cualquier tarjeta para ver el caso de estudio técnico)</em>.</p>
+  <main class="cv-main-wrapper">
 
-      <div class="filter-wrapper">
-        <div class="filter-container" role="tablist" aria-label="Filtro de proyectos">
-          <button class="filter-btn active" role="tab" aria-selected="true"
-            onclick="filterProjects('all', event)">Todos</button>
-          <button class="filter-btn" role="tab" aria-selected="false" onclick="filterProjects('unity', event)">Unity /
-            XR</button>
-          <button class="filter-btn" role="tab" aria-selected="false" onclick="filterProjects('graphics', event)">3D &
-            Shaders</button>
-          <button class="filter-btn" role="tab" aria-selected="false" onclick="filterProjects('web', event)">Web &
-            Software</button>
+    <!-- Barra Superior de Acciones -->
+    <div class="cv-top-actions">
+      <div class="cv-badge-status">
+        <span class="pulse-dot"></span>
+        <span>CV Digital Interactivo</span>
+      </div>
+      <button onclick="window.print()" class="btn btn-primary">
+        🖨️ Descargar / Imprimir PDF (1 Hoja)
+      </button>
+    </div>
+
+    <!-- TARJETA CABECERA: ENCABEZADO Y CONTACTO -->
+    <section class="cv-card">
+      <div class="cv-header-grid">
+        <div class="cv-avatar-frame">
+          <img src="/img/matias.jpg" alt="Matías Villalobos Cautivo"
+            onerror="this.src='https://via.placeholder.com/110'">
         </div>
-        <span class="project-counter" id="projectCounter">Mostrando 3 proyectos</span>
+        <div class="cv-header-info">
+          <h1>Matías Villalobos Cautivo</h1>
+          <h2>Ingeniero en Realidad Virtual & Software Developer</h2>
+          <div class="cv-contact-chips">
+            <span class="contact-chip">📍 Santiago, Chile</span>
+            <a href="mailto:matias.villalobos.dev@gmail.com" class="contact-chip">✉️ matias.villalobos.dev@gmail.com</a>
+            <a href="tel:+56987576708" class="contact-chip">📞 +56 9 8757 6708</a>
+            <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener" class="contact-chip">🔗
+              linkedin.com/in/matias-vc-dev</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="projects-grid reveal" id="projectsGrid">
+    <!-- NAVEGACIÓN DE PESTAÑAS INTERACTIVAS -->
+    <div class="tabs-navigation">
+      <button class="tab-btn active" onclick="switchTab('tab-perfil', event)">👤 Perfil & Educación</button>
+      <button class="tab-btn" onclick="switchTab('tab-skills', event)">⚡ Nivel Técnico</button>
+      <button class="tab-btn" onclick="switchTab('tab-proyectos', event)">🚀 Proyectos & Simulaciones</button>
+    </div>
 
-      <!-- PROYECTO 1 -->
-      <article class="project-card" data-category="unity graphics" onclick="openModal('modal1')">
-        <div class="project-body">
-          <h2 class="project-title">Sistema Interactivo URP</h2>
-          <p class="project-description">Simulación interactiva para plataforma móvil. Incorpora mecánicas de agitación
-            de árboles, instanciación de frutas y Shaders personalizados en Universal Render Pipeline.</p>
-          <div class="project-tags">
-            <span class="tag">Unity</span>
-            <span class="tag">C#</span>
-            <span class="tag">Shader Graph</span>
-            <span class="tag">URP</span>
-          </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
-              class="link-btn primary-link">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal1')">Caso de Estudio</button>
+    <!-- PESTAÑA 1: PERFIL & EDUCACIÓN -->
+    <div id="tab-perfil" class="tab-content active">
+      <section class="cv-card">
+        <h3 class="section-title"><span>//</span> Perfil Profesional</h3>
+        <p class="cv-text-block">
+          Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo
+          O'Higgins. Especializado en el desarrollo de simulaciones 3D interactivas, programación modular en C#,
+          optimización en Universal Render Pipeline (URP), Shaders personalizados y aplicaciones web responsivas.
+          Enfocado en la arquitectura limpia de código y la resolución lógica de problemas.
+        </p>
+      </section>
+
+      <section class="cv-card">
+        <h3 class="section-title"><span>//</span> Formación Académica</h3>
+        <div class="timeline-interactive">
+          <div class="timeline-card-item">
+            <h4>Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</h4>
+            <span>Universidad Bernardo O'Higgins (UBO) | 2022 — Presente</span>
+            <p class="cv-text-block">
+              Formación avanzada en programación orientada a objetos (C#), matemáticas de renderizado 3D, motores
+              gráficos Unity, desarrollo XR (VR/AR), modelado 3D en Blender y tecnologías web modernizadas.
+            </p>
           </div>
         </div>
-      </article>
+      </section>
+    </div>
 
-      <!-- PROYECTO 2 -->
-      <article class="project-card" data-category="unity" onclick="openModal('modal2')">
-        <div class="project-body">
-          <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
-          <p class="project-description">Implementación de sistemas de navegación con NavMesh, Scriptable Objects y
-            controladores de animación optimizados para simulación interactiva.</p>
-          <div class="project-tags">
-            <span class="tag">Unity</span>
-            <span class="tag">C#</span>
-            <span class="tag">NavMesh</span>
-            <span class="tag">ScriptableObjects</span>
+    <!-- PESTAÑA 2: COMPETENCIAS TÉCNICAS -->
+    <div id="tab-skills" class="tab-content">
+      <section class="cv-card">
+        <h3 class="section-title"><span>//</span> Evaluación de Competencias Técnicas</h3>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-head">
+            <span>Unity Engine & C# (Arquitectura 3D / XR)</span>
+            <span>90%</span>
           </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
-              class="link-btn">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal2')">Caso de Estudio</button>
+          <div class="skill-progress-bar">
+            <div class="skill-progress-fill" style="width: 90%;"></div>
           </div>
         </div>
-      </article>
 
-      <!-- PROYECTO 3 -->
-      <article class="project-card" data-category="web" onclick="openModal('modal3')">
-        <div class="project-body">
-          <h2 class="project-title">Plataforma Web Personal & Hub</h2>
-          <p class="project-description">Diseño y desarrollo del ecosistema web personal desplegado en Vercel,
-            optimizado para SEO, accesibilidad y velocidad de carga.</p>
-          <div class="project-tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3</span>
-            <span class="tag">Vanilla JS</span>
-            <span class="tag">Vercel</span>
+        <div class="skill-progress-item">
+          <div class="skill-progress-head">
+            <span>Shader Graph & Universal Render Pipeline (URP)</span>
+            <span>82%</span>
           </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener"
-              class="link-btn">Código Fuente</a>
-            <button class="link-btn primary-link" onclick="openModal('modal3')">Caso de Estudio</button>
+          <div class="skill-progress-bar">
+            <div class="skill-progress-fill" style="width: 82%;"></div>
           </div>
         </div>
-      </article>
 
-    </section>
+        <div class="skill-progress-item">
+          <div class="skill-progress-head">
+            <span>Desarrollo Web (HTML5, CSS3, Vanilla JS)</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-progress-bar">
+            <div class="skill-progress-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-progress-item">
+          <div class="skill-progress-head">
+            <span>Modelado 3D & Optimización (Blender)</span>
+            <span>75%</span>
+          </div>
+          <div class="skill-progress-bar">
+            <div class="skill-progress-fill" style="width: 75%;"></div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- PESTAÑA 3: PROYECTOS -->
+    <div id="tab-proyectos" class="tab-content">
+      <section class="cv-card">
+        <h3 class="section-title"><span>//</span> Proyectos & Simulaciones Destacadas</h3>
+
+        <div class="timeline-interactive">
+          <div class="timeline-card-item">
+            <h4>Sistema Interactivo URP & Custom Shaders</h4>
+            <span>Unity / C# / Shader Graph</span>
+            <p class="cv-text-block">Simulación móvil con física de fluidos, instanciación eficiente mediante Object
+              Pooling y Shaders gráficos optimizados para rendimiento continuo a 60 FPS.</p>
+          </div>
+
+          <div class="timeline-card-item">
+            <h4>Módulos de Navegación & IA 3D</h4>
+            <span>Unity / C# / NavMesh</span>
+            <p class="cv-text-block">Implementación de agentes autónomos utilizando NavMesh, arquitecturas desacopladas
+              con ScriptableObjects y controladores de animación eficientes.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
   </main>
 
-  <!-- MODAL PROYECTO 1 -->
-  <div class="modal-overlay" id="modal1" onclick="closeModal('modal1')">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
-      <h3 class="modal-title">Sistema Interactivo URP & Shaders</h3>
-
-      <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Demostración Interactiva URP &gt;</div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Desafío Técnico</h4>
-        <p>Desarrollar una simulación móvil con rendimiento sostenido a 60 FPS en gráficos 3D que permita interactuar
-          con física de fluidos/partículas y agitación de objetos en tiempo real.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Solución Implementada</h4>
-        <p>Se crearon Custom Shaders en Shader Graph dentro de URP (Universal Render Pipeline) junto con scripts C#
-          modulados que gestionan la instanciación eficiente de prefabs usando Object Pooling.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Tecnologías Clave</h4>
-        <p>Unity, C#, Universal Render Pipeline, Shader Graph, VFX Graph, Input System.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL PROYECTO 2 -->
-  <div class="modal-overlay" id="modal2" onclick="closeModal('modal2')">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
-      <h3 class="modal-title">Módulos de Navegación & IA 3D</h3>
-
-      <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Demostración Algoritmo NavMesh &gt;</div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Desafío Técnico</h4>
-        <p>Construir una arquitectura extensible para agentes autónomos en entornos virtuales dinámicos sin sobrecargar
-          la CPU.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Solución Implementada</h4>
-        <p>Implementación de NavMesh Agent acoplado a ScriptableObjects para configurar comportamientos, rangos de
-          detección y máquinas de estado para los controladores de animación.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Tecnologías Clave</h4>
-        <p>Unity NavMesh, C#, ScriptableObjects, Animator Controller, C# Delegates & Events.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL PROYECTO 3 -->
-  <div class="modal-overlay" id="modal3" onclick="closeModal('modal3')">
-    <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-      <h3 class="modal-title">Plataforma Web Personal & Hub</h3>
-
-      <div class="modal-section">
-        <h4>Demo / Captura de Interacción</h4>
-        <div class="demo-placeholder">&lt; Arquitectura Web PWA & Vercel &gt;</div>
-      </div>
-
-      <div class="modal-section">
-        <h4>Desafío Técnico</h4>
-        <p>Ofrecer una velocidad de carga ultrarrápida (Lighthouse 95+), compatibilidad PWA y diseño responsivo completo
-          sin usar frameworks pesados.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Solución Implementada</h4>
-        <p>Desarrollo con HTML5 semántico, CSS3 modular con variables globales y JS puro en arquitectura limpia,
-          integrado a despliegues automatizados en Vercel.</p>
-      </div>
-
-      <div class="modal-section">
-        <h4>Tecnologías Clave</h4>
-        <p>HTML5, CSS3, Vanilla JS, PWA Manifest, SEO JSON-LD, Vercel.</p>
-      </div>
-    </div>
-  </div>
-
+  <!-- Footer -->
   <footer>
     <div class="footer-bottom">
       <p>&copy; 2026 Matías Villalobos Dev (Matías Villalobos Cautivo). Desarrollado con HTML5, CSS3 y Vanilla JS.
@@ -651,7 +751,7 @@
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Lógica de Filtrado y Modales -->
+  <!-- Script Interacción Pestañas CV -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -662,54 +762,23 @@
       });
     }
 
-    function filterProjects(category, evt) {
-      const cards = document.querySelectorAll('.project-card');
-      const buttons = document.querySelectorAll('.filter-btn');
-      const counter = document.getElementById('projectCounter');
-      let visibleCount = 0;
+    function switchTab(tabId, evt) {
+      const contents = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-btn');
 
-      buttons.forEach(btn => {
-        btn.classList.remove('active');
-        btn.setAttribute('aria-selected', 'false');
-      });
+      contents.forEach(content => content.classList.remove('active'));
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      const selectedTab = document.getElementById(tabId);
+      if (selectedTab) {
+        selectedTab.classList.add('active');
+      }
 
       if (evt && evt.target) {
         evt.target.classList.add('active');
-        evt.target.setAttribute('aria-selected', 'true');
-      }
-
-      cards.forEach(card => {
-        const categories = card.getAttribute('data-category');
-        if (category === 'all' || categories.includes(category)) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (counter) {
-        counter.textContent = `Mostrando ${visibleCount} proyecto${visibleCount === 1 ? '' : 's'}`;
-      }
-    }
-
-    function openModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal(modalId) {
-      const modal = document.getElementById(modalId);
-      if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
       }
     }
   </script>
-
 </body>
 
 </html>
