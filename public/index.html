@@ -21,7 +21,7 @@
   <!-- Manifest PWA -->
   <link rel="manifest" href="/manifest.json">
 
-  <!-- Open Graph / Redes Sociales (Facebook, LinkedIn, WhatsApp) -->
+  <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/">
   <meta property="og:title" content="Matías Villalobos Dev | VR Engineer & Software Developer">
@@ -37,7 +37,7 @@
     content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
   <meta name="twitter:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
-  <!-- Marcado Estructurado JSON-LD (Google Rich Snippets) -->
+  <!-- Marcado Estructurado JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -138,6 +138,8 @@
       font-weight: 500;
       font-size: 0.95rem;
       transition: color 0.3s ease;
+      display: inline-block;
+      padding: 0.5rem 0;
     }
 
     .nav-links a:hover,
@@ -150,8 +152,11 @@
       background: transparent;
       border: none;
       color: var(--text-main);
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       cursor: pointer;
+      min-width: 44px;
+      min-height: 44px;
+      line-height: 1;
     }
 
     @media (max-width: 768px) {
@@ -177,6 +182,13 @@
       .nav-links.mobile-open {
         display: flex;
       }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
+      }
     }
 
     /* Fondo Decorativo Cyber Grid */
@@ -188,7 +200,7 @@
     .hero {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 4rem 1.25rem 2.5rem 1.25rem;
+      padding: 3rem 1.25rem 2rem 1.25rem;
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
@@ -206,7 +218,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.3rem 0.8rem;
+      padding: 0.4rem 0.9rem;
       background: rgba(0, 240, 255, 0.08);
       border: 1px solid rgba(0, 240, 255, 0.25);
       border-radius: 20px;
@@ -243,14 +255,14 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2rem, 6vw, 3.2rem);
       line-height: 1.15;
       margin-bottom: 1rem;
     }
 
     .hero p {
       color: var(--text-muted);
-      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
       margin-bottom: 2rem;
       max-width: 600px;
     }
@@ -258,31 +270,44 @@
     .hero-buttons {
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    @media (min-width: 480px) {
+      .hero-buttons {
+        flex-direction: row;
+      }
     }
 
     .profile-card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 1.8rem;
+      padding: 1.5rem;
       text-align: center;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .profile-card img {
-      width: 140px;
-      height: 140px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--accent-color);
       margin-bottom: 1rem;
     }
 
+    @media (min-width: 768px) {
+      .profile-card img {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
     /* Simulación Interactiva Canvas 2D */
     .interactive-demo-section {
       max-width: var(--max-width);
-      margin: 0 auto 3rem auto;
+      margin: 0 auto 2.5rem auto;
       padding: 0 1.25rem;
     }
 
@@ -290,9 +315,15 @@
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 1.8rem;
+      padding: 1.25rem;
       position: relative;
       overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .interactive-card {
+        padding: 1.8rem;
+      }
     }
 
     .interactive-header {
@@ -305,18 +336,26 @@
     }
 
     .interactive-header h3 {
-      font-size: 1.2rem;
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
       font-family: var(--font-code);
       color: var(--accent-color);
     }
 
     #nodeCanvas {
       width: 100%;
-      height: 200px;
+      height: 180px;
       background: #080a0e;
       border: 1px solid var(--bg-card-border);
       border-radius: 8px;
-      cursor: crosshair;
+      cursor: pointer;
+      touch-action: none;
+      /* Previene scroll no deseado al tocar el canvas en celular */
+    }
+
+    @media (min-width: 768px) {
+      #nodeCanvas {
+        height: 220px;
+      }
     }
 
     .modules {
@@ -325,12 +364,13 @@
       padding: 0 1.25rem;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     @media (min-width: 768px) {
       .modules {
         grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
       }
     }
 
@@ -338,11 +378,17 @@
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 2rem;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .card-module {
+        padding: 2rem;
+      }
     }
 
     .card-module:hover {
@@ -351,7 +397,7 @@
     }
 
     .card-module h2 {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       margin-bottom: 0.75rem;
       display: flex;
       align-items: center;
@@ -372,19 +418,20 @@
 
     .skills-section h2 {
       text-align: center;
-      font-size: 1.8rem;
-      margin-bottom: 2rem;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      margin-bottom: 1.5rem;
     }
 
     .skills-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     @media (min-width: 768px) {
       .skills-grid {
         grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
       }
     }
 
@@ -392,11 +439,11 @@
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 1.5rem;
+      padding: 1.25rem;
     }
 
     .skill-category h3 {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--accent-color);
       margin-bottom: 1rem;
       font-family: var(--font-code);
@@ -415,15 +462,15 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--bg-card-border);
       color: var(--text-main);
-      padding: 0.4rem 0.8rem;
+      padding: 0.4rem 0.75rem;
       border-radius: 6px;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-family: var(--font-code);
     }
 
     .contact-section {
       max-width: var(--max-width);
-      margin: 0 auto 4rem auto;
+      margin: 0 auto 3.5rem auto;
       padding: 0 1.25rem;
     }
 
@@ -431,33 +478,46 @@
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
-      padding: 2.5rem 1.5rem;
+      padding: 2rem 1.25rem;
       text-align: center;
     }
 
+    @media (min-width: 768px) {
+      .contact-card {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
     .contact-card h2 {
-      font-size: 1.8rem;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
       margin-bottom: 0.5rem;
     }
 
     .contact-card p {
       color: var(--text-muted);
       max-width: 550px;
-      margin: 0 auto 1.8rem auto;
+      margin: 0 auto 1.5rem auto;
     }
 
     .contact-grid {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 0.8rem;
+      flex-direction: column;
+    }
+
+    @media (min-width: 580px) {
+      .contact-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
 
     /* Footer Estructurado */
     footer {
       border-top: 1px solid var(--bg-card-border);
       background: rgba(10, 12, 16, 0.95);
-      padding: 3rem 1.25rem 2rem 1.25rem;
+      padding: 2.5rem 1.25rem 2rem 1.25rem;
     }
 
     .footer-content {
@@ -465,30 +525,31 @@
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1.8rem;
       margin-bottom: 2rem;
     }
 
     @media (min-width: 768px) {
       .footer-content {
         grid-template-columns: 2fr 1fr 1fr;
+        gap: 2rem;
       }
     }
 
     .footer-brand h4 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin-bottom: 0.5rem;
     }
 
     .footer-brand p {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       max-width: 400px;
     }
 
     .footer-links h5 {
       color: var(--text-main);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       margin-bottom: 0.8rem;
       font-family: var(--font-code);
     }
@@ -517,7 +578,7 @@
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
   </style>
 </head>
@@ -566,9 +627,9 @@
     <section class="interactive-demo-section reveal">
       <div class="interactive-card">
         <div class="interactive-header">
-          <h3>⚡ Demo Interactiva en Vivo (Canvas Nodos & Físicas)</h3>
-          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-code);">[Pasa el mouse sobre
-            el lienzo]</span>
+          <h3>⚡ Simulador de Físicas & Vectores en Tiempo Real</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-code);">[Toca la pantalla o
+            usa el ratón]</span>
         </div>
         <canvas id="nodeCanvas"></canvas>
       </div>
@@ -693,7 +754,7 @@
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Script Canvas 2D -->
+  <!-- Script Motor de Físicas Canvas 2D Adaptado a Touch/Móvil -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -718,7 +779,7 @@
       }
     }
 
-    /* Canvas 2D Nodos */
+    /* Motor de Físicas Canvas 2D Interactivo */
     const canvas = document.getElementById('nodeCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -727,35 +788,65 @@
 
       function resizeCanvas() {
         canvas.width = canvas.parentElement.clientWidth;
-        canvas.height = 200;
+        canvas.height = window.innerWidth < 768 ? 180 : 220;
       }
 
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
 
-      canvas.addEventListener('mousemove', (e) => {
+      function updatePointerPos(clientX, clientY) {
         const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-      });
+        mouse.x = clientX - rect.left;
+        mouse.y = clientY - rect.top;
+      }
 
-      canvas.addEventListener('mouseleave', () => {
-        mouse.x = null;
-        mouse.y = null;
+      canvas.addEventListener('mousemove', (e) => updatePointerPos(e.clientX, e.clientY));
+      canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+
+      canvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+
+      canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+      canvas.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
+
+      canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
+
+        particles.forEach(p => {
+          const dx = p.x - clickX;
+          const dy = p.y - clickY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 150) {
+            const force = (150 - dist) / 10;
+            p.vx += (dx / dist) * force;
+            p.vy += (dy / dist) * force;
+          }
+        });
       });
 
       class Particle {
         constructor() {
           this.x = Math.random() * canvas.width;
           this.y = Math.random() * canvas.height;
-          this.vx = (Math.random() - 0.5) * 1.5;
-          this.vy = (Math.random() - 0.5) * 1.5;
-          this.radius = 2;
+          this.vx = (Math.random() - 0.5) * 1.8;
+          this.vy = (Math.random() - 0.5) * 1.8;
+          this.radius = 2.5;
         }
 
         update() {
           this.x += this.vx;
           this.y += this.vy;
+
+          this.vx *= 0.99;
+          this.vy *= 0.99;
+
+          if (Math.abs(this.vx) < 0.5) this.vx += (Math.random() - 0.5) * 0.2;
+          if (Math.abs(this.vy) < 0.5) this.vy += (Math.random() - 0.5) * 0.2;
 
           if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
           if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
@@ -771,7 +862,7 @@
 
       function initParticles() {
         particles = [];
-        const count = Math.floor(canvas.width / 15);
+        const count = Math.floor(canvas.width / 14);
         for (let i = 0; i < count; i++) {
           particles.push(new Particle());
         }
@@ -796,7 +887,7 @@
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
               ctx.strokeStyle = `rgba(0, 240, 255, ${1 - dist / 80})`;
-              ctx.lineWidth = 0.5;
+              ctx.lineWidth = 0.6;
               ctx.stroke();
             }
           }
@@ -810,7 +901,7 @@
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(mouse.x, mouse.y);
               ctx.strokeStyle = `rgba(112, 0, 255, ${1 - dist / mouse.radius})`;
-              ctx.lineWidth = 1;
+              ctx.lineWidth = 1.2;
               ctx.stroke();
             }
           }
