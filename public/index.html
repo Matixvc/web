@@ -4,39 +4,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Básico & Palabras Clave Focales -->
+  <title>Matías Villalobos Dev | VR Engineer & XR Software Developer</title>
   <meta name="description"
-    content="Sitio web profesional y portafolio de Matías Villalobos Cautivo. Ingeniería en Realidad Virtual, Desarrollo XR, Simulaciones 3D y Desarrollo Web.">
+    content="Sitio oficial de Matías Villalobos Dev (Matías Villalobos Cautivo). Estudiante de Ingeniería en Realidad Virtual, desarrollador Unity 3D, C# y aplicaciones web interactivas en Santiago de Chile.">
   <meta name="keywords"
-    content="Matías Villalobos Cautivo, XR, VR, Realidad Virtual, Unity, C#, JavaScript, Web Developer, Portfolio">
+    content="Matias Villalobos Dev, Matías Villalobos Dev, Matías Villalobos Cautivo, Matias Villalobos Cautivo, Unity Developer Chile, XR Engineer, VR Developer Santiago, Realidad Virtual UBO">
   <meta name="author" content="Matías Villalobos Cautivo">
+  <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0c10">
+
+  <!-- URL Canónica -->
+  <link rel="canonical" href="https://matiasdev-web.vercel.app/">
 
   <!-- Manifest PWA -->
   <link rel="manifest" href="/manifest.json">
 
-  <!-- Open Graph / Redes Sociales -->
+  <!-- Open Graph / Redes Sociales (Facebook, LinkedIn, WhatsApp) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/">
-  <meta property="og:title" content="Matías Villalobos Cautivo | VR & Software Developer">
+  <meta property="og:title" content="Matías Villalobos Dev | VR Engineer & Software Developer">
   <meta property="og:description"
-    content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
+    content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas. Descubre mis proyectos y trayectoria.">
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
+  <meta property="og:site_name" content="Matías Villalobos Dev">
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Matías Villalobos Cautivo | VR & Software Developer">
+  <meta name="twitter:title" content="Matías Villalobos Dev | VR Engineer & Software Developer">
   <meta name="twitter:description"
     content="Especialista en Realidad Virtual, Simulaciones 3D con Unity y C#, y Aplicaciones Web Interactivas.">
   <meta name="twitter:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
-  <!-- Marcado Estructurado JSON-LD -->
+  <!-- Marcado Estructurado JSON-LD (Google Rich Snippets) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Matías Villalobos Cautivo",
+    "alternateName": ["Matias Villalobos Dev", "Matias Dev", "Matias Villalobos"],
     "jobTitle": "Ingeniero en Realidad Virtual & Software Developer",
     "url": "https://matiasdev-web.vercel.app/",
+    "image": "https://matiasdev-web.vercel.app/img/matias.jpg",
     "sameAs": [
       "https://www.linkedin.com/in/matias-vc-dev",
       "https://github.com/matiasvillalobosdev-web"
@@ -45,6 +55,10 @@
       "@type": "PostalAddress",
       "addressLocality": "Santiago",
       "addressCountry": "Chile"
+    },
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Universidad Bernardo O'Higgins"
     },
     "knowsAbout": [
       "Unity",
@@ -57,8 +71,6 @@
     ]
   }
   </script>
-
-  <title>Matías Villalobos Cautivo | VR & Software Developer</title>
 
   <!-- Favicon -->
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
@@ -167,6 +179,12 @@
       }
     }
 
+    /* Fondo Decorativo Cyber Grid */
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
     .hero {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -259,6 +277,46 @@
       object-fit: cover;
       border: 2px solid var(--accent-color);
       margin-bottom: 1rem;
+    }
+
+    /* Simulación Interactiva Canvas 2D */
+    .interactive-demo-section {
+      max-width: var(--max-width);
+      margin: 0 auto 3rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .interactive-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .interactive-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .interactive-header h3 {
+      font-size: 1.2rem;
+      font-family: var(--font-code);
+      color: var(--accent-color);
+    }
+
+    #nodeCanvas {
+      width: 100%;
+      height: 200px;
+      background: #080a0e;
+      border: 1px solid var(--bg-card-border);
+      border-radius: 8px;
+      cursor: crosshair;
     }
 
     .modules {
@@ -464,11 +522,11 @@
   </style>
 </head>
 
-<body>
+<body class="bg-grid-pattern">
 
   <header>
     <nav aria-label="Navegación principal">
-      <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
+      <a href="/" class="brand">Matías <span>Villalobos Dev</span></a>
       <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
         ☰
       </button>
@@ -487,19 +545,32 @@
           <span class="pulse-dot"></span>
           <span>Disponible para Práctica / Proyectos XR</span>
         </div>
-        <h1>Matías Villalobos Cautivo</h1>
-        <p>Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales. Especializado en desarrollo
-          interactivo con Unity, C#, simulaciones 3D y tecnologías web.</p>
+        <h1>Matías Villalobos Dev</h1>
+        <p>Sitio oficial de Matías Villalobos Cautivo. Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos
+          Digitales. Especializado en desarrollo interactivo con Unity, C#, simulaciones 3D y aplicaciones web
+          interactivas.</p>
         <div class="hero-buttons">
           <a href="/portafolio/" class="btn btn-primary">Ver Portafolio</a>
           <a href="/cv/" class="btn btn-secondary">Consultar CV</a>
         </div>
       </div>
       <div class="profile-card">
-        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Cautivo" loading="lazy"
+        <img src="/img/matias.jpg" alt="Foto de Matías Villalobos Dev" loading="lazy"
           onerror="this.src='https://via.placeholder.com/140'">
         <h3>Matías Villalobos Cautivo</h3>
         <p style="color: var(--accent-color); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR Engineer</p>
+      </div>
+    </section>
+
+    <!-- Muestra Interactiva Canvas en Vivo -->
+    <section class="interactive-demo-section reveal">
+      <div class="interactive-card">
+        <div class="interactive-header">
+          <h3>⚡ Demo Interactiva en Vivo (Canvas Nodos & Físicas)</h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-code);">[Pasa el mouse sobre
+            el lienzo]</span>
+        </div>
+        <canvas id="nodeCanvas"></canvas>
       </div>
     </section>
 
@@ -589,7 +660,7 @@
   <footer>
     <div class="footer-content">
       <div class="footer-brand">
-        <h4>Matías Villalobos Cautivo</h4>
+        <h4>Matías Villalobos Dev</h4>
         <p>Ingeniería en Realidad Virtual y Diseño de Juegos Digitales — Universidad Bernardo O'Higgins, Santiago de
           Chile.</p>
       </div>
@@ -614,13 +685,15 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS. Desplegado en Vercel.</p>
+      <p>&copy; 2026 Matías Villalobos Dev (Matías Villalobos Cautivo). Desarrollado con HTML5, CSS3 y Vanilla JS.
+        Desplegado en Vercel.</p>
     </div>
   </footer>
 
   <!-- Script Global -->
   <script src="/script.js"></script>
 
+  <!-- Script Canvas 2D -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -643,6 +716,110 @@
           colors: ['#00f0ff', '#7000ff', '#ffffff']
         });
       }
+    }
+
+    /* Canvas 2D Nodos */
+    const canvas = document.getElementById('nodeCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: 100 };
+
+      function resizeCanvas() {
+        canvas.width = canvas.parentElement.clientWidth;
+        canvas.height = 200;
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      canvas.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 1.5;
+          this.vy = (Math.random() - 0.5) * 1.5;
+          this.radius = 2;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = '#00f0ff';
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.floor(canvas.width / 15);
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      initParticles();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 80) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(0, 240, 255, ${1 - dist / 80})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+
+          if (mouse.x && mouse.y) {
+            const dx = particles[i].x - mouse.x;
+            const dy = particles[i].y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(112, 0, 255, ${1 - dist / mouse.radius})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
     }
   </script>
 </body>
