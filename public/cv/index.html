@@ -203,7 +203,7 @@
       }
     }
 
-    /* Tarjetas Interactivas Expandibles */
+    /* Tarjetas Interactivas */
     .cv-card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
@@ -302,15 +302,6 @@
       border-color: rgba(0, 240, 255, 0.3);
     }
 
-    .section-title-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
     .section-title {
       font-size: 1.15rem;
       color: var(--text-main);
@@ -318,30 +309,11 @@
       align-items: center;
       gap: 0.6rem;
       font-family: var(--font-code);
+      margin-bottom: 1rem;
     }
 
     .section-title span {
       color: var(--accent-color);
-    }
-
-    .expand-btn-hint {
-      font-family: var(--font-code);
-      font-size: 0.8rem;
-      color: var(--accent-color);
-      background: rgba(0, 240, 255, 0.08);
-      border: 1px solid rgba(0, 240, 255, 0.25);
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: all 0.2s ease;
-    }
-
-    .cv-card:hover .expand-btn-hint {
-      background: var(--accent-color);
-      color: #000000;
-      font-weight: 600;
     }
 
     .cv-text-block {
@@ -545,7 +517,6 @@
       footer,
       .cv-top-actions,
       .mobile-menu-toggle,
-      .expand-btn-hint,
       .modal-overlay {
         display: none !important;
       }
@@ -680,10 +651,10 @@
     <div class="cv-top-actions">
       <div class="cv-badge-status">
         <span class="pulse-dot"></span>
-        <span>CV Completo (Toca las tarjetas para ampliar)</span>
+        <span>CV Completo</span>
       </div>
       <button onclick="window.print()" class="btn btn-primary">
-        🖨️ Descargar / Imprimir PDF (1 Hoja)
+        🖨️ Descargar / Imprimir PDF
       </button>
     </div>
 
@@ -710,10 +681,7 @@
 
     <!-- TARJETA 2: PERFIL PROFESIONAL -->
     <section class="cv-card" onclick="openModalCv('modal-perfil-detail')">
-      <div class="section-title-wrapper">
-        <h3 class="section-title"><span>//</span> Perfil Profesional</h3>
-        <span class="expand-btn-hint">🔍 Desglosar Perfil</span>
-      </div>
+      <h3 class="section-title"><span>//</span> Perfil Profesional</h3>
       <p class="cv-text-block">
         Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales en la Universidad Bernardo O'Higgins.
         Especializado en el desarrollo de simulaciones 3D interactivas, programación modular en C#, optimización en
@@ -724,10 +692,7 @@
 
     <!-- TARJETA 3: EDUCACIÓN -->
     <section class="cv-card" onclick="openModalCv('modal-edu-detail')">
-      <div class="section-title-wrapper">
-        <h3 class="section-title"><span>//</span> Formación Académica</h3>
-        <span class="expand-btn-hint">🔍 Mallas & Asignaturas</span>
-      </div>
+      <h3 class="section-title"><span>//</span> Formación Académica</h3>
       <div class="timeline-interactive">
         <div class="timeline-card-item">
           <h4>Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</h4>
@@ -742,10 +707,7 @@
 
     <!-- TARJETA 4: COMPETENCIAS TÉCNICAS -->
     <section class="cv-card" onclick="openModalCv('modal-skills-detail')">
-      <div class="section-title-wrapper">
-        <h3 class="section-title"><span>//</span> Competencias Técnicas & Stack</h3>
-        <span class="expand-btn-hint">🔍 Detalle de Herramientas</span>
-      </div>
+      <h3 class="section-title"><span>//</span> Competencias Técnicas & Stack</h3>
 
       <div class="skill-progress-item">
         <div class="skill-progress-head">
@@ -780,10 +742,7 @@
 
     <!-- TARJETA 5: PROYECTOS Y SIMULACIONES -->
     <section class="cv-card" onclick="openModalCv('modal-projects-detail')">
-      <div class="section-title-wrapper">
-        <h3 class="section-title"><span>//</span> Proyectos & Simulaciones</h3>
-        <span class="expand-btn-hint">🔍 Casos de Estudio</span>
-      </div>
+      <h3 class="section-title"><span>//</span> Proyectos & Simulaciones</h3>
 
       <div class="timeline-interactive">
         <div class="timeline-card-item">
@@ -804,9 +763,7 @@
 
   </main>
 
-  <!-- ==========================================
-       MODALES DE DESGROSE Y INFORMACIÓN AMPLIADA
-       ========================================== -->
+  <!-- MODALES DE DESGROSE Y INFORMACIÓN AMPLIADA -->
 
   <!-- MODAL 1: CONTACTO Y DATOS AMPLIADOS -->
   <div class="modal-overlay" id="modal-header-detail" onclick="closeModalCv('modal-header-detail')">
@@ -820,7 +777,7 @@
       <h4>Contacto Directo</h4>
       <ul>
         <li><strong>Correo Electrónico:</strong> matias.villalobos.dev@gmail.com</li>
-        <li><strong>Teléfono Movil:</strong> +56 9 8757 6708</li>
+        <li><strong>Teléfono Móvil:</strong> +56 9 8757 6708</li>
         <li><strong>LinkedIn:</strong> linkedin.com/in/matias-vc-dev</li>
         <li><strong>GitHub:</strong> github.com/matiasvillalobosdev-web</li>
       </ul>
