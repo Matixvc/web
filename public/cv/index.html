@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Curriculum Vitae de Matías Villalobos Cautivo - Unity Developer (Trainee) | XR/VR Developer | C# | Experiencias 3D Interactivas.">
-  <meta name="keywords" content="Matías Villalobos Cautivo, Unity Developer, XR Developer, VR, C#, Shaders, Juegos Digitales, Santiago Chile">
-  <meta name="author" content="Matías Villalobos Cautivo">
 
-  <!-- Open Graph -->
+  <!-- SEO Básico & Palabras Clave Focales -->
+  <title>Curriculum Vitae | Matías Villalobos Dev</title>
+  <meta name="description"
+    content="Curriculum Vitae profesional de Matías Villalobos Dev (Matías Villalobos Cautivo). Estudiante de Ingeniería en Realidad Virtual y Diseño de Juegos Digitales. Especialista en Unity, C# y desarrollo web.">
+  <meta name="keywords"
+    content="Matías Villalobos Cautivo CV, Matias Villalobos Dev Currículum, VR Engineer Chile, Unity Developer CV">
+  <meta name="author" content="Matías Villalobos Cautivo">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0a0c10">
+
+  <!-- URL Canónica -->
+  <link rel="canonical" href="https://matiasdev-web.vercel.app/cv/">
+
+  <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://matiasdev-web.vercel.app/cv/">
-  <meta property="og:title" content="Curriculum Vitae | Matías Villalobos Cautivo">
-  <meta property="og:description" content="Desarrollador Unity y XR en formación. Especializado en experiencias 3D, simulaciones y C#.">
-  <meta property="og:image" content="/img/og-image.png">
-
-  <title>Curriculum Vitae | Matías Villalobos Cautivo</title>
+  <meta property="og:title" content="Curriculum Vitae | Matías Villalobos Dev">
+  <meta property="og:description"
+    content="Consulta mi trayectoria académica, competencias técnicas en Unity, C#, Realidad Virtual y desarrollo web.">
+  <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
   <!-- Favicon -->
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
@@ -26,47 +36,19 @@
   <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
   <style>
-    /* Variables de la vista CV - Modo Claro por Defecto */
-    :root {
-      --bg-cv-primary: #f8fafc;
-      --bg-cv-card: #ffffff;
-      --bg-cv-border: #e2e8f0;
-      --bg-cv-sidebar: #f1f5f9;
-      --text-cv-main: #0f172a;
-      --text-cv-muted: #475569;
-      --accent-cv: #0284c7;
-      --shadow-cv: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-    }
-
-    /* Variables - Modo Oscuro */
-    body.dark-theme {
-      --bg-cv-primary: #0a0c10;
-      --bg-cv-card: rgba(22, 27, 34, 0.85);
-      --bg-cv-border: rgba(255, 255, 255, 0.1);
-      --bg-cv-sidebar: rgba(255, 255, 255, 0.03);
-      --text-cv-main: #f0f6fc;
-      --text-cv-muted: #94a3b8;
-      --accent-cv: #00f0ff;
-      --shadow-cv: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    body {
-      background-color: var(--bg-cv-primary);
-      color: var(--text-cv-main);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* Header Nav Global */
+    /* Estilos del Navegador y Menú Móvil */
     header {
       position: sticky;
       top: 0;
       width: 100%;
       background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--bg-card-border);
       z-index: 1000;
     }
 
@@ -76,14 +58,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
     }
 
     .brand {
       font-weight: 700;
       font-size: 1.2rem;
-      color: #f0f6fc;
+      color: var(--text-main);
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .brand span {
@@ -99,361 +84,295 @@
     }
 
     .nav-links a {
-      color: #8b949e;
+      color: var(--text-muted);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
       transition: color 0.3s ease;
+      display: inline-block;
+      padding: 0.5rem 0;
     }
 
-    .nav-links a:hover, .nav-links a.active {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--accent-color);
     }
 
-    .cv-container {
-      max-width: 980px;
-      margin: 1.5rem auto 3rem auto;
-      padding: 0 1.5rem;
-    }
-
-    .action-bar {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.8rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .btn-action {
-      background: var(--bg-cv-card);
-      color: var(--text-cv-main);
-      font-weight: 600;
-      padding: 0.55rem 1.2rem;
-      border-radius: 8px;
-      border: 1px solid var(--bg-cv-border);
-      cursor: pointer;
-      font-family: var(--font-main);
-      font-size: 0.88rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s ease;
-    }
-
-    .btn-action:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent-cv);
-      color: var(--accent-cv);
-    }
-
-    .btn-primary-action {
-      background: var(--accent-gradient);
-      color: #ffffff;
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
       border: none;
+      color: var(--text-main);
+      font-size: 1.8rem;
+      cursor: pointer;
+      min-width: 44px;
+      min-height: 44px;
+      line-height: 1;
     }
 
-    body.dark-theme .btn-primary-action {
-      color: #000000;
-    }
+    @media (max-width: 768px) {
+      .mobile-menu-toggle {
+        display: block;
+      }
 
-    /* Hoja del CV con Encabezado Blanco/Claro */
-    .cv-paper {
-      position: relative;
-      background: var(--bg-cv-card);
-      border: 1px solid var(--bg-cv-border);
-      border-radius: 14px;
-      padding: 2.2rem;
-      box-shadow: var(--shadow-cv);
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 12, 16, 0.95);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        padding: 1.5rem 0;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--bg-card-border);
+        display: none;
+      }
 
-    .cv-header {
-      position: sticky;
-      top: 75px;
-      z-index: 900;
-      background: var(--bg-cv-card);
-      border-bottom: 2px solid var(--bg-cv-border);
-      padding: 1rem 0;
-      margin-bottom: 1.2rem;
-      transition: background 0.3s ease, border-color 0.3s ease;
-    }
+      .nav-links.mobile-open {
+        display: flex;
+      }
 
-    .cv-header h1 {
-      font-size: 2.1rem;
-      color: var(--text-cv-main);
-      margin-bottom: 0.2rem;
-    }
-
-    .cv-header .subtitle {
-      color: var(--accent-cv);
-      font-family: var(--font-code);
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      color: var(--text-cv-muted);
-      font-size: 0.85rem;
-    }
-
-    .contact-info a {
-      color: var(--text-cv-muted);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .contact-info a:hover {
-      color: var(--accent-cv);
-    }
-
-    .cv-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .cv-grid {
-        grid-template-columns: 1.85fr 1.15fr;
+      .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
       }
     }
 
-    .cv-section {
-      margin-bottom: 1.2rem;
+    /* Layout Principal de CV */
+    .cv-container {
+      max-width: var(--max-width);
+      margin: 2rem auto 4rem auto;
+      padding: 0 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
-    .cv-section h2 {
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent-cv);
-      border-bottom: 1.5px solid var(--bg-cv-border);
-      padding-bottom: 0.2rem;
-      margin-bottom: 0.6rem;
-      font-weight: 700;
+    @media (min-width: 850px) {
+      .cv-container {
+        grid-template-columns: 320px 1fr;
+      }
     }
 
-    .cv-section p {
-      color: var(--text-cv-main);
+    /* Tarjeta Lateral Fija */
+    .cv-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 1.8rem;
+      height: fit-content;
+      position: sticky;
+      top: 90px;
+    }
+
+    .cv-avatar {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .cv-avatar img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .cv-avatar h1 {
+      font-size: 1.35rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .cv-avatar p {
+      color: var(--accent-color);
       font-size: 0.88rem;
-      line-height: 1.45;
+      font-family: var(--font-code);
     }
 
-    .item-block {
-      margin-bottom: 0.9rem;
+    .cv-contact-list {
+      list-style: none;
+      margin: 1.5rem 0;
+      border-top: 1px solid var(--bg-card-border);
+      border-bottom: 1px solid var(--bg-card-border);
+      padding: 1.25rem 0;
     }
 
-    .item-header {
+    .cv-contact-list li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 0.15rem;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      word-break: break-all;
     }
 
-    .item-title {
-      font-size: 0.93rem;
-      font-weight: 600;
-      color: var(--text-cv-main);
+    .cv-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
 
-    .item-date {
+    /* Contenido Principal CV */
+    .cv-main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .cv-section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 1.8rem;
+    }
+
+    .cv-section-card h2 {
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-bottom: 1px solid var(--bg-card-border);
+      padding-bottom: 0.6rem;
+    }
+
+    .cv-section-card h2 span {
+      color: var(--accent-color);
+    }
+
+    .summary-text {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* Línea de Tiempo Académica & Proyectos */
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--bg-card-border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.8rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.95rem;
+      top: 0.2rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      box-shadow: 0 0 8px var(--accent-color);
+    }
+
+    .timeline-date {
       font-family: var(--font-code);
       font-size: 0.8rem;
-      color: var(--accent-cv);
-      font-weight: 500;
+      color: var(--accent-color);
+      margin-bottom: 0.25rem;
     }
 
-    .item-sub {
-      color: var(--text-cv-muted);
-      font-size: 0.82rem;
-      margin-bottom: 0.3rem;
-      font-style: italic;
+    .timeline-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
     }
 
-    .item-bullets {
-      list-style-type: disc;
-      padding-left: 1rem;
-      color: var(--text-cv-muted);
-      font-size: 0.84rem;
+    .timeline-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
     }
 
-    .item-bullets li {
-      margin-bottom: 0.2rem;
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
-    .sidebar-block {
-      background: var(--bg-cv-sidebar);
-      border: 1px solid var(--bg-cv-border);
-      border-radius: 8px;
-      padding: 0.75rem 0.85rem;
-      margin-bottom: 0.8rem;
+    /* Módulos de Habilidades con Barras de Progreso */
+    .skill-bar-container {
+      margin-bottom: 1rem;
     }
 
-    .sidebar-block h3 {
-      font-size: 0.85rem;
-      color: var(--text-cv-main);
-      margin-bottom: 0.3rem;
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 0.35rem;
       font-family: var(--font-code);
-      font-weight: 600;
     }
 
-    .sidebar-block p, .sidebar-block ul {
-      color: var(--text-cv-muted);
-      font-size: 0.82rem;
-      line-height: 1.4;
+    .progress-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 4px;
+      overflow: hidden;
     }
 
-    .sidebar-block ul {
-      list-style: none;
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 4px;
+    }
+
+    /* Visor de PDF Integrado */
+    .pdf-viewer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--bg-card-border);
+      border-radius: var(--radius-card);
+      padding: 1.5rem;
+    }
+
+    .pdf-frame {
+      width: 100%;
+      height: 500px;
+      border: 1px solid var(--bg-card-border);
+      border-radius: 8px;
+      background: #1e232d;
     }
 
     footer {
       border-top: 1px solid var(--bg-card-border);
+      background: rgba(10, 12, 16, 0.95);
+      padding: 2.5rem 1.25rem 2rem 1.25rem;
+    }
+
+    .footer-bottom {
+      max-width: var(--max-width);
+      margin: 0 auto;
       text-align: center;
-      padding: 1.5rem;
-      color: #8b949e;
-      font-size: 0.85rem;
-    }
-
-    /* Reglas de Impresión PDF a 1 Hoja A4 */
-    @page {
-      size: A4 portrait;
-      margin: 8mm 10mm;
-    }
-
-    @media print {
-      header, footer, .action-bar, .nav-links {
-        display: none !important;
-      }
-
-      body {
-        background-color: #ffffff !important;
-        color: #0f172a !important;
-        font-family: Arial, Helvetica, sans-serif !important;
-        font-size: 10pt !important;
-        line-height: 1.5 !important;
-        zoom: 1.05;
-      }
-
-      .cv-container {
-        margin: 0 !important;
-        padding: 0 !important;
-        max-width: 100% !important;
-      }
-
-      .cv-paper {
-        background: #ffffff !important;
-        border: none !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-      }
-
-      .cv-header {
-        border-bottom: 2pt solid #0f172a !important;
-        padding-bottom: 10pt !important;
-        margin-bottom: 14pt !important;
-      }
-
-      .cv-header h1 {
-        color: #000000 !important;
-        font-size: 22pt !important;
-      }
-
-      .cv-header .subtitle {
-        color: #0284c7 !important;
-        font-size: 11pt !important;
-        margin-bottom: 8pt !important;
-      }
-
-      .contact-info {
-        font-size: 9.5pt !important;
-        color: #334155 !important;
-        gap: 12pt !important;
-      }
-
-      .contact-info a {
-        color: #0f172a !important;
-      }
-
-      .cv-grid {
-        display: grid !important;
-        grid-template-columns: 1.8fr 1.2fr !important;
-        gap: 16pt !important;
-      }
-
-      .cv-section {
-        margin-bottom: 14pt !important;
-      }
-
-      .cv-section h2 {
-        color: #0284c7 !important;
-        border-bottom: 1.5pt solid #cbd5e1 !important;
-        font-size: 11pt !important;
-        padding-bottom: 4pt !important;
-        margin-bottom: 10pt !important;
-      }
-
-      .cv-section p, .item-bullets li {
-        font-size: 9.5pt !important;
-        color: #1e293b !important;
-      }
-
-      .sidebar-block {
-        background: #f8fafc !important;
-        border: 0.5pt solid #cbd5e1 !important;
-        padding: 10pt 12pt !important;
-        margin-bottom: 12pt !important;
-      }
-
-      .sidebar-block h3 {
-        font-size: 10pt !important;
-        color: #0f172a !important;
-      }
-
-      .sidebar-block p, .sidebar-block ul li {
-        font-size: 9pt !important;
-        color: #334155 !important;
-      }
-
-      .item-block {
-        margin-bottom: 12pt !important;
-      }
-
-      .item-title {
-        font-size: 10.5pt !important;
-        color: #0f172a !important;
-      }
-
-      .item-date {
-        font-size: 9pt !important;
-        color: #0284c7 !important;
-      }
-
-      .item-sub {
-        font-size: 9pt !important;
-        margin-bottom: 5pt !important;
-      }
-
-      .item-bullets {
-        padding-left: 14pt !important;
-      }
-
-      .item-bullets li {
-        margin-bottom: 4pt !important;
-      }
+      color: var(--text-muted);
+      font-size: 0.82rem;
     }
   </style>
 </head>
+
 <body>
 
   <header>
-    <nav>
-      <a href="/" class="brand">Matías <span>Villalobos Cautivo</span></a>
-      <ul class="nav-links">
+    <nav aria-label="Navegación principal">
+      <a href="/" class="brand">Matías <span>Villalobos Dev</span></a>
+      <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+        ☰
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="/">Inicio</a></li>
         <li><a href="/portafolio/">Portafolio</a></li>
         <li><a href="/cv/" class="active">CV</a></li>
@@ -462,145 +381,146 @@
   </header>
 
   <main class="cv-container">
-    <div class="action-bar">
-      <button onclick="toggleTheme()" class="btn-action" id="themeBtn">
-        🌙 Modo Oscuro
-      </button>
-      <button onclick="window.print()" class="btn-action btn-primary-action">
-        🖨️ Descargar CV en PDF
-      </button>
-    </div>
 
-    <article class="cv-paper">
-      <header class="cv-header">
-        <h1>Matías Villalobos Cautivo</h1>
-        <div class="subtitle">Unity Developer (Trainee) | XR/VR Developer | C# | Experiencias 3D Interactivas</div>
-        <div class="contact-info">
-          <span>📍 Santiago, Chile</span>
-          <span>📞 <a href="tel:+56987576708">+56 9 87576708</a></span>
-          <span>✉️ <a href="mailto:matias.villalobos.dev@gmail.com">matias.villalobos.dev@gmail.com</a></span>
-          <span>🔗 <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank">linkedin.com/in/matias-vc-dev</a></span>
-          <span>💻 <a href="https://github.com/matiasvillalobosdev-web" target="_blank">github.com/matiasvillalobosdev-web</a></span>
-        </div>
-      </header>
-
-      <div class="cv-grid">
-        <div class="main-column">
-          <section class="cv-section">
-            <h2>Perfil Profesional</h2>
-            <p>Desarrollador Unity en formación y estudiante de Ingeniería en Realidad Virtual. Enfocado en la creación de videojuegos, simulaciones 3D y entornos XR/VR/AR. Destaco por construir código C# modular, escalable y optimizado para rendimiento gráfico e interacción en tiempo real. Disponible para Práctica Profesional (Part-Time / Full-Time).</p>
-          </section>
-
-          <section class="cv-section">
-            <h2>Experiencia / Formación Técnica</h2>
-            
-            <div class="item-block">
-              <div class="item-header">
-                <span class="item-title">Unity Developer — Proyectos Académicos y Personales</span>
-                <span class="item-date">2021 – Presente</span>
-              </div>
-              <div class="item-sub">Freelance / Prototipado Interactivo — Santiago, Chile</div>
-              <ul class="item-bullets">
-                <li>Desarrollo de prototipos interactivos en C#: mecánicas de movimiento, inventarios, UI/HUD, sistemas de daño/vida e IA básica.</li>
-                <li>Integración y optimización de assets 3D creados en Blender para entornos virtuales en tiempo real.</li>
-                <li>Uso de Prompt Engineering e IA generativa para agilizar la documentación, pruebas de concepto y depuración de errores.</li>
-              </ul>
-            </div>
-
-            <div class="item-block">
-              <div class="item-header">
-                <span class="item-title">Desarrollador Web & WebXR Project Hub</span>
-                <span class="item-date">2026</span>
-              </div>
-              <div class="item-sub">Proyecto Personal / Plataforma Web</div>
-              <ul class="item-bullets">
-                <li>Diseño e implementación de hub profesional desplegado en Vercel con estándar responsivo y arquitectura optimizada para reclutamiento.</li>
-                <li>Estructuración de componentes accesibles e integración de visualización de proyectos interactivos.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="cv-section">
-            <h2>Educación Superior</h2>
-            <div class="item-block">
-              <div class="item-header">
-                <span class="item-title">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</span>
-                <span class="item-date">2021 – 2027</span>
-              </div>
-              <div class="item-sub">Universidad Bernardo O'Higgins — Santiago, Chile</div>
-              <ul class="item-bullets">
-                <li>Formación en motores de juego, cálculo aplicado, optimización gráfica, diseño de nivel y desarrollo de sistemas interactivos.</li>
-              </ul>
-            </div>
-          </section>
-        </div>
-
-        <div class="sidebar-column">
-          <section class="cv-section">
-            <h2>Aptitudes Principales</h2>
-            
-            <div class="sidebar-block">
-              <h3>Unity & C#</h3>
-              <p>Gameplay, físicas 3D, controladores de animación, NavMesh, Scriptable Objects, UI/HUD, guardado de datos.</p>
-            </div>
-
-            <div class="sidebar-block">
-              <h3>XR & Gráficos</h3>
-              <p>Creación de Shaders, Shader Graph, VFX Graph, optimización URP, iluminación y renderizado.</p>
-            </div>
-
-            <div class="sidebar-block">
-              <h3>Herramientas & Pipeline</h3>
-              <p>Git, GitHub, VS Code, Blender (3D Básico), Vercel, HTML5/CSS3/JS.</p>
-            </div>
-          </section>
-
-          <section class="cv-section">
-            <h2>Disponibilidad</h2>
-            <div class="sidebar-block">
-              <ul>
-                <li>• Práctica Profesional (Part-Time / Full-Time)</li>
-                <li>• Modalidad: Remoto / Híbrido / Presencial (Santiago)</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="cv-section">
-            <h2>Idiomas</h2>
-            <div class="sidebar-block">
-              <ul>
-                <li>• <strong>Español:</strong> Nativo</li>
-                <li>• <strong>Inglés:</strong> Técnico (Documentación y código)</li>
-              </ul>
-            </div>
-          </section>
-        </div>
+    <!-- Sidebar de Perfil & Contacto Rápido -->
+    <aside class="cv-sidebar">
+      <div class="cv-avatar">
+        <img src="/img/matias.jpg" alt="Matías Villalobos Cautivo" onerror="this.src='https://via.placeholder.com/120'">
+        <h1>Matías Villalobos C.</h1>
+        <p>VR Engineer & Dev</p>
       </div>
-    </article>
+
+      <ul class="cv-contact-list">
+        <li>📍 Santiago, Chile</li>
+        <li>🎓 Univ. Bernardo O'Higgins</li>
+        <li>✉️ matias.villalobos.dev@gmail.com</li>
+        <li>📞 +56 9 8757 6708</li>
+      </ul>
+
+      <div class="cv-actions">
+        <a href="/cv/cv-matias-villalobos.pdf" download class="btn btn-primary"
+          style="width: 100%; text-align: center;">
+          📥 Descargar PDF
+        </a>
+        <a href="https://www.linkedin.com/in/matias-vc-dev" target="_blank" rel="noopener" class="btn btn-secondary"
+          style="width: 100%; text-align: center;">
+          🔗 Perfil LinkedIn
+        </a>
+      </div>
+    </aside>
+
+    <!-- Área Principal del CV -->
+    <section class="cv-main-content">
+
+      <!-- Extracto / Resumen Profesional -->
+      <article class="cv-section-card">
+        <h2><span>01.</span> Perfil Profesional</h2>
+        <p class="summary-text">
+          Estudiante de <strong>Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</strong>. Especializado en
+          el desarrollo de simulaciones 3D, lógica en C#, optimización en Universal Render Pipeline (URP), Shaders
+          personalizados y aplicaciones web interactivas. Enfoque orientado a la resolución eficiente de problemas,
+          arquitectura limpia de código y creación de experiencias inmersivas.
+        </p>
+      </article>
+
+      <!-- Educación & Formación Académica -->
+      <article class="cv-section-card">
+        <h2><span>02.</span> Educación & Trayectoria</h2>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-date">2022 — Presente</div>
+            <h3 class="timeline-title">Ingeniería en Realidad Virtual y Diseño de Juegos Digitales</h3>
+            <div class="timeline-subtitle">Universidad Bernardo O'Higgins (UBO)</div>
+            <p class="timeline-desc">
+              Formación avanzada en programación orientada a objetos (C#), matemáticas aplicadas a gráficos 3D, motores
+              de renderizado Unity/Unreal Engine, modelado 3D en Blender, desarrollo XR (VR/AR) y metodologías ágiles.
+            </p>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- Dominio Técnico & Competencias -->
+      <article class="cv-section-card">
+        <h2><span>03.</span> Competencias Técnicas</h2>
+
+        <div class="skill-bar-container">
+          <div class="skill-info">
+            <span>Unity Engine & C# (3D/XR)</span>
+            <span>90%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 90%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-container">
+          <div class="skill-info">
+            <span>Shader Graph & Universal Render Pipeline (URP)</span>
+            <span>82%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 82%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-container">
+          <div class="skill-info">
+            <span>Desarrollo Web (HTML5, CSS3, JavaScript)</span>
+            <span>85%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-bar-container">
+          <div class="skill-info">
+            <span>Modelado & Animación 3D (Blender)</span>
+            <span>75%</span>
+          </div>
+          <div class="progress-bg">
+            <div class="progress-fill" style="width: 75%;"></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Visor de Documento PDF Oficial -->
+      <article class="pdf-viewer-card">
+        <h2><span>04.</span> Documento Oficial PDF</h2>
+        <p class="summary-text" style="margin-bottom: 1rem;">
+          Si prefieres revisar el formato de impresión tradicional, puedes previsualizarlo o descargarlo directamente a
+          continuación:
+        </p>
+        <iframe class="pdf-frame" src="/cv/cv-matias-villalobos.pdf" title="CV de Matías Villalobos Cautivo"></iframe>
+      </article>
+
+    </section>
+
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 Matías Villalobos Cautivo. Desarrollado con HTML5, CSS3 y Vanilla JS.</p>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Matías Villalobos Dev (Matías Villalobos Cautivo). Desarrollado con HTML5, CSS3 y Vanilla JS.
+        Desplegado en Vercel.</p>
+    </div>
   </footer>
 
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Script Específico de Cambio de Tema para el CV -->
   <script>
-    function toggleTheme() {
-      const body = document.body;
-      const themeBtn = document.getElementById('themeBtn');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
 
-      body.classList.toggle('dark-theme');
-
-      if (body.classList.contains('dark-theme')) {
-        themeBtn.innerHTML = '☀️ Modo Claro';
-      } else {
-        themeBtn.innerHTML = '🌙 Modo Oscuro';
-      }
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('mobile-open');
+      });
     }
   </script>
-
 </body>
+
 </html>
