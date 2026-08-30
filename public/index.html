@@ -90,6 +90,18 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
 
   <style>
+    /* Canvas Interactivo de Fondo Pantalla Completa */
+    #bgInteractiveCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: auto;
+      background: #0a0c10;
+    }
+
     /* Estilos del Navegador y Menú Móvil */
     header {
       position: sticky;
@@ -191,12 +203,6 @@
       }
     }
 
-    /* Fondo Decorativo Cyber Grid */
-    .bg-grid-pattern {
-      background-image: radial-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
-
     .hero {
       max-width: var(--max-width);
       margin: 0 auto;
@@ -280,7 +286,8 @@
     }
 
     .profile-card {
-      background: var(--bg-card);
+      background: rgba(15, 19, 26, 0.8);
+      backdrop-filter: blur(8px);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
       padding: 1.5rem;
@@ -304,60 +311,6 @@
       }
     }
 
-    /* Simulación Interactiva Canvas 2D */
-    .interactive-demo-section {
-      max-width: var(--max-width);
-      margin: 0 auto 2.5rem auto;
-      padding: 0 1.25rem;
-    }
-
-    .interactive-card {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: var(--radius-card);
-      padding: 1.25rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    @media (min-width: 768px) {
-      .interactive-card {
-        padding: 1.8rem;
-      }
-    }
-
-    .interactive-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .interactive-header h3 {
-      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-      font-family: var(--font-code);
-      color: var(--accent-color);
-    }
-
-    #nodeCanvas {
-      width: 100%;
-      height: 180px;
-      background: #080a0e;
-      border: 1px solid var(--bg-card-border);
-      border-radius: 8px;
-      cursor: pointer;
-      touch-action: none;
-      /* Previene scroll no deseado al tocar el canvas en celular */
-    }
-
-    @media (min-width: 768px) {
-      #nodeCanvas {
-        height: 220px;
-      }
-    }
-
     .modules {
       max-width: var(--max-width);
       margin: 1.5rem auto 3rem auto;
@@ -375,7 +328,8 @@
     }
 
     .card-module {
-      background: var(--bg-card);
+      background: rgba(15, 19, 26, 0.85);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
       padding: 1.5rem;
@@ -436,7 +390,8 @@
     }
 
     .skill-category {
-      background: var(--bg-card);
+      background: rgba(15, 19, 26, 0.85);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
       padding: 1.25rem;
@@ -475,7 +430,8 @@
     }
 
     .contact-card {
-      background: var(--bg-card);
+      background: rgba(15, 19, 26, 0.85);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--bg-card-border);
       border-radius: var(--radius-card);
       padding: 2rem 1.25rem;
@@ -583,7 +539,10 @@
   </style>
 </head>
 
-<body class="bg-grid-pattern">
+<body>
+
+  <!-- CANVAS 2D FONDO INTERACTIVO FULL-SCREEN -->
+  <canvas id="bgInteractiveCanvas"></canvas>
 
   <header>
     <nav aria-label="Navegación principal">
@@ -620,18 +579,6 @@
           onerror="this.src='https://via.placeholder.com/140'">
         <h3>Matías Villalobos Cautivo</h3>
         <p style="color: var(--accent-color); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR Engineer</p>
-      </div>
-    </section>
-
-    <!-- Muestra Interactiva Canvas en Vivo -->
-    <section class="interactive-demo-section reveal">
-      <div class="interactive-card">
-        <div class="interactive-header">
-          <h3>⚡ Simulador de Físicas & Vectores en Tiempo Real</h3>
-          <span style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-code);">[Toca la pantalla o
-            usa el ratón]</span>
-        </div>
-        <canvas id="nodeCanvas"></canvas>
       </div>
     </section>
 
@@ -754,7 +701,7 @@
   <!-- Script Global -->
   <script src="/script.js"></script>
 
-  <!-- Script Motor de Físicas Canvas 2D Adaptado a Touch/Móvil -->
+  <!-- Motor de Físicas 2D en Fondo Interactivo -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -779,74 +726,48 @@
       }
     }
 
-    /* Motor de Físicas Canvas 2D Interactivo */
-    const canvas = document.getElementById('nodeCanvas');
+    /* Motor de Partículas interactivo de fondo */
+    const canvas = document.getElementById('bgInteractiveCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
       let particles = [];
-      let mouse = { x: null, y: null, radius: 100 };
+      let mouse = { x: null, y: null, radius: 140 };
 
       function resizeCanvas() {
-        canvas.width = canvas.parentElement.clientWidth;
-        canvas.height = window.innerWidth < 768 ? 180 : 220;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
 
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();
 
-      function updatePointerPos(clientX, clientY) {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = clientX - rect.left;
-        mouse.y = clientY - rect.top;
-      }
-
-      canvas.addEventListener('mousemove', (e) => updatePointerPos(e.clientX, e.clientY));
-      canvas.addEventListener('touchstart', (e) => {
-        if (e.touches.length > 0) updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
-      }, { passive: true });
-
-      canvas.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
-      }, { passive: true });
-
-      canvas.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-      canvas.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
-
-      canvas.addEventListener('click', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const clickY = e.clientY - rect.top;
-
-        particles.forEach(p => {
-          const dx = p.x - clickX;
-          const dy = p.y - clickY;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            const force = (150 - dist) / 10;
-            p.vx += (dx / dist) * force;
-            p.vy += (dy / dist) * force;
-          }
-        });
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
       });
+
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+      window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
       class Particle {
         constructor() {
           this.x = Math.random() * canvas.width;
           this.y = Math.random() * canvas.height;
-          this.vx = (Math.random() - 0.5) * 1.8;
-          this.vy = (Math.random() - 0.5) * 1.8;
-          this.radius = 2.5;
+          this.vx = (Math.random() - 0.5) * 1.2;
+          this.vy = (Math.random() - 0.5) * 1.2;
+          this.radius = 2;
         }
 
         update() {
           this.x += this.vx;
           this.y += this.vy;
-
-          this.vx *= 0.99;
-          this.vy *= 0.99;
-
-          if (Math.abs(this.vx) < 0.5) this.vx += (Math.random() - 0.5) * 0.2;
-          if (Math.abs(this.vy) < 0.5) this.vy += (Math.random() - 0.5) * 0.2;
 
           if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
           if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
@@ -862,7 +783,7 @@
 
       function initParticles() {
         particles = [];
-        const count = Math.floor(canvas.width / 14);
+        const count = Math.floor((canvas.width * canvas.height) / 18000);
         for (let i = 0; i < count; i++) {
           particles.push(new Particle());
         }
@@ -882,11 +803,11 @@
             const dy = particles[i].y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < 80) {
+            if (dist < 100) {
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.strokeStyle = `rgba(0, 240, 255, ${1 - dist / 80})`;
+              ctx.strokeStyle = `rgba(0, 240, 255, ${0.25 * (1 - dist / 100)})`;
               ctx.lineWidth = 0.6;
               ctx.stroke();
             }
@@ -900,7 +821,7 @@
               ctx.beginPath();
               ctx.moveTo(particles[i].x, particles[i].y);
               ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = `rgba(112, 0, 255, ${1 - dist / mouse.radius})`;
+              ctx.strokeStyle = `rgba(112, 0, 255, ${0.5 * (1 - dist / mouse.radius)})`;
               ctx.lineWidth = 1.2;
               ctx.stroke();
             }
