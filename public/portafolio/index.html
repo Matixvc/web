@@ -5,16 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio - Matías Villalobos Cautivo</title>
+
+  <!-- Icono principal de la pestaña (Favicon) -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
   <style>
     :root {
       --bg-color: #0a0a0a;
       --card-bg: #121212;
       --border-color: #262626;
+      --border-hover: #404040;
       --text-main: #f5f5f5;
       --text-muted: #a3a3a3;
       --accent-color: #3b82f6;
       --accent-hover: #2563eb;
+      --accent-glow: rgba(59, 130, 246, 0.25);
       --font-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
     }
 
     * {
@@ -24,21 +31,64 @@
       font-family: var(--font-stack);
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Personalización de Scrollbar para mayor fluidez estética */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #262626;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #404040;
+    }
+
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ANIMACIONES DE ENTRADA */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade {
+      animation: fadeInUp 0.8s var(--ease-out-cubic) forwards;
     }
 
     /* HEADER & NAVIGATION */
     header {
       position: sticky;
       top: 0;
-      background-color: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(12px);
+      background-color: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-color);
       z-index: 1000;
+      will-change: transform;
     }
 
     nav {
@@ -56,6 +106,11 @@
       color: var(--text-main);
       text-decoration: none;
       letter-spacing: -0.02em;
+      transition: opacity 0.2s ease;
+    }
+
+    .brand:hover {
+      opacity: 0.9;
     }
 
     .brand span {
@@ -73,36 +128,56 @@
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 500;
-      transition: color 0.2s ease;
+      transition: color 0.25s ease, transform 0.25s ease;
+      display: inline-block;
     }
 
     .nav-link:hover {
       color: var(--text-main);
+      transform: translateY(-1px);
     }
 
     .menu-toggle {
       display: none;
       flex-direction: column;
-      gap: 5px;
+      justify-content: center;
+      gap: 6px;
       background: none;
       border: none;
       cursor: pointer;
       padding: 0.5rem;
+      z-index: 1001;
     }
 
     .menu-toggle span {
       display: block;
-      width: 24px;
+      width: 22px;
       height: 2px;
       background-color: var(--text-main);
-      transition: transform 0.3s ease, opacity 0.3s ease;
+      border-radius: 2px;
+      transition: transform 0.3s var(--ease-out-cubic), opacity 0.3s ease;
+      transform-origin: center;
+    }
+
+    /* Transformación de animación del icono Hamburguesa */
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
 
     /* HERO SECTION */
     .hero {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 5rem 1.5rem 3rem 1.5rem;
+      padding: 6rem 1.5rem 4rem 1.5rem;
+      animation: fadeInUp 0.8s var(--ease-out-cubic) forwards;
     }
 
     .hero h1 {
@@ -110,36 +185,50 @@
       font-weight: 800;
       line-height: 1.1;
       letter-spacing: -0.03em;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(180deg, #ffffff 0%, #a3a3a3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
       font-size: clamp(1rem, 2vw, 1.25rem);
       color: var(--text-muted);
-      max-width: 700px;
-      margin-bottom: 2rem;
+      max-width: 720px;
+      margin-bottom: 2.5rem;
+      font-weight: 400;
     }
 
     .cta-button {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       background-color: var(--accent-color);
-      color: #fff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
+      color: #ffffff;
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      transition: background-color 0.2s ease;
+      font-size: 0.95rem;
+      transition: background-color 0.25s ease, transform 0.25s var(--ease-out-cubic), box-shadow 0.25s ease;
+      box-shadow: 0 4px 14px var(--accent-glow);
     }
 
     .cta-button:hover {
       background-color: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
     }
 
     /* MAIN CONTENT & SECTIONS */
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1.5rem 5rem 1.5rem;
+      padding: 0 1.5rem 6rem 1.5rem;
     }
 
     section {
@@ -147,48 +236,52 @@
     }
 
     .section-title {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       letter-spacing: -0.02em;
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.75rem;
     }
 
-    /* GRID DE PROYECTOS (RESPONSIVO) */
+    /* GRID DE PROYECTOS OPTIMIZADO */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.75rem;
     }
 
     .project-card {
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 1.5rem;
+      border-radius: 12px;
+      padding: 1.75rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      will-change: transform, border-color;
+      transition: transform 0.3s var(--ease-out-cubic), border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .project-card:hover {
-      transform: translateY(-4px);
-      border-color: #404040;
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
     }
 
     .project-title {
       font-size: 1.25rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
     }
 
     .project-description {
       color: var(--text-muted);
       font-size: 0.95rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.75rem;
       flex-grow: 1;
+      line-height: 1.5;
     }
 
     .tech-stack {
@@ -199,59 +292,69 @@
     }
 
     .tech-tag {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border-color);
       color: var(--text-muted);
       font-size: 0.75rem;
-      padding: 0.25rem 0.6rem;
-      border-radius: 4px;
+      font-weight: 500;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .project-card:hover .tech-tag {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
     }
 
     /* FOOTER */
     footer {
       border-top: 1px solid var(--border-color);
-      padding: 2rem 1.5rem;
+      padding: 2.5rem 1.5rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.875rem;
     }
 
-    /* MEDIA QUERIES (ADAPTABILIDAD MÓVIL) */
+    /* MEDIA QUERIES (ADAPTABILIDAD MÓVIL Y FLUIDEZ) */
     @media (max-width: 768px) {
       .menu-toggle {
         display: flex;
       }
 
       .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
         width: 100%;
-        background-color: var(--bg-color);
-        border-bottom: 1px solid var(--border-color);
+        height: 100vh;
+        background-color: rgba(10, 10, 10, 0.96);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        gap: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.3s var(--ease-out-cubic), transform 0.3s var(--ease-out-cubic);
+        z-index: 1000;
       }
 
       .nav-menu.active {
-        max-height: 250px;
-      }
-
-      .nav-item {
-        width: 100%;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
       }
 
       .nav-link {
-        display: block;
-        padding: 1rem 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        font-size: 1.5rem;
+        font-weight: 600;
       }
 
       .hero {
-        padding-top: 3rem;
+        padding-top: 4rem;
       }
 
       .projects-grid {
@@ -266,7 +369,7 @@
   <header>
     <nav>
       <a href="#" class="brand">Matías <span>Villalobos Cautivo</span></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -284,11 +387,11 @@
     <h1>Ingeniería en Realidad Virtual & Desarrollo Interactivo</h1>
     <p>Especializado en la maquetación, optimización gráfica y lógica de sistemas interactivos 3D, aplicaciones VR y
       entornos multiplataforma.</p>
-    <a href="#proyectos" class="cta-button">Ver Proyectos</a>
+    <a href="#proyectos" class="cta-button">Explorar Proyectos</a>
   </section>
 
   <main>
-    <section id="proyectos">
+    <section id="proyectos" class="animate-fade">
       <h2 class="section-title">Proyectos Destacados</h2>
       <div class="projects-grid">
 
@@ -340,18 +443,25 @@
   </footer>
 
   <script>
-    // Lógica para desplegar el menú hamburguesa en móviles
+    // Gestión eficiente del menú desplegable para evitar bloqueos del hilo principal
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
+    function toggleMenu() {
+      const isActive = navMenu.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isActive);
+      document.body.style.overflow = isActive ? 'hidden' : '';
+    }
 
-    // Cierra el menú al hacer clic en cualquier enlace
-    document.querySelectorAll('.nav-link').forEach(link => {
+    menuToggle.addEventListener('click', toggleMenu);
+
+    navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+        if (navMenu.classList.contains('active')) {
+          toggleMenu();
+        }
       });
     });
   </script>
