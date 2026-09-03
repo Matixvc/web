@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio - Matías Villalobos Cautivo</title>
-  
+
   <!-- Icono de la pestaña ubicado en /recursos/icono.ico -->
   <link rel="icon" type="image/x-icon" href="../recursos/icono.ico">
 
@@ -58,13 +59,16 @@
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: var(--bg-color);
     }
+
     ::-webkit-scrollbar-thumb {
       background: #262626;
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #404040;
     }
@@ -142,9 +146,11 @@
     .menu-toggle.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
     }
+
     .menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
+
     .menu-toggle.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
@@ -197,7 +203,8 @@
       backdrop-filter: blur(8px);
     }
 
-    .filter-btn:hover, .filter-btn.active {
+    .filter-btn:hover,
+    .filter-btn.active {
       background-color: var(--accent-color);
       color: #ffffff;
       border-color: var(--accent-color);
@@ -372,6 +379,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- CANVAS FONDO INTERACTIVO DE PARTÍCULAS -->
@@ -396,7 +404,7 @@
   <section class="hero">
     <h1>Galería de Proyectos e Interacciones</h1>
     <p>Simulaciones tridimensionales, desarrollo en Realidad Virtual y sistemas de software interactivo.</p>
-    
+
     <!-- FILTROS DE CATEGORÍAS -->
     <div class="filter-container">
       <button class="filter-btn active" data-filter="all">Todos</button>
@@ -408,43 +416,23 @@
 
   <main id="proyectos">
     <div class="projects-grid" id="projectsGrid">
-      
-      <!-- PROYECTO 1: SIMULACIÓN 3D (VIDEO MP4 + POSTER IMG) -->
-      <article class="project-card" data-category="3d">
-        <div class="media-container">
-          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/preview-simulacion-3d.jpg">
-            <source src="../recursos/vid/simulacion-3d-physics.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
-          </video>
-        </div>
-        <div class="project-content">
-          <h3 class="project-title">Simulación Interactiva 3D</h3>
-          <p class="project-description">Entorno tridimensional optimizado con sombras en tiempo real, shaders de follaje y arquitectura modular programada en C#.</p>
-          <ul class="tech-stack">
-            <li class="tech-tag">Unity</li>
-            <li class="tech-tag">C#</li>
-            <li class="tech-tag">Shader Graph</li>
-          </ul>
-          <div class="project-links">
-            <a href="#" class="btn-link" target="_blank">Ver Proyecto</a>
-          </div>
-        </div>
-      </article>
 
-      <!-- PROYECTO 2: REALIDAD VIRTUAL (VIDEO MP4 + POSTER IMG) -->
+      <!-- PROYECTO 1: REALIDAD VIRTUAL (VIDEO: vr-3D / POSTER: vr.png) -->
       <article class="project-card" data-category="vr">
         <div class="media-container">
-          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/preview-vr-experience.jpg">
-            <source src="../recursos/vid/demo-vr-interaction.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/vr.png">
+            <source src="../recursos/vid/vr-3D.mp4" type="video/mp4">
+            <source src="../recursos/vid/vr-3D" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
         <div class="project-content">
           <h3 class="project-title">Experiencia Inmersiva VR</h3>
-          <p class="project-description">Prototipo interactivo en Realidad Virtual enfocado en mecánicas de manipulación de objetos y optimización SRP Batcher.</p>
+          <p class="project-description">Prototipo interactivo en Realidad Virtual enfocado en mecánicas de manipulación
+            espacial y optimización de renderizado para visuales fluidas.</p>
           <ul class="tech-stack">
             <li class="tech-tag">Unity VR</li>
-            <li class="tech-tag">URP</li>
+            <li class="tech-tag">C#</li>
             <li class="tech-tag">Blender</li>
           </ul>
           <div class="project-links">
@@ -453,17 +441,43 @@
         </div>
       </article>
 
-      <!-- PROYECTO 3: DESARROLLO WEB INTERACTIVO (VIDEO MP4 + POSTER IMG) -->
-      <article class="project-card" data-category="web">
+      <!-- PROYECTO 2: SIMULACIÓN 3D / SHADER (VIDEO: shader-fluid / POSTER: urp.png) -->
+      <article class="project-card" data-category="3d">
         <div class="media-container">
-          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/preview-web-dashboard.jpg">
-            <source src="../recursos/vid/interfaz-web-performance.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/urp.png">
+            <source src="../recursos/vid/shader-fluid.mp4" type="video/mp4">
+            <source src="../recursos/vid/shader-fluid" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
         <div class="project-content">
-          <h3 class="project-title">Plataforma Web de Alto Rendimiento</h3>
-          <p class="project-description">Aplicación web responsiva con animación Canvas interactiva renderizada a 60 FPS e interfaz con estética *Tech/Dark*.</p>
+          <h3 class="project-title">Simulación 3D & Shaders Fluidos</h3>
+          <p class="project-description">Desarrollo de efectos gráficos avanzadas en tiempo real mediante Shader Graph,
+            pipeline URP y cálculos matemáticos para dinámicas de fluidos.</p>
+          <ul class="tech-stack">
+            <li class="tech-tag">Unity</li>
+            <li class="tech-tag">URP</li>
+            <li class="tech-tag">Shader Graph</li>
+          </ul>
+          <div class="project-links">
+            <a href="#" class="btn-link" target="_blank">Ver Proyecto</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROYECTO 3: INTERFAZ WEB (VIDEO: interfaz-web / POSTER: mesh.png) -->
+      <article class="project-card" data-category="web">
+        <div class="media-container">
+          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/mesh.png">
+            <source src="../recursos/vid/interfaz-web.mp4" type="video/mp4">
+            <source src="../recursos/vid/interfaz-web" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Interfaz Web Interactiva</h3>
+          <p class="project-description">Aplicación web responsiva de alto rendimiento con animaciones de mallas
+            interactivas a 60 FPS y maquetación responsiva.</p>
           <ul class="tech-stack">
             <li class="tech-tag">JavaScript</li>
             <li class="tech-tag">HTML5 Canvas</li>
@@ -627,4 +641,5 @@
   </script>
 
 </body>
+
 </html>
