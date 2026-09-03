@@ -417,13 +417,13 @@
   <main id="proyectos">
     <div class="projects-grid" id="projectsGrid">
 
-      <!-- PROYECTO 1: REALIDAD VIRTUAL (VIDEO: vr-3D / POSTER: vr.png) -->
+      <!-- PROYECTO 1: REALIDAD VIRTUAL (VIDEO: vr-3D / POSTER Y FALLBACK: vr.png) -->
       <article class="project-card" data-category="vr">
         <div class="media-container">
-          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/vr.png">
+          <video autoplay loop muted playsinline preload="auto" poster="../recursos/img/vr.png">
             <source src="../recursos/vid/vr-3D.mp4" type="video/mp4">
             <source src="../recursos/vid/vr-3D" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
+            <img src="../recursos/img/vr.png" alt="Vista previa de Realidad Virtual">
           </video>
         </div>
         <div class="project-content">
@@ -441,18 +441,18 @@
         </div>
       </article>
 
-      <!-- PROYECTO 2: SIMULACIÓN 3D / SHADER (VIDEO: shader-fluid / POSTER: urp.png) -->
+      <!-- PROYECTO 2: SIMULACIÓN 3D / SHADER (VIDEO: shader-fluid / POSTER Y FALLBACK: urp.png) -->
       <article class="project-card" data-category="3d">
         <div class="media-container">
-          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/urp.png">
+          <video autoplay loop muted playsinline preload="auto" poster="../recursos/img/urp.png">
             <source src="../recursos/vid/shader-fluid.mp4" type="video/mp4">
             <source src="../recursos/vid/shader-fluid" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
+            <img src="../recursos/img/urp.png" alt="Vista previa de Shader Fludio URP">
           </video>
         </div>
         <div class="project-content">
           <h3 class="project-title">Simulación 3D & Shaders Fluidos</h3>
-          <p class="project-description">Desarrollo de efectos gráficos avanzadas en tiempo real mediante Shader Graph,
+          <p class="project-description">Desarrollo de efectos gráficos avanzados en tiempo real mediante Shader Graph,
             pipeline URP y cálculos matemáticos para dinámicas de fluidos.</p>
           <ul class="tech-stack">
             <li class="tech-tag">Unity</li>
@@ -465,13 +465,13 @@
         </div>
       </article>
 
-      <!-- PROYECTO 3: INTERFAZ WEB (VIDEO: interfaz-web / POSTER: mesh.png) -->
+      <!-- PROYECTO 3: INTERFAZ WEB (VIDEO: interfaz-web / POSTER Y FALLBACK: mesh.png) -->
       <article class="project-card" data-category="web">
         <div class="media-container">
-          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/mesh.png">
+          <video autoplay loop muted playsinline preload="auto" poster="../recursos/img/mesh.png">
             <source src="../recursos/vid/interfaz-web.mp4" type="video/mp4">
             <source src="../recursos/vid/interfaz-web" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
+            <img src="../recursos/img/mesh.png" alt="Vista previa de Interfaz Web Mesh">
           </video>
         </div>
         <div class="project-content">
