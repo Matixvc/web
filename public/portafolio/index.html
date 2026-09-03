@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio - Matías Villalobos Cautivo</title>
-
+  
   <!-- Icono de la pestaña ubicado en /recursos/icono.ico -->
   <link rel="icon" type="image/x-icon" href="../recursos/icono.ico">
 
@@ -59,16 +58,13 @@
     ::-webkit-scrollbar {
       width: 8px;
     }
-
     ::-webkit-scrollbar-track {
       background: var(--bg-color);
     }
-
     ::-webkit-scrollbar-thumb {
       background: #262626;
       border-radius: 4px;
     }
-
     ::-webkit-scrollbar-thumb:hover {
       background: #404040;
     }
@@ -146,11 +142,9 @@
     .menu-toggle.active span:nth-child(1) {
       transform: translateY(8px) rotate(45deg);
     }
-
     .menu-toggle.active span:nth-child(2) {
       opacity: 0;
     }
-
     .menu-toggle.active span:nth-child(3) {
       transform: translateY(-8px) rotate(-45deg);
     }
@@ -203,15 +197,14 @@
       backdrop-filter: blur(8px);
     }
 
-    .filter-btn:hover,
-    .filter-btn.active {
+    .filter-btn:hover, .filter-btn.active {
       background-color: var(--accent-color);
       color: #ffffff;
       border-color: var(--accent-color);
       box-shadow: 0 4px 14px var(--accent-glow);
     }
 
-    /* SECCIÓN DE PROYECTOS (GRID ESCALABLE) */
+    /* SECCIÓN DE PROYECTOS */
     main {
       max-width: 1200px;
       margin: 0 auto;
@@ -242,22 +235,22 @@
       box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6), 0 0 20px var(--accent-glow);
     }
 
-    /* CONTENEDOR DE VIDEO */
-    .video-container {
+    /* CONTENEDOR DE MULTIMEDIA OPTIMIZADO */
+    .media-container {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-color: #000;
+      background-color: #0d0d0d;
       overflow: hidden;
       border-bottom: 1px solid var(--border-color);
     }
 
-    .video-container video,
-    .video-container iframe {
+    .media-container video,
+    .media-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border: none;
+      display: block;
     }
 
     .project-content {
@@ -379,10 +372,9 @@
     }
   </style>
 </head>
-
 <body>
 
-  <!-- CANVAS FONDO INTERACTIVO -->
+  <!-- CANVAS FONDO INTERACTIVO DE PARTÍCULAS -->
   <canvas id="bg-canvas"></canvas>
 
   <header>
@@ -403,10 +395,9 @@
 
   <section class="hero">
     <h1>Galería de Proyectos e Interacciones</h1>
-    <p>Explora demostraciones en video y sistemas 3D, desarrollo en Realidad Virtual y arquitectura de software
-      interactivo.</p>
-
-    <!-- BARRA DE FILTROS PARA ORGANIZAR MÚLTIPLES PROYECTOS -->
+    <p>Simulaciones tridimensionales, desarrollo en Realidad Virtual y sistemas de software interactivo.</p>
+    
+    <!-- FILTROS DE CATEGORÍAS -->
     <div class="filter-container">
       <button class="filter-btn active" data-filter="all">Todos</button>
       <button class="filter-btn" data-filter="vr">Realidad Virtual</button>
@@ -417,67 +408,62 @@
 
   <main id="proyectos">
     <div class="projects-grid" id="projectsGrid">
-
-      <!-- PROYECTO 1: VIDEO HTML5 LOCAL / MP4 -->
+      
+      <!-- PROYECTO 1: SIMULACIÓN 3D (VIDEO MP4 + POSTER IMG) -->
       <article class="project-card" data-category="3d">
-        <div class="video-container">
-          <!-- Reemplaza la ruta src con tu video MP4 real cuando lo subas -->
-          <video autoplay loop muted playsinline
-            poster="https://via.placeholder.com/640x360/121212/ffffff?text=Cargando+Simulacion+3D">
-            <source src="../recursos/videos/demo-3d.mp4" type="video/mp4">
-            Tu navegador no soporta reproducción de video.
+        <div class="media-container">
+          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/preview-simulacion-3d.jpg">
+            <source src="../recursos/vid/simulacion-3d-physics.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
           </video>
         </div>
         <div class="project-content">
           <h3 class="project-title">Simulación Interactiva 3D</h3>
-          <p class="project-description">Sistema tridimensional con físicas avanzadas, renderizado de sombras en tiempo
-            real, shaders de hojas y mecánicas personalizadas en C#.</p>
+          <p class="project-description">Entorno tridimensional optimizado con sombras en tiempo real, shaders de follaje y arquitectura modular programada en C#.</p>
           <ul class="tech-stack">
             <li class="tech-tag">Unity</li>
             <li class="tech-tag">C#</li>
             <li class="tech-tag">Shader Graph</li>
           </ul>
           <div class="project-links">
-            <a href="#" class="btn-link" target="_blank">Ver Demo</a>
-            <a href="#" class="btn-link" target="_blank">Código</a>
+            <a href="#" class="btn-link" target="_blank">Ver Proyecto</a>
           </div>
         </div>
       </article>
 
-      <!-- PROYECTO 2: REALIDAD VIRTUAL (VIDEO EMBED YOUTUBE/VIMEO) -->
+      <!-- PROYECTO 2: REALIDAD VIRTUAL (VIDEO MP4 + POSTER IMG) -->
       <article class="project-card" data-category="vr">
-        <div class="video-container">
-          <!-- También puedes usar Iframe si subes tus videos a YouTube o Vimeo -->
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&mute=1&autoplay=0" title="Demo VR"
-            allowfullscreen></iframe>
+        <div class="media-container">
+          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/preview-vr-experience.jpg">
+            <source src="../recursos/vid/demo-vr-interaction.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
         </div>
         <div class="project-content">
           <h3 class="project-title">Experiencia Inmersiva VR</h3>
-          <p class="project-description">Prototipo inmersivo en Realidad Virtual con optimización de renderizado
-            pipeline (URP), SRP Batcher y seguimiento de controles.</p>
+          <p class="project-description">Prototipo interactivo en Realidad Virtual enfocado en mecánicas de manipulación de objetos y optimización SRP Batcher.</p>
           <ul class="tech-stack">
             <li class="tech-tag">Unity VR</li>
             <li class="tech-tag">URP</li>
             <li class="tech-tag">Blender</li>
           </ul>
           <div class="project-links">
-            <a href="#" class="btn-link" target="_blank">Ver Demo</a>
+            <a href="#" class="btn-link" target="_blank">Ver Proyecto</a>
           </div>
         </div>
       </article>
 
-      <!-- PROYECTO 3: DESARROLLO WEB INTERACTIVO -->
+      <!-- PROYECTO 3: DESARROLLO WEB INTERACTIVO (VIDEO MP4 + POSTER IMG) -->
       <article class="project-card" data-category="web">
-        <div class="video-container">
-          <video autoplay loop muted playsinline
-            poster="https://via.placeholder.com/640x360/121212/ffffff?text=Plataforma+Web">
-            <source src="../recursos/videos/demo-web.mp4" type="video/mp4">
+        <div class="media-container">
+          <video autoplay loop muted playsinline preload="metadata" poster="../recursos/img/preview-web-dashboard.jpg">
+            <source src="../recursos/vid/interfaz-web-performance.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
           </video>
         </div>
         <div class="project-content">
           <h3 class="project-title">Plataforma Web de Alto Rendimiento</h3>
-          <p class="project-description">Aplicación web responsiva con canvas interactivo a 60FPS, interfaz limpia en
-            modo oscuro y optimización de renderizado.</p>
+          <p class="project-description">Aplicación web responsiva con animación Canvas interactiva renderizada a 60 FPS e interfaz con estética *Tech/Dark*.</p>
           <ul class="tech-stack">
             <li class="tech-tag">JavaScript</li>
             <li class="tech-tag">HTML5 Canvas</li>
@@ -488,8 +474,6 @@
           </div>
         </div>
       </article>
-
-      <!-- PUEDES SEGUIR AÑADIENDO MÁS TARJETAS COPIANDO LA ESTRUCTURA <article class="project-card"> -->
 
     </div>
   </main>
@@ -542,7 +526,6 @@
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
 
-        // Interacción con el cursor
         if (mouse.x && mouse.y) {
           let dx = mouse.x - this.x;
           let dy = mouse.y - this.y;
@@ -644,5 +627,4 @@
   </script>
 
 </body>
-
 </html>
