@@ -318,7 +318,6 @@
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
     }
 
-    /* Video Showreel Card Integrado */
     .hero-video-card {
       margin-top: 1.5rem;
       position: relative;
@@ -355,59 +354,63 @@
       border: 1px solid rgba(0, 240, 255, 0.2);
     }
 
-    /* Modulos */
-    .modules {
+    /* Modulos y Grilla de Proyectos */
+    .section-title {
       max-width: var(--max-width, 1200px);
-      margin: 1.5rem auto 3rem auto;
+      margin: 3rem auto 1.5rem auto;
+      padding: 0 1.25rem;
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      color: #ffffff;
+    }
+
+    .grid-projects {
+      max-width: var(--max-width, 1200px);
+      margin: 0 auto 3rem auto;
       padding: 0 1.25rem;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
 
-    @media (min-width: 768px) {
-      .modules {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-      }
-    }
-
-    .card-module {
+    .card-project {
       background: rgba(15, 19, 26, 0.85);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       border-radius: var(--radius-card, 16px);
-      padding: 1.5rem;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    @media (min-width: 768px) {
-      .card-module {
-        padding: 2rem;
-      }
-    }
-
-    .card-module:hover {
+    .card-project:hover {
       transform: translateY(-4px);
       border-color: rgba(0, 240, 255, 0.4);
     }
 
-    .card-module h2 {
-      font-size: 1.35rem;
-      margin-bottom: 0.75rem;
+    .card-project-media {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background-color: #000;
+    }
+
+    .card-project-body {
+      padding: 1.25rem;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       gap: 0.5rem;
+    }
+
+    .card-project-body h3 {
+      font-size: 1.15rem;
       color: #ffffff;
     }
 
-    .card-module p {
+    .card-project-body p {
       color: var(--text-muted, #a1a1a6);
-      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
     }
 
     /* Skills & Tech Stack */
@@ -607,7 +610,8 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="/" class="active">Inicio</a></li>
-        <li><a href="/portafolio/">Portafolio</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#demostraciones">Demostraciones</a></li>
         <li><a href="/cv/">CV</a></li>
       </ul>
     </nav>
@@ -625,7 +629,7 @@
           Digitales. Especializado en desarrollo interactivo con Unity, C#, simulaciones 3D y aplicaciones web
           interactivas.</p>
         <div class="hero-buttons">
-          <a href="/portafolio/" class="btn btn-primary">Ver Portafolio</a>
+          <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
           <a href="/cv/" class="btn btn-secondary">Consultar CV</a>
         </div>
       </div>
@@ -642,8 +646,8 @@
 
         <!-- Previsualización de Video Demo / Showreel -->
         <div class="hero-video-card">
-          <video autoplay loop muted playsinline poster="recursos/og-image.png">
-            <source src="recursos/vid/video-fondo.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline poster="recursos/Img/project-vr.png">
+            <source src="recursos/Vid/video-fondo.mp4" type="video/mp4">
             Tu navegador no soporta reproducción de video.
           </video>
           <div class="video-overlay-badge">▶ Showreel Demo 3D / Unity</div>
@@ -651,25 +655,72 @@
       </div>
     </section>
 
-    <!-- Módulos Principales -->
-    <section class="modules reveal">
-      <div class="card-module">
-        <div>
-          <h2>🚀 Portafolio Interactivo</h2>
-          <p>Explora mis proyectos de desarrollo en Unity, Shader Graph, simulaciones interactivas 3D y aplicaciones
-            desarrolladas en C# y JavaScript.</p>
+    <!-- Sección de Proyectos Destacados -->
+    <h2 class="section-title" id="proyectos">🚀 Proyectos Destacados</h2>
+    <section class="grid-projects">
+      <article class="card-project">
+        <img src="recursos/Img/project-vr.png" alt="Proyecto Realidad Virtual" class="card-project-media"
+          onerror="this.src='https://via.placeholder.com/350x180?text=Proyecto+VR'">
+        <div class="card-project-body">
+          <h3>Simulación VR Inmersiva</h3>
+          <p>Experiencia interactiva desarrollada para entornos inmersivos optimizando recursos y respuesta de usuario.
+          </p>
         </div>
-        <a href="/portafolio/" class="btn btn-secondary">Ir al Portafolio &rarr;</a>
-      </div>
+      </article>
 
-      <div class="card-module">
-        <div>
-          <h2>📄 Curriculum Vitae</h2>
-          <p>Conoce mi trayectoria académica en la Universidad Bernardo O'Higgins, mis habilidades técnicas,
-            herramientas de desarrollo y experiencia general.</p>
+      <article class="card-project">
+        <img src="recursos/Img/project-navmesh.png" alt="Proyecto NavMesh AI" class="card-project-media"
+          onerror="this.src='https://via.placeholder.com/350x180?text=NavMesh+AI'">
+        <div class="card-project-body">
+          <h3>Sistemas de Navegación (NavMesh)</h3>
+          <p>Implementación de inteligencia artificial y rutas de navegación para agentes en escenarios 3D dinámicos.
+          </p>
         </div>
-        <a href="/cv/" class="btn btn-secondary">Ver Currículum &rarr;</a>
-      </div>
+      </article>
+
+      <article class="card-project">
+        <img src="recursos/Img/project-urp.png" alt="Proyecto Pipeline URP" class="card-project-media"
+          onerror="this.src='https://via.placeholder.com/350x180?text=Renderizado+URP'">
+        <div class="card-project-body">
+          <h3>Renderizado Avanzado en URP</h3>
+          <p>Uso de Universal Render Pipeline de Unity para optimización gráfica y fidelidad visual en diversas
+            plataformas.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Sección de Demostraciones Técnicas -->
+    <h2 class="section-title" id="demostraciones">📹 Demostraciones Técnicas en Video</h2>
+    <section class="grid-projects">
+      <article class="card-project">
+        <video class="card-project-media" autoplay loop muted playsinline>
+          <source src="recursos/Vid/navmesh-ai-loop.mp4" type="video/mp4">
+        </video>
+        <div class="card-project-body">
+          <h3>Lógica de IA y Rutas</h3>
+          <p>Pruebas continuas de búsqueda de caminos utilizando NavMesh en tiempo real.</p>
+        </div>
+      </article>
+
+      <article class="card-project">
+        <video class="card-project-media" autoplay loop muted playsinline>
+          <source src="recursos/Vid/shader-fluid-loop.mp4" type="video/mp4">
+        </video>
+        <div class="card-project-body">
+          <h3>Shaders & VFX Fluidos</h3>
+          <p>Efectos visuales e interacciones mediante grafos de shaders personalizados.</p>
+        </div>
+      </article>
+
+      <article class="card-project">
+        <video class="card-project-media" autoplay loop muted playsinline>
+          <source src="recursos/Vid/code-cube-rotate.mp4" type="video/mp4">
+        </video>
+        <div class="card-project-body">
+          <h3>Prototipado 3D</h3>
+          <p>Modelado preliminar en Blender y lógica de transformación aplicada.</p>
+        </div>
+      </article>
     </section>
 
     <!-- Sección de Habilidades & Tech Stack -->
@@ -746,7 +797,8 @@
         <h5>Navegación</h5>
         <ul>
           <li><a href="/">Inicio</a></li>
-          <li><a href="/portafolio/">Portafolio</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#demostraciones">Demostraciones</a></li>
           <li><a href="/cv/">Curriculum Vitae</a></li>
         </ul>
       </div>
