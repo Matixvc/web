@@ -26,9 +26,10 @@
     content="Explora desarrollos destacados en Realidad Virtual, simulaciones 3D interactivas y arquitectura de software.">
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
-  <!-- Favicon -->
-  <link rel="icon" href="../recursos/favicon.ico" type="image/svg+xml">
-  <link rel="alternate icon" href="../recursos/favicon.ico">
+  <!-- Favicon Personalizado de /recursos -->
+  <link rel="icon" href="../recursos/icono.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../recursos/icono.ico" type="image/x-icon">
+  <link rel="alternate icon" href="../recursos/favicon.ico" type="image/x-icon">
 
   <!-- Estilos Globales Compartidos -->
   <link rel="stylesheet" href="../styles.css">
@@ -565,7 +566,7 @@
       <!-- PROYECTO 1: Video NavMesh AI -->
       <article class="project-card" data-category="unity" onclick="openModal('modal1')">
         <div class="project-media-box">
-          <video autoplay loop muted playsinline>
+          <video class="portfolio-video" loop muted playsinline preload="metadata">
             <source src="../recursos/Vid/navmesh-ai-loop.mp4" type="video/mp4">
           </video>
           <span class="preview-tag-overlay">▶ Video Loop</span>
@@ -616,7 +617,7 @@
       <!-- PROYECTO 3: Video Shaders Fluidos -->
       <article class="project-card" data-category="graphics" onclick="openModal('modal3')">
         <div class="project-media-box">
-          <video autoplay loop muted playsinline>
+          <video class="portfolio-video" loop muted playsinline preload="metadata">
             <source src="../recursos/Vid/shader-fluid-loop.mp4" type="video/mp4">
           </video>
           <span class="preview-tag-overlay">▶ Video Loop</span>
@@ -667,7 +668,7 @@
       <!-- PROYECTO 5: Video Prototipado Blender -->
       <article class="project-card" data-category="graphics" onclick="openModal('modal5')">
         <div class="project-media-box">
-          <video autoplay loop muted playsinline>
+          <video class="portfolio-video" loop muted playsinline preload="metadata">
             <source src="../recursos/Vid/code-cube-rotate.mp4" type="video/mp4">
           </video>
           <span class="preview-tag-overlay">▶ Video Loop</span>
@@ -722,7 +723,7 @@
   <div class="modal-overlay" id="modal1" onclick="closeModal('modal1')">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
-      <video class="modal-media-viewer" controls autoplay loop muted>
+      <video class="modal-media-viewer" controls loop muted>
         <source src="../recursos/Vid/navmesh-ai-loop.mp4" type="video/mp4">
       </video>
       <h3 class="modal-title">Sistema NavMesh AI & Pathfinding</h3>
@@ -776,7 +777,7 @@
   <div class="modal-overlay" id="modal3" onclick="closeModal('modal3')">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-      <video class="modal-media-viewer" controls autoplay loop muted>
+      <video class="modal-media-viewer" controls loop muted>
         <source src="../recursos/Vid/shader-fluid-loop.mp4" type="video/mp4">
       </video>
       <h3 class="modal-title">Custom Shaders & VFX Fluidos</h3>
@@ -830,7 +831,7 @@
   <div class="modal-overlay" id="modal5" onclick="closeModal('modal5')">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
-      <video class="modal-media-viewer" controls autoplay loop muted>
+      <video class="modal-media-viewer" controls loop muted>
         <source src="../recursos/Vid/code-cube-rotate.mp4" type="video/mp4">
       </video>
       <h3 class="modal-title">Prototipado 3D & Assets Blender</h3>
@@ -889,7 +890,7 @@
 
   <script src="../script.js"></script>
 
-  <!-- Lógica de Filtrado, Modales e Interacción -->
+  <!-- Lógica de Filtrado, Modales, Optimización de Videos e Interacción Canvas -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -936,6 +937,10 @@
       if (modal) {
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        const video = modal.querySelector('video');
+        if (video) {
+          video.play().catch(() => { });
+        }
       }
     }
 
@@ -944,10 +949,43 @@
       if (modal) {
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
+        const video = modal.querySelector('video');
+        if (video) {
+          video.pause();
+        }
       }
     }
 
-    /* Motor de Partículas interactivo de fondo */
+    /* OPTIMIZACIÓN DE REPRODUCCIÓN DE VIDEOS SEGÚN SCROLL (IntersectionObserver) */
+    document.addEventListener('DOMContentLoaded', () => {
+      const cardVideos = document.querySelectorAll('.portfolio-video');
+
+      if ('IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+              const playPromise = video.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(() => { });
+              }
+            } else {
+              video.pause();
+            }
+          });
+        }, {
+          threshold: 0.2
+        });
+
+        cardVideos.forEach((video) => {
+          videoObserver.observe(video);
+        });
+      } else {
+        cardVideos.forEach(video => video.play());
+      }
+    });
+
+    /* MOTOR DE PARTÍCULAS INTERACTIVO DE FONDO CON CONEXIÓN AL PUNTERO */
     const canvas = document.getElementById('bgInteractiveCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -967,7 +1005,15 @@
         mouse.y = e.clientY;
       });
 
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
       window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+      window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
       class Particle {
         constructor() {
@@ -1022,6 +1068,20 @@
               ctx.lineTo(particles[j].x, particles[j].y);
               ctx.strokeStyle = `rgba(0, 240, 255, ${0.25 * (1 - dist / 100)})`;
               ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+
+          if (mouse.x && mouse.y) {
+            const dx = particles[i].x - mouse.x;
+            const dy = particles[i].y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(112, 0, 255, ${0.5 * (1 - dist / mouse.radius)})`;
+              ctx.lineWidth = 1.2;
               ctx.stroke();
             }
           }

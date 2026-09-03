@@ -27,8 +27,9 @@
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
   <!-- Favicon -->
-  <link rel="icon" href="../recursos/favicon.ico" type="image/svg+xml">
-  <link rel="alternate icon" href="../recursos/favicon.ico">
+  <link rel="icon" href="../recursos/icono.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../recursos/icono.ico" type="image/x-icon">
+  <link rel="alternate icon" href="../recursos/favicon.ico" type="image/x-icon">
 
   <!-- Estilos Globales Compartidos -->
   <link rel="stylesheet" href="../styles.css">
@@ -885,7 +886,7 @@
   <!-- Script Global -->
   <script src="../script.js"></script>
 
-  <!-- Lógica de Modales Emergentes y Canvas -->
+  <!-- Lógica de Modales Emergentes y Canvas Interactivo -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -912,7 +913,7 @@
       }
     }
 
-    /* Motor de Partículas interactivo de fondo */
+    /* Motor de Partículas interactivo de fondo con atracción por puntero */
     const canvas = document.getElementById('bgInteractiveCanvas');
     if (canvas) {
       const ctx = canvas.getContext('2d');
@@ -932,7 +933,15 @@
         mouse.y = e.clientY;
       });
 
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          mouse.x = e.touches[0].clientX;
+          mouse.y = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
       window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+      window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
       class Particle {
         constructor() {
@@ -987,6 +996,20 @@
               ctx.lineTo(particles[j].x, particles[j].y);
               ctx.strokeStyle = `rgba(0, 240, 255, ${0.25 * (1 - dist / 100)})`;
               ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+
+          if (mouse.x && mouse.y) {
+            const dx = particles[i].x - mouse.x;
+            const dy = particles[i].y - mouse.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < mouse.radius) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(112, 0, 255, ${0.5 * (1 - dist / mouse.radius)})`;
+              ctx.lineWidth = 1.2;
               ctx.stroke();
             }
           }
