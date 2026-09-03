@@ -27,11 +27,11 @@
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
   <!-- Favicon -->
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="/img/favicon.ico">
+  <link rel="icon" href="../recursos/favicon.ico" type="image/svg+xml">
+  <link rel="alternate icon" href="../recursos/favicon.ico">
 
   <!-- Estilos Globales Compartidos -->
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="../styles.css">
 
   <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,6 +41,18 @@
     rel="stylesheet">
 
   <style>
+    /* Canvas de Fondo */
+    #bgInteractiveCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: auto;
+      background: #0a0c10;
+    }
+
     /* Estilos del Navegador y Menú Móvil */
     header {
       position: sticky;
@@ -48,12 +60,13 @@
       width: 100%;
       background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--bg-card-border);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       z-index: 1000;
     }
 
     nav {
-      max-width: var(--max-width);
+      max-width: var(--max-width, 1200px);
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -64,7 +77,7 @@
     .brand {
       font-weight: 700;
       font-size: 1.2rem;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -72,7 +85,7 @@
     }
 
     .brand span {
-      background: var(--accent-gradient);
+      background: var(--accent-gradient, linear-gradient(90deg, #00f0ff, #7000ff));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -84,7 +97,7 @@
     }
 
     .nav-links a {
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -95,14 +108,14 @@
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
     }
 
     .mobile-menu-toggle {
       display: none;
       background: transparent;
       border: none;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       font-size: 1.8rem;
       cursor: pointer;
       min-width: 44px;
@@ -122,11 +135,12 @@
         width: 100%;
         background: rgba(10, 12, 16, 0.95);
         backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         flex-direction: column;
         align-items: center;
         padding: 1.5rem 0;
         gap: 1.2rem;
-        border-bottom: 1px solid var(--bg-card-border);
+        border-bottom: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
         display: none;
       }
 
@@ -172,8 +186,8 @@
       background: rgba(0, 240, 255, 0.08);
       border: 1px solid rgba(0, 240, 255, 0.25);
       border-radius: 20px;
-      color: var(--accent-color);
-      font-family: var(--font-code);
+      color: var(--accent-color, #00f0ff);
+      font-family: var(--font-code, monospace);
       font-size: 0.82rem;
     }
 
@@ -205,9 +219,11 @@
 
     /* Tarjetas Interactivas */
     .cv-card {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: var(--radius-card);
+      background: var(--bg-card, rgba(15, 19, 26, 0.85));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
+      border-radius: var(--radius-card, 16px);
       padding: 1.8rem;
       margin-bottom: 1.5rem;
       position: relative;
@@ -230,7 +246,7 @@
       left: 0;
       width: 4px;
       height: 100%;
-      background: var(--accent-gradient);
+      background: var(--accent-gradient, linear-gradient(90deg, #00f0ff, #7000ff));
     }
 
     .cv-header-grid {
@@ -251,7 +267,7 @@
       height: 110px;
       border-radius: 50%;
       padding: 3px;
-      background: var(--accent-gradient);
+      background: var(--accent-gradient, linear-gradient(90deg, #00f0ff, #7000ff));
       margin: 0 auto;
     }
 
@@ -266,12 +282,13 @@
     .cv-header-info h1 {
       font-size: clamp(1.6rem, 4vw, 2.2rem);
       margin-bottom: 0.25rem;
+      color: #ffffff;
     }
 
     .cv-header-info h2 {
       font-size: 1rem;
-      color: var(--accent-color);
-      font-family: var(--font-code);
+      color: var(--accent-color, #00f0ff);
+      font-family: var(--font-code, monospace);
       font-weight: 500;
       margin-bottom: 0.8rem;
     }
@@ -284,8 +301,8 @@
 
     .contact-chip {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
-      color: var(--text-muted);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
+      color: var(--text-muted, #a1a1a6);
       padding: 0.35rem 0.75rem;
       border-radius: 20px;
       font-size: 0.82rem;
@@ -298,26 +315,26 @@
 
     .contact-chip:hover {
       background: rgba(0, 240, 255, 0.1);
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
       border-color: rgba(0, 240, 255, 0.3);
     }
 
     .section-title {
       font-size: 1.15rem;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
       margin-bottom: 1rem;
     }
 
     .section-title span {
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
     }
 
     .cv-text-block {
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       line-height: 1.6;
       font-size: 0.94rem;
     }
@@ -331,8 +348,9 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.88rem;
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
       margin-bottom: 0.35rem;
+      color: #ffffff;
     }
 
     .skill-progress-bar {
@@ -341,12 +359,12 @@
       background: rgba(255, 255, 255, 0.06);
       border-radius: 4px;
       overflow: hidden;
-      border: 1px solid var(--bg-card-border);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
     }
 
     .skill-progress-fill {
       height: 100%;
-      background: var(--accent-gradient);
+      background: var(--accent-gradient, linear-gradient(90deg, #00f0ff, #7000ff));
       border-radius: 4px;
     }
 
@@ -374,19 +392,19 @@
       width: 12px;
       height: 12px;
       border-radius: 50%;
-      background: var(--accent-color);
-      box-shadow: 0 0 10px var(--accent-color);
+      background: var(--accent-color, #00f0ff);
+      box-shadow: 0 0 10px var(--accent-color, #00f0ff);
     }
 
     .timeline-card-item h4 {
       font-size: 1.05rem;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
     }
 
     .timeline-card-item span {
       font-size: 0.82rem;
-      color: var(--accent-color);
-      font-family: var(--font-code);
+      color: var(--accent-color, #00f0ff);
+      font-family: var(--font-code, monospace);
       display: block;
       margin-bottom: 0.3rem;
     }
@@ -418,7 +436,7 @@
     .modal-card-cv {
       background: #0f131a;
       border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: var(--radius-card);
+      border-radius: var(--radius-card, 16px);
       max-width: 700px;
       width: 100%;
       max-height: 85vh;
@@ -440,38 +458,38 @@
       right: 1.25rem;
       background: transparent;
       border: none;
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       font-size: 1.8rem;
       cursor: pointer;
       line-height: 1;
     }
 
     .modal-close-cv:hover {
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
     }
 
     .modal-card-cv h3 {
       font-size: 1.5rem;
-      color: var(--accent-color);
-      font-family: var(--font-code);
+      color: var(--accent-color, #00f0ff);
+      font-family: var(--font-code, monospace);
       margin-bottom: 1rem;
       padding-right: 2rem;
-      border-bottom: 1px solid var(--bg-card-border);
+      border-bottom: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       padding-bottom: 0.5rem;
     }
 
     .modal-card-cv h4 {
       font-size: 1rem;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       margin-top: 1.2rem;
       margin-bottom: 0.4rem;
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
     }
 
     .modal-card-cv p,
     .modal-card-cv ul {
       font-size: 0.94rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       line-height: 1.6;
     }
 
@@ -485,22 +503,20 @@
     }
 
     footer {
-      border-top: 1px solid var(--bg-card-border);
+      border-top: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       background: rgba(10, 12, 16, 0.95);
       padding: 2.5rem 1.25rem 2rem 1.25rem;
     }
 
     .footer-bottom {
-      max-width: var(--max-width);
+      max-width: var(--max-width, 1200px);
       margin: 0 auto;
       text-align: center;
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       font-size: 0.82rem;
     }
 
-    /* ==========================================
-       REGLAS DE IMPRESIÓN PARA PDF EN 1 PÁGINA
-       ========================================== */
+    /* REGLAS DE IMPRESIÓN PARA PDF EN 1 PÁGINA */
     @media print {
       @page {
         size: A4 portrait;
@@ -517,7 +533,8 @@
       footer,
       .cv-top-actions,
       .mobile-menu-toggle,
-      .modal-overlay {
+      .modal-overlay,
+      #bgInteractiveCanvas {
         display: none !important;
       }
 
@@ -631,6 +648,9 @@
 
 <body class="bg-grid-pattern">
 
+  <!-- CANVAS 2D FONDO INTERACTIVO FULL-SCREEN -->
+  <canvas id="bgInteractiveCanvas"></canvas>
+
   <header>
     <nav aria-label="Navegación principal">
       <a href="/" class="brand">Matías <span>Villalobos Dev</span></a>
@@ -662,8 +682,8 @@
     <section class="cv-card" onclick="openModalCv('modal-header-detail')">
       <div class="cv-header-grid">
         <div class="cv-avatar-frame">
-          <img src="/img/matias.jpg" alt="Matías Villalobos Cautivo"
-            onerror="this.src='https://via.placeholder.com/110'">
+          <img src="../recursos/matias.jpg" alt="Matías Villalobos Cautivo"
+            onerror="this.src='https://via.placeholder.com/110?text=Mat%C3%ADas+VC'">
         </div>
         <div class="cv-header-info">
           <h1>Matías Villalobos Cautivo</h1>
@@ -763,7 +783,7 @@
 
   </main>
 
-  <!-- MODALES DE DESGROSE Y INFORMACIÓN AMPLIADA -->
+  <!-- MODALES DE DESGLOSE Y INFORMACIÓN AMPLIADA -->
 
   <!-- MODAL 1: CONTACTO Y DATOS AMPLIADOS -->
   <div class="modal-overlay" id="modal-header-detail" onclick="closeModalCv('modal-header-detail')">
@@ -863,9 +883,9 @@
   </footer>
 
   <!-- Script Global -->
-  <script src="/script.js"></script>
+  <script src="../script.js"></script>
 
-  <!-- Lógica de Modales Emergentes CV -->
+  <!-- Lógica de Modales Emergentes y Canvas -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -890,6 +910,92 @@
         modal.classList.remove('active');
         document.body.style.overflow = 'auto';
       }
+    }
+
+    /* Motor de Partículas interactivo de fondo */
+    const canvas = document.getElementById('bgInteractiveCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: 140 };
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
+
+      window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 1.2;
+          this.vy = (Math.random() - 0.5) * 1.2;
+          this.radius = 2;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = '#00f0ff';
+          ctx.fill();
+        }
+      }
+
+      function initParticles() {
+        particles = [];
+        const count = Math.floor((canvas.width * canvas.height) / 18000);
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      initParticles();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(0, 240, 255, ${0.25 * (1 - dist / 100)})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
     }
   </script>
 </body>

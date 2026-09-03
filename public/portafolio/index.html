@@ -27,11 +27,11 @@
   <meta property="og:image" content="https://matiasdev-web.vercel.app/img/og-image.png">
 
   <!-- Favicon -->
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="/img/favicon.ico">
+  <link rel="icon" href="../recursos/favicon.ico" type="image/svg+xml">
+  <link rel="alternate icon" href="../recursos/favicon.ico">
 
   <!-- Estilos Globales Compartidos -->
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="../styles.css">
 
   <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,18 +41,31 @@
     rel="stylesheet">
 
   <style>
+    /* Canvas de Fondo */
+    #bgInteractiveCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: auto;
+      background: #0a0c10;
+    }
+
     header {
       position: sticky;
       top: 0;
       width: 100%;
       background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--bg-card-border);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       z-index: 1000;
     }
 
     nav {
-      max-width: var(--max-width);
+      max-width: var(--max-width, 1200px);
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -63,7 +76,7 @@
     .brand {
       font-weight: 700;
       font-size: 1.2rem;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -71,7 +84,7 @@
     }
 
     .brand span {
-      background: var(--accent-gradient);
+      background: var(--accent-gradient, linear-gradient(90deg, #00f0ff, #7000ff));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -83,7 +96,7 @@
     }
 
     .nav-links a {
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -94,14 +107,14 @@
 
     .nav-links a:hover,
     .nav-links a.active {
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
     }
 
     .mobile-menu-toggle {
       display: none;
       background: transparent;
       border: none;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       font-size: 1.8rem;
       cursor: pointer;
       min-width: 44px;
@@ -121,11 +134,12 @@
         width: 100%;
         background: rgba(10, 12, 16, 0.95);
         backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         flex-direction: column;
         align-items: center;
         padding: 1.5rem 0;
         gap: 1.2rem;
-        border-bottom: 1px solid var(--bg-card-border);
+        border-bottom: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
         display: none;
       }
 
@@ -147,7 +161,7 @@
     }
 
     .portfolio-header {
-      max-width: var(--max-width);
+      max-width: var(--max-width, 1200px);
       margin: 0 auto;
       padding: 3rem 1.25rem 1.5rem 1.25rem;
       text-align: center;
@@ -156,10 +170,11 @@
     .portfolio-header h1 {
       font-size: clamp(2rem, 4vw + 1rem, 2.8rem);
       margin-bottom: 0.5rem;
+      color: #ffffff;
     }
 
     .portfolio-header p {
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       font-size: clamp(0.95rem, 1.5vw, 1.1rem);
       max-width: 650px;
       margin: 0 auto 1.5rem auto;
@@ -199,11 +214,11 @@
 
     .filter-btn {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
-      color: var(--text-muted);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
+      color: var(--text-muted, #a1a1a6);
       padding: 0.65rem 1.2rem;
       border-radius: 20px;
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
       font-size: 0.85rem;
       cursor: pointer;
       white-space: nowrap;
@@ -216,21 +231,21 @@
 
     .filter-btn:hover,
     .filter-btn.active {
-      background: var(--accent-color);
+      background: var(--accent-color, #00f0ff);
       color: #000000;
-      border-color: var(--accent-color);
+      border-color: var(--accent-color, #00f0ff);
       font-weight: 600;
     }
 
     .project-counter {
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
       font-size: 0.82rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
     }
 
     /* Grid de Proyectos */
     .projects-grid {
-      max-width: var(--max-width);
+      max-width: var(--max-width, 1200px);
       margin: 0 auto 4rem auto;
       padding: 0 1.25rem;
       display: grid;
@@ -240,15 +255,17 @@
 
     @media (min-width: 640px) {
       .projects-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 1.8rem;
       }
     }
 
     .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: var(--radius-card);
+      background: var(--bg-card, rgba(15, 19, 26, 0.85));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
+      border-radius: var(--radius-card, 16px);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -263,25 +280,31 @@
       box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
     }
 
-    /* Generador Gráfico Interactivo para Vistas Previas */
-    .project-preview-box {
+    /* Contenedor Multimedia */
+    .project-media-box {
       width: 100%;
-      height: 160px;
-      background: #080b10;
+      height: 190px;
+      background: #000000;
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 1px solid var(--bg-card-border);
+      border-bottom: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
     }
 
-    .preview-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .project-media-box img,
+    .project-media-box video {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .project-card:hover .project-media-box img,
+    .project-card:hover .project-media-box video {
+      transform: scale(1.05);
     }
 
     .preview-tag-overlay {
@@ -290,12 +313,13 @@
       right: 0.75rem;
       background: rgba(10, 12, 16, 0.85);
       backdrop-filter: blur(8px);
-      border: 1px solid var(--bg-card-border);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.15));
       padding: 0.25rem 0.6rem;
       border-radius: 4px;
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
       font-size: 0.75rem;
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
+      z-index: 2;
     }
 
     .project-body {
@@ -308,10 +332,11 @@
     .project-title {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
+      color: #ffffff;
     }
 
     .project-description {
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       font-size: 0.92rem;
       line-height: 1.5;
       margin-bottom: 1.25rem;
@@ -326,11 +351,11 @@
     }
 
     .tag {
-      font-family: var(--font-code);
+      font-family: var(--font-code, monospace);
       font-size: 0.75rem;
       padding: 0.25rem 0.6rem;
       background: rgba(0, 240, 255, 0.08);
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
       border-radius: 4px;
       border: 1px solid rgba(0, 240, 255, 0.2);
     }
@@ -344,11 +369,11 @@
     .link-btn {
       font-size: 0.88rem;
       text-decoration: none;
-      color: var(--text-main);
+      color: var(--text-main, #ffffff);
       padding: 0.6rem 1rem;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--bg-card-border);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
@@ -371,19 +396,19 @@
     .link-btn.primary-link {
       background: rgba(0, 240, 255, 0.15);
       border-color: rgba(0, 240, 255, 0.4);
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
       font-weight: 600;
     }
 
-    /* Modales */
+    /* Modal Visor */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(10, 12, 16, 0.88);
-      backdrop-filter: blur(12px);
+      background: rgba(10, 12, 16, 0.92);
+      backdrop-filter: blur(14px);
       z-index: 2000;
       display: flex;
       align-items: center;
@@ -402,10 +427,10 @@
     .modal-card {
       background: #0f131a;
       border: 1px solid rgba(0, 240, 255, 0.3);
-      border-radius: var(--radius-card);
-      max-width: 650px;
+      border-radius: var(--radius-card, 16px);
+      max-width: 750px;
       width: 100%;
-      max-height: 85vh;
+      max-height: 90vh;
       overflow-y: auto;
       padding: 2rem;
       position: relative;
@@ -418,26 +443,44 @@
       transform: translateY(0);
     }
 
+    .modal-media-viewer {
+      width: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      background: #000;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: block;
+    }
+
     .modal-close {
       position: absolute;
       top: 1rem;
       right: 1.25rem;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.8rem;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 1.5rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
       cursor: pointer;
-      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
     }
 
     .modal-close:hover {
-      color: var(--accent-color);
+      color: var(--accent-color, #00f0ff);
+      border-color: var(--accent-color, #00f0ff);
     }
 
     .modal-title {
       font-size: 1.5rem;
-      color: var(--accent-color);
-      font-family: var(--font-code);
+      color: var(--accent-color, #00f0ff);
+      font-family: var(--font-code, monospace);
       margin-bottom: 0.5rem;
       padding-right: 2rem;
     }
@@ -448,8 +491,8 @@
 
     .modal-section h4 {
       font-size: 0.95rem;
-      color: var(--text-main);
-      font-family: var(--font-code);
+      color: var(--text-main, #ffffff);
+      font-family: var(--font-code, monospace);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 0.4rem;
@@ -457,27 +500,30 @@
 
     .modal-section p {
       font-size: 0.92rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       line-height: 1.6;
     }
 
     footer {
-      border-top: 1px solid var(--bg-card-border);
+      border-top: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       background: rgba(10, 12, 16, 0.95);
       padding: 2.5rem 1.25rem 2rem 1.25rem;
     }
 
     .footer-bottom {
-      max-width: var(--max-width);
+      max-width: var(--max-width, 1200px);
       margin: 0 auto;
       text-align: center;
-      color: var(--text-muted);
+      color: var(--text-muted, #a1a1a6);
       font-size: 0.82rem;
     }
   </style>
 </head>
 
 <body class="bg-grid-pattern">
+
+  <!-- CANVAS 2D FONDO INTERACTIVO FULL-SCREEN -->
+  <canvas id="bgInteractiveCanvas"></canvas>
 
   <header>
     <nav aria-label="Navegación principal">
@@ -497,7 +543,7 @@
     <section class="portfolio-header reveal">
       <h1>Portafolio de Proyectos</h1>
       <p>Explora mis desarrollos en Realidad Virtual, simulaciones interactivas 3D, desarrollo en Unity y programación
-        web. <em>(Selecciona cualquier tarjeta para examinar el desglose técnico)</em>.</p>
+        web. <em>(Haz clic en cualquier tarjeta para ver el demo a pantalla completa y su desglose técnico)</em>.</p>
 
       <div class="filter-wrapper">
         <div class="filter-container" role="tablist" aria-label="Filtro de proyectos">
@@ -510,80 +556,161 @@
           <button class="filter-btn" role="tab" aria-selected="false" onclick="filterProjects('web', event)">Web &
             Software</button>
         </div>
-        <span class="project-counter" id="projectCounter">Mostrando 3 proyectos</span>
+        <span class="project-counter" id="projectCounter">Mostrando 6 proyectos</span>
       </div>
     </section>
 
     <section class="projects-grid reveal" id="projectsGrid">
 
-      <!-- PROYECTO 1 -->
-      <article class="project-card" data-category="unity graphics" onclick="openModal('modal1')">
-        <div class="project-preview-box">
-          <canvas class="preview-canvas" id="canvasShaderPrev"></canvas>
-          <span class="preview-tag-overlay">URP Shader Engine</span>
+      <!-- PROYECTO 1: Video NavMesh AI -->
+      <article class="project-card" data-category="unity" onclick="openModal('modal1')">
+        <div class="project-media-box">
+          <video autoplay loop muted playsinline>
+            <source src="../recursos/Vid/navmesh-ai-loop.mp4" type="video/mp4">
+          </video>
+          <span class="preview-tag-overlay">▶ Video Loop</span>
         </div>
         <div class="project-body">
-          <h2 class="project-title">Sistema Interactivo URP & Shaders</h2>
-          <p class="project-description">Simulación interactiva para plataformas móviles. Incorpora mecánicas de
-            interacción 3D, física de follaje y Shaders optimizados en Universal Render Pipeline.</p>
+          <h2 class="project-title">Sistema NavMesh AI & Pathfinding</h2>
+          <p class="project-description">Lógica de IA avanzada con agentes dinámicos en Unity y evitación de obstáculos
+            en tiempo real mediante mallas de navegación optimizadas.</p>
           <div class="project-tags">
             <span class="tag">Unity 3D</span>
             <span class="tag">C# Modular</span>
-            <span class="tag">Shader Graph</span>
-            <span class="tag">URP</span>
-          </div>
-          <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
-              class="link-btn primary-link">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal1')">Caso de Estudio</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- PROYECTO 2 -->
-      <article class="project-card" data-category="unity" onclick="openModal('modal2')">
-        <div class="project-preview-box">
-          <canvas class="preview-canvas" id="canvasNavPrev"></canvas>
-          <span class="preview-tag-overlay">Pathfinding IA</span>
-        </div>
-        <div class="project-body">
-          <h2 class="project-title">Módulos de Navegación & IA 3D</h2>
-          <p class="project-description">Sistemas de navegación autónoma utilizando NavMesh, arquitecturas desacopladas
-            con Scriptable Objects y controladores de animación C#.</p>
-          <div class="project-tags">
-            <span class="tag">Unity 3D</span>
-            <span class="tag">C# Delegates</span>
             <span class="tag">NavMesh IA</span>
             <span class="tag">ScriptableObjects</span>
           </div>
           <div class="project-links" onclick="event.stopPropagation()">
             <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
-              class="link-btn">GitHub</a>
-            <button class="link-btn" onclick="openModal('modal2')">Caso de Estudio</button>
+              class="link-btn primary-link">GitHub</a>
+            <button class="link-btn" onclick="openModal('modal1')">Detalles Técnicos</button>
           </div>
         </div>
       </article>
 
-      <!-- PROYECTO 3 -->
-      <article class="project-card" data-category="web" onclick="openModal('modal3')">
-        <div class="project-preview-box">
-          <canvas class="preview-canvas" id="canvasWebPrev"></canvas>
-          <span class="preview-tag-overlay">Full-Stack Hub</span>
+      <!-- PROYECTO 2: Imagen VR Inmersiva -->
+      <article class="project-card" data-category="unity" onclick="openModal('modal2')">
+        <div class="project-media-box">
+          <img src="../recursos/Img/project-vr.png" alt="Simulación Inmersiva VR"
+            onerror="this.src='https://via.placeholder.com/600x400?text=Proyecto+VR'">
+          <span class="preview-tag-overlay">🖼️ Imagen 3D</span>
         </div>
         <div class="project-body">
-          <h2 class="project-title">Plataforma Web Personal & Hub</h2>
-          <p class="project-description">Ecosistema web personal adaptado a dispositivos móviles, optimizado para SEO
-            con JSON-LD, PWA Manifest y despliegue continuo en Vercel.</p>
+          <h2 class="project-title">Entorno Inmersivo VR</h2>
+          <p class="project-description">Experiencia de Realidad Virtual orientada a interactividad e inmersión en
+            escenarios 3D dinámicos con respuesta física directa.</p>
           <div class="project-tags">
-            <span class="tag">HTML5</span>
-            <span class="tag">CSS3 Grid</span>
-            <span class="tag">Vanilla JS</span>
-            <span class="tag">Vercel PWA</span>
+            <span class="tag">Realidad Virtual</span>
+            <span class="tag">Unity 3D</span>
+            <span class="tag">Physics 3D</span>
+            <span class="tag">C#</span>
           </div>
           <div class="project-links" onclick="event.stopPropagation()">
-            <a href="https://github.com/matiasvillalobosdev-web/web" target="_blank" rel="noopener"
-              class="link-btn">Código Fuente</a>
-            <button class="link-btn primary-link" onclick="openModal('modal3')">Caso de Estudio</button>
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
+              class="link-btn">GitHub</a>
+            <button class="link-btn" onclick="openModal('modal2')">Detalles Técnicos</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROYECTO 3: Video Shaders Fluidos -->
+      <article class="project-card" data-category="graphics" onclick="openModal('modal3')">
+        <div class="project-media-box">
+          <video autoplay loop muted playsinline>
+            <source src="../recursos/Vid/shader-fluid-loop.mp4" type="video/mp4">
+          </video>
+          <span class="preview-tag-overlay">▶ Video Loop</span>
+        </div>
+        <div class="project-body">
+          <h2 class="project-title">Custom Shaders & VFX Fluidos</h2>
+          <p class="project-description">Desarrollo de shaders personalizados en Shader Graph e integración de VFX
+            dinámicos de superficies en Universal Render Pipeline (URP).</p>
+          <div class="project-tags">
+            <span class="tag">Shader Graph</span>
+            <span class="tag">URP</span>
+            <span class="tag">VFX Graph</span>
+            <span class="tag">Particle System</span>
+          </div>
+          <div class="project-links" onclick="event.stopPropagation()">
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
+              class="link-btn">GitHub</a>
+            <button class="link-btn primary-link" onclick="openModal('modal3')">Detalles Técnicos</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROYECTO 4: Imagen URP Pipeline -->
+      <article class="project-card" data-category="graphics" onclick="openModal('modal4')">
+        <div class="project-media-box">
+          <img src="../recursos/Img/project-urp.png" alt="Renderizado URP"
+            onerror="this.src='https://via.placeholder.com/600x400?text=Pipeline+URP'">
+          <span class="preview-tag-overlay">🖼️ Render URP</span>
+        </div>
+        <div class="project-body">
+          <h2 class="project-title">Optimización URP & Lighting</h2>
+          <p class="project-description">Configuración de Universal Render Pipeline de Unity maximizando el rendimiento
+            con iluminación avanzada y SRP Batcher.</p>
+          <div class="project-tags">
+            <span class="tag">URP</span>
+            <span class="tag">Lighting</span>
+            <span class="tag">SRP Batcher</span>
+            <span class="tag">Decals</span>
+          </div>
+          <div class="project-links" onclick="event.stopPropagation()">
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
+              class="link-btn">GitHub</a>
+            <button class="link-btn" onclick="openModal('modal4')">Detalles Técnicos</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROYECTO 5: Video Prototipado Blender -->
+      <article class="project-card" data-category="graphics" onclick="openModal('modal5')">
+        <div class="project-media-box">
+          <video autoplay loop muted playsinline>
+            <source src="../recursos/Vid/code-cube-rotate.mp4" type="video/mp4">
+          </video>
+          <span class="preview-tag-overlay">▶ Video Loop</span>
+        </div>
+        <div class="project-body">
+          <h2 class="project-title">Prototipado 3D & Assets Blender</h2>
+          <p class="project-description">Modelado tridimensional funcional y depuración de animaciones procesadas en
+            Blender e integradas en Unity.</p>
+          <div class="project-tags">
+            <span class="tag">Blender</span>
+            <span class="tag">3D Assets</span>
+            <span class="tag">Animation</span>
+            <span class="tag">Mocap Clean</span>
+          </div>
+          <div class="project-links" onclick="event.stopPropagation()">
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
+              class="link-btn">GitHub</a>
+            <button class="link-btn" onclick="openModal('modal5')">Detalles Técnicos</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROYECTO 6: Web Hub -->
+      <article class="project-card" data-category="web" onclick="openModal('modal6')">
+        <div class="project-media-box">
+          <img src="../recursos/Img/project-navmesh.png" alt="Plataforma Web Personal"
+            onerror="this.src='https://via.placeholder.com/600x400?text=Web+Hub'">
+          <span class="preview-tag-overlay">💻 Web Platform</span>
+        </div>
+        <div class="project-body">
+          <h2 class="project-title">Plataforma Web & Portfolio Hub</h2>
+          <p class="project-description">Sitio web responsivo con arquitectura semántica en Vanilla JS, Canvas 2D
+            interactivo de fondo y optimización SEO en Vercel.</p>
+          <div class="project-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">PWA Manifest</span>
+          </div>
+          <div class="project-links" onclick="event.stopPropagation()">
+            <a href="https://github.com/matiasvillalobosdev-web" target="_blank" rel="noopener"
+              class="link-btn primary-link">Código Fuente</a>
+            <button class="link-btn" onclick="openModal('modal6')">Detalles Técnicos</button>
           </div>
         </div>
       </article>
@@ -595,24 +722,26 @@
   <div class="modal-overlay" id="modal1" onclick="closeModal('modal1')">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
-      <h3 class="modal-title">Sistema Interactivo URP & Shaders</h3>
+      <video class="modal-media-viewer" controls autoplay loop muted>
+        <source src="../recursos/Vid/navmesh-ai-loop.mp4" type="video/mp4">
+      </video>
+      <h3 class="modal-title">Sistema NavMesh AI & Pathfinding</h3>
 
       <div class="modal-section">
         <h4>Desafío Técnico</h4>
-        <p>Desarrollar una simulación móvil interactiva sosteniendo 60 FPS estables con renderizado 3D dinámico,
-          interacciones físicas y Custom Shaders sin saturar el procesamiento del dispositivo.</p>
+        <p>Diseñar un sistema de navegación autónoma para agentes PNJ en tiempo real dentro de escenarios dinámicos
+          manteniendo un costo de cómputo bajo.</p>
       </div>
 
       <div class="modal-section">
         <h4>Solución Implementada</h4>
-        <p>Construcción de Shaders personalizados mediante Shader Graph dentro de Universal Render Pipeline (URP),
-          combinados con algoritmos en C# que gestionan la instanciación eficiente de elementos gráficos mediante Object
-          Pooling.</p>
+        <p>Configuración de mallas de navegación con horneado dinámico de NavMesh en Unity, integrando lógica
+          desacoplada con C# Delegates y Scriptable Objects para gestión de comportamientos.</p>
       </div>
 
       <div class="modal-section">
         <h4>Tecnologías Clave</h4>
-        <p>Unity 3D, C#, Universal Render Pipeline (URP), Shader Graph, VFX Graph, Input System.</p>
+        <p>Unity 3D, C#, NavMesh, ScriptableObjects, Animator Controller.</p>
       </div>
     </div>
   </div>
@@ -621,23 +750,24 @@
   <div class="modal-overlay" id="modal2" onclick="closeModal('modal2')">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
-      <h3 class="modal-title">Módulos de Navegación & IA 3D</h3>
+      <img src="../recursos/Img/project-vr.png" alt="VR Inmersiva" class="modal-media-viewer">
+      <h3 class="modal-title">Entorno Inmersivo VR</h3>
 
       <div class="modal-section">
         <h4>Desafío Técnico</h4>
-        <p>Diseñar un sistema de pathfinding escalable para múltiples entidades autónomas en entornos tridimensionales
-          complejos, manteniendo desacoplada la lógica del motor.</p>
+        <p>Generar una simulación inmersiva fluida asegurando respuesta táctil e interacciones físicas sin provocar
+          mareos por movimiento o bajadas de fotogramas.</p>
       </div>
 
       <div class="modal-section">
         <h4>Solución Implementada</h4>
-        <p>Implementación de NavMesh Agent acoplado a ScriptableObjects para parametrizar comportamientos y rangos de
-          visión de las entidades, usando Delegados y Eventos en C# para coordinar la animación.</p>
+        <p>Desarrollo de controladores interactivos para visores XR, optimización de físicas en espacio 3D y
+          estructuración de colisionadores livianos.</p>
       </div>
 
       <div class="modal-section">
         <h4>Tecnologías Clave</h4>
-        <p>Unity NavMesh, C#, ScriptableObjects, Animator Controller, C# Delegates & Events.</p>
+        <p>Unity XR, C#, Physics 3D, Custom Interactions.</p>
       </div>
     </div>
   </div>
@@ -646,23 +776,106 @@
   <div class="modal-overlay" id="modal3" onclick="closeModal('modal3')">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
-      <h3 class="modal-title">Plataforma Web Personal & Hub</h3>
+      <video class="modal-media-viewer" controls autoplay loop muted>
+        <source src="../recursos/Vid/shader-fluid-loop.mp4" type="video/mp4">
+      </video>
+      <h3 class="modal-title">Custom Shaders & VFX Fluidos</h3>
 
       <div class="modal-section">
         <h4>Desafío Técnico</h4>
-        <p>Construir un portafolio web con estética Cyber-Tech de carga ultrarrápida, navegación fluida sin frameworks
-          pesados y reglas de impresión PDF optimizadas a una sola página.</p>
+        <p>Crear efectos de superficies reactivas e interacciones visuales fluidas capaces de correr en hardware de
+          recursos moderados.</p>
       </div>
 
       <div class="modal-section">
         <h4>Solución Implementada</h4>
-        <p>Desarrollo en HTML5 semántico, CSS3 modular con variables CSS, animaciones Canvas 2D adaptativas y JavaScript
-          Vanilla integrado a pipelines de despliegue en Vercel.</p>
+        <p>Programación visual mediante Shader Graph en Universal Render Pipeline (URP), combinada con VFX Graph para
+          emisión eficiente de partículas.</p>
       </div>
 
       <div class="modal-section">
         <h4>Tecnologías Clave</h4>
-        <p>HTML5, CSS3, Vanilla JS, PWA Manifest, SEO JSON-LD, Vercel.</p>
+        <p>Shader Graph, URP, VFX Graph, Unity Particle Systems.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PROYECTO 4 -->
+  <div class="modal-overlay" id="modal4" onclick="closeModal('modal4')">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+      <img src="../recursos/Img/project-urp.png" alt="URP Lighting" class="modal-media-viewer">
+      <h3 class="modal-title">Optimización URP & Lighting</h3>
+
+      <div class="modal-section">
+        <h4>Desafío Técnico</h4>
+        <p>Sostener una estética visual refinada con alta fidelidad gráfica manteniendo tasas de refresco consistentes.
+        </p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Solución Implementada</h4>
+        <p>Uso estratégico de SRP Batcher, mapas de sombras horneados y proyectores Decal ligeros para acelerar las
+          pasadas de renderizado.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Tecnologías Clave</h4>
+        <p>Universal Render Pipeline (URP), SRP Batcher, Decals, Bake Lighting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PROYECTO 5 -->
+  <div class="modal-overlay" id="modal5" onclick="closeModal('modal5')">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('modal5')">&times;</button>
+      <video class="modal-media-viewer" controls autoplay loop muted>
+        <source src="../recursos/Vid/code-cube-rotate.mp4" type="video/mp4">
+      </video>
+      <h3 class="modal-title">Prototipado 3D & Assets Blender</h3>
+
+      <div class="modal-section">
+        <h4>Desafío Técnico</h4>
+        <p>Procesar mallas tridimensionales y animaciones capturadas (Mocap) para su correcta importación e integración
+          en el motor sin sobrecargar geometría.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Solución Implementada</h4>
+        <p>Limpieza de esqueletos y retopología en Blender, optimizando la cantidad de polígonos y ajustando pesos de
+          deformación (Rigging) antes de compilar en Unity.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Tecnologías Clave</h4>
+        <p>Blender, Motion Capture Clean, FBX Pipeline, Unity 3D.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PROYECTO 6 -->
+  <div class="modal-overlay" id="modal6" onclick="closeModal('modal6')">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('modal6')">&times;</button>
+      <img src="../recursos/Img/project-navmesh.png" alt="Web Hub" class="modal-media-viewer">
+      <h3 class="modal-title">Plataforma Web & Portfolio Hub</h3>
+
+      <div class="modal-section">
+        <h4>Desafío Técnico</h4>
+        <p>Construir un sitio con interfaz rápida, estética cibernética oscura y compatibilidad SEO optimizada sin
+          utilizar bibliotecas o frameworks pesados.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Solución Implementada</h4>
+        <p>Estructuración semántica en HTML5, CSS3 modular con variables personalizadas y un motor gráfico en Canvas 2D
+          nativo para animaciones responsivas de partículas.</p>
+      </div>
+
+      <div class="modal-section">
+        <h4>Tecnologías Clave</h4>
+        <p>HTML5, CSS3, Vanilla JS, PWA, SEO JSON-LD, Vercel.</p>
       </div>
     </div>
   </div>
@@ -674,9 +887,9 @@
     </div>
   </footer>
 
-  <script src="/script.js"></script>
+  <script src="../script.js"></script>
 
-  <!-- Lógica de Filtrado, Modales y Renderizado de Canvas Previews -->
+  <!-- Lógica de Filtrado, Modales e Interacción -->
   <script>
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
@@ -734,84 +947,91 @@
       }
     }
 
-    /* Generadores de Vistas Previas Animadas en Canvas */
-    function initCanvasPreviews() {
-      // Preview 1: Onda Shader
-      const c1 = document.getElementById('canvasShaderPrev');
-      if (c1) {
-        const ctx1 = c1.getContext('2d');
-        let t1 = 0;
-        function render1() {
-          c1.width = c1.parentElement.clientWidth;
-          c1.height = c1.parentElement.clientHeight;
-          ctx1.clearRect(0, 0, c1.width, c1.height);
-          ctx1.beginPath();
-          ctx1.moveTo(0, c1.height / 2);
-          for (let x = 0; x < c1.width; x++) {
-            let y = c1.height / 2 + Math.sin(x * 0.03 + t1) * 20;
-            ctx1.lineTo(x, y);
-          }
-          ctx1.strokeStyle = '#00f0ff';
-          ctx1.lineWidth = 2;
-          ctx1.stroke();
-          t1 += 0.05;
-          requestAnimationFrame(render1);
-        }
-        render1();
+    /* Motor de Partículas interactivo de fondo */
+    const canvas = document.getElementById('bgInteractiveCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let mouse = { x: null, y: null, radius: 140 };
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
 
-      // Preview 2: Nodos IA NavMesh
-      const c2 = document.getElementById('canvasNavPrev');
-      if (c2) {
-        const ctx2 = c2.getContext('2d');
-        let t2 = 0;
-        function render2() {
-          c2.width = c2.parentElement.clientWidth;
-          c2.height = c2.parentElement.clientHeight;
-          ctx2.clearRect(0, 0, c2.width, c2.height);
-          let px = (Math.sin(t2) * 0.3 + 0.5) * c2.width;
-          let py = c2.height / 2;
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
 
-          ctx2.beginPath();
-          ctx2.arc(px, py, 6, 0, Math.PI * 2);
-          ctx2.fillStyle = '#7000ff';
-          ctx2.fill();
+      window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+      });
 
-          ctx2.beginPath();
-          ctx2.moveTo(20, c2.height / 2);
-          ctx2.lineTo(c2.width - 20, c2.height / 2);
-          ctx2.strokeStyle = 'rgba(112, 0, 255, 0.3)';
-          ctx2.setLineDash([4, 4]);
-          ctx2.stroke();
+      window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 
-          t2 += 0.03;
-          requestAnimationFrame(render2);
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 1.2;
+          this.vy = (Math.random() - 0.5) * 1.2;
+          this.radius = 2;
         }
-        render2();
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+          if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = '#00f0ff';
+          ctx.fill();
+        }
       }
 
-      // Preview 3: Grid Web Tech
-      const c3 = document.getElementById('canvasWebPrev');
-      if (c3) {
-        const ctx3 = c3.getContext('2d');
-        function render3() {
-          c3.width = c3.parentElement.clientWidth;
-          c3.height = c3.parentElement.clientHeight;
-          ctx3.clearRect(0, 0, c3.width, c3.height);
-          ctx3.strokeStyle = 'rgba(0, 240, 255, 0.15)';
-          ctx3.lineWidth = 1;
-          for (let x = 0; x < c3.width; x += 20) {
-            ctx3.beginPath(); ctx3.moveTo(x, 0); ctx3.lineTo(x, c3.height); ctx3.stroke();
-          }
-          for (let y = 0; y < c3.height; y += 20) {
-            ctx3.beginPath(); ctx3.moveTo(0, y); ctx3.lineTo(c3.width, y); ctx3.stroke();
+      function initParticles() {
+        particles = [];
+        const count = Math.floor((canvas.width * canvas.height) / 18000);
+        for (let i = 0; i < count; i++) {
+          particles.push(new Particle());
+        }
+      }
+
+      initParticles();
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 100) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(0, 240, 255, ${0.25 * (1 - dist / 100)})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
           }
         }
-        render3();
+
+        requestAnimationFrame(animate);
       }
+
+      animate();
     }
-
-    window.addEventListener('DOMContentLoaded', initCanvasPreviews);
   </script>
 </body>
 

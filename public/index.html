@@ -72,9 +72,10 @@
   }
   </script>
 
-  <!-- Favicon -->
-  <link rel="icon" href="recursos/favicon.ico" type="image/svg+xml">
-  <link rel="alternate icon" href="recursos/favicon.ico">
+  <!-- Favicon Personalizado (.ico) de /recursos -->
+  <link rel="icon" href="recursos/icono.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="recursos/icono.ico" type="image/x-icon">
+  <link rel="alternate icon" href="recursos/favicon.ico" type="image/x-icon">
 
   <!-- Estilos Globales Compartidos -->
   <link rel="stylesheet" href="styles.css">
@@ -289,17 +290,31 @@
       }
     }
 
+    /* Tarjeta de Perfil con Video Dinámico de Fondo */
     .profile-card {
-      background: rgba(15, 19, 26, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.12));
+      position: relative;
+      background: rgba(15, 19, 26, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.15));
       border-radius: var(--radius-card, 16px);
-      padding: 1.75rem 1.5rem;
+      padding: 3rem 1.5rem;
       text-align: center;
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
-      position: relative;
       overflow: hidden;
+      z-index: 1;
+    }
+
+    .profile-card-bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
     }
 
     .profile-avatar-container {
@@ -307,6 +322,7 @@
       width: 130px;
       height: 130px;
       margin: 0 auto 1.25rem auto;
+      z-index: 2;
     }
 
     .profile-card img.avatar {
@@ -315,102 +331,74 @@
       border-radius: 50%;
       object-fit: cover;
       border: 3px solid var(--accent-color, #00f0ff);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
     }
 
-    .hero-video-card {
-      margin-top: 1.5rem;
+    .profile-card h3 {
       position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: #000;
-    }
-
-    .hero-video-card video {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      display: block;
-      opacity: 0.85;
-      transition: opacity 0.3s ease;
-    }
-
-    .hero-video-card:hover video {
-      opacity: 1;
-    }
-
-    .video-overlay-badge {
-      position: absolute;
-      bottom: 8px;
-      left: 8px;
-      background: rgba(10, 12, 16, 0.8);
-      backdrop-filter: blur(6px);
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      color: #00f0ff;
-      font-family: var(--font-code, monospace);
-      border: 1px solid rgba(0, 240, 255, 0.2);
-    }
-
-    /* Modulos y Grilla de Proyectos */
-    .section-title {
-      max-width: var(--max-width, 1200px);
-      margin: 3rem auto 1.5rem auto;
-      padding: 0 1.25rem;
-      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      z-index: 2;
       color: #ffffff;
+      font-size: 1.35rem;
     }
 
-    .grid-projects {
+    .profile-card p {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Módulos de Acceso Directo */
+    .modules {
       max-width: var(--max-width, 1200px);
-      margin: 0 auto 3rem auto;
+      margin: 1.5rem auto 3rem auto;
       padding: 0 1.25rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
     }
 
-    .card-project {
+    @media (min-width: 768px) {
+      .modules {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .card-module {
       background: rgba(15, 19, 26, 0.85);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--bg-card-border, rgba(255, 255, 255, 0.1));
       border-radius: var(--radius-card, 16px);
-      overflow: hidden;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
-    .card-project:hover {
+    @media (min-width: 768px) {
+      .card-module {
+        padding: 2rem;
+      }
+    }
+
+    .card-module:hover {
       transform: translateY(-4px);
       border-color: rgba(0, 240, 255, 0.4);
     }
 
-    .card-project-media {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      background-color: #000;
-    }
-
-    .card-project-body {
-      padding: 1.25rem;
+    .card-module h2 {
+      font-size: 1.35rem;
+      margin-bottom: 0.75rem;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 0.5rem;
-    }
-
-    .card-project-body h3 {
-      font-size: 1.15rem;
       color: #ffffff;
     }
 
-    .card-project-body p {
+    .card-module p {
       color: var(--text-muted, #a1a1a6);
-      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
     }
 
     /* Skills & Tech Stack */
@@ -610,8 +598,7 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="/" class="active">Inicio</a></li>
-        <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#demostraciones">Demostraciones</a></li>
+        <li><a href="/portafolio/">Portafolio</a></li>
         <li><a href="/cv/">CV</a></li>
       </ul>
     </nav>
@@ -629,13 +616,16 @@
           Digitales. Especializado en desarrollo interactivo con Unity, C#, simulaciones 3D y aplicaciones web
           interactivas.</p>
         <div class="hero-buttons">
-          <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+          <a href="/portafolio/" class="btn btn-primary">Ver Portafolio</a>
           <a href="/cv/" class="btn btn-secondary">Consultar CV</a>
         </div>
       </div>
 
-      <!-- Tarjeta de Perfil Profesional con Foto y Video Reel Incorporado -->
+      <!-- Tarjeta de Perfil Profesional con Video Dinámico de Fondo -->
       <div class="profile-card">
+        <video class="profile-card-bg-video" autoplay loop muted playsinline>
+          <source src="recursos/Vid/video-fondo.mp4" type="video/mp4">
+        </video>
         <div class="profile-avatar-container">
           <img src="recursos/matias.jpg" alt="Foto de Matías Villalobos Cautivo" class="avatar" loading="lazy"
             onerror="this.src='https://via.placeholder.com/130?text=Mat%C3%ADas+VC'">
@@ -643,84 +633,28 @@
         <h3>Matías Villalobos Cautivo</h3>
         <p style="color: var(--accent-color, #00f0ff); font-size: 0.9rem; margin-top: 0.25rem;">XR Developer & VR
           Engineer</p>
-
-        <!-- Previsualización de Video Demo / Showreel -->
-        <div class="hero-video-card">
-          <video autoplay loop muted playsinline poster="recursos/Img/project-vr.png">
-            <source src="recursos/Vid/video-fondo.mp4" type="video/mp4">
-            Tu navegador no soporta reproducción de video.
-          </video>
-          <div class="video-overlay-badge">▶ Showreel Demo 3D / Unity</div>
-        </div>
       </div>
     </section>
 
-    <!-- Sección de Proyectos Destacados -->
-    <h2 class="section-title" id="proyectos">🚀 Proyectos Destacados</h2>
-    <section class="grid-projects">
-      <article class="card-project">
-        <img src="recursos/Img/project-vr.png" alt="Proyecto Realidad Virtual" class="card-project-media"
-          onerror="this.src='https://via.placeholder.com/350x180?text=Proyecto+VR'">
-        <div class="card-project-body">
-          <h3>Simulación VR Inmersiva</h3>
-          <p>Experiencia interactiva desarrollada para entornos inmersivos optimizando recursos y respuesta de usuario.
-          </p>
+    <!-- Módulos Principales de Navegación -->
+    <section class="modules reveal">
+      <div class="card-module">
+        <div>
+          <h2>🚀 Portafolio Interactivo</h2>
+          <p>Explora mis proyectos de desarrollo en Unity, Shader Graph, simulaciones interactivas 3D y aplicaciones
+            desarrolladas en C# y JavaScript con material audiovisual detallado.</p>
         </div>
-      </article>
+        <a href="/portafolio/" class="btn btn-secondary">Ir al Portafolio &rarr;</a>
+      </div>
 
-      <article class="card-project">
-        <img src="recursos/Img/project-navmesh.png" alt="Proyecto NavMesh AI" class="card-project-media"
-          onerror="this.src='https://via.placeholder.com/350x180?text=NavMesh+AI'">
-        <div class="card-project-body">
-          <h3>Sistemas de Navegación (NavMesh)</h3>
-          <p>Implementación de inteligencia artificial y rutas de navegación para agentes en escenarios 3D dinámicos.
-          </p>
+      <div class="card-module">
+        <div>
+          <h2>📄 Curriculum Vitae</h2>
+          <p>Conoce mi trayectoria académica en la Universidad Bernardo O'Higgins, mis habilidades técnicas,
+            herramientas de desarrollo y experiencia estructurada profesionalmente.</p>
         </div>
-      </article>
-
-      <article class="card-project">
-        <img src="recursos/Img/project-urp.png" alt="Proyecto Pipeline URP" class="card-project-media"
-          onerror="this.src='https://via.placeholder.com/350x180?text=Renderizado+URP'">
-        <div class="card-project-body">
-          <h3>Renderizado Avanzado en URP</h3>
-          <p>Uso de Universal Render Pipeline de Unity para optimización gráfica y fidelidad visual en diversas
-            plataformas.</p>
-        </div>
-      </article>
-    </section>
-
-    <!-- Sección de Demostraciones Técnicas -->
-    <h2 class="section-title" id="demostraciones">📹 Demostraciones Técnicas en Video</h2>
-    <section class="grid-projects">
-      <article class="card-project">
-        <video class="card-project-media" autoplay loop muted playsinline>
-          <source src="recursos/Vid/navmesh-ai-loop.mp4" type="video/mp4">
-        </video>
-        <div class="card-project-body">
-          <h3>Lógica de IA y Rutas</h3>
-          <p>Pruebas continuas de búsqueda de caminos utilizando NavMesh en tiempo real.</p>
-        </div>
-      </article>
-
-      <article class="card-project">
-        <video class="card-project-media" autoplay loop muted playsinline>
-          <source src="recursos/Vid/shader-fluid-loop.mp4" type="video/mp4">
-        </video>
-        <div class="card-project-body">
-          <h3>Shaders & VFX Fluidos</h3>
-          <p>Efectos visuales e interacciones mediante grafos de shaders personalizados.</p>
-        </div>
-      </article>
-
-      <article class="card-project">
-        <video class="card-project-media" autoplay loop muted playsinline>
-          <source src="recursos/Vid/code-cube-rotate.mp4" type="video/mp4">
-        </video>
-        <div class="card-project-body">
-          <h3>Prototipado 3D</h3>
-          <p>Modelado preliminar en Blender y lógica de transformación aplicada.</p>
-        </div>
-      </article>
+        <a href="/cv/" class="btn btn-secondary">Ver Currículum &rarr;</a>
+      </div>
     </section>
 
     <!-- Sección de Habilidades & Tech Stack -->
@@ -797,8 +731,7 @@
         <h5>Navegación</h5>
         <ul>
           <li><a href="/">Inicio</a></li>
-          <li><a href="#proyectos">Proyectos</a></li>
-          <li><a href="#demostraciones">Demostraciones</a></li>
+          <li><a href="/portafolio/">Portafolio</a></li>
           <li><a href="/cv/">Curriculum Vitae</a></li>
         </ul>
       </div>
